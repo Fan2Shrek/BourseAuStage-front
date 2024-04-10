@@ -10,6 +10,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Bienvenue à l'auto deploiement !</h2>
         </div>
+        <p>Test OK</p>
       </div>
     );
   }
