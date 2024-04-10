@@ -9,7 +9,7 @@ on:
 jobs:
   preprod:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/develop'
+    if: github.ref == 'refs/heads/develop'
 
     steps:
     - name: Checkout Repository
@@ -28,7 +28,7 @@ jobs:
   
   prod:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/main'
+    if: github.ref == 'refs/heads/main'
 
     steps:
     - name: Checkout Repository
