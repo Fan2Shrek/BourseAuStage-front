@@ -1,18 +1,21 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Bienvenue sur BourseAuxStages !</h2>
-        </div>
-      </div>
-    );
-  }
+import './App.css';
+import Layout from "./layout";
+import Home from "./pages/home";
+import path from "./path";
+
+function App() {
+  return <>
+    <BrowserRouter>
+      <Routes>
+          <Route element={<Layout />}>
+            <Route index path={path.home} element={<Home />} />
+          </Route>
+      </Routes>
+    </BrowserRouter>
+  </>;
 }
+
 
 export default App;

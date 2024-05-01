@@ -1,0 +1,49 @@
+@use '../../../styles/variable' as v;
+
+.footer {
+    background-color: v.$footer;
+    height: 150%;
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 50px 75px;
+        color: white;
+
+        .column {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    .divider {
+        width: 90%;
+        margin-inline: auto;
+        height: 1px;
+        background-color: white;
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 100px;
+        padding-block: 20px;
+        color: white;
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            height: 100%;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
