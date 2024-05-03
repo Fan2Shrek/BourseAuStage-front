@@ -1,7 +1,5 @@
-@use '../../../styles/variable' as v;
-
 .footer {
-    background-color: v.$footer;
+    background-color: var(--color-dark);
     height: 150%;
 
     .content {
@@ -10,13 +8,21 @@
         align-items: center;
         gap: 20px;
         padding: 50px 75px;
-        color: white;
+        color: var(--color-light);
 
         .column {
             width: 400px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+
+            .logo {
+                height: 60px;
+            }
+
+            a {
+                color: var(--color-light);
+            }
         }
     }
 
@@ -24,7 +30,7 @@
         width: 90%;
         margin-inline: auto;
         height: 1px;
-        background-color: white;
+        background-color: var(--color-third);
     }
 
     .bottom {
@@ -32,7 +38,7 @@
         justify-content: space-between;
         padding-inline: 100px;
         padding-block: 20px;
-        color: white;
+        color: var(--color-light);
 
         .links {
             display: flex;
