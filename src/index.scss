@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // A VOIR
+  transition: all .2s linear, color 0s;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: var(--text-size);
+  background-color: var(--base-color);
+  color: var(--text-color);
+
+  // TODO : font-size des <h?>
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

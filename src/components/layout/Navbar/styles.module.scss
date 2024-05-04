@@ -1,0 +1,29 @@
+.navbar {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 100px;
+    border-bottom: 1px solid var(--base-color-inverted);
+
+    .logo {
+        height: 60px;
+    }
+
+    .links,
+    .login {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        height: 100%;
+    }
+
+    .themeSwitcher {
+        position: fixed;
+        top: 10%;
+        right: 0;
+        font-size: 40px;
+        cursor: pointer;
+    }
+}
