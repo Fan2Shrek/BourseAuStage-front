@@ -1,4 +1,4 @@
-import {createContext, useCallback, useEffect, useState} from "react";
+import {createContext, useCallback, useState} from "react";
 
 import {ThemeEnum} from "../enum/ThemeEnum";
 import {DefaultTheme} from "../theme/DefaultTheme";

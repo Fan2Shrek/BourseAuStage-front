@@ -1,6 +1,7 @@
 import {CiFacebook, CiInstagram, CiLinkedin, CiTwitter} from "react-icons/ci";
 
-import styles from './styles.module.scss';
+import styles from './Footer.module.scss';
+import path from "../../../path";
 
 const Footer = () => {
     return <div className={styles.footer}>
@@ -17,18 +18,18 @@ const Footer = () => {
             </div>
 
             <div className={styles.column}>
-                <a>Accueil</a>
-                <a>Offres</a>
-                <a>Entreprises</a>
-                <a>Etudiants</a>
+                <a href={path.home}>Accueil</a>
+                <a href="/">Offres</a>
+                <a href="/">Entreprises</a>
+                <a href="/">Etudiants</a>
             </div>
 
             <div className={styles.column}>
-                <a>Blog</a>
-                <a>Sponsor</a>
-                <a>Mentions légales</a>
-                <a>Données personnelles</a>
-                <a>Nous contacter</a>
+                <a href="/">Blog</a>
+                <a href="/">Sponsor</a>
+                <a href="/">Mentions légales</a>
+                <a href="/">Données personnelles</a>
+                <a href="/">Nous contacter</a>
             </div>
 
             <div className={styles.column}>

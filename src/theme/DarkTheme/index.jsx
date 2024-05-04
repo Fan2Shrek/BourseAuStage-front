@@ -2,13 +2,15 @@ import {useEffect} from 'react';
 
 import setProperty from '../../utils/setProperty';
 
-export const Darktheme = ({}) => {
+export const Darktheme = () => {
     useEffect(() => {
         /**
-         * BASE
-         */
-        setProperty('--base-color', 'var(--color-dark)');
-        setProperty('--base-color-inverted', 'var(--color-light)');
+         * COLORS
+        */
+        setProperty('--base-color-neutral', 'var(--color-light)');
+        // A voir selon le choix du hover
+        setProperty('--base-color-neutral-alpha', 'var(--color-light-alpha)');
+        setProperty('--base-color-neutral-inverted', 'var(--color-dark)');
     }, [])
 
     return <></>

@@ -1,0 +1,59 @@
+.button {
+    --button-color: var(--color-main);
+    --button-color-alpha: var(--color-main-alpha);
+    --button-text-color: var(--color-light);
+    --button-inverted-color: var(--color-light);
+
+    background-color: var(--button-color-alpha);
+    border: 1px solid var(--button-color-alpha);
+    color: var(--button-text-color);
+    font-size: var(--text-size);
+    padding: 12px 24px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--button-color);
+        border-color: var(--button-color);
+    }
+
+    &.neutral {
+        --button-color: var(--base-color-neutral);
+        --button-color-alpha: var(--base-color-neutral-alpha);
+        --button-text-color: var(--base-color-neutral-inverted);
+        --button-inverted-color: var(--base-color-neutral-inverted);
+    }
+
+    &.secondary {
+        --button-color: var(--color-secondary);
+        --button-color-alpha: var(--color-secondary-alpha);
+    }
+
+    &.inverted {
+        background-color: var(--button-inverted-color);
+        color: var(--button-color-alpha);
+
+        &:hover {
+            color: var(--button-color);
+        }
+    }
+
+    &.transparent {
+        background-color: transparent;
+    }
+
+    &.withoutBorder {
+        border-color: transparent;
+    }
+
+    &.dashedBorder {
+        border-style: dashed;
+    }
+
+    &.withIcon {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        padding-inline: 20px;
+    }
+}

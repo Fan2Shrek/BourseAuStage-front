@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {FaRegMoon} from "react-icons/fa";
 import {FaRegSun} from "react-icons/fa";
 
-import styles from './styles.module.scss';
+import styles from './Navbar.module.scss';
 import path from '../../../path';
 import {ThemeContext} from '../../../context/ThemeContext';
 import {ThemeEnum} from '../../../enum/ThemeEnum';

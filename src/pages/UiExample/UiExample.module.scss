@@ -1,0 +1,11 @@
+.container {
+    height: 1500px;
+    padding-inline: 100px;
+
+    :global {
+        .list {
+            margin-top: 20px;
+            justify-content: left;
+        }
+    }
+}
