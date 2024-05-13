@@ -1,6 +1,10 @@
 .container {
-    height: 1500px;
+    min-height: 100dvh;
     padding-inline: 100px;
+
+    .section {
+        margin-block: 50px;
+    }
 
     :global {
         .list {
