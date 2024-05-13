@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import {CiFacebook, CiInstagram, CiLinkedin, CiTwitter} from "react-icons/ci";
 
 import styles from './Footer.module.scss';
@@ -18,18 +19,18 @@ const Footer = () => {
             </div>
 
             <div className={styles.column}>
-                <a href={path.home}>Accueil</a>
-                <a href="/">Offres</a>
-                <a href="/">Entreprises</a>
-                <a href="/">Etudiants</a>
+                <Link to={path.home}>Accueil</Link>
+                <Link to="/">Offres</Link>
+                <Link to="/">Entreprises</Link>
+                <Link to="/">Etudiants</Link>
             </div>
 
             <div className={styles.column}>
-                <a href="/">Blog</a>
-                <a href="/">Sponsor</a>
-                <a href="/">Mentions légales</a>
-                <a href="/">Données personnelles</a>
-                <a href="/">Nous contacter</a>
+                <Link to="/">Blog</Link>
+                <Link to="/">Sponsor</Link>
+                <Link to="/">Mentions légales</Link>
+                <Link to="/">Données personnelles</Link>
+                <Link to="/">Nous contacter</Link>
             </div>
 
             <div className={styles.column}>
