@@ -15,7 +15,7 @@ export const ThemeContextProvider = ({children}) => {
 
     const handleTheme = useCallback(() => {
         isLight ? setTheme(ThemeEnum.DARK) : setTheme(ThemeEnum.LIGHT);
-    }, [theme]);
+    }, [isLight]);
 
     return <ThemeContext.Provider value={{
         theme,

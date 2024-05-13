@@ -1,4 +1,5 @@
 import {useContext} from 'react';
+import {Link} from 'react-router-dom';
 import {FaRegMoon} from "react-icons/fa";
 import {FaRegSun} from "react-icons/fa";
 
@@ -19,17 +20,18 @@ const Navbar = () => {
         />
 
         <div className={styles.links}>
-            <a href={path.home}>Accueil</a>
-            <a href='/'>Offres</a>
-            <a href='/'>Demandes</a>
-            <a href='/'>Entreprises</a>
-            <a href='/'>Etudiants</a>
+            <Link to={path.home}>Accueil</Link>
+            <Link to='/'>Offres</Link>
+            <Link to='/'>Demandes</Link>
+            <Link to='/'>Entreprises</Link>
+            <Link to='/'>Etudiants</Link>
+            <Link to={path.uiExample}>UI</Link>
         </div>
 
 
         <div className={styles.login}>
-            <a href='/'>Connexion</a>
-            <a href='/'>Inscription</a>
+            <Link to='/'>Connexion</Link>
+            <Link to='/'>Inscription</Link>
         </div>
 
         {/* TEMPORAIRE (en attente d'un vrai switch) */}
