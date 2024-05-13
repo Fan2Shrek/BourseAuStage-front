@@ -4,6 +4,7 @@ import {FaArrowRight, FaGithub} from "react-icons/fa";
 import styles from './UiExample.module.scss';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
+import Tag from '../../components/ui/atoms/Tag';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -42,33 +43,108 @@ const UiExample = () => {
         {identifier: 7, label: 'Button 7', secondary: true, inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn},
     ], [])
 
+    const exampleTags = useMemo(() => [
+        {id: 1, label: 'Tag 1'},
+        {id: 2, label: 'Tag 2', color: '#eb8533'},
+        {id: 3, label: 'Tag 3', color: '#56cdad'},
+        {id: 4, label: 'Tag 4', color: '#ff6550'},
+        {id: 6, label: 'Tag 5', color: '#26a4ff'},
+        {id: 7, label: 'Tag 6', color: '#ff007a'},
+    ], [])
+
+    const exampleSecondaryTags = useMemo(() => [
+        {id: 1, label: 'Tag 1', secondary: true},
+        {id: 2, label: 'Tag 2', color: '#eb8533', secondary: true},
+        {id: 3, label: 'Tag 3', color: '#56cdad', secondary: true},
+        {id: 4, label: 'Tag 4', color: '#ff6550', secondary: true},
+        {id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true},
+        {id: 7, label: 'Tag 6', color: '#ff007a', secondary: true},
+    ], [])
+
+    const exampleWithoutRadiusTags = useMemo(() => [
+        {id: 1, label: 'Tag 1', radius: 0},
+        {id: 2, label: 'Tag 2', color: '#eb8533', radius: 0},
+        {id: 3, label: 'Tag 3', color: '#56cdad', radius: 0},
+        {id: 4, label: 'Tag 4', color: '#ff6550', radius: 0},
+        {id: 6, label: 'Tag 5', color: '#26a4ff', radius: 0},
+        {id: 7, label: 'Tag 6', color: '#ff007a', radius: 0},
+    ], [])
+
+    const exampleSecondaryWithoutRadiusTags = useMemo(() => [
+        {id: 1, label: 'Tag 1', secondary: true, radius: 0},
+        {id: 2, label: 'Tag 2', color: '#eb8533', secondary: true, radius: 0},
+        {id: 3, label: 'Tag 3', color: '#56cdad', secondary: true, radius: 0},
+        {id: 4, label: 'Tag 4', color: '#ff6550', secondary: true, radius: 0},
+        {id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0},
+        {id: 7, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0},
+    ], [])
+
     return <div className={styles.container}>
-        <List
-            collection={exampleMainButtons}
-            // pick item.id by default
-            uniqueAttr={btn => btn.identifier}
-            renderItem={({identifier: _, ...attr}) => {
-                return <Button {...attr} />
-            }}
-        />
+        <h1>Ui Exemples</h1>
 
-        <List
-            collection={exampleNeutralButtons}
-            // pick item.id by default
-            uniqueAttr={btn => btn.identifier}
-            renderItem={({identifier: _, ...attr}) => {
-                return <Button {...attr} />
-            }}
-        />
+        <div className={styles.section}>
+            <h2>Bouton :</h2>
 
-        <List
-            collection={exampleSecondaryButtons}
-            // pick item.id by default
-            uniqueAttr={btn => btn.identifier}
-            renderItem={({identifier: _, ...attr}) => {
-                return <Button {...attr} />
-            }}
-        />
+            <List
+                collection={exampleMainButtons}
+                // pick item.id by default
+                uniqueAttr={btn => btn.identifier}
+                renderItem={({identifier: _, ...attr}) => {
+                    return <Button {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleNeutralButtons}
+                // pick item.id by default
+                uniqueAttr={btn => btn.identifier}
+                renderItem={({identifier: _, ...attr}) => {
+                    return <Button {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleSecondaryButtons}
+                // pick item.id by default
+                uniqueAttr={btn => btn.identifier}
+                renderItem={({identifier: _, ...attr}) => {
+                    return <Button {...attr} />
+                }}
+            />
+        </div>
+
+        <div className={styles.section}>
+            <h2>Tag :</h2>
+
+            <List
+                collection={exampleTags}
+                renderItem={({id: _, ...attr}) => {
+                    return <Tag {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleSecondaryTags}
+                renderItem={({id: _, ...attr}) => {
+                    return <Tag {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleWithoutRadiusTags}
+                renderItem={({id: _, ...attr}) => {
+                    return <Tag {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleSecondaryWithoutRadiusTags}
+                renderItem={({id: _, ...attr}) => {
+                    return <Tag {...attr} />
+                }}
+            />
+        </div>
+
     </div>
 }
 

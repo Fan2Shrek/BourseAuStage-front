@@ -13,6 +13,15 @@ body {
   color: var(--text-color);
 
   // TODO : font-size des <h?>
+  // Size à adaptées sur la homepage
+
+  h1 {
+    font-size: 53px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
 
   a {
     text-decoration: none;
