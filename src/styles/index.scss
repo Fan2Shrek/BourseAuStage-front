@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
   // A VOIR
   transition: all .2s linear, color 0s;
 }
