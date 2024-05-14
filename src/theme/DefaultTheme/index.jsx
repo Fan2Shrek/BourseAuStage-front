@@ -15,12 +15,11 @@ export const DefaultTheme = () => {
         // A voir selon le choix du hover
         setProperty('--color-secondary-alpha', '#26a4ffe6');
 
-        setProperty('--color-third', '#63666e');
+        setProperty('--color-third', '#f8f8fd');
 
         setProperty('--color-light', '#fff')
         // A voir selon le choix du hover
         setProperty('--color-light-alpha', '#ffffffe6')
-        setProperty('--color-light-secondary', '#f8f8fd')
 
         setProperty('--color-dark', '#202430');
         // A voir selon le choix du hover
@@ -28,11 +27,16 @@ export const DefaultTheme = () => {
 
         /**
          * BASE
-        */
+         */
         setProperty('--base-color-neutral', 'var(--color-dark)');
         // A voir selon le choix du hover
         setProperty('--base-color-neutral-alpha', 'var(--color-dark-alpha)');
         setProperty('--base-color-neutral-inverted', 'var(--color-light)');
+        setProperty('--base-inline-margin-xl', '124px')
+        setProperty('--base-inline-margin-lg', '100px')
+        setProperty('--base-inline-margin-md', '70px')
+        setProperty('--base-inline-margin-sm', '50px')
+        setProperty('--base-inline-margin', '20px')
 
         /**
          * TEXT
