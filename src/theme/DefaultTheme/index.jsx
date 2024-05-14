@@ -20,11 +20,14 @@ export const DefaultTheme = () => {
         setProperty('--color-light', '#fff')
         // A voir selon le choix du hover
         setProperty('--color-light-alpha', '#ffffffe6')
+        setProperty('--color-light-alpha-20', '#ffffff33')
 
         setProperty('--color-dark', '#202430');
         // A voir selon le choix du hover
         setProperty('--color-dark-alpha', '#202430e6');
 
+        setProperty('--color-grey', '#d6ddeb')
+        
         /**
          * BASE
          */

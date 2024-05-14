@@ -1,33 +1,91 @@
 .footer {
     background-color: var(--color-dark);
-    height: 150%;
+    
+    &Container {
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    p {
+        text-align: left;
+        color: var(--color-grey);
+    }
+
+    .logoContainer, .createContainer {
+        margin-top: 10px;
+        width: 400px;
+    }
+    
+    .logoContainer > * {
+        margin-block: 10px;
+    }
+
+    .createContainer > * {
+        margin-block: 20px;
+    }
 
     .content {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-between;
         gap: 20px;
-        padding: 50px 75px;
+        padding-block: 50px;
         color: var(--color-light);
 
-        .column {
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .createAccount {
+            font-family: Epilogue;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 28.8px;
+            text-align: left;
+            color: #fff;
+            margin-top: 10px;
 
-            .logo {
-                height: 60px;
+            &Form {
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                height: 50px;
+            
+                span {
+                    font-weight: 700;
+                }
+
+                input::placeholder {
+                    line-height: 25.6px;
+                    text-align: left;
+                    padding-left: 5px;
+                }
             }
+        }
 
-            a {
-                color: var(--color-light);
+        .logo {
+            height: 60px;
+            align-self: flex-start;
+        }
+
+        .links {
+            display: flex;
+            width: 400px;
+            margin-top: 20px;
+
+            .column {
+                width: 400px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+    
+                a {
+                    font-family: Epilogue;
+                    text-align: left;
+                    color: var(--color-light);
+                }
             }
         }
     }
 
     .divider {
-        width: 90%;
         margin-inline: auto;
         height: 1px;
         background-color: var(--color-third);
@@ -36,9 +94,12 @@
     .bottom {
         display: flex;
         justify-content: space-between;
-        padding-inline: 100px;
         padding-block: 20px;
         color: var(--color-light);
+
+        p {
+            opacity: 0.5;
+        }
 
         .links {
             display: flex;
