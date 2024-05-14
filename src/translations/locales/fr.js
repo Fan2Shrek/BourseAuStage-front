@@ -1,6 +1,7 @@
 import tokens from "../tokens";
 
 const fr = {
+    [tokens.facets.options.all]: "Tous",
     [tokens.actions.login]: "Se connecter",
     [tokens.actions.createAccount]: "Créer un compte",
     [tokens.actions.logout]: "Se déconnecter",

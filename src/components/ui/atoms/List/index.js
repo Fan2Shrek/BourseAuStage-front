@@ -1,7 +1,7 @@
 import './list.scss'
 import cn from '../../../../utils/classnames'
 
-const List = ({collection, uniqueAttr = null, renderItem, className}) => {
+const List = ({collection = [], uniqueAttr = null, renderItem, className}) => {
     if (!uniqueAttr) {
         uniqueAttr = element => element.id
     }

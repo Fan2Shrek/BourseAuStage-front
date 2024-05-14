@@ -1,0 +1,44 @@
+.facet {
+    &__header {
+        width: 100%;
+        padding: 20px 10px;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__chevron {
+        &.active {
+            rotate: 180deg;
+        }
+    }
+
+    .list {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 10px;
+        opacity: 0;
+
+        &.active {
+            max-height: var(--facet-max-height);
+            padding: 0 10px 20px;
+            opacity: 1;
+        }
+
+        &__element {
+            .input {
+                &__target {
+                    min-width: 24px;
+                }
+
+                &__label {
+                    overflow-x: hidden;
+                }
+            }
+        }
+    }
+}

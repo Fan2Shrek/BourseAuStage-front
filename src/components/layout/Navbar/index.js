@@ -1,13 +1,13 @@
-import {useContext} from 'react';
-import {Link, useLocation} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
-import {FaRegMoon} from "react-icons/fa";
-import {FaRegSun} from "react-icons/fa";
+import { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { FaRegMoon } from "react-icons/fa";
+import { FaRegSun } from "react-icons/fa";
 
 import styles from './Navbar.module.scss';
 import path from '../../../path';
-import {ThemeContext} from '../../../context/ThemeContext';
-import {ThemeEnum} from '../../../enum/ThemeEnum';
+import { ThemeContext } from '../../../context/ThemeContext';
+import ThemeEnum from '../../../enum/ThemeEnum';
 import Button from '../../ui/atoms/Button';
 import List from '../../ui/atoms/List';
 import cn from '../../../utils/classnames'
@@ -32,10 +32,10 @@ const isCurrentPage = (currentPage, route) => {
 }
 
 const Navbar = () => {
-    const {theme, handleTheme} = useContext(ThemeContext);
+    const { theme, handleTheme } = useContext(ThemeContext);
     const isLight = theme === ThemeEnum.LIGHT;
     const currentRoute = useLocation().pathname;
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return <Container>
         <div className={styles.navbar}>

@@ -3,7 +3,7 @@ const classnames = (...classes) => {
         if (typeof item === 'string') {
             return acc ? `${acc} ${item}` : item
         } else if (typeof item === 'object') {
-            const cls = Object.keys(item).filter(key => item[key]).join(' ')
+            const cls = item ? Object.keys(item).filter(key => item[key]).join(' ') : null
 
             return cls
                 ? acc

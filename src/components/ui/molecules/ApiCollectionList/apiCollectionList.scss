@@ -1,0 +1,15 @@
+.apiCollectionList {
+    width: 100%;
+    display: flex;
+    gap: 5%;
+
+    &__main {
+        width: 75%;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

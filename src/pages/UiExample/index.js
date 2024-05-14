@@ -13,6 +13,8 @@ import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
 import Card from '../../components/ui/atoms/Card';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
+import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
+import { AlphabeticalSortAZ, AlphabeticalSortZA } from '../../components/sortings';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -178,36 +180,39 @@ const UiExample = () => {
             />
         </Container>
 
-        <Container inline cornerTop cornerBottom className={cn(styles.section, styles.bg)}>
-            <h2>Tag :</h2>
+        <Container inline className={styles.section}>
+            <h2>Full Container :</h2>
+            <Container inline cornerTop cornerBottom className={cn(styles.section, styles.bg)}>
+                <h2>Tag :</h2>
 
-            <List
-                collection={exampleTags}
-                renderItem={({ id: _, ...attr }) => {
-                    return <Tag {...attr} />
-                }}
-            />
+                <List
+                    collection={exampleTags}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Tag {...attr} />
+                    }}
+                />
 
-            <List
-                collection={exampleSecondaryTags}
-                renderItem={({ id: _, ...attr }) => {
-                    return <Tag {...attr} />
-                }}
-            />
+                <List
+                    collection={exampleSecondaryTags}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Tag {...attr} />
+                    }}
+                />
 
-            <List
-                collection={exampleWithoutRadiusTags}
-                renderItem={({ id: _, ...attr }) => {
-                    return <Tag {...attr} />
-                }}
-            />
+                <List
+                    collection={exampleWithoutRadiusTags}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Tag {...attr} />
+                    }}
+                />
 
-            <List
-                collection={exampleSecondaryWithoutRadiusTags}
-                renderItem={({ id: _, ...attr }) => {
-                    return <Tag {...attr} />
-                }}
-            />
+                <List
+                    collection={exampleSecondaryWithoutRadiusTags}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Tag {...attr} />
+                    }}
+                />
+            </Container>
         </Container>
 
         <Container inline className={styles.section}>
@@ -309,6 +314,58 @@ const UiExample = () => {
                     return item
                 }}
                 className={styles.underlinedContentList}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+            <h2>Api collection utilisateur :</h2>
+
+            <ApiCollectionList
+                url={'/users'}
+                foundLabel={'utilisateur(s) trouvé(s)'}
+                sortings={[
+                    <AlphabeticalSortAZ
+                        key={'alphabetical-AZ-firstName'}
+                        property={'firstName'}
+                    />,
+                    <AlphabeticalSortZA
+                        key={'alphabetical-ZA-firstName'}
+                        property={'firstName'}
+                    />,
+                    <AlphabeticalSortAZ
+                        key={'alphabetical-AZ-lastName'}
+                        property={'lastName'}
+                    />,
+                    <AlphabeticalSortZA
+                        key={'alphabetical-ZA-lastName'}
+                        property={'lastName'}
+                    />,
+                ]}
+                defaultSort={'alphabetical-AZ-firstName'}
+                withFacets
+                renderItem={user => <p className={styles.test}>{`${user.firstName} ${user.lastName}`}</p>}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+            <h2>Api collection collaborateur :</h2>
+
+            <ApiCollectionList
+                url={'/collaborators'}
+                foundLabel={'collaborateur(s) trouvé(s)'}
+                sortings={[
+                    <AlphabeticalSortAZ
+                        key={'alphabetical-AZ-companyName'}
+                        property={'firstName'}
+                    />,
+                    <AlphabeticalSortZA
+                        key={'alphabetical-ZA-companyName'}
+                        property={'companyName'}
+                    />,
+                ]}
+                defaultSort={'alphabetical-AZ-firstName'}
+                withFacets
+                renderItem={collaborator => <p className={styles.test}>{`${collaborator.firstName} ${collaborator.lastName}`}</p>}
             />
         </Container>
     </Container>

@@ -1,4 +1,9 @@
 const tokens = {
+    facets: {
+        options: {
+            all: 'facets.options.all',
+        }
+    },
     actions: {
         login: "actions.login",
         createAccount: "actions.createAccount",
