@@ -1,0 +1,55 @@
+@use './../../../../styles/mixins' as m;
+
+.container {
+    --container-inline-margin: var(--base-inline-margin);
+
+    position: relative;
+    overflow: hidden;
+    margin-inline: var(--container-inline-margin);
+
+    @include m.above(sm) {
+        --container-inline-margin: var(--base-inline-margin-sm);
+    }
+
+    @include m.above(md) {
+        --container-inline-margin: var(--base-inline-margin-md);
+    }
+
+    @include m.above(lg) {
+        --container-inline-margin: var(--base-inline-margin-lg);
+    }
+
+    @include m.above(xl) {
+        --container-inline-margin: var(--base-inline-margin-xl);
+    }
+
+    &.inline {
+        --container-inline-margin: 0;
+    }
+
+    &.cornerTop {
+        &::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -20px;
+            width: 150px;
+            height: 60px;
+            rotate: -25deg;
+            background-color: var(--base-color-neutral-inverted);
+        }
+    }
+
+    &.cornerBottom {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -35px;
+            right: -25px;
+            width: 200px;
+            height: 80px;
+            rotate: -25deg;
+            background-color: var(--base-color-neutral-inverted);
+        }
+    }
+}

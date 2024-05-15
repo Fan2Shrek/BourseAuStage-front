@@ -2,9 +2,11 @@ import {useMemo} from 'react';
 import {FaArrowRight, FaGithub} from "react-icons/fa";
 
 import styles from './UiExample.module.scss';
+import cn from '../../utils/classnames';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import Tag from '../../components/ui/atoms/Tag';
+import Container from '../../components/ui/atoms/Container';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -79,10 +81,10 @@ const UiExample = () => {
         {id: 7, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0},
     ], [])
 
-    return <div className={styles.container}>
+    return <Container className={styles.container}>
         <h1>Ui Exemples</h1>
 
-        <div className={styles.section}>
+        <Container inline className={styles.section}>
             <h2>Bouton :</h2>
 
             <List
@@ -111,9 +113,9 @@ const UiExample = () => {
                     return <Button {...attr} />
                 }}
             />
-        </div>
+        </Container>
 
-        <div className={styles.section}>
+        <Container inline cornerTop cornerBottom className={cn(styles.section, styles.bg)}>
             <h2>Tag :</h2>
 
             <List
@@ -143,9 +145,8 @@ const UiExample = () => {
                     return <Tag {...attr} />
                 }}
             />
-        </div>
-
-    </div>
+        </Container>
+    </Container>
 }
 
 export default UiExample;

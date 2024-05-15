@@ -1,9 +1,10 @@
+import Container from '../../components/ui/atoms/Container';
 import styles from './Home.module.scss';
 
 const Home = () => {
-    return <div className={styles.container}>
+    return <Container className={styles.container}>
         <h1>Home</h1>
-    </div>
+    </Container>
 }
 
 export default Home;

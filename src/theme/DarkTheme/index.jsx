@@ -6,7 +6,7 @@ export const Darktheme = () => {
     useEffect(() => {
         /**
          * COLORS
-        */
+         */
         setProperty('--base-color-neutral', 'var(--color-light)');
         // A voir selon le choix du hover
         setProperty('--base-color-neutral-alpha', 'var(--color-light-alpha)');
