@@ -16,12 +16,12 @@ const Input = ({
         },
         className,
     )}>
-        <label
+        {label && <label
             for={id}
             className={'input__label'}
         >
             {label}
-        </label>
+        </label>}
         <input
             className={'input__target'}
             type={type}
