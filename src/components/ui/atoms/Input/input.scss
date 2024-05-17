@@ -6,6 +6,12 @@
             padding: 12px 16px;
             border: 1px solid var(--color-grey);
             cursor: default;
+            transition: none;
+
+            &:focus {
+                border-color: var(--color-main);
+                outline: none;
+            }
         }
     }
 

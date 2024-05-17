@@ -1,5 +1,5 @@
-import {useMemo} from 'react';
-import {FaArrowRight, FaGithub} from "react-icons/fa";
+import { useMemo } from 'react';
+import { FaArrowRight, FaGithub } from "react-icons/fa";
 
 import styles from './UiExample.module.scss';
 import cn from '../../utils/classnames';
@@ -20,87 +20,87 @@ const UiExample = () => {
             onClick: () => console.log('Button clicked'),
             className: styles.btn,
         },
-        {identifier: 2, label: 'Button 2', inverted: true, className: styles.btn},
-        {identifier: 3, label: 'Button 3', inverted: true, transparent: true, className: styles.btn},
-        {identifier: 4, label: 'Button 4', inverted: true, transparent: true, dashedBorder: true, className: styles.btn},
-        {identifier: 5, label: 'Button 5', inverted: true, transparent: true, withoutBorder: true, className: styles.btn},
-        {identifier: 6, label: 'Button 6', icon: <FaGithub />, className: styles.btn},
-        {identifier: 7, label: 'Button 7', inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn},
+        { identifier: 2, label: 'Button 2', inverted: true, className: styles.btn },
+        { identifier: 3, label: 'Button 3', inverted: true, transparent: true, className: styles.btn },
+        { identifier: 4, label: 'Button 4', inverted: true, transparent: true, dashedBorder: true, className: styles.btn },
+        { identifier: 5, label: 'Button 5', inverted: true, transparent: true, withoutBorder: true, className: styles.btn },
+        { identifier: 6, label: 'Button 6', icon: <FaGithub />, className: styles.btn },
+        { identifier: 7, label: 'Button 7', inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn },
     ], [])
 
     const exampleNeutralButtons = useMemo(() => [
-        {identifier: 1, label: 'Button 1', neutral: true, className: styles.btn},
-        {identifier: 2, label: 'Button 2', neutral: true, inverted: true, className: styles.btn},
-        {identifier: 3, label: 'Button 3', neutral: true, inverted: true, transparent: true, className: styles.btn},
-        {identifier: 4, label: 'Button 4', neutral: true, inverted: true, transparent: true, dashedBorder: true, className: styles.btn},
-        {identifier: 5, label: 'Button 5', neutral: true, inverted: true, transparent: true, withoutBorder: true, className: styles.btn},
-        {identifier: 6, label: 'Button 6', neutral: true, icon: <FaGithub />, className: styles.btn},
-        {identifier: 7, label: 'Button 7', neutral: true, inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn},
+        { identifier: 1, label: 'Button 1', neutral: true, className: styles.btn },
+        { identifier: 2, label: 'Button 2', neutral: true, inverted: true, className: styles.btn },
+        { identifier: 3, label: 'Button 3', neutral: true, inverted: true, transparent: true, className: styles.btn },
+        { identifier: 4, label: 'Button 4', neutral: true, inverted: true, transparent: true, dashedBorder: true, className: styles.btn },
+        { identifier: 5, label: 'Button 5', neutral: true, inverted: true, transparent: true, withoutBorder: true, className: styles.btn },
+        { identifier: 6, label: 'Button 6', neutral: true, icon: <FaGithub />, className: styles.btn },
+        { identifier: 7, label: 'Button 7', neutral: true, inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn },
     ], [])
 
     const exampleSecondaryButtons = useMemo(() => [
-        {identifier: 1, label: 'Button 1', secondary: true, className: styles.btn},
-        {identifier: 2, label: 'Button 2', secondary: true, inverted: true, className: styles.btn},
-        {identifier: 3, label: 'Button 3', secondary: true, inverted: true, transparent: true, className: styles.btn},
-        {identifier: 4, label: 'Button 4', secondary: true, inverted: true, transparent: true, dashedBorder: true, className: styles.btn},
-        {identifier: 5, label: 'Button 5', secondary: true, inverted: true, transparent: true, withoutBorder: true, className: styles.btn},
-        {identifier: 6, label: 'Button 6', secondary: true, icon: <FaGithub />, className: styles.btn},
-        {identifier: 7, label: 'Button 7', secondary: true, inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn},
+        { identifier: 1, label: 'Button 1', secondary: true, className: styles.btn },
+        { identifier: 2, label: 'Button 2', secondary: true, inverted: true, className: styles.btn },
+        { identifier: 3, label: 'Button 3', secondary: true, inverted: true, transparent: true, className: styles.btn },
+        { identifier: 4, label: 'Button 4', secondary: true, inverted: true, transparent: true, dashedBorder: true, className: styles.btn },
+        { identifier: 5, label: 'Button 5', secondary: true, inverted: true, transparent: true, withoutBorder: true, className: styles.btn },
+        { identifier: 6, label: 'Button 6', secondary: true, icon: <FaGithub />, className: styles.btn },
+        { identifier: 7, label: 'Button 7', secondary: true, inverted: true, transparent: true, icon: <FaArrowRight />, rightIcon: true, className: styles.btn },
     ], [])
 
     const exampleTags = useMemo(() => [
-        {id: 1, label: 'Tag 1'},
-        {id: 2, label: 'Tag 2', color: '#eb8533'},
-        {id: 3, label: 'Tag 3', color: '#56cdad'},
-        {id: 4, label: 'Tag 4', color: '#ff6550'},
-        {id: 6, label: 'Tag 5', color: '#26a4ff'},
-        {id: 7, label: 'Tag 6', color: '#ff007a'},
+        { id: 1, label: 'Tag 1' },
+        { id: 2, label: 'Tag 2', color: '#eb8533' },
+        { id: 3, label: 'Tag 3', color: '#56cdad' },
+        { id: 4, label: 'Tag 4', color: '#ff6550' },
+        { id: 6, label: 'Tag 5', color: '#26a4ff' },
+        { id: 7, label: 'Tag 6', color: '#ff007a' },
     ], [])
 
     const exampleSecondaryTags = useMemo(() => [
-        {id: 1, label: 'Tag 1', secondary: true},
-        {id: 2, label: 'Tag 2', color: '#eb8533', secondary: true},
-        {id: 3, label: 'Tag 3', color: '#56cdad', secondary: true},
-        {id: 4, label: 'Tag 4', color: '#ff6550', secondary: true},
-        {id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true},
-        {id: 7, label: 'Tag 6', color: '#ff007a', secondary: true},
+        { id: 1, label: 'Tag 1', secondary: true },
+        { id: 2, label: 'Tag 2', color: '#eb8533', secondary: true },
+        { id: 3, label: 'Tag 3', color: '#56cdad', secondary: true },
+        { id: 4, label: 'Tag 4', color: '#ff6550', secondary: true },
+        { id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true },
+        { id: 7, label: 'Tag 6', color: '#ff007a', secondary: true },
     ], [])
 
     const exampleWithoutRadiusTags = useMemo(() => [
-        {id: 1, label: 'Tag 1', radius: 0},
-        {id: 2, label: 'Tag 2', color: '#eb8533', radius: 0},
-        {id: 3, label: 'Tag 3', color: '#56cdad', radius: 0},
-        {id: 4, label: 'Tag 4', color: '#ff6550', radius: 0},
-        {id: 6, label: 'Tag 5', color: '#26a4ff', radius: 0},
-        {id: 7, label: 'Tag 6', color: '#ff007a', radius: 0},
+        { id: 1, label: 'Tag 1', radius: 0 },
+        { id: 2, label: 'Tag 2', color: '#eb8533', radius: 0 },
+        { id: 3, label: 'Tag 3', color: '#56cdad', radius: 0 },
+        { id: 4, label: 'Tag 4', color: '#ff6550', radius: 0 },
+        { id: 6, label: 'Tag 5', color: '#26a4ff', radius: 0 },
+        { id: 7, label: 'Tag 6', color: '#ff007a', radius: 0 },
     ], [])
 
     const exampleSecondaryWithoutRadiusTags = useMemo(() => [
-        {id: 1, label: 'Tag 1', secondary: true, radius: 0},
-        {id: 2, label: 'Tag 2', color: '#eb8533', secondary: true, radius: 0},
-        {id: 3, label: 'Tag 3', color: '#56cdad', secondary: true, radius: 0},
-        {id: 4, label: 'Tag 4', color: '#ff6550', secondary: true, radius: 0},
-        {id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0},
-        {id: 7, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0},
+        { id: 1, label: 'Tag 1', secondary: true, radius: 0 },
+        { id: 2, label: 'Tag 2', color: '#eb8533', secondary: true, radius: 0 },
+        { id: 3, label: 'Tag 3', color: '#56cdad', secondary: true, radius: 0 },
+        { id: 4, label: 'Tag 4', color: '#ff6550', secondary: true, radius: 0 },
+        { id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0 },
+        { id: 7, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0 },
     ], [])
 
     const exampleLoaders = useMemo(() => [
-        {id: 1, width: 40},
-        {id: 2, width: 50, secondary: true},
-        {id: 3, width: 60, third: true},
-        {id: 4, width: 50, color: '#56cdad'},
+        { id: 1, width: 40 },
+        { id: 2, width: 50, secondary: true },
+        { id: 3, width: 60, third: true },
+        { id: 4, width: 50, color: '#56cdad' },
     ], [])
 
     const exampleThinnerLoaders = useMemo(() => [
-        {id: 5, width: 40, thickness: 5},
-        {id: 6, width: 50, secondary: true, thickness: 5},
-        {id: 7, width: 60, third: true, thickness: 5},
-        {id: 8, width: 50, color: '#56cdad', thickness: 5},
+        { id: 5, width: 40, thickness: 5 },
+        { id: 6, width: 50, secondary: true, thickness: 5 },
+        { id: 7, width: 60, third: true, thickness: 5 },
+        { id: 8, width: 50, color: '#56cdad', thickness: 5 },
     ], [])
 
     const exampleInputs = useMemo(() => [
-        {id: 1, label: 'Email', type: 'input', placeholder: 'Votre email'},
-        {id: 2, type: 'checkbox'},
+        { id: 1, label: 'Email', type: 'input', placeholder: 'Votre email' },
+        { id: 2, type: 'checkbox' },
     ], [])
 
     const exampleProgressBars = useMemo(() => [
@@ -120,7 +120,7 @@ const UiExample = () => {
                 collection={exampleMainButtons}
                 // pick item.id by default
                 uniqueAttr={btn => btn.identifier}
-                renderItem={({identifier: _, ...attr}) => {
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Button {...attr} />
                 }}
             />
@@ -129,7 +129,7 @@ const UiExample = () => {
                 collection={exampleNeutralButtons}
                 // pick item.id by default
                 uniqueAttr={btn => btn.identifier}
-                renderItem={({identifier: _, ...attr}) => {
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Button {...attr} />
                 }}
             />
@@ -138,7 +138,7 @@ const UiExample = () => {
                 collection={exampleSecondaryButtons}
                 // pick item.id by default
                 uniqueAttr={btn => btn.identifier}
-                renderItem={({identifier: _, ...attr}) => {
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Button {...attr} />
                 }}
             />
@@ -149,28 +149,28 @@ const UiExample = () => {
 
             <List
                 collection={exampleTags}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Tag {...attr} />
                 }}
             />
 
             <List
                 collection={exampleSecondaryTags}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Tag {...attr} />
                 }}
             />
 
             <List
                 collection={exampleWithoutRadiusTags}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Tag {...attr} />
                 }}
             />
 
             <List
                 collection={exampleSecondaryWithoutRadiusTags}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Tag {...attr} />
                 }}
             />
@@ -181,14 +181,14 @@ const UiExample = () => {
 
             <List
                 collection={exampleLoaders}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Loader {...attr} />
                 }}
             />
 
             <List
                 collection={exampleThinnerLoaders}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Loader {...attr} />
                 }}
             />
@@ -200,7 +200,7 @@ const UiExample = () => {
 
             <List
                 collection={exampleInputs}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <Input {...attr} />
                 }}
             />
