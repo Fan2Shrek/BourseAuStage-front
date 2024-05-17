@@ -1,6 +1,6 @@
 import tokens from "../tokens";
 
-export default {
+const fr = {
     [tokens.actions.login]: "Se connecter",
     [tokens.actions.createAccount]: "Créer un compte",
     [tokens.actions.logout]: "Se déconnecter",
@@ -25,3 +25,5 @@ export default {
     [tokens.footer.register.submit]: "C'est parti",
     [tokens.footer.copyright]: "2024 © Bourse aux Stages - Tous droits réservés"
 }
+
+export default fr
