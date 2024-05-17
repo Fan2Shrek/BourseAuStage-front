@@ -7,6 +7,7 @@ import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import Tag from '../../components/ui/atoms/Tag';
 import Container from '../../components/ui/atoms/Container';
+import Loader from '../../components/ui/atoms/Loader';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -81,6 +82,20 @@ const UiExample = () => {
         {id: 7, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0},
     ], [])
 
+    const exampleLoaders = useMemo(() => [
+        {id: 1, width: 40},
+        {id: 2, width: 50, secondary: true},
+        {id: 3, width: 60, third: true},
+        {id: 4, width: 50, color: '#56cdad'},
+    ], [])
+
+    const exampleThinnerLoaders = useMemo(() => [
+        {id: 5, width: 40, thickness: 5},
+        {id: 6, width: 50, secondary: true, thickness: 5},
+        {id: 7, width: 60, third: true, thickness: 5},
+        {id: 8, width: 50, color: '#56cdad', thickness: 5},
+    ], [])
+
     return <Container className={styles.container}>
         <h1>Ui Exemples</h1>
 
@@ -143,6 +158,24 @@ const UiExample = () => {
                 collection={exampleSecondaryWithoutRadiusTags}
                 renderItem={({id: _, ...attr}) => {
                     return <Tag {...attr} />
+                }}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+            <h2>Loader :</h2>
+
+            <List
+                collection={exampleLoaders}
+                renderItem={({id: _, ...attr}) => {
+                    return <Loader {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleThinnerLoaders}
+                renderItem={({id: _, ...attr}) => {
+                    return <Loader {...attr} />
                 }}
             />
         </Container>
