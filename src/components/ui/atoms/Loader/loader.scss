@@ -1,0 +1,23 @@
+.loader {
+    --loader-color: var(--color-main);
+    width: var(--loader-width);
+    height: var(--loader-width);
+    border: var(--loader-thickness) solid transparent;
+    border-top-color: var(--loader-color);
+    border-radius: 50%;
+    animation: load 1s linear infinite;
+
+    &.secondary {
+        --loader-color: var(--color-secondary);
+    }
+
+    &.third {
+        --loader-color: var(--color-third);
+    }
+}
+
+@keyframes load {
+    to {
+        transform: rotate(1turn);
+    }
+}
