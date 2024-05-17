@@ -1,4 +1,4 @@
-export default {
+const tokens = {
     actions: {
         login: "actions.login",
         createAccount: "actions.createAccount",
@@ -33,3 +33,5 @@ export default {
         copyright: "footer.copyright",
     }
 }
+
+export default tokens
