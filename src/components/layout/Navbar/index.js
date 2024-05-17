@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {Link, useLocation} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import {FaRegMoon} from "react-icons/fa";
 import {FaRegSun} from "react-icons/fa";
 
@@ -11,7 +12,6 @@ import Button from '../../ui/atoms/Button';
 import List from '../../ui/atoms/List';
 import cn from '../../../utils/classnames'
 import Container from '../../ui/atoms/Container';
-import { useTranslation } from 'react-i18next';
 import tokens from '../../../translations/tokens';
 
 const links = {
@@ -28,7 +28,7 @@ const Navbar = () => {
     const {theme, handleTheme} = useContext(ThemeContext);
     const isLight = theme === ThemeEnum.LIGHT;
     const currentRoute = useLocation().pathname;
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return <Container>
         <div className={styles.navbar}>
@@ -43,13 +43,13 @@ const Navbar = () => {
 
                 <List className={styles.links}
                     collection={Object.entries(links)}
-                    uniqueAttr={btn => btn.identifier}
+                    uniqueAttr={([pathName, _]) => pathName}
                     renderItem={([name, l], index) => (
-                        <Link 
-                            to={l} 
+                        <Link
+                            to={l}
                             key={index}
-                            className={cn(styles.link,  l === currentRoute ? styles['link-active'] : '')}
-                        > 
+                            className={cn(styles.link, l === currentRoute ? styles['link-active'] : '')}
+                        >
                             {t(tokens.navbar[name]) || name}
                         </Link>
                     )}
