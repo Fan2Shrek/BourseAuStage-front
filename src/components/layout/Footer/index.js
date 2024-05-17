@@ -1,12 +1,12 @@
-import {Link} from "react-router-dom";
-import {CiFacebook, CiInstagram, CiLinkedin, CiTwitter} from "react-icons/ci";
-import Button from '../../ui/atoms/Button';
+import { Link } from "react-router-dom";
+import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter } from "react-icons/ci";
 
 import styles from './Footer.module.scss';
 import path from "../../../path";
 import cn from '../../../utils/classnames'
 import Container from "../../ui/atoms/Container";
 import IconBadge from "../../ui/atoms/IconBadge";
+import Button from '../../ui/atoms/Button';
 import tokens from "../../../translations/tokens";
 import { useTranslation } from "react-i18next";
 
@@ -49,8 +49,8 @@ const Footer = () => {
                         <p className={styles.createAccount}>{t(tokens.footer.register.title)}</p>
                         <p>{t(tokens.footer.register.description)}</p>
                         <div className={styles.createAccountForm}>
-                            <input placeholder={t(tokens.footer.register.email)}/>
-                            <Button label={t(tokens.footer.register.submit)}/>
+                            <input placeholder={t(tokens.footer.register.email)} />
+                            <Button label={t(tokens.footer.register.submit)} />
                         </div>
                     </div>
                 </div>
