@@ -1,11 +1,13 @@
 import './input.scss'
 
 const Input = ({
-    type = 'input'
+    type = 'input',
+    className
 }) => {
 
     return <input
         type={type}
+        className={className}
     />
 }
 

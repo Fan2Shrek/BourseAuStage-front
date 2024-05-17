@@ -28,7 +28,7 @@ const Button = ({
             navigate(redirectTo)
         }
     }, [onClick, redirectTo, navigate])
-
+ 
     return <button
         className={cn(
             'button',
