@@ -10,28 +10,20 @@ const Input = ({
 }) => {
     return <div className={cn(
         'input',
-        className
-        )}>
-        <label 
+        {
+            classic: type === 'input',
+            checkbox: type === 'checkbox',
+        },
+        className,
+    )}>
+        <label
             for={id}
-            className={cn(
-                'input__label',
-                {
-                    classic: type === 'input',
-                    checkbox: type === 'checkbox',
-                },
-            )}
+            className={'input__label'}
         >
             {label}
         </label>
         <input
-            className={cn(
-                'input__target',
-                {
-                    classic: type === 'input',
-                    checkbox: type === 'checkbox',
-                },
-            )}
+            className={'input__target'}
             type={type}
             id={id}
             placeholder={placeholder}

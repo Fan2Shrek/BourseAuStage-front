@@ -1,37 +1,40 @@
 .input {
     &.classic {
-        width: 283px;
-        height: 50px;
-        padding: 12px 16px;
-        border: 1px solid var(--color-grey);
-        cursor: default;
+        .input__target {
+            width: 283px;
+            height: 50px;
+            padding: 12px 16px;
+            border: 1px solid var(--color-grey);
+            cursor: default;
+        }
     }
-    
-    
+
     &.checkbox {
-        width: 24px;
-        height: 24px;
-        border-radius: 4px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -o-appearance: none;
-        outline: none;
-        border: 1.5px solid var(--color-grey);
-        cursor: pointer;
-        
-        &:checked{
-            background-color: var(--color-main);
-            border-color: var(--color-main);
-            position: relative;
-            
-            &::before{
-                display: flex;
-                justify-content: center;
-                font-size: larger;
-                color: white;
-                content: '✔';
-                position: absolute;
-                inset: 0;
+        .input__target {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            outline: none;
+            border: 1.5px solid var(--color-grey);
+            cursor: pointer;
+
+            &:checked {
+                background-color: var(--color-main);
+                border-color: var(--color-main);
+                position: relative;
+
+                &::before {
+                    display: flex;
+                    justify-content: center;
+                    font-size: larger;
+                    color: white;
+                    content: '✔';
+                    position: absolute;
+                    inset: 0;
+                }
             }
         }
     }
