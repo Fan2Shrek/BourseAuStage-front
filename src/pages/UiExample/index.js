@@ -99,7 +99,7 @@ const UiExample = () => {
     ], [])
 
     const exampleInputs = useMemo(() => [
-        {id: 1, type: 'input', placeholder: 'Votre email'},
+        {id: 1, label: 'Email', type: 'input', placeholder: 'Votre email'},
         {id: 2, type: 'checkbox'},
     ], [])
 
