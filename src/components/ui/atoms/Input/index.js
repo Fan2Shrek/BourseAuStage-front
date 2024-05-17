@@ -3,7 +3,7 @@ import cn from '../../../../utils/classnames'
 
 const Input = ({
     type = 'input',
-    placeholder = '',
+    placeholder,
     className
 }) => {
     return <input
