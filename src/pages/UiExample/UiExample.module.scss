@@ -9,6 +9,11 @@
             background-color: var(--color-third);
             padding: 70px;
         }
+
+        .progressBarList {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 
     :global {

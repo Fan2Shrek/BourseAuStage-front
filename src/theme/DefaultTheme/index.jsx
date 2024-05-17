@@ -27,7 +27,7 @@ export const DefaultTheme = () => {
         setProperty('--color-dark-alpha', '#202430e6');
 
         setProperty('--color-grey', '#d6ddeb')
-        
+
         /**
          * BASE
          */
@@ -47,6 +47,13 @@ export const DefaultTheme = () => {
         setProperty('--text-size', '16px');
         setProperty('--text-color', 'var(--base-color-neutral)');
         setProperty('--text-color-inverted', 'var(--base-color-neutral-inverted)');
+
+        /**
+         * PROGRESS BAR
+         */
+        setProperty('--progressBar-color-success', '#56cdad');
+        setProperty('--progressBar-color-warning', '#ff9900');
+        setProperty('--progressBar-color-danger', '#ff007a');
     }, [])
 
     return <></>

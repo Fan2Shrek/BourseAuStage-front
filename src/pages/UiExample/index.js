@@ -8,6 +8,7 @@ import List from '../../components/ui/atoms/List';
 import Tag from '../../components/ui/atoms/Tag';
 import Container from '../../components/ui/atoms/Container';
 import Loader from '../../components/ui/atoms/Loader';
+import ProgressBar from '../../components/ui/atoms/ProgressBar';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -90,10 +91,17 @@ const UiExample = () => {
     ], [])
 
     const exampleThinnerLoaders = useMemo(() => [
-        {id: 5, width: 40, thickness: 5},
-        {id: 6, width: 50, secondary: true, thickness: 5},
-        {id: 7, width: 60, third: true, thickness: 5},
-        {id: 8, width: 50, color: '#56cdad', thickness: 5},
+        {id: 1, width: 40, thickness: 5},
+        {id: 2, width: 50, secondary: true, thickness: 5},
+        {id: 3, width: 60, third: true, thickness: 5},
+        {id: 4, width: 50, color: '#56cdad', thickness: 5},
+    ], [])
+
+    const exampleProgressBars = useMemo(() => [
+        {id: 1},
+        {id: 2, value: 80},
+        {id: 3, value: 10},
+        {id: 4, value: 5},
     ], [])
 
     return <Container className={styles.container}>
@@ -177,6 +185,18 @@ const UiExample = () => {
                 renderItem={({id: _, ...attr}) => {
                     return <Loader {...attr} />
                 }}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+            <h2>Barre de progression :</h2>
+
+            <List
+                collection={exampleProgressBars}
+                renderItem={({id: _, ...attr}) => {
+                    return <ProgressBar {...attr} />
+                }}
+                className={styles.progressBarList}
             />
         </Container>
     </Container>
