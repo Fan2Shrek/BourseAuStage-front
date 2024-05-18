@@ -109,7 +109,7 @@ const UiExample = () => {
     ], [])
 
     const exampleCheckbox = useMemo(() => [
-        { id: 1, type: 'checkbox' },
+        { id: 1, type: 'checkbox', label: 'a' },
     ], [])
 
     const exampleProgressBars = useMemo(() => [
