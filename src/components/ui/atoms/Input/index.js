@@ -18,7 +18,7 @@ const Input = ({
         className,
     )}>
         {label && <label
-            for={id}
+            htmlFor={id}
             className={'input__label'}
         >
             {label}

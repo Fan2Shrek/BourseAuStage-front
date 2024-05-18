@@ -53,8 +53,10 @@ const UiExample = () => {
         { id: 2, label: 'Tag 2', color: '#eb8533' },
         { id: 3, label: 'Tag 3', color: '#56cdad' },
         { id: 4, label: 'Tag 4', color: '#ff6550' },
-        { id: 6, label: 'Tag 5', color: '#26a4ff' },
-        { id: 7, label: 'Tag 6', color: '#ff007a' },
+        { id: 5, label: 'Tag 5', color: '#26a4ff' },
+        { id: 6, label: 'Tag 6', color: '#ff007a' },
+        { id: 7, label: 'Tag 7', color: '#f5c400' },
+        { id: 8, label: 'Tag 8', color: '#6a4c93' },
     ], [])
 
     const exampleSecondaryTags = useMemo(() => [
@@ -62,17 +64,21 @@ const UiExample = () => {
         { id: 2, label: 'Tag 2', color: '#eb8533', secondary: true },
         { id: 3, label: 'Tag 3', color: '#56cdad', secondary: true },
         { id: 4, label: 'Tag 4', color: '#ff6550', secondary: true },
-        { id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true },
-        { id: 7, label: 'Tag 6', color: '#ff007a', secondary: true },
+        { id: 5, label: 'Tag 5', color: '#26a4ff', secondary: true },
+        { id: 6, label: 'Tag 6', color: '#ff007a', secondary: true },
+        { id: 7, label: 'Tag 7', color: '#f5c400', secondary: true },
+        { id: 8, label: 'Tag 8', color: '#6a4c93', secondary: true },
     ], [])
 
     const exampleWithoutRadiusTags = useMemo(() => [
-        { id: 1, label: 'Tag 1', radius: 0 },
-        { id: 2, label: 'Tag 2', color: '#eb8533', radius: 0 },
-        { id: 3, label: 'Tag 3', color: '#56cdad', radius: 0 },
-        { id: 4, label: 'Tag 4', color: '#ff6550', radius: 0 },
-        { id: 6, label: 'Tag 5', color: '#26a4ff', radius: 0 },
-        { id: 7, label: 'Tag 6', color: '#ff007a', radius: 0 },
+        { id: 1, label: 'Tag 1', secondary: true, radius: 0 },
+        { id: 2, label: 'Tag 2', color: '#eb8533', secondary: true, radius: 0 },
+        { id: 3, label: 'Tag 3', color: '#56cdad', secondary: true, radius: 0 },
+        { id: 4, label: 'Tag 4', color: '#ff6550', secondary: true, radius: 0 },
+        { id: 5, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0 },
+        { id: 6, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0 },
+        { id: 7, label: 'Tag 7', color: '#f5c400', secondary: true, radius: 0 },
+        { id: 8, label: 'Tag 8', color: '#6a4c93', secondary: true, radius: 0 },
     ], [])
 
     const exampleSecondaryWithoutRadiusTags = useMemo(() => [
@@ -80,8 +86,10 @@ const UiExample = () => {
         { id: 2, label: 'Tag 2', color: '#eb8533', secondary: true, radius: 0 },
         { id: 3, label: 'Tag 3', color: '#56cdad', secondary: true, radius: 0 },
         { id: 4, label: 'Tag 4', color: '#ff6550', secondary: true, radius: 0 },
-        { id: 6, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0 },
-        { id: 7, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0 },
+        { id: 5, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0 },
+        { id: 6, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0 },
+        { id: 7, label: 'Tag 7', color: '#f5c400', secondary: true, radius: 0 },
+        { id: 8, label: 'Tag 8', color: '#6a4c93', secondary: true, radius: 0 },
     ], [])
 
     const exampleLoaders = useMemo(() => [
@@ -99,24 +107,24 @@ const UiExample = () => {
     ], [])
 
     const exampleInputs = useMemo(() => [
-        { id: 1, label: 'Required', type: 'input', placeholder: 'required', required: true },
-        { id: 2, label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
+        { identifier: 1, id: 'required', label: 'Required', type: 'input', placeholder: 'required', required: true },
+        { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
     ], [])
 
     const exampleInputsSimple = useMemo(() => [
-        { id: 1, type: 'input'},
-        { id: 2, type: 'input', placeholder: 'placeholder'},
+        { identifier: 1, type: 'input' },
+        { identifier: 2, type: 'input', placeholder: 'placeholder' },
     ], [])
 
     const exampleCheckbox = useMemo(() => [
-        { id: 1, type: 'checkbox', label: 'a' },
+        { identifier: 1, id: 'checkbox', type: 'checkbox', label: 'a' },
     ], [])
 
     const exampleProgressBars = useMemo(() => [
-        {id: 1},
-        {id: 2, value: 80},
-        {id: 3, value: 10},
-        {id: 4, value: 5},
+        { id: 1 },
+        { id: 2, value: 80 },
+        { id: 3, value: 10 },
+        { id: 4, value: 5 },
     ], [])
 
     return <Container className={styles.container}>
@@ -204,31 +212,32 @@ const UiExample = () => {
         </Container>
 
         <Container inline className={styles.section}>
-
             <h2>Input :</h2>
 
             <List
                 collection={exampleInputs}
-                renderItem={({ id: _, ...attr }) => {
+                uniqueAttr={input => input.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Input {...attr} />
                 }}
             />
 
             <List
                 collection={exampleInputsSimple}
-                renderItem={({ id: _, ...attr }) => {
+                uniqueAttr={input => input.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Input {...attr} />
                 }}
             />
         </Container>
 
         <Container inline className={styles.section}>
-
             <h2>Checkbox :</h2>
 
             <List
                 collection={exampleCheckbox}
-                renderItem={({ id: _, ...attr }) => {
+                uniqueAttr={input => input.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Input {...attr} />
                 }}
             />
@@ -239,7 +248,7 @@ const UiExample = () => {
 
             <List
                 collection={exampleProgressBars}
-                renderItem={({id: _, ...attr}) => {
+                renderItem={({ id: _, ...attr }) => {
                     return <ProgressBar {...attr} />
                 }}
                 className={styles.progressBarList}
