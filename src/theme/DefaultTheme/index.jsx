@@ -54,6 +54,12 @@ export const DefaultTheme = () => {
         setProperty('--progressBar-color-success', '#56cdad');
         setProperty('--progressBar-color-warning', '#ff9900');
         setProperty('--progressBar-color-danger', '#ff007a');
+
+        /**
+         * INPUT
+         */
+        setProperty('--input-required', '#FF007A');
+        setProperty('--input-label', '#515B6F');
     }, [])
 
     return <></>

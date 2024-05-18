@@ -1,14 +1,18 @@
 .input {
     width: 283px;
     height: 80px;
-    
+
+    span {
+        color: var(--input-required);
+    }
+
     &.classic {
-        .input__label{
+        .input__label {
             width: 70px;
             height: 26px;
             font-size: 16px;
             line-height: 25.6px;
-            color: #515B6F;
+            color: var(--input-label);
         }
 
         .input__target {
@@ -33,12 +37,12 @@
         display: flex;
         align-items: center;
 
-        .input__label{
+        .input__label {
             width: 201px;
             height: 26px;
             font-size: 16px;
             line-height: 25.6px;
-            color: #515B6F;
+            color: var(--input-label);
             order: 2;
         }
 
