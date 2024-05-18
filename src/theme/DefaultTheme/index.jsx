@@ -28,7 +28,7 @@ export const DefaultTheme = () => {
 
         setProperty('--color-grey', '#d6ddeb')
         setProperty('--color-dark-grey', '#5c626e')
-        
+
         setProperty('--color-danger', '#ff007a');
         setProperty('--color-warning', '#ff9900');
         setProperty('--color-success', '#56cdad');
@@ -64,7 +64,7 @@ export const DefaultTheme = () => {
          * INPUT
          */
         setProperty('--input-required-color', 'var(--color-danger)');
-        setProperty('--input-label', '#515B6F');
+        setProperty('--input-label-color', 'var(--color-dark-grey)');
     }, [])
 
     return <></>

@@ -5,7 +5,7 @@
 
     &.classic {
         .input__label {
-            color: var(--color-dark-grey);
+            color: var(--input-label-color);
         }
 
         .input__target {
@@ -29,7 +29,7 @@
         align-items: center;
 
         .input__label {
-            color: var(--color-dark-grey);
+            color: var(--input-label-color);
             order: 2;
         }
 
