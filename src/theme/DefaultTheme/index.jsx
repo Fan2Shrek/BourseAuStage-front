@@ -28,6 +28,7 @@ export const DefaultTheme = () => {
 
         setProperty('--color-grey', '#d6ddeb')
         setProperty('--color-dark-grey', '#5c626e')
+        setProperty('--color-grey-form', '#515B6F')
 
         setProperty('--color-danger', '#ff007a');
         setProperty('--color-warning', '#ff9900');

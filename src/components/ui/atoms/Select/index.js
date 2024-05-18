@@ -5,7 +5,8 @@ const Select = ({
     type = 'select',
     label,
     id,
-    placeholder,
+    name,
+    value,
     required = false,
     className
 }) => {
@@ -28,8 +29,15 @@ const Select = ({
             className={'select__target'}
             type={type}
             id={id}
-            placeholder={placeholder}
-        />
+            name={name}
+            > 
+            <option
+                className={'select__option'}
+                value={value}
+            >
+                {value}
+            </option>
+        </select>
     </div>
 }
 
