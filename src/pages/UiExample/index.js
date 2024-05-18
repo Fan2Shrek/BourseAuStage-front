@@ -11,6 +11,7 @@ import Loader from '../../components/ui/atoms/Loader';
 import Input from '../../components/ui/atoms/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
+import Card from '../../components/ui/atoms/Card';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -284,6 +285,13 @@ const UiExample = () => {
                     return <Select {...attr} />
                 }}
             />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Base carte :</h2>
+
+            <Card />
         </Container>
     </Container>
 }
