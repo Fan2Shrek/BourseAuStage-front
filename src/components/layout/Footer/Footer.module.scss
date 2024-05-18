@@ -39,7 +39,7 @@
             font-weight: 600;
             line-height: 28.8px;
             text-align: left;
-            color: #fff;
+            color: var(--color-light);
             margin-top: 10px;
 
             &Form {
@@ -98,7 +98,7 @@
         color: var(--color-light);
 
         p {
-            opacity: 0.5;
+            color: var(--color-dark-grey);
         }
 
         .links {

@@ -1,18 +1,11 @@
 .input {
-    width: 283px;
-    height: 80px;
-
-    span {
-        color: var(--input-required);
+    .input__required {
+        color: var(--input-required-color);
     }
 
     &.classic {
         .input__label {
-            width: 70px;
-            height: 26px;
-            font-size: 16px;
-            line-height: 25.6px;
-            color: var(--input-label);
+            color: var(--color-dark-grey);
         }
 
         .input__target {
@@ -31,18 +24,14 @@
     }
 
     &.checkbox {
-        width: 234px;
-        height: 26px;
         gap: 20px;
+        color: var(--color-dark-grey);
+        order: 2;
         display: flex;
         align-items: center;
 
         .input__label {
-            width: 201px;
-            height: 26px;
-            font-size: 16px;
-            line-height: 25.6px;
-            color: var(--input-label);
+            color: var(--color-dark-grey);
             order: 2;
         }
 

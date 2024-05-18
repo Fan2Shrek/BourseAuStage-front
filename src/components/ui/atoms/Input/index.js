@@ -22,7 +22,8 @@ const Input = ({
             className={'input__label'}
         >
             {label}
-        </label>}{required && <span>*</span>}
+            {required && <span className='input__required'>*</span>}
+        </label>}
         <input
             className={'input__target'}
             type={type}
