@@ -1,7 +1,8 @@
-import './input.scss'
+import './select.scss'
 import cn from '../../../../utils/classnames'
 
 const Select = ({
+    type = 'select',
     label,
     id,
     placeholder,

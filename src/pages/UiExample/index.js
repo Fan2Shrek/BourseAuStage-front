@@ -10,6 +10,7 @@ import Container from '../../components/ui/atoms/Container';
 import Loader from '../../components/ui/atoms/Loader';
 import Input from '../../components/ui/atoms/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
+import Select from '../../components/ui/atoms/Select';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -125,6 +126,11 @@ const UiExample = () => {
         { id: 2, value: 80 },
         { id: 3, value: 10 },
         { id: 4, value: 5 },
+    ], [])
+
+    const exampleSelects = useMemo(() => [
+        { id: 1, label: 'Required', type: 'text', placeholder: 'required', required: true },
+        { id: 2, label: 'Not Required', type: 'text', placeholder: 'not required', required: false },
     ], [])
 
     return <Container className={styles.container}>
@@ -252,6 +258,18 @@ const UiExample = () => {
                     return <ProgressBar {...attr} />
                 }}
                 className={styles.progressBarList}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Select :</h2>
+
+            <List
+                collection={exampleSelects}
+                renderItem={({ id: _, ...attr }) => {
+                    return <Select {...attr} />
+                }}
             />
         </Container>
     </Container>
