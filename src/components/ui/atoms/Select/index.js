@@ -7,6 +7,7 @@ const Select = ({
     id,
     name,
     value,
+    placeholder,
     required = false,
     className
 }) => {
@@ -30,7 +31,8 @@ const Select = ({
             type={type}
             id={id}
             name={name}
-            > 
+        >
+            <option value="" disabled selected>{placeholder}</option>
             <option
                 className={'select__option'}
                 value={value}
