@@ -133,6 +133,10 @@ const UiExample = () => {
         { id: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', value: 'valeur', required: false },
     ], [])
 
+    const exampleSelectsFilter = useMemo(() => [
+        { id: 1, type: 'search', name: 'selectFilter', value: 'valeur' },
+    ], [])
+
     return <Container className={styles.container}>
         <h1>Ui Exemples</h1>
 
@@ -267,6 +271,13 @@ const UiExample = () => {
 
             <List
                 collection={exampleSelects}
+                renderItem={({ id: _, ...attr }) => {
+                    return <Select {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleSelectsFilter}
                 renderItem={({ id: _, ...attr }) => {
                     return <Select {...attr} />
                 }}
