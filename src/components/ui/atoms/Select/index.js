@@ -20,7 +20,7 @@ const Select = ({
         className,
     )}>
         {label && <label
-            for={id}
+            htmlFor={id}
             className={'select__label'}
         >
             {label}

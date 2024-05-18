@@ -118,7 +118,7 @@ const UiExample = () => {
     ], [])
 
     const exampleCheckbox = useMemo(() => [
-        { identifier: 1, id: 'checkbox', type: 'checkbox', label: 'a' },
+        { identifier: 1, id: 'checkbox', type: 'checkbox', label: 'Checkbox' },
     ], [])
 
     const exampleProgressBars = useMemo(() => [
@@ -129,12 +129,12 @@ const UiExample = () => {
     ], [])
 
     const exampleSelects = useMemo(() => [
-        { id: 1, label: 'Required', type: 'text', name: 'selectRequired', placeholder: 'placeholder', value: 'valeur', required: true },
-        { id: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', value: 'valeur', required: false },
+        { identifier: 1, label: 'Required', type: 'text', name: 'selectRequired', placeholder: 'placeholder', value: 'valeur', required: true },
+        { identifier: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', value: 'valeur', required: false },
     ], [])
 
     const exampleSelectsFilter = useMemo(() => [
-        { id: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', value: 'valeur' },
+        { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', value: 'valeur' },
     ], [])
 
     return <Container className={styles.container}>
@@ -271,14 +271,16 @@ const UiExample = () => {
 
             <List
                 collection={exampleSelects}
-                renderItem={({ id: _, ...attr }) => {
+                uniqueAttr={select => select.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Select {...attr} />
                 }}
             />
 
             <List
                 collection={exampleSelectsFilter}
-                renderItem={({ id: _, ...attr }) => {
+                uniqueAttr={select => select.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
                     return <Select {...attr} />
                 }}
             />
