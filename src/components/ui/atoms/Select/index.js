@@ -6,7 +6,7 @@ const Select = ({
     label,
     id,
     name,
-    value,
+    values = [],
     placeholder,
     required = false,
     className
@@ -33,12 +33,15 @@ const Select = ({
             name={name}
         >
             <option value="" disabled selected>{placeholder}</option>
-            <option
-                className={'select__option'}
-                value={value}
-            >
-                {value}
-            </option>
+            {values.map((value, index) => (
+                <option
+                    key={index}
+                    className={'select__option'}
+                    value={value}
+                >
+                    {value}
+                </option>
+            ))}
         </select>
     </div>
 }

@@ -129,12 +129,12 @@ const UiExample = () => {
     ], [])
 
     const exampleSelects = useMemo(() => [
-        { identifier: 1, label: 'Required', type: 'text', name: 'selectRequired', placeholder: 'placeholder', value: 'valeur', required: true },
-        { identifier: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', value: 'valeur', required: false },
+        { identifier: 1, label: 'Required', type: 'text', name: 'selectRequired', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'], required: true },
+        { identifier: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', values: ['valeur1', 'valeur2'], required: false },
     ], [])
 
     const exampleSelectsFilter = useMemo(() => [
-        { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', value: 'valeur' },
+        { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
     ], [])
 
     return <Container className={styles.container}>
