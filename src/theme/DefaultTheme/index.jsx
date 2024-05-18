@@ -27,6 +27,11 @@ export const DefaultTheme = () => {
         setProperty('--color-dark-alpha', '#202430e6');
 
         setProperty('--color-grey', '#d6ddeb')
+        setProperty('--color-dark-grey', '#5c626e')
+
+        setProperty('--color-danger', '#ff007a');
+        setProperty('--color-warning', '#ff9900');
+        setProperty('--color-success', '#56cdad');
 
         /**
          * BASE
@@ -51,9 +56,15 @@ export const DefaultTheme = () => {
         /**
          * PROGRESS BAR
          */
-        setProperty('--progressBar-color-success', '#56cdad');
-        setProperty('--progressBar-color-warning', '#ff9900');
-        setProperty('--progressBar-color-danger', '#ff007a');
+        setProperty('--progressBar-color-success', 'var(--color-success)');
+        setProperty('--progressBar-color-warning', 'var(--color-warning)');
+        setProperty('--progressBar-color-danger', 'var(--color-danger)');
+
+        /**
+         * INPUT
+         */
+        setProperty('--input-required-color', 'var(--color-danger)');
+        setProperty('--input-label-color', 'var(--color-dark-grey)');
     }, [])
 
     return <></>
