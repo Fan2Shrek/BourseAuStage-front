@@ -99,8 +99,17 @@ const UiExample = () => {
     ], [])
 
     const exampleInputs = useMemo(() => [
-        { id: 1, label: 'Email', type: 'input', placeholder: 'Votre email' },
-        { id: 2, type: 'checkbox' },
+        { id: 1, label: 'Required', type: 'input', placeholder: 'required', required: true },
+        { id: 2, label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
+    ], [])
+
+    const exampleInputsSimple = useMemo(() => [
+        { id: 1, type: 'input'},
+        { id: 2, type: 'input', placeholder: 'placeholder'},
+    ], [])
+
+    const exampleCheckbox = useMemo(() => [
+        { id: 1, type: 'checkbox' },
     ], [])
 
     const exampleProgressBars = useMemo(() => [
@@ -200,6 +209,25 @@ const UiExample = () => {
 
             <List
                 collection={exampleInputs}
+                renderItem={({ id: _, ...attr }) => {
+                    return <Input {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleInputsSimple}
+                renderItem={({ id: _, ...attr }) => {
+                    return <Input {...attr} />
+                }}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Checkbox :</h2>
+
+            <List
+                collection={exampleCheckbox}
                 renderItem={({ id: _, ...attr }) => {
                     return <Input {...attr} />
                 }}

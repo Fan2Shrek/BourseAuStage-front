@@ -6,6 +6,7 @@ const Input = ({
     label,
     id,
     placeholder,
+    required = false,
     className
 }) => {
     return <div className={cn(
@@ -21,7 +22,7 @@ const Input = ({
             className={'input__label'}
         >
             {label}
-        </label>}
+        </label>}{required && <span>*</span>}
         <input
             className={'input__target'}
             type={type}
