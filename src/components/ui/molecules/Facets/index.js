@@ -40,7 +40,7 @@ const Facets = ({
             renderItem={([facet, values]) => <Facet
                 label={facet}
                 values={values}
-                defaultCheckedValues={options[facet] && options[facet].includes(FacetOptionEnum.DEFAULT_ALL)
+                defaultValues={options[facet] && options[facet].includes(FacetOptionEnum.DEFAULT_ALL)
                     ? [t('facets.options.all')]
                     : defaultFacets[facet] ?? []
                 }
@@ -50,6 +50,7 @@ const Facets = ({
                 }
                 allValue={options[facet] && options[facet].includes(FacetOptionEnum.ALL)}
                 andMore={options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN_AND_MORE)}
+                isRange={options[facet] && options[facet].includes(FacetOptionEnum.RANGE)}
                 onSelect={selectFacet}
                 onUnselect={unselectFacet}
             />}
