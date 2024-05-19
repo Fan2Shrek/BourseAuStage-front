@@ -2,6 +2,7 @@ const tokens = {
     facets: {
         options: {
             all: 'facets.options.all',
+            betweenAndMore: 'facets.options.betweenAndMore',
         }
     },
     actions: {

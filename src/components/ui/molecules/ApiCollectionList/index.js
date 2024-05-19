@@ -9,8 +9,9 @@ import List from '../../atoms/List'
 import Pagination from '../../atoms/Pagination'
 import Facets from '../Facets'
 import Sortings from '../Sortings'
+import FacetOptionEnum from '../../../../enum/FacetOptionEnum'
 
-const buildQuery = (url, currentPage, itemsPerPage, sort, facets = {}, options = {}) => {
+const buildQuery = (url, currentPage, itemsPerPage, t, sort = '', facets = {}, options = []) => {
     const query = `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}&exists[deletedAt]=false${sort}`
 
     const facetsQuery = (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
@@ -18,11 +19,43 @@ const buildQuery = (url, currentPage, itemsPerPage, sort, facets = {}, options =
             return acc
         }
 
-        if (options.all && values.includes(options.all)) {
+        if (options[facet] && options[facet].includes(FacetOptionEnum.ALL) && values.includes(t('facets.options.all'))) {
             return acc
         }
 
-        return `${acc}${values.reduce((acc, value) => `${acc}&${facet}[]=${value}`, '')}`
+        if (options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN)) {
+            const [min, max] = values.reduce((acc, value) => {
+                const [min, max] = value.split('-')
+
+                if (acc[0] === null) {
+                    acc[0] = parseInt(min, 10)
+                }
+
+                if (min < acc[0]) {
+                    acc[0] = parseInt(min, 10)
+                }
+
+                if (max) {
+                    if (acc[1] === null) {
+                        acc[1] = parseInt(max, 10)
+                    }
+
+                    if (max > acc[1]) {
+                        acc[1] = parseInt(max, 10)
+                    }
+                }
+
+                return acc
+            }, [null, null])
+
+            if (!max) {
+                return `${acc}&${encodeURI(facet)}[gt]=${min}`
+            }
+
+            return `${acc}&${encodeURI(facet)}[gt]=${min}&${encodeURI(facet)}[lt]=${max}`
+        } else {
+            return `${acc}${values.reduce((acc, value) => `${acc}&${encodeURI(facet)}[]=${encodeURI(value)}`, '')}`
+        }
     }, '')
 
     return `${query}${facetsQuery}`
@@ -61,11 +94,15 @@ const ApiCollectionList = ({
     const { t } = useTranslation()
 
     useEffect(() => {
+        setSelectedFacets(defaultFacets)
+    }, [defaultFacets])
+
+    useEffect(() => {
         setCurrentPage(1)
     }, [url, itemsPerPage, selectedFacets, selectedSort])
 
     useEffect(() => {
-        setQuery(buildQuery(url, currentPage, itemsPerPage, selectedSort, selectedFacets, { all: t('facets.options.all') }))
+        setQuery(buildQuery(url, currentPage, itemsPerPage, t, selectedSort, selectedFacets, facetsOptions))
     }, [url, currentPage, itemsPerPage, defaultFacets, selectedFacets, selectedSort])
 
     useEffect(() => {
