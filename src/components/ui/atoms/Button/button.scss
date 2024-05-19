@@ -9,11 +9,11 @@
     color: var(--button-text-color);
     font-size: var(--text-size);
     padding: 12px 24px;
-    cursor: pointer;
 
     &:hover {
         background-color: var(--button-color);
         border-color: var(--button-color);
+        cursor: pointer;
     }
 
     &.neutral {
@@ -52,8 +52,8 @@
     &.withIcon {
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
-        padding-inline: 20px;
+        padding: 12px 20px;
     }
 }

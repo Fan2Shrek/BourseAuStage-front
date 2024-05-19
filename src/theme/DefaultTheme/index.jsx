@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 import setProperty from '../../utils/setProperty';
 
@@ -66,6 +66,7 @@ export const DefaultTheme = () => {
          */
         setProperty('--input-required-color', 'var(--color-danger)');
         setProperty('--input-label-color', 'var(--color-dark-grey)');
+        setProperty('--input-disabled-color', 'var(--color-grey)');
     }, [])
 
     return <></>

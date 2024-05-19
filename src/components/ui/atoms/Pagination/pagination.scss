@@ -1,0 +1,12 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__element, &__element.button {
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+}

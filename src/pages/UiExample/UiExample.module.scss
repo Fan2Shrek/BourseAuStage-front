@@ -4,10 +4,45 @@
     .section {
         margin-block: 50px;
 
-        &.bg {
-            color: var(--color-dark);
-            background-color: var(--color-third);
-            padding: 70px;
+        :global {
+            .list {
+                margin-top: 20px;
+                justify-content: left;
+            }
+
+            .apiCollectionList {
+                margin-block: 50px;
+
+                .facets {
+                    .list {
+                        margin-top: 0;
+
+                        &__element {
+                            width: 100%;
+                            color: var(--color-dark);
+                            background-color: var(--color-third);
+                        }
+                    }
+                }
+
+                &__main {
+                    .list {
+                        gap: 10px 2%;
+                        margin-block: 20px;
+
+                        &__element {
+                            width: 49%;
+                            height: 100px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-weight: bold;
+                            color: var(--color-dark);
+                            background-color: var(--color-third);
+                        }
+                    }
+                }
+            }
         }
 
         .progressBarList {
@@ -20,12 +55,11 @@
             align-items: flex-start;
             padding-bottom: 15px;
         }
-    }
 
-    :global {
-        .list {
-            margin-top: 20px;
-            justify-content: left;
+        &.bg {
+            color: var(--color-dark);
+            background-color: var(--color-third);
+            padding: 70px;
         }
     }
 }

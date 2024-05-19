@@ -5,7 +5,7 @@ import './button.scss'
 import cn from '../../../../utils/classnames'
 
 const Button = ({
-    label = 'Button',
+    label = null,
     neutral = false,
     secondary = false,
     inverted = false,
@@ -48,7 +48,7 @@ const Button = ({
         onClick={handleClick}
     >
         {!rightIcon && icon}
-        <span>{label}</span>
+        {label && <span>{label}</span>}
         {rightIcon && icon}
     </button>
 }

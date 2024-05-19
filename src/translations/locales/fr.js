@@ -1,6 +1,12 @@
 import tokens from "../tokens";
 
 const fr = {
+    [tokens.facets.label.roles]: "Roles",
+    [tokens.facets.label.firstName]: "Prénom",
+    [tokens.facets.label.company.name]: "Entreprise",
+    [tokens.facets.label.company.effective]: "Effectif",
+    [tokens.facets.options.all]: "Tous",
+    [tokens.facets.options.betweenAndMore]: "et supérieur",
     [tokens.actions.login]: "Se connecter",
     [tokens.actions.createAccount]: "Créer un compte",
     [tokens.actions.logout]: "Se déconnecter",
