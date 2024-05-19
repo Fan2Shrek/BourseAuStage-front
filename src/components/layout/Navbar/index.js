@@ -18,11 +18,18 @@ const links = {
     home: path.home,
     offers: '/',
     requests: '/',
-    companies: '/',
+    companies: '/entreprise/',
     students: '/',
     UI: path.uiExample
 }
 
+const isCurrentPage = (currentPage, route) => {
+    if (route === '/') {
+        return currentPage === route;
+    }
+
+    return currentPage.startsWith(route.split('/:')[0]);
+}
 
 const Navbar = () => {
     const {theme, handleTheme} = useContext(ThemeContext);
@@ -48,7 +55,11 @@ const Navbar = () => {
                         <Link
                             to={l}
                             key={index}
-                            className={cn(styles.link, l === currentRoute ? styles['link-active'] : '')}
+                            className={cn(
+                                styles.link, 
+                                {
+                                    [styles['link-active']] : isCurrentPage(currentRoute, l)
+                                })}
                         >
                             {t(tokens.navbar[name]) || name}
                         </Link>

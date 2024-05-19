@@ -108,6 +108,10 @@
             gap: 20px;
             height: 100%;
 
+            > * {
+                color: var(--color-light);
+            }
+
             a {
                 text-decoration: none;
             }

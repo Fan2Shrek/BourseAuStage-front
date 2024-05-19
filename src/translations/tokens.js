@@ -31,6 +31,20 @@ const tokens = {
             submit: "footer.register.submit",
         },
         copyright: "footer.copyright",
+    },
+    page: {
+        companyDetails: {
+            activity: "page.companyDetails.activity",
+            age: "page.companyDetails.age",
+            effective: "page.companyDetails.effective",
+            turnover: "page.companyDetails.turnover",
+            city: "page.companyDetails.city",
+            presentation: "page.companyDetails.presentation",
+            socialsLinks: "page.companyDetails.socialsLinks",
+            contact: "page.companyDetails.contact",
+            contacts: "page.companyDetails.contacts",
+            phone: "page.companyDetails.phone",
+        }
     }
 }
 
