@@ -10,6 +10,8 @@ import Container from '../../components/ui/atoms/Container';
 import Loader from '../../components/ui/atoms/Loader';
 import Input from '../../components/ui/atoms/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
+import Select from '../../components/ui/atoms/Select';
+import Card from '../../components/ui/atoms/Card';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -117,7 +119,7 @@ const UiExample = () => {
     ], [])
 
     const exampleCheckbox = useMemo(() => [
-        { identifier: 1, id: 'checkbox', type: 'checkbox', label: 'a' },
+        { identifier: 1, id: 'checkbox', type: 'checkbox', label: 'Checkbox' },
     ], [])
 
     const exampleProgressBars = useMemo(() => [
@@ -125,6 +127,15 @@ const UiExample = () => {
         { id: 2, value: 80 },
         { id: 3, value: 10 },
         { id: 4, value: 5 },
+    ], [])
+
+    const exampleSelects = useMemo(() => [
+        { identifier: 1, label: 'Required', type: 'text', name: 'selectRequired', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'], required: true },
+        { identifier: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', values: ['valeur1', 'valeur2'], required: false },
+    ], [])
+
+    const exampleSelectsFilter = useMemo(() => [
+        { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
     ], [])
 
     return <Container className={styles.container}>
@@ -253,6 +264,34 @@ const UiExample = () => {
                 }}
                 className={styles.progressBarList}
             />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Select :</h2>
+
+            <List
+                collection={exampleSelects}
+                uniqueAttr={select => select.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
+                    return <Select {...attr} />
+                }}
+            />
+
+            <List
+                collection={exampleSelectsFilter}
+                uniqueAttr={select => select.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
+                    return <Select {...attr} />
+                }}
+            />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Base carte :</h2>
+
+            <Card />
         </Container>
     </Container>
 }
