@@ -23,7 +23,17 @@ const fr = {
     [tokens.footer.register.description]: "Recevez automatiquement par email les offres qui vous intéressent !",
     [tokens.footer.register.email]: "Votre email",
     [tokens.footer.register.submit]: "C'est parti",
-    [tokens.footer.copyright]: "2024 © Bourse aux Stages - Tous droits réservés"
+    [tokens.footer.copyright]: "2024 © Bourse aux Stages - Tous droits réservés",
+    [tokens.page.companyDetails.activity]: "Activité",
+    [tokens.page.companyDetails.age]: "Ancienneté",
+    [tokens.page.companyDetails.effective]: "Effectif",
+    [tokens.page.companyDetails.turnover]: "Chiffre d'affaires",
+    [tokens.page.companyDetails.city]: "Situation",
+    [tokens.page.companyDetails.presentation]: "Présentation",
+    [tokens.page.companyDetails.socialsLinks]: "Réseaux sociaux",
+    [tokens.page.companyDetails.contact]: "Nous joindre",
+    [tokens.page.companyDetails.contacts]: "Vos contacts",
+    [tokens.page.companyDetails.phone]: "Téléphone",
 }
 
 export default fr

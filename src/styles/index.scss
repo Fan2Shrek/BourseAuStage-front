@@ -12,7 +12,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Epilogue, sans-serif;
   font-size: var(--text-size);
   background-color: var(--base-color-neutral-inverted);
   color: var(--text-color);
@@ -23,6 +23,8 @@ body {
 
   h1 {
     font-size: 53px;
+    font-weight: 600;
+    line-height: 52.8px;
   }
 
   h2 {
@@ -43,9 +45,5 @@ body {
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  p {
-    font-family: Epilogue;
   }
 }
