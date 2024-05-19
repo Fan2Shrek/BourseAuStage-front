@@ -12,6 +12,7 @@ import Input from '../../components/ui/atoms/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
 import Card from '../../components/ui/atoms/Card';
+import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 
 const UiExample = () => {
     const exampleMainButtons = useMemo(() => [
@@ -73,14 +74,14 @@ const UiExample = () => {
     ], [])
 
     const exampleWithoutRadiusTags = useMemo(() => [
-        { id: 1, label: 'Tag 1', secondary: true, radius: 0 },
-        { id: 2, label: 'Tag 2', color: '#eb8533', secondary: true, radius: 0 },
-        { id: 3, label: 'Tag 3', color: '#56cdad', secondary: true, radius: 0 },
-        { id: 4, label: 'Tag 4', color: '#ff6550', secondary: true, radius: 0 },
-        { id: 5, label: 'Tag 5', color: '#26a4ff', secondary: true, radius: 0 },
-        { id: 6, label: 'Tag 6', color: '#ff007a', secondary: true, radius: 0 },
-        { id: 7, label: 'Tag 7', color: '#f5c400', secondary: true, radius: 0 },
-        { id: 8, label: 'Tag 8', color: '#6a4c93', secondary: true, radius: 0 },
+        { id: 1, label: 'Tag 1', radius: 0 },
+        { id: 2, label: 'Tag 2', color: '#eb8533', radius: 0 },
+        { id: 3, label: 'Tag 3', color: '#56cdad', radius: 0 },
+        { id: 4, label: 'Tag 4', color: '#ff6550', radius: 0 },
+        { id: 5, label: 'Tag 5', color: '#26a4ff', radius: 0 },
+        { id: 6, label: 'Tag 6', color: '#ff007a', radius: 0 },
+        { id: 7, label: 'Tag 7', color: '#f5c400', radius: 0 },
+        { id: 8, label: 'Tag 8', color: '#6a4c93', radius: 0 },
     ], [])
 
     const exampleSecondaryWithoutRadiusTags = useMemo(() => [
@@ -136,6 +137,11 @@ const UiExample = () => {
 
     const exampleSelectsFilter = useMemo(() => [
         { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
+    ], [])
+
+    const exampleUnderlinedTexts = useMemo(() => [
+        { id: 1, item: <h2>Ce texte est <UnderlinedContent>souligné</UnderlinedContent></h2> },
+        { id: 2, item: <h3><UnderlinedContent>Ce texte est completement souligné</UnderlinedContent></h3> },
     ], [])
 
     return <Container className={styles.container}>
@@ -292,6 +298,18 @@ const UiExample = () => {
             <h2>Base carte :</h2>
 
             <Card />
+        </Container>
+
+        <Container inline className={styles.section}>
+            <h2>Text souligné :</h2>
+
+            <List
+                collection={exampleUnderlinedTexts}
+                renderItem={({ id: _, item }) => {
+                    return item
+                }}
+                className={styles.underlinedContentList}
+            />
         </Container>
     </Container>
 }
