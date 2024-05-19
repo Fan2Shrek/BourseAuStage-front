@@ -13,6 +13,7 @@ const Facet = ({
     defaultCheckedValues,
     defaultDisabledValues,
     allValue,
+    andMore,
     onSelect,
     onUnselect,
 }) => {
@@ -65,9 +66,13 @@ const Facet = ({
         setLastClickedValue({ value, isActive })
     }, [setLastClickedValue, values, disabledValues, onUnselect, label, t])
 
+    const isLastValue = useCallback((value, index) => {
+        return index === (values.length - 1 + [allValue].filter(additionnalFacet => additionnalFacet).length)
+    }, [values, allValue])
+
     return <div ref={facet} className="facet">
         <div className="facet__header" onClick={handleClick}>
-            <p>{label}</p>
+            <p>{t(`facets.label.${label}`)}</p>
             <FaChevronUp className={cn(
                 'facet__chevron',
                 {
@@ -81,9 +86,9 @@ const Facet = ({
                 ...values,
             ]}
             uniqueAttr={value => value}
-            renderItem={value => <Input
-                id={`facet_${value}`}
-                label={value}
+            renderItem={(value, index) => <Input
+                id={`facet_${label}_${value}`}
+                label={isLastValue(value, index) && andMore ? `${value} ${t('facets.options.betweenAndMore')}` : value}
                 type='checkbox'
                 defaultChecked={defaultCheckedValues?.includes(value)}
                 disabled={disabledValues?.includes(value)}

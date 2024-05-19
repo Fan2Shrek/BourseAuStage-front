@@ -9,10 +9,10 @@
 *::after {
   // A VOIR
   transition: all .2s linear, color 0s, cursor 0s;
+  font-family: "Epilogue", sans-serif;
 }
 
 body {
-  font-family: Epilogue, sans-serif;
   font-size: var(--text-size);
   background-color: var(--base-color-neutral-inverted);
   color: var(--text-color);

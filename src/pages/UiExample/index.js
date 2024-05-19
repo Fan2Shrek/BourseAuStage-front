@@ -363,7 +363,7 @@ const UiExample = () => {
                         property={'companyName'}
                     />,
                 ]}
-                defaultSort={'alphabetical-AZ-firstName'}
+                defaultSort={'alphabetical-AZ-companyName'}
                 withFacets
                 renderItem={collaborator => <p className={styles.test}>{`${collaborator.firstName} ${collaborator.lastName}`}</p>}
             />

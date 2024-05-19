@@ -1,7 +1,16 @@
 const tokens = {
     facets: {
+        label: {
+            roles: "facets.label.roles",
+            firstName: "facets.label.firstName",
+            company: {
+                name: "facets.label.company.name",
+                effective: "facets.label.company.effective",
+            },
+        },
         options: {
             all: 'facets.options.all',
+            betweenAndMore: 'facets.options.betweenAndMore',
         }
     },
     actions: {
