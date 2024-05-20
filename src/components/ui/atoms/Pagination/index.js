@@ -1,16 +1,21 @@
-import {useEffect, useState} from 'react'
-import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 import './pagination.scss'
 import cn from '../../../../utils/classnames'
 import Button from '../../atoms/Button'
 
-const Pagination = ({current, onNext, onPrevious, onChoice, maxPage, className}) => {
+const Pagination = ({ current, onNext, onPrevious, onChoice, maxPage, className }) => {
     const [slots, setSlots] = useState([])
 
     useEffect(() => {
         if (maxPage <= 7) {
-            setSlots([...Array(parseInt(maxPage, 10)).keys().map(index => index + 1)])
+            let slots = []
+            for (let i = 1; i <= maxPage; i++) {
+                slots.push(i)
+            }
+
+            setSlots(slots)
 
             return
         }

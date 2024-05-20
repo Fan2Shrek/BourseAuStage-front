@@ -84,6 +84,102 @@
 
             .input__target {
                 border-color: var(--input-disabled-color);
+
+                &:hover {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
+    &.range {
+        display: flex;
+        flex-direction: column;
+
+        .input__label {
+            margin-top: 20px;
+            color: var(--input-range-label-color);
+            order: 2;
+        }
+
+        .input__target {
+            -webkit-appearance: none;
+            appearance: none;
+            position: relative;
+            background: transparent;
+            margin-block: 10px;
+            order: 1;
+
+            &::-webkit-slider-runnable-track {
+                background-color: var(--input-range-track);
+                height: 2px;
+            }
+
+            &::-moz-range-track {
+                background-color: var(--input-range-track);
+                height: 2px;
+            }
+
+            &::-webkit-slider-thumb {
+                background-color: var(--input-range-thumb);
+                margin-top: -7px;
+            }
+
+            &::-moz-range-thumb {
+                background-color: var(--input-range-thumb);
+                margin-top: -7px;
+            }
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: -4px;
+                width: 2px;
+                height: 10px;
+                background-color: var(--input-range-track);
+            }
+
+            &::before {
+                left: 0;
+            }
+
+            &::after {
+                right: 0;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &.disabled {
+            .input__label {
+                color: var(--input-disabled-color);
+
+                &:hover {
+                    cursor: not-allowed;
+                }
+            }
+
+            .input__target {
+                &::-webkit-slider-runnable-track {
+                    background-color: var(--input-disabled-color);
+                }
+
+                &::-moz-range-track {
+                    background-color: var(--input-disabled-color);
+                    height: 2px;
+                }
+
+                &::-webkit-slider-thumb {
+                    background-color: var(--input-disabled-color);
+                }
+
+                &::-moz-range-thumb {
+                    background-color: var(--input-disabled-color);
+                }
+
                 &:hover {
                     cursor: not-allowed;
                 }

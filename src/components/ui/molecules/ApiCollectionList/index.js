@@ -16,7 +16,12 @@ const buildQuery = (url, currentPage, itemsPerPage, t, sort = '', facets = {}, o
     const query = `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}&exists[deletedAt]=false${sort}`
 
     const facetsQuery = (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
-        if (!values || values.length === 0) {
+        if (
+            !values
+            || values.length === 0
+            || (options[facet] && options[facet].includes(FacetOptionEnum.ALL) && values.includes(t('facets.options.all')))
+            || (options[facet] && options[facet].includes(FacetOptionEnum.RANGE))
+        ) {
             return acc
         }
 
@@ -105,7 +110,7 @@ const ApiCollectionList = ({
 
     useEffect(() => {
         setQuery(buildQuery(url, currentPage, itemsPerPage, t, selectedSort, selectedFacets, facetsOptions))
-    }, [url, currentPage, itemsPerPage, defaultFacets, selectedFacets, selectedSort])
+    }, [url, currentPage, itemsPerPage, t, selectedSort, selectedFacets, facetsOptions])
 
     useEffect(() => {
         if (withFacets) {

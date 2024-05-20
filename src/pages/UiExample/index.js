@@ -356,11 +356,11 @@ const UiExample = () => {
                 sortings={[
                     <AlphabeticalSortAZ
                         key={'alphabetical-AZ-companyName'}
-                        property={'firstName'}
+                        property={'company.name'}
                     />,
                     <AlphabeticalSortZA
                         key={'alphabetical-ZA-companyName'}
-                        property={'companyName'}
+                        property={'company.name'}
                     />,
                 ]}
                 defaultSort={'alphabetical-AZ-companyName'}

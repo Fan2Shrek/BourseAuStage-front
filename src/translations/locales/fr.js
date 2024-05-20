@@ -5,6 +5,8 @@ const fr = {
     [tokens.facets.label.firstName]: "Prénom",
     [tokens.facets.label.company.name]: "Entreprise",
     [tokens.facets.label.company.effective]: "Effectif",
+    [tokens.facets.label.company.range.global]: "Distance - {{min}} à {{max}} km",
+    [tokens.facets.label.company.range.input]: "A moins de {{value}} km",
     [tokens.facets.options.all]: "Tous",
     [tokens.facets.options.betweenAndMore]: "et supérieur",
     [tokens.actions.login]: "Se connecter",

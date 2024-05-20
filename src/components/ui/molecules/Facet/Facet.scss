@@ -41,4 +41,21 @@
             }
         }
     }
+
+    .range {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 10px;
+        opacity: 0;
+
+        &.active {
+            max-height: var(--facet-max-height);
+            padding: 0 10px 20px;
+            opacity: 1;
+        }
+
+        .input__label {
+            color: var(--color-main);
+        }
+    }
 }

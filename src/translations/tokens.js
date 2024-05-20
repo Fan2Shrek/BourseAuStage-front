@@ -6,6 +6,10 @@ const tokens = {
             company: {
                 name: "facets.label.company.name",
                 effective: "facets.label.company.effective",
+                range: {
+                    global: "facets.label.company.range.global",
+                    input: "facets.label.company.range.input",
+                },
             },
         },
         options: {

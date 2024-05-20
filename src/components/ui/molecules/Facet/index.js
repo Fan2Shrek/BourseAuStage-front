@@ -8,18 +8,20 @@ import cn from "../../../../utils/classnames"
 import Input from '../../atoms/Input'
 
 const Facet = ({
+    defaultValues = [],
+    defaultDisabledValues = [],
+    allValue = false,
+    andMore = false,
+    isRange = false,
     label,
     values,
-    defaultCheckedValues,
-    defaultDisabledValues,
-    allValue,
-    andMore,
+
     onSelect,
     onUnselect,
 }) => {
     const [isActive, setIsActive] = useState(true)
     const [isMaxHeightDefined, setIsMaxHeightDefined] = useState(false)
-    const [disabledValues, setDisabledValues] = useState(defaultDisabledValues ?? [])
+    const [disabledValues, setDisabledValues] = useState(defaultDisabledValues)
     const [lastClickedValue, setLastClickedValue] = useState({
         value: null,
         isActive: false
@@ -72,7 +74,13 @@ const Facet = ({
 
     return <div ref={facet} className="facet">
         <div className="facet__header" onClick={handleClick}>
-            <p>{t(`facets.label.${label}`)}</p>
+            <p>{t(`facets.label.${label}${isRange ? '.global' : ''}`, isRange
+                ? {
+                    min: values.min ?? 0,
+                    max: values.max ?? 100
+                }
+                : {}
+            )}</p>
             <FaChevronUp className={cn(
                 'facet__chevron',
                 {
@@ -80,24 +88,40 @@ const Facet = ({
                 },
             )} />
         </div>
-        <List
-            collection={[
-                ...(allValue ? [t('facets.options.all')] : []),
-                ...values,
-            ]}
-            uniqueAttr={value => value}
-            renderItem={(value, index) => <Input
-                id={`facet_${label}_${value}`}
-                label={isLastValue(value, index) && andMore ? `${value} ${t('facets.options.betweenAndMore')}` : value}
-                type='checkbox'
-                defaultChecked={defaultCheckedValues?.includes(value)}
-                disabled={disabledValues?.includes(value)}
-                onChange={isActive => handleChange(isActive, value)}
+        {isRange
+            ? <Input
+                id={`facet_${label}`}
+                label={`facets.label.${label}.input`}
+                type='range'
+                min={values.min ?? 0}
+                max={values.max ?? 100}
+                step={values.step ?? 1}
+                defaultValue={defaultValues.value ?? 50}
+                // active pas géré dans le sprint 2
+                disabled
+                onChange={value => console.log(`${value} pas géré dans le sprint 2`)}
+                className={cn({
+                    active: isActive
+                })}
+            />
+            : <List
+                collection={[
+                    ...(allValue ? [t('facets.options.all')] : []),
+                    ...values,
+                ]}
+                uniqueAttr={value => value}
+                renderItem={(value, index) => <Input
+                    id={`facet_${label}_${value}`}
+                    label={isLastValue(value, index) && andMore ? `${value} ${t('facets.options.betweenAndMore')}` : value}
+                    type='checkbox'
+                    defaultChecked={defaultValues.includes(value)}
+                    disabled={disabledValues?.includes(value)}
+                    onChange={isActive => handleChange(isActive, value)}
+                />}
+                className={cn({
+                    active: isActive
+                })}
             />}
-            className={cn({
-                active: isActive
-            })}
-        />
     </div>
 }
 
