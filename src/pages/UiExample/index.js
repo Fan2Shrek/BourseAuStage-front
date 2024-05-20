@@ -12,6 +12,7 @@ import Input from '../../components/ui/atoms/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
 import Card from '../../components/ui/atoms/Card';
+import Calendar from '../../components/ui/atoms/Calendar';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
 import { AlphabeticalSortAZ, AlphabeticalSortZA } from '../../components/sortings';
@@ -296,6 +297,13 @@ const UiExample = () => {
                     return <Select {...attr} />
                 }}
             />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Calendrier :</h2>
+
+            <Calendar />
         </Container>
 
         <Container inline className={styles.section}>
