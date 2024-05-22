@@ -1,7 +1,8 @@
 const path = {
     'home': '/',
     'uiExample': '/ui-example',
-    'companyDetails': '/entreprise/:id',
+    'companies': '/entreprises',
+    'companyDetails': '/entreprises/:id',
 }
 
 export default path;

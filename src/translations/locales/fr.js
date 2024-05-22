@@ -42,6 +42,8 @@ const fr = {
     [tokens.page.companyDetails.contact]: "Nous joindre",
     [tokens.page.companyDetails.contacts]: "Vos contacts",
     [tokens.page.companyDetails.phone]: "Téléphone",
+    [tokens.page.companies.title]: "Liste des entreprises",
+    [tokens.page.companies.description]: "Découvrez les entreprises qui proposent des offres de stage ou d’alternance",
 }
 
 export default fr

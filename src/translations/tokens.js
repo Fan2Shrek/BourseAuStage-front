@@ -62,6 +62,10 @@ const tokens = {
             contact: "page.companyDetails.contact",
             contacts: "page.companyDetails.contacts",
             phone: "page.companyDetails.phone",
+        },
+        companies: {
+            title: "page.companies.title",
+            description: "page.companies.description",
         }
     }
 }

@@ -1,0 +1,17 @@
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 250px;
+    background-color: var(--color-third);
+
+    h1 {
+        margin-bottom: 25px;
+    }
+}
+
+.content {
+    // TODO
+    height: 800px;
+}
