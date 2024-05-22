@@ -1,3 +1,5 @@
+@use "../../../styles/mixins" as m;
+
 .footer {
     background-color: var(--color-dark);
 
@@ -6,6 +8,11 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        
+        @include m.below(md) {
+            flex-direction: column;
+            height: 1000px;
+        }
     }
 
     p {
@@ -16,6 +23,16 @@
     .logoContainer, .createContainer {
         margin-top: 10px;
         width: 400px;
+        
+        @include m.below(md) {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            p {
+                text-align: center;
+            }
+        }
     }
 
     .logoContainer > * {
@@ -24,6 +41,13 @@
 
     .createContainer > * {
         margin-block: 20px;
+
+        @include m.below(md) {
+            p {
+                display: none;
+                text-align: center;
+            }
+        }
     }
 
     .content {
@@ -33,6 +57,11 @@
         padding-block: 50px;
         color: var(--color-light);
 
+    
+        @include m.below(md) {
+            flex-direction: column;
+        }
+
         .createAccount {
             font-size: 18px;
             font-weight: 600;
@@ -41,11 +70,24 @@
             color: var(--color-light);
             margin-top: 10px;
 
+            @include m.below(md) {
+                text-align: center;
+            }
+
             &Form {
                 display: flex;
                 flex-direction: row;
                 gap: 8px;
                 height: 50px;
+
+                @include m.below(md) {
+                    height: 100px;
+                    flex-direction: column;
+
+                    input {
+                        height: 50px;
+                    }
+                }        
 
                 span {
                     font-weight: 700;
@@ -62,6 +104,10 @@
         .logo {
             height: 60px;
             align-self: flex-start;
+
+            @include m.below(md) {
+                align-self: center;
+            }
         }
 
         .links {
@@ -69,15 +115,29 @@
             width: 400px;
             margin-top: 20px;
 
+            @include m.below(md) {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+            }
+
             .column {
                 width: 400px;
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
 
+                @include m.below(md) {
+                    width: 100%;
+                }    
+
                 a {
                     text-align: left;
                     color: var(--color-light);
+
+                    @include m.below(md) {
+                        text-align: center;   
+                    }
                 }
             }
         }
@@ -95,6 +155,11 @@
         padding-block: 20px;
         color: var(--color-light);
 
+        @include m.below(md) {
+            flex-direction: column-reverse;
+            gap: 10px;
+        }
+        
         p {
             color: var(--color-dark-grey);
         }
@@ -105,6 +170,7 @@
             align-items: center;
             gap: 20px;
             height: 100%;
+
 
             > * {
                 color: var(--color-light);
