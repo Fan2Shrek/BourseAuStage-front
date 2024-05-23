@@ -18,7 +18,7 @@ const links = {
     home: path.home,
     offers: '/',
     requests: '/',
-    companies: '/entreprise/',
+    companies: '/entreprises/',
     students: '/',
     UI: path.uiExample
 }
