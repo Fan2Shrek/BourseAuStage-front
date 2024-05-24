@@ -1,0 +1,23 @@
+.MuiFormControl-root {
+    border: 1px solid var(--color-grey);
+
+    &:focus {
+        border-color: none;
+        outline: none;
+    }
+
+    &:hover {
+        color: red;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 16px;
+
+        &:focus {
+            border-color: var(--color-main);
+            outline: none;
+        }
+    }
+
+}
