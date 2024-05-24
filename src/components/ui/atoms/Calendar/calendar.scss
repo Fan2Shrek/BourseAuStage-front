@@ -1,13 +1,21 @@
+.input__required {
+    color: var(--input-required-color);
+}
+
+label {
+    color: var(--input-label-color);
+}
+
 .MuiFormControl-root {
+    width: 100%;
 
     div {
         border-radius: 0px;
         color: (--color-grey-form);
-        box-sizing: none;
+        background-color: var(--color-light);
 
         input {
-            width: 100%;
-            padding: 12px 16px;
+            transition: none;
         }
 
         fieldset {

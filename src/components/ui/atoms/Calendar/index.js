@@ -5,17 +5,24 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 
-const Calendar = () => {
-  return (
+const Calendar = ({
+  label = null,
+  id,
+  required = false,
+}) => {
+  return <>
+    {label && <label
+      htmlFor={id}
+    >
+      {label}
+      {required && <span className='input__required'>*</span>}
+    </label>}
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
-        inputFormat="DD/MM/YYYY"
-        renderInput={(params) => (
-          <TextField {...params} variant="outlined" className="custom-date-picker" />
-        )}
+        id={id}
       />
     </LocalizationProvider>
-  );
+  </>
 };
 
 export default Calendar;

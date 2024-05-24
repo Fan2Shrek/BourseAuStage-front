@@ -142,6 +142,10 @@ const UiExample = () => {
         { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
     ], [])
 
+    const exampleCalendar = useMemo(() => [
+        { id: 1, label: 'Date de naissance', required: true },
+    ], [])
+
     const exampleUnderlinedTexts = useMemo(() => [
         { id: 1, item: <h2>Ce texte est <UnderlinedContent>souligné</UnderlinedContent></h2> },
         { id: 2, item: <h3><UnderlinedContent>Ce texte est completement souligné</UnderlinedContent></h3> },
@@ -303,7 +307,14 @@ const UiExample = () => {
 
             <h2>Calendrier :</h2>
 
-            <Calendar />
+            <List
+                collection={exampleCalendar}
+                uniqueAttr={caldendar => caldendar.identifier}
+                renderItem={({ identifier: _, ...attr }) => {
+                    return <Calendar {...attr} />
+                }}
+            />
+
         </Container>
 
         <Container inline className={styles.section}>
