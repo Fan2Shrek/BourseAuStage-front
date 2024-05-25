@@ -1,8 +1,11 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaArrowRight, FaGithub } from "react-icons/fa";
 
 import styles from './UiExample.module.scss';
 import cn from '../../utils/classnames';
+import tokens from '../../translations/tokens';
+import path from '../../path';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import Tag from '../../components/ui/atoms/Tag';
@@ -16,8 +19,22 @@ import Calendar from '../../components/ui/atoms/Calendar';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
 import { AlphabeticalSortAZ, AlphabeticalSortZA } from '../../components/sortings';
+import Banner from '../../components/layout/Banner';
 
 const UiExample = () => {
+    const { t } = useTranslation()
+
+    const breadCrumb = useMemo(() => [
+        {
+            label: t(tokens.breadCrumb.home),
+            link: path.home
+        },
+        {
+            label: t(tokens.breadCrumb.uiExample),
+            link: null
+        },
+    ], [t])
+
     const exampleMainButtons = useMemo(() => [
         {
             identifier: 1,
@@ -151,240 +168,244 @@ const UiExample = () => {
         { id: 2, item: <h3><UnderlinedContent>Ce texte est completement souligné</UnderlinedContent></h3> },
     ], [])
 
-    return <Container className={styles.container}>
-        <h1>Ui Exemples</h1>
+    return <Container inline className={styles.container}>
+        <Banner breadCrumb={breadCrumb}>
+            <h1>Ui Exemples</h1>
+        </Banner>
 
-        <Container inline className={styles.section}>
-            <h2>Bouton :</h2>
-
-            <List
-                collection={exampleMainButtons}
-                // pick item.id by default
-                uniqueAttr={btn => btn.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Button {...attr} />
-                }}
-            />
-
-            <List
-                collection={exampleNeutralButtons}
-                // pick item.id by default
-                uniqueAttr={btn => btn.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Button {...attr} />
-                }}
-            />
-
-            <List
-                collection={exampleSecondaryButtons}
-                // pick item.id by default
-                uniqueAttr={btn => btn.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Button {...attr} />
-                }}
-            />
-        </Container>
-
-        <Container inline className={styles.section}>
-            <h2>Full Container :</h2>
-            <Container inline cornerTop cornerBottom className={cn(styles.section, styles.bg)}>
-                <h2>Tag :</h2>
+        <Container>
+            <Container inline className={styles.section}>
+                <h2>Bouton :</h2>
 
                 <List
-                    collection={exampleTags}
-                    renderItem={({ id: _, ...attr }) => {
-                        return <Tag {...attr} />
+                    collection={exampleMainButtons}
+                    // pick item.id by default
+                    uniqueAttr={btn => btn.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Button {...attr} />
                     }}
                 />
 
                 <List
-                    collection={exampleSecondaryTags}
-                    renderItem={({ id: _, ...attr }) => {
-                        return <Tag {...attr} />
+                    collection={exampleNeutralButtons}
+                    // pick item.id by default
+                    uniqueAttr={btn => btn.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Button {...attr} />
                     }}
                 />
 
                 <List
-                    collection={exampleWithoutRadiusTags}
-                    renderItem={({ id: _, ...attr }) => {
-                        return <Tag {...attr} />
-                    }}
-                />
-
-                <List
-                    collection={exampleSecondaryWithoutRadiusTags}
-                    renderItem={({ id: _, ...attr }) => {
-                        return <Tag {...attr} />
+                    collection={exampleSecondaryButtons}
+                    // pick item.id by default
+                    uniqueAttr={btn => btn.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Button {...attr} />
                     }}
                 />
             </Container>
-        </Container>
 
-        <Container inline className={styles.section}>
-            <h2>Loader :</h2>
+            <Container inline className={styles.section}>
+                <h2>Full Container :</h2>
+                <Container inline cornerTop cornerBottom className={cn(styles.section, styles.bg)}>
+                    <h2>Tag :</h2>
 
-            <List
-                collection={exampleLoaders}
-                renderItem={({ id: _, ...attr }) => {
-                    return <Loader {...attr} />
-                }}
-            />
+                    <List
+                        collection={exampleTags}
+                        renderItem={({ id: _, ...attr }) => {
+                            return <Tag {...attr} />
+                        }}
+                    />
 
-            <List
-                collection={exampleThinnerLoaders}
-                renderItem={({ id: _, ...attr }) => {
-                    return <Loader {...attr} />
-                }}
-            />
-        </Container>
+                    <List
+                        collection={exampleSecondaryTags}
+                        renderItem={({ id: _, ...attr }) => {
+                            return <Tag {...attr} />
+                        }}
+                    />
 
-        <Container inline className={styles.section}>
-            <h2>Input :</h2>
+                    <List
+                        collection={exampleWithoutRadiusTags}
+                        renderItem={({ id: _, ...attr }) => {
+                            return <Tag {...attr} />
+                        }}
+                    />
 
-            <List
-                collection={exampleInputs}
-                uniqueAttr={input => input.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Input {...attr} />
-                }}
-            />
+                    <List
+                        collection={exampleSecondaryWithoutRadiusTags}
+                        renderItem={({ id: _, ...attr }) => {
+                            return <Tag {...attr} />
+                        }}
+                    />
+                </Container>
+            </Container>
 
-            <List
-                collection={exampleInputsSimple}
-                uniqueAttr={input => input.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Input {...attr} />
-                }}
-            />
-        </Container>
+            <Container inline className={styles.section}>
+                <h2>Loader :</h2>
 
-        <Container inline className={styles.section}>
-            <h2>Checkbox :</h2>
+                <List
+                    collection={exampleLoaders}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Loader {...attr} />
+                    }}
+                />
 
-            <List
-                collection={exampleCheckbox}
-                uniqueAttr={input => input.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Input {...attr} />
-                }}
-            />
-        </Container>
+                <List
+                    collection={exampleThinnerLoaders}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Loader {...attr} />
+                    }}
+                />
+            </Container>
 
-        <Container inline className={styles.section}>
-            <h2>Barre de progression :</h2>
+            <Container inline className={styles.section}>
+                <h2>Input :</h2>
 
-            <List
-                collection={exampleProgressBars}
-                renderItem={({ id: _, ...attr }) => {
-                    return <ProgressBar {...attr} />
-                }}
-                className={styles.progressBarList}
-            />
-        </Container>
+                <List
+                    collection={exampleInputs}
+                    uniqueAttr={input => input.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Input {...attr} />
+                    }}
+                />
 
-        <Container inline className={styles.section}>
+                <List
+                    collection={exampleInputsSimple}
+                    uniqueAttr={input => input.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Input {...attr} />
+                    }}
+                />
+            </Container>
 
-            <h2>Select :</h2>
+            <Container inline className={styles.section}>
+                <h2>Checkbox :</h2>
 
-            <List
-                collection={exampleSelects}
-                uniqueAttr={select => select.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Select {...attr} />
-                }}
-            />
+                <List
+                    collection={exampleCheckbox}
+                    uniqueAttr={input => input.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Input {...attr} />
+                    }}
+                />
+            </Container>
 
-            <List
-                collection={exampleSelectsFilter}
-                uniqueAttr={select => select.identifier}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Select {...attr} />
-                }}
-            />
-        </Container>
+            <Container inline className={styles.section}>
+                <h2>Barre de progression :</h2>
 
-        <Container inline className={styles.section}>
+                <List
+                    collection={exampleProgressBars}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <ProgressBar {...attr} />
+                    }}
+                    className={styles.progressBarList}
+                />
+            </Container>
 
-            <h2>Calendrier :</h2>
+            <Container inline className={styles.section}>
 
-            <List
-                collection={exampleCalendar}
-                renderItem={({ identifier: _, ...attr }) => {
-                    return <Calendar {...attr} />
-                }}
-            />
+                <h2>Select :</h2>
 
-        </Container>
+                <List
+                    collection={exampleSelects}
+                    uniqueAttr={select => select.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Select {...attr} />
+                    }}
+                />
 
-        <Container inline className={styles.section}>
+                <List
+                    collection={exampleSelectsFilter}
+                    uniqueAttr={select => select.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Select {...attr} />
+                    }}
+                />
+            </Container>
 
-            <h2>Base carte :</h2>
+            <Container inline className={styles.section}>
 
-            <Card />
-        </Container>
+                <h2>Calendrier :</h2>
 
-        <Container inline className={styles.section}>
-            <h2>Text souligné :</h2>
+                <List
+                    collection={exampleCalendar}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Calendar {...attr} />
+                    }}
+                />
 
-            <List
-                collection={exampleUnderlinedTexts}
-                renderItem={({ id: _, item }) => {
-                    return item
-                }}
-                className={styles.underlinedContentList}
-            />
-        </Container>
+            </Container>
 
-        <Container inline className={styles.section}>
-            <h2>Api collection utilisateur :</h2>
+            <Container inline className={styles.section}>
 
-            <ApiCollectionList
-                url={'/users'}
-                foundLabel={'utilisateur(s) trouvé(s)'}
-                sortings={[
-                    <AlphabeticalSortAZ
-                        key={'alphabetical-AZ-firstName'}
-                        property={'firstName'}
-                    />,
-                    <AlphabeticalSortZA
-                        key={'alphabetical-ZA-firstName'}
-                        property={'firstName'}
-                    />,
-                    <AlphabeticalSortAZ
-                        key={'alphabetical-AZ-lastName'}
-                        property={'lastName'}
-                    />,
-                    <AlphabeticalSortZA
-                        key={'alphabetical-ZA-lastName'}
-                        property={'lastName'}
-                    />,
-                ]}
-                defaultSort={'alphabetical-AZ-firstName'}
-                withFacets
-                renderItem={user => <p className={styles.test}>{`${user.firstName} ${user.lastName}`}</p>}
-            />
-        </Container>
+                <h2>Base carte :</h2>
 
-        <Container inline className={styles.section}>
-            <h2>Api collection collaborateur :</h2>
+                <Card />
+            </Container>
 
-            <ApiCollectionList
-                url={'/collaborators'}
-                foundLabel={'collaborateur(s) trouvé(s)'}
-                sortings={[
-                    <AlphabeticalSortAZ
-                        key={'alphabetical-AZ-companyName'}
-                        property={'company.name'}
-                    />,
-                    <AlphabeticalSortZA
-                        key={'alphabetical-ZA-companyName'}
-                        property={'company.name'}
-                    />,
-                ]}
-                defaultSort={'alphabetical-AZ-companyName'}
-                withFacets
-                renderItem={collaborator => <p className={styles.test}>{`${collaborator.firstName} ${collaborator.lastName}`}</p>}
-            />
+            <Container inline className={styles.section}>
+                <h2>Text souligné :</h2>
+
+                <List
+                    collection={exampleUnderlinedTexts}
+                    renderItem={({ id: _, item }) => {
+                        return item
+                    }}
+                    className={styles.underlinedContentList}
+                />
+            </Container>
+
+            <Container inline className={styles.section}>
+                <h2>Api collection utilisateur :</h2>
+
+                <ApiCollectionList
+                    url={'/users'}
+                    foundLabel={'utilisateur(s) trouvé(s)'}
+                    sortings={[
+                        <AlphabeticalSortAZ
+                            key={'alphabetical-AZ-firstName'}
+                            property={'firstName'}
+                        />,
+                        <AlphabeticalSortZA
+                            key={'alphabetical-ZA-firstName'}
+                            property={'firstName'}
+                        />,
+                        <AlphabeticalSortAZ
+                            key={'alphabetical-AZ-lastName'}
+                            property={'lastName'}
+                        />,
+                        <AlphabeticalSortZA
+                            key={'alphabetical-ZA-lastName'}
+                            property={'lastName'}
+                        />,
+                    ]}
+                    defaultSort={'alphabetical-AZ-firstName'}
+                    withFacets
+                    renderItem={user => <p className={styles.test}>{`${user.firstName} ${user.lastName}`}</p>}
+                />
+            </Container>
+
+            <Container inline className={styles.section}>
+                <h2>Api collection collaborateur :</h2>
+
+                <ApiCollectionList
+                    url={'/collaborators'}
+                    foundLabel={'collaborateur(s) trouvé(s)'}
+                    sortings={[
+                        <AlphabeticalSortAZ
+                            key={'alphabetical-AZ-companyName'}
+                            property={'company.name'}
+                        />,
+                        <AlphabeticalSortZA
+                            key={'alphabetical-ZA-companyName'}
+                            property={'company.name'}
+                        />,
+                    ]}
+                    defaultSort={'alphabetical-AZ-companyName'}
+                    withFacets
+                    renderItem={collaborator => <p className={styles.test}>{`${collaborator.firstName} ${collaborator.lastName}`}</p>}
+                />
+            </Container>
         </Container>
     </Container>
 }

@@ -70,6 +70,11 @@ export const DefaultTheme = () => {
         setProperty('--input-range-label-color', 'var(--color-main)');
         setProperty('--input-range-track', 'var(--color-dark-grey)');
         setProperty('--input-range-thumb', 'var(--color-main)');
+
+        /**
+         * BANNER
+         */
+        setProperty('--banner-color', 'var(--color-third)');
     }, [])
 
     return <></>

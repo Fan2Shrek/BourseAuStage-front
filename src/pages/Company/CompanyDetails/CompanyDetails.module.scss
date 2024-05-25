@@ -1,53 +1,48 @@
-.header {
-    background-color: var(--color-third);
-    height: 300px;
+.description {
+    margin-top: 70px;
 
-    .description {
-        margin-top: 70px;
+    h1 {
+        font-size: 48px;
+    }
 
-        h1 {
-            font-size: 48px;
+    .link {
+        height: 38px;
+        width: 183px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+
+        span {
+            font-weight: 600;
+            line-height: 25.6px;
         }
-    
-        .link {
-            height: 38px;
-            width: 183px;
+    }
+
+    .statsContainer {
+        margin-top: 30px;
+        display: flex;
+        gap: 50px;
+
+        .stats {
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-top: 10px;
-    
-            span {
-                font-weight: 600;
-                line-height: 25.6px;
-            }
-        }
+            gap: 15px;
 
-        .statsContainer {
-            margin-top: 30px;
-            display: flex;
-            gap: 50px;
-     
-            .stats {
+            .icon {
+                background-color: var(--color-light);
+                color: var(--color-secondary);
+                height: 44px;
+                width: 44px;
+            }
+
+            .content {
                 display: flex;
-                align-items: center;
-                gap: 15px;
-                
-                .icon {
-                    background-color: var(--color-light);
-                    color: var(--color-secondary);
-                    height: 44px;
-                    width: 44px;
-                }
-    
-                .content {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-    
-                    .value {
-                        font-weight: bold;
-                    }
+                flex-direction: column;
+                gap: 5px;
+
+                .value {
+                    font-weight: bold;
                 }
             }
         }
@@ -58,14 +53,14 @@
     padding-block: 35px;
     display: flex;
     gap: 5%;
-    
+
     &Left {
         width: 70%;
 
         h2 {
             margin-top: 20px;
         }
-    
+
         p {
             margin-top: 20px;
         }
@@ -105,16 +100,16 @@
                 font-weight: bold;
             }
 
-            p:not(.name) {      
+            p:not(.name) {
                 font-weight: 400;
             }
 
             .map {
                 height: 300px;
                 width: 300px;
-                background-color: black;
+                background-color: var(--color-dark);
                 margin-block: 5px;
-                color: white;
+                color: var(--color-light);
                 display: flex;
                 justify-content: center;
                 align-items: center;

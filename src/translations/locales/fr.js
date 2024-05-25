@@ -42,8 +42,12 @@ const fr = {
     [tokens.page.companyDetails.contact]: "Nous joindre",
     [tokens.page.companyDetails.contacts]: "Vos contacts",
     [tokens.page.companyDetails.phone]: "Téléphone",
+    [tokens.page.companyDetails.images.alt]: "Image de {{company}}",
     [tokens.page.companies.title]: "Liste des entreprises",
     [tokens.page.companies.description]: "Découvrez les entreprises qui proposent des offres de stage ou d’alternance",
+    [tokens.breadCrumb.home]: "Accueil",
+    [tokens.breadCrumb.uiExample]: "Exemples d'UI",
+    [tokens.breadCrumb.companies]: "Entreprises",
 }
 
 export default fr
