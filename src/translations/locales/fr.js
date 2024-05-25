@@ -1,6 +1,10 @@
 import tokens from "../tokens";
 
 const fr = {
+    [tokens.entities.user.firstName]: "Prénom",
+    [tokens.entities.user.lastName]: "Nom de famille",
+    [tokens.entities.company.name]: "Nom de l'entreprise",
+    [tokens.apiCollection.sorting.label]: "Trier par :",
     [tokens.facets.label.roles]: "Roles",
     [tokens.facets.label.firstName]: "Prénom",
     [tokens.facets.label.company.name]: "Entreprise",

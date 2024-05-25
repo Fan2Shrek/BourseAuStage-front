@@ -35,7 +35,7 @@ const Facets = ({
 
     return <div className={cn('facets', className)}>
         <List
-            collection={Object.entries(facets)}
+            collection={Object.entries(facets ?? {})}
             uniqueAttr={([facet, _]) => facet}
             renderItem={([facet, values]) => <Facet
                 label={facet}

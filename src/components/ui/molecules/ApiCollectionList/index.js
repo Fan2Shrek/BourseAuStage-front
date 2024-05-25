@@ -5,6 +5,7 @@ import { useDebounce } from '@uidotdev/usehooks'
 import './apiCollectionList.scss'
 import cn from '../../../../utils/classnames'
 import apiClient from '../../../../api/ApiClient'
+import tokens from '../../../../translations/tokens'
 import List from '../../atoms/List'
 import Pagination from '../../atoms/Pagination'
 import Facets from '../Facets'
@@ -97,7 +98,7 @@ const ApiCollectionList = ({
     const [selectedSort, setSelectedSort] = useState('')
     const [query, setQuery] = useState('')
     const [loader, setLoader] = useState(false)
-    const debouncedQuery = useDebounce(query, 700)
+    const debouncedQuery = useDebounce(query, 200)
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -128,18 +129,20 @@ const ApiCollectionList = ({
     }, [url, withFacets])
 
     useEffect(() => {
-        setLoader(true)
-        apiClient.get(debouncedQuery)
-            .then(data => {
-                setLoader(false)
-                setTotalResult(data['hydra:totalItems'] ?? 0)
-                setMaxPage(data['hydra:view']
-                    ? parseInt(getTotalPageFromHydraView(data['hydra:view']), 10)
-                    : 1
-                )
+        if (debouncedQuery) {
+            setLoader(true)
+            apiClient.get(debouncedQuery)
+                .then(data => {
+                    setLoader(false)
+                    setTotalResult(data['hydra:totalItems'] ?? 0)
+                    setMaxPage(data['hydra:view']
+                        ? parseInt(getTotalPageFromHydraView(data['hydra:view']), 10)
+                        : 1
+                    )
 
-                setCollection(data['hydra:member'] ?? [])
-            })
+                    setCollection(data['hydra:member'] ?? [])
+                })
+        }
     }, [debouncedQuery])
 
     const onNextPage = useCallback(() => {
@@ -177,6 +180,7 @@ const ApiCollectionList = ({
                 {loader && <Loader />}
 
                 <Sortings
+                    label={t(tokens.apiCollection.sorting.label)}
                     sortings={sortings}
                     setSelectedSort={setSelectedSort}
                     defaultSort={defaultSort}

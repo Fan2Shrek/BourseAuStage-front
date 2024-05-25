@@ -18,8 +18,8 @@ import Card from '../../components/ui/atoms/Card';
 import Calendar from '../../components/ui/atoms/Calendar';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
-import { AlphabeticalSortAZ, AlphabeticalSortZA } from '../../components/sortings';
 import Banner from '../../components/layout/Banner';
+import { alphabeticalSortAZ, alphabeticalSortZA } from '../../sortings';
 
 const UiExample = () => {
     const { t } = useTranslation()
@@ -328,7 +328,7 @@ const UiExample = () => {
                 />
 
                 <List
-                    collection={exampleSelectsFilter}
+                    collection={exampleSelectsSecondary}
                     uniqueAttr={select => select.identifier}
                     renderItem={({ identifier: _, ...attr }) => {
                         return <Select {...attr} />
@@ -384,24 +384,28 @@ const UiExample = () => {
                     url={'/users'}
                     foundLabel={'utilisateur(s) trouvé(s)'}
                     sortings={[
-                        <AlphabeticalSortAZ
-                            key={'alphabetical-AZ-firstName'}
-                            property={'firstName'}
-                        />,
-                        <AlphabeticalSortZA
-                            key={'alphabetical-ZA-firstName'}
-                            property={'firstName'}
-                        />,
-                        <AlphabeticalSortAZ
-                            key={'alphabetical-AZ-lastName'}
-                            property={'lastName'}
-                        />,
-                        <AlphabeticalSortZA
-                            key={'alphabetical-ZA-lastName'}
-                            property={'lastName'}
-                        />,
+                        alphabeticalSortAZ({
+                            name: 'alphabetical-AZ-firstName',
+                            property: 'firstName',
+                            propertyTranslation: t(tokens.entities.user.firstName)
+                        }),
+                        alphabeticalSortZA({
+                            name: 'alphabetical-ZA-firstName',
+                            property: 'firstName',
+                            propertyTranslation: t(tokens.entities.user.firstName)
+                        }),
+                        alphabeticalSortAZ({
+                            name: 'alphabetical-AZ-lastName',
+                            property: 'lastName',
+                            propertyTranslation: t(tokens.entities.user.lastName)
+                        }),
+                        alphabeticalSortZA({
+                            name: 'alphabetical-ZA-lastName',
+                            property: 'lastName',
+                            propertyTranslation: t(tokens.entities.user.lastName)
+                        }),
                     ]}
-                    defaultSort={'alphabetical-AZ-firstName'}
+                    defaultSort={'alphabetical-AZ-lastName'}
                     withFacets
                     renderItem={user => <p className={styles.test}>{`${user.firstName} ${user.lastName}`}</p>}
                 />
@@ -414,14 +418,16 @@ const UiExample = () => {
                     url={'/collaborators'}
                     foundLabel={'collaborateur(s) trouvé(s)'}
                     sortings={[
-                        <AlphabeticalSortAZ
-                            key={'alphabetical-AZ-companyName'}
-                            property={'company.name'}
-                        />,
-                        <AlphabeticalSortZA
-                            key={'alphabetical-ZA-companyName'}
-                            property={'company.name'}
-                        />,
+                        alphabeticalSortAZ({
+                            name: 'alphabetical-AZ-companyName',
+                            property: 'company.name',
+                            propertyTranslation: t(tokens.entities.company.name)
+                        }),
+                        alphabeticalSortZA({
+                            name: 'alphabetical-ZA-companyName',
+                            property: 'company.name',
+                            propertyTranslation: t(tokens.entities.company.name)
+                        }),
                     ]}
                     defaultSort={'alphabetical-AZ-companyName'}
                     withFacets
@@ -432,4 +438,4 @@ const UiExample = () => {
     </Container>
 }
 
-export default UiExample;
+export default UiExample

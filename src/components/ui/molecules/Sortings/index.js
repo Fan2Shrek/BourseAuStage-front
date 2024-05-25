@@ -1,44 +1,50 @@
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useMemo } from 'react'
 
 import './sortings.scss'
-import addExtraProps from '../../../../utils/addExtraProps'
-import cn from '../../../../utils/classnames'
+import Select from '../../atoms/Select'
 
 const Sortings = ({
+    id,
+    name,
+    placeholder,
+    label,
     sortings = [],
     setSelectedSort,
     defaultSort,
 }) => {
-    const defaultSortElement = useRef(null)
-    const [activeSort, setActiveSort] = useState(defaultSort)
+    const [sortingsNameMapping, sortingsLabelMapping] = useMemo(() => {
+        return [
+            sortings.reduce((acc, sort) => ({
+                ...acc,
+                [sort.name]: {
+                    value: sort.label,
+                    query: sort.query,
+                },
+            }), {}),
+            sortings.reduce((acc, sort) => ({
+                ...acc,
+                [sort.label]: sort.query,
+            }), {}),
+        ]
+    }, [sortings])
 
     useEffect(() => {
-        defaultSortElement && defaultSortElement.current?.click()
-    }, [defaultSortElement])
+        if (defaultSort && sortingsNameMapping) {
+            setSelectedSort(sortingsNameMapping[defaultSort].query)
+        }
+    }, [sortingsNameMapping, defaultSort])
 
-    return <div className="sortings">
-        <p>Trier par :</p>
-        <div className='select'>
-            {sortings.map(sort => {
-                return addExtraProps(
-                    sort.key,
-                    sort,
-                    {
-                        reference: defaultSort === sort.key ? defaultSortElement : null,
-                        onClick: (sortQuery) => {
-                            setActiveSort(sort.key)
-                            setSelectedSort(sortQuery)
-                        },
-                        className: cn(
-                            'select__element',
-                            {
-                                active: activeSort === sort.key
-                            },
-                        ),
-                    }
-                )
-            })}
-        </div>
+    return <div className='sortings'>
+        <p className='sortings__label'>{label}</p>
+        <Select
+            id={id}
+            name={name}
+            placeholder={placeholder}
+            values={Object.keys(sortingsLabelMapping)}
+            defaultValue={sortingsNameMapping[defaultSort].value}
+            secondary
+            onChange={label => setSelectedSort(sortingsLabelMapping[label])}
+        />
     </div>
 }
 

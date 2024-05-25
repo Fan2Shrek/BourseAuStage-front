@@ -4,27 +4,8 @@
     gap: 10px;
     max-width: 300px;
     height: 70px;
-    padding: 0 0 0 10px;
-    color: var(--color-dark);
-    background-color: var(--color-third);
 
-    .select {
-        overflow-y: scroll;
-        font-weight: bold;
-        height: 100%;
-        flex: 1;
-
-        &__element {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            height: 50%;
-
-            &:hover, &.active {
-                background-color: var(--color-main);
-                color: var(--color-light);
-                cursor: pointer;
-            }
-        }
+    &__label {
+        min-width: 75px;
     }
 }
