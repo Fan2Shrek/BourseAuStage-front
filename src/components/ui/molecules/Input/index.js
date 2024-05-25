@@ -46,7 +46,7 @@ const Input = ({
 
         if (['input', 'range'].includes(type)) {
             setValue(e.target.value)
-            onChange && onChange(e.target.value)
+            onChange && onChange(e)
         }
     }, [isActive, onChange, type])
 
