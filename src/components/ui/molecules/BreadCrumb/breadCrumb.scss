@@ -1,0 +1,33 @@
+.breadCrumb {
+    gap: 5px;
+    width: auto;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        a {
+            position: relative;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: var(--color-main);
+            }
+
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &__active {
+        color: var(--color-main);
+    }
+}

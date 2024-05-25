@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 import setProperty from '../../utils/setProperty';
 
@@ -17,6 +17,11 @@ export const Darktheme = () => {
          * INPUT
          */
         setProperty('--input-label-color', 'var(--color-light)');
+
+        /**
+         * BANNER
+         */
+        setProperty('--banner-color', 'var(--color-dark)');
     }, [])
 
     return <></>

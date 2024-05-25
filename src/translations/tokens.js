@@ -62,11 +62,19 @@ const tokens = {
             contact: "page.companyDetails.contact",
             contacts: "page.companyDetails.contacts",
             phone: "page.companyDetails.phone",
+            images: {
+                alt: "page.companyDetails.images.alt"
+            }
         },
         companies: {
             title: "page.companies.title",
             description: "page.companies.description",
         }
+    },
+    breadCrumb: {
+        home: "breadCrumb.home",
+        uiExample: "breadCrumb.uiExample",
+        companies: "breadCrumb.companies",
     }
 }
 
