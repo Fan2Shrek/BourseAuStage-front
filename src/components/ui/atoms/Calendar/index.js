@@ -16,7 +16,7 @@ const Calendar = ({
       {label && (
         <label htmlFor={id}>
           {label}
-          {required && <span className='input__required'>*</span>}
+          {required && <span className='calendar__required'>*</span>}
         </label>
       )}
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
