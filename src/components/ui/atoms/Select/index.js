@@ -2,20 +2,20 @@ import './select.scss'
 import cn from '../../../../utils/classnames'
 
 const Select = ({
-    type = 'select',
     label,
     id,
     name,
-    values = [],
     placeholder,
+    secondary,
+    values = [],
+    defaultValue = false,
     required = false,
     className
 }) => {
     return <div className={cn(
         'select',
         {
-            filter: type === 'search',
-            text: type === 'text',
+            secondary,
         },
         className,
     )}>
@@ -26,22 +26,29 @@ const Select = ({
             {label}
             {required && <span className='select__required'>*</span>}
         </label>}
+
         <select
             className={'select__target'}
             type={type}
             id={id}
             name={name}
         >
-            <option value="" disabled selected>{placeholder}</option>
-            {values.map((value, index) => (
-                <option
-                    key={index}
-                    className={'select__option'}
-                    value={value}
-                >
-                    {value}
-                </option>
-            ))}
+            {placeholder && <option
+                value=""
+                disabled
+                {...(defaultValue ? {} : { selected: true })}
+            >
+                {placeholder}
+            </option>}
+
+            {values.map((value, index) => <option
+                key={index}
+                className={'select__option'}
+                value={value}
+                {...(defaultValue === value ? { selected: true } : {})}
+            >
+                {value}
+            </option>)}
         </select>
     </div>
 }
