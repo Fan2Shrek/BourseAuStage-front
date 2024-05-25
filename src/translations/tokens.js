@@ -71,6 +71,13 @@ const tokens = {
         copyright: "footer.copyright",
     },
     page: {
+        home: {
+            incentive: {
+                title: "page.home.incentive.title",
+                text: "page.home.incentive.text",
+                cta: "page.home.incentive.cta",
+            },
+        },
         companyDetails: {
             activity: "page.companyDetails.activity",
             age: "page.companyDetails.age",

@@ -1,3 +1,49 @@
-.container {
+.content {
     min-height: 100dvh;
+
+    h1 {
+        font-size: 72px
+    }
+
+    h2 {
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 36px;
+    }
+
+    .section {
+        margin-block: 50px;
+
+        &.incentive {
+            display: flex;
+            justify-content: center;
+            gap: 5%;
+            padding-inline: 5%;
+            padding-top: 65px;
+            color: var(--color-light);
+            background-color: var(--color-main);
+
+            .main {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                padding-bottom: 50px;
+
+                .cta {
+                    width: fit-content;
+                    font-weight: 700;
+                }
+            }
+
+            .image {
+                width: 55%;
+                display: flex;
+                align-items: flex-end;
+            }
+        }
+    }
+
 }
