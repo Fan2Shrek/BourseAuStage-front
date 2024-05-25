@@ -151,12 +151,12 @@ const UiExample = () => {
     ], [])
 
     const exampleSelects = useMemo(() => [
-        { identifier: 1, label: 'Required', type: 'text', name: 'selectRequired', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'], required: true },
-        { identifier: 2, label: 'Not Required', type: 'text', name: 'selectNotRequired', values: ['valeur1', 'valeur2'], required: false },
+        { identifier: 1, id: 'selectRequired', label: 'Required', name: 'selectRequired', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'], required: true },
+        { identifier: 2, id: 'selectNotRequired', label: 'Not Required', name: 'selectNotRequired', values: ['valeur1', 'valeur2'], required: false },
     ], [])
 
-    const exampleSelectsFilter = useMemo(() => [
-        { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
+    const exampleSelectsSecondary = useMemo(() => [
+        { identifier: 1, id: 'selectSecondary', name: 'selectFilter', secondary: true, placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
     ], [])
 
     const exampleCalendar = useMemo(() => [
