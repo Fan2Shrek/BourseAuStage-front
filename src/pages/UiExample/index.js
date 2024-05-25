@@ -12,6 +12,7 @@ import Input from '../../components/ui/atoms/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
 import Card from '../../components/ui/atoms/Card';
+import Calendar from '../../components/ui/atoms/Calendar';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
 import { AlphabeticalSortAZ, AlphabeticalSortZA } from '../../components/sortings';
@@ -139,6 +140,10 @@ const UiExample = () => {
 
     const exampleSelectsFilter = useMemo(() => [
         { identifier: 1, type: 'search', name: 'selectFilter', placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
+    ], [])
+
+    const exampleCalendar = useMemo(() => [
+        { id: 1, label: 'Date de naissance', required: true },
     ], [])
 
     const exampleUnderlinedTexts = useMemo(() => [
@@ -296,6 +301,19 @@ const UiExample = () => {
                     return <Select {...attr} />
                 }}
             />
+        </Container>
+
+        <Container inline className={styles.section}>
+
+            <h2>Calendrier :</h2>
+
+            <List
+                collection={exampleCalendar}
+                renderItem={({ identifier: _, ...attr }) => {
+                    return <Calendar {...attr} />
+                }}
+            />
+
         </Container>
 
         <Container inline className={styles.section}>
