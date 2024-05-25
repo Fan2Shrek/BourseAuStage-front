@@ -14,7 +14,10 @@ const Calendar = ({
   return (
     <>
       {label && (
-        <label htmlFor={id}>
+        <label
+          htmlFor={id}
+          className={'calendar__label'}
+        >
           {label}
           {required && <span className='calendar__required'>*</span>}
         </label>
