@@ -309,7 +309,6 @@ const UiExample = () => {
 
             <List
                 collection={exampleCalendar}
-                uniqueAttr={caldendar => caldendar.identifier}
                 renderItem={({ identifier: _, ...attr }) => {
                     return <Calendar {...attr} />
                 }}
