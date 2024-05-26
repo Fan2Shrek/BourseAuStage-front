@@ -55,19 +55,35 @@
 
             .select__target {
                 border-color: transparent;
-                color: var(--base-color-neutral);
+                color: var(--select-secondary-color);
 
                 .select__option {
                     color: var(--color-dark);
                 }
 
                 &:focus {
-                    border-color: var(--color-main);
+                    border-color: var(--select-secondary-chevron-color);
                 }
             }
 
             .select__chevron {
-                color: var(--color-main);
+                color: var(--select-secondary-chevron-color);
+            }
+        }
+    }
+
+    &.third {
+        .select__wrapper {
+            .select__target {
+                padding: 10px 24px 10px 0;
+                border: none;
+                border-bottom: 1px solid var(--color-grey);
+                color: var(--select-third-color);
+            }
+
+            .select__chevron {
+                color: var(--select-third-chevron-color);
+                right: 0;
             }
         }
     }

@@ -10,6 +10,7 @@ const Select = ({
     name,
     placeholder,
     secondary,
+    third,
     values = [],
     defaultValue = '',
     required = false,
@@ -27,6 +28,7 @@ const Select = ({
         'select',
         {
             secondary,
+            third,
         },
         className,
     )}>

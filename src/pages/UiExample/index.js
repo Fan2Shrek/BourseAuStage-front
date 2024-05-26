@@ -155,8 +155,9 @@ const UiExample = () => {
         { identifier: 2, id: 'selectNotRequired', label: 'Not Required', name: 'selectNotRequired', values: ['valeur1', 'valeur2'], required: false },
     ], [])
 
-    const exampleSelectsSecondary = useMemo(() => [
-        { identifier: 1, id: 'selectSecondary', name: 'selectFilter', secondary: true, placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
+    const exampleSpecificSelects = useMemo(() => [
+        { identifier: 1, id: 'selectSecondary', name: 'selectSecondary', secondary: true, placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
+        { identifier: 2, id: 'selectThird', name: 'selectThird', third: true, placeholder: 'placeholder', values: ['valeur1', 'valeur2', 'valeur3'] },
     ], [])
 
     const exampleCalendar = useMemo(() => [
@@ -328,7 +329,7 @@ const UiExample = () => {
                 />
 
                 <List
-                    collection={exampleSelectsSecondary}
+                    collection={exampleSpecificSelects}
                     uniqueAttr={select => select.identifier}
                     renderItem={({ identifier: _, ...attr }) => {
                         return <Select {...attr} />
