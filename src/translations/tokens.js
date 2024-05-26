@@ -1,9 +1,5 @@
 const tokens = {
     entities: {
-        user: {
-            firstName: "entities.user.firstName",
-            lastName: "entities.user.lastName",
-        },
         company: {
             name: "entities.company.name"
         },
@@ -15,14 +11,17 @@ const tokens = {
     },
     facets: {
         label: {
-            roles: "facets.label.roles",
-            firstName: "facets.label.firstName",
-            company: {
-                name: "facets.label.company.name",
-                effective: "facets.label.company.effective",
+            companies: {
+                effective: "facets.label.companies.effective",
+                activities: {
+                    name: "facets.label.companies.activities.name",
+                },
+                category: {
+                    name: "facets.label.companies.category.name",
+                },
                 range: {
-                    global: "facets.label.company.range.global",
-                    input: "facets.label.company.range.input",
+                    global: "facets.label.companies.range.global",
+                    input: "facets.label.companies.range.input",
                 },
             },
         },
@@ -88,6 +87,9 @@ const tokens = {
         companies: {
             title: "page.companies.title",
             description: "page.companies.description",
+            apiCollectionList: {
+                foundLabel: "page.companies.apiCollectionList.foundLabel",
+            }
         }
     },
     breadCrumb: {

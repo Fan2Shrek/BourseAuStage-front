@@ -159,6 +159,7 @@ const ApiCollectionList = ({
 
     return <div className={cn('apiCollectionList', className)}>
         {withFacets && <Facets
+            collectionTarget={url.split('/').reverse()[0]}
             facets={facets}
             defaultFacets={defaultFacets}
             options={facetsOptions}
@@ -179,12 +180,12 @@ const ApiCollectionList = ({
 
                 {loader && <Loader />}
 
-                <Sortings
+                {sortings && <Sortings
                     label={t(tokens.apiCollection.sorting.label)}
                     sortings={sortings}
                     setSelectedSort={setSelectedSort}
                     defaultSort={defaultSort}
-                />
+                />}
             </div>
 
             {collection.length > 0 && <>
