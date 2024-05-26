@@ -27,8 +27,8 @@ export const DefaultTheme = () => {
         setProperty('--color-dark-alpha', '#202430e6');
 
         setProperty('--color-grey', '#d6ddeb')
+        setProperty('--color-middle-grey', '#7C8493')
         setProperty('--color-dark-grey', '#5c626e')
-        setProperty('--color-grey-form', '#515B6F')
 
         setProperty('--color-danger', '#ff007a');
         setProperty('--color-warning', '#ff9900');
@@ -70,6 +70,14 @@ export const DefaultTheme = () => {
         setProperty('--input-range-label-color', 'var(--color-main)');
         setProperty('--input-range-track', 'var(--color-dark-grey)');
         setProperty('--input-range-thumb', 'var(--color-main)');
+
+        /**
+         * SELECT
+         */
+        setProperty('--select-secondary-color', 'var(--base-color-neutral)');
+        setProperty('--select-secondary-chevron-color', 'var(--color-main)');
+        setProperty('--select-third-color', 'var(--color-middle-grey)');
+        setProperty('--select-third-chevron-color', 'var(--color-middle-grey)');
 
         /**
          * BANNER

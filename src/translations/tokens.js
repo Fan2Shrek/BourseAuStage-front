@@ -1,4 +1,18 @@
 const tokens = {
+    entities: {
+        user: {
+            firstName: "entities.user.firstName",
+            lastName: "entities.user.lastName",
+        },
+        company: {
+            name: "entities.company.name"
+        },
+    },
+    apiCollection: {
+        sorting: {
+            label: "apiCollection.sorting.label",
+        },
+    },
     facets: {
         label: {
             roles: "facets.label.roles",
@@ -80,7 +94,7 @@ const tokens = {
         home: "breadCrumb.home",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
-    }
+    },
 }
 
 export default tokens

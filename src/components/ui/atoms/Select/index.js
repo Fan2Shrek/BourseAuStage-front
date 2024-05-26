@@ -1,49 +1,75 @@
+import { useCallback, useState } from "react"
+import { FaChevronDown } from "react-icons/fa"
+
 import './select.scss'
 import cn from '../../../../utils/classnames'
 
 const Select = ({
-    type = 'select',
     label,
     id,
     name,
-    values = [],
     placeholder,
+    secondary,
+    third,
+    values = [],
+    defaultValue = '',
     required = false,
+    onChange,
     className
 }) => {
+    const [currentValue, setValue] = useState(defaultValue)
+
+    const handleChange = useCallback(({ target: { value } }) => {
+        setValue(value)
+        onChange && onChange(value)
+    }, [setValue])
+
     return <div className={cn(
         'select',
         {
-            filter: type === 'search',
-            text: type === 'text',
+            secondary,
+            third,
         },
         className,
     )}>
         {label && <label
             htmlFor={id}
-            className={'select__label'}
+            className='select__label'
         >
             {label}
             {required && <span className='select__required'>*</span>}
         </label>}
-        <select
-            className={'select__target'}
-            type={type}
-            id={id}
-            name={name}
-        >
-            <option value="" disabled selected>{placeholder}</option>
-            {values.map((value, index) => (
-                <option
+
+        <div className='select__wrapper'>
+            <select
+                id={id}
+                name={name}
+                className='select__target'
+                value={currentValue}
+                placeholder={placeholder}
+                onChange={handleChange}
+            >
+                {placeholder && <option
+                    value=''
+                    disabled
+                >
+                    {placeholder}
+                </option>}
+
+                {values.map((value, index) => <option
                     key={index}
-                    className={'select__option'}
                     value={value}
+                    className='select__option'
                 >
                     {value}
-                </option>
-            ))}
-        </select>
-    </div>
+                </option>)}
+
+            </select>
+            <span className='select__chevron'>
+                <FaChevronDown />
+            </span>
+        </div>
+    </div >
 }
 
 export default Select
