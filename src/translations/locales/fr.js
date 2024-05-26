@@ -9,6 +9,7 @@ const fr = {
     [tokens.facets.label.company.range.input]: "A moins de {{value}} km",
     [tokens.facets.options.all]: "Tous",
     [tokens.facets.options.betweenAndMore]: "et supérieur",
+    [tokens.input.file.infos]: "Aucun fichier séléctionné",
     [tokens.actions.login]: "Se connecter",
     [tokens.actions.createAccount]: "Créer un compte",
     [tokens.actions.logout]: "Se déconnecter",

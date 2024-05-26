@@ -13,9 +13,14 @@ const tokens = {
             },
         },
         options: {
-            all: 'facets.options.all',
-            betweenAndMore: 'facets.options.betweenAndMore',
+            all: "facets.options.all",
+            betweenAndMore: "facets.options.betweenAndMore",
         }
+    },
+    input: {
+        file: {
+            infos: "input.file.infos",
+        },
     },
     actions: {
         login: "actions.login",

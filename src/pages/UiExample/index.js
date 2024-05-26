@@ -11,7 +11,7 @@ import List from '../../components/ui/atoms/List';
 import Tag from '../../components/ui/atoms/Tag';
 import Container from '../../components/ui/atoms/Container';
 import Loader from '../../components/ui/atoms/Loader';
-import Input from '../../components/ui/atoms/Input';
+import Input from '../../components/ui/molecules/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
 import Card from '../../components/ui/atoms/Card';
@@ -163,6 +163,20 @@ const UiExample = () => {
         { id: 1, label: 'Date de naissance', required: true },
     ], [])
 
+    const exampleInputFile = useMemo(() => [
+        {
+            identifier: 1,
+            id: 'inputFile',
+            name: 'inputFile',
+            type: 'file',
+            label: 'Votre document',
+            accept: 'image/png,image/svg+xml',
+            placeholder: 'Importer un document',
+            required: true,
+            onChange: (file) => console.log(file),
+        },
+    ], [])
+
     const exampleUnderlinedTexts = useMemo(() => [
         { id: 1, item: <h2>Ce texte est <UnderlinedContent>souligné</UnderlinedContent></h2> },
         { id: 2, item: <h3><UnderlinedContent>Ce texte est completement souligné</UnderlinedContent></h3> },
@@ -303,7 +317,6 @@ const UiExample = () => {
             </Container>
 
             <Container inline className={styles.section}>
-
                 <h2>Select :</h2>
 
                 <List
@@ -324,20 +337,29 @@ const UiExample = () => {
             </Container>
 
             <Container inline className={styles.section}>
-
                 <h2>Calendrier :</h2>
 
                 <List
                     collection={exampleCalendar}
-                    renderItem={({ identifier: _, ...attr }) => {
+                    renderItem={({ id: _, ...attr }) => {
                         return <Calendar {...attr} />
                     }}
                 />
-
             </Container>
 
             <Container inline className={styles.section}>
+                <h2>Import de fichier :</h2>
 
+                <List
+                    collection={exampleInputFile}
+                    uniqueAttr={inputFile => inputFile.identifier}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Input {...attr} />
+                    }}
+                />
+            </Container>
+
+            <Container inline className={styles.section}>
                 <h2>Base carte :</h2>
 
                 <Card />
