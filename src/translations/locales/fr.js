@@ -50,6 +50,8 @@ const fr = {
     [tokens.page.companies.title]: "Liste des entreprises",
     [tokens.page.companies.description]: "Découvrez les entreprises qui proposent des offres de stage ou d’alternance",
     [tokens.page.companies.apiCollectionList.foundLabel]: "entreprise(s) trouvée(s)",
+    [tokens.page.home.highlightedCompanies.title]: "Entreprises à la une",
+    [tokens.page.home.highlightedCompanies.image.alt]: "Logo de {{company}}",
     [tokens.page.home.incentive.title]: "Entreprises, déposez vos offres gratuitement",
     [tokens.page.home.incentive.text]: "Vous pourrez gérer votre planning d’accueil et bénéficier de nombreux services intégrés.",
     [tokens.page.home.incentive.cta]: "Créer votre compte",

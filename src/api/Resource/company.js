@@ -3,16 +3,20 @@ class Company {
         this.apiClient = apiClient;
     }
 
-    async getAll(){
+    async getAll() {
         return this.apiClient.get('/companies');
     }
 
-    async get(id){
+    async get(id) {
         return this.apiClient.get(`/companies/${id}`);
     }
 
-    async getPictures(id){
+    async getPictures(id) {
         return this.apiClient.get(`/companies/${id}/pictures`);
+    }
+
+    async getHighlight() {
+        return this.apiClient.get(`/companies/highlight`);
     }
 }
 

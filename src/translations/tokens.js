@@ -77,6 +77,12 @@ const tokens = {
                 text: "page.home.incentive.text",
                 cta: "page.home.incentive.cta",
             },
+            highlightedCompanies: {
+                title: "page.home.highlightedCompanies.title",
+                image: {
+                    alt: "page.home.highlightedCompanies.image.alt",
+                },
+            },
         },
         companyDetails: {
             activity: "page.companyDetails.activity",
