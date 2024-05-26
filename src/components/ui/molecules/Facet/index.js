@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { FaChevronUp } from "react-icons/fa"
 
 import './Facet.scss'
-import List from "../../atoms/List"
 import cn from "../../../../utils/classnames"
-import Input from '../../atoms/Input'
+import List from "../../atoms/List"
+import Input from '../Input'
 
 const Facet = ({
     defaultValues = [],

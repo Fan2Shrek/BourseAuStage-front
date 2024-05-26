@@ -186,4 +186,24 @@
             }
         }
     }
+
+    &.file {
+        .input__target {
+            display: none;
+        }
+
+        .input__button {
+            color: var(--color-dark);
+            background-color: var(--color-third);
+            border-radius: 4px;
+
+            svg {
+                color: var(--color-main);
+            }
+        }
+
+        .input__infos {
+            margin-top: 5px;
+        }
+    }
 }
