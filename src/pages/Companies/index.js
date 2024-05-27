@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./Companies.module.scss";
 import tokens from "../../translations/tokens";
@@ -9,6 +10,7 @@ import UnderlinedContent from "../../components/ui/atoms/UnderlinedText";
 import Banner from "../../components/layout/Banner";
 import ApiCollectionList from "../../components/ui/molecules/ApiCollectionList";
 import Container from "../../components/ui/atoms/Container";
+import CompanyCard from "../../components/company/CompanyCard";
 
 const Companies = () => {
     const { t } = useTranslation();
@@ -58,7 +60,9 @@ const Companies = () => {
                     }),
                 ]}
                 defaultSort={'alphabetical-AZ-companyName'}
-                renderItem={company => <div>{company.name}</div>}
+                renderItem={company => <Link to={path.company.replace(':id', `${company.id}`)}>
+                    <CompanyCard company={company} />
+                </Link>}
             />
         </Container>
     </div>
