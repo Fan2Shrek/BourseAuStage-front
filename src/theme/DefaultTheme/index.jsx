@@ -29,7 +29,6 @@ export const DefaultTheme = () => {
         setProperty('--color-grey', '#d6ddeb')
         setProperty('--color-middle-grey', '#7C8493')
         setProperty('--color-dark-grey', '#5c626e')
-        setProperty('--color-grey-secondary', '#757E90')
 
         setProperty('--color-danger', '#ff007a');
         setProperty('--color-warning', '#ff9900');
@@ -79,11 +78,6 @@ export const DefaultTheme = () => {
         setProperty('--select-secondary-chevron-color', 'var(--color-main)');
         setProperty('--select-third-color', 'var(--color-middle-grey)');
         setProperty('--select-third-chevron-color', 'var(--color-middle-grey)');
-
-        /**
-         * CKEDITOR
-         */
-        setProperty('--ckeditor-text-color', 'var(--color-grey-secondary)');
 
         /**
          * BANNER
