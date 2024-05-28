@@ -13,7 +13,13 @@ const Ckeditor = ({
     const handleInput = (event, editor) => {
         const data = editor.getData();
         const plainText = new DOMParser().parseFromString(data, 'text/html').body.textContent || "";
-        setCharCount(plainText.length);
+        const currentCharCount = plainText.length;
+
+        if (currentCharCount <= maxChar) {
+            setCharCount(currentCharCount);
+        } else {
+            event.stop();
+        }
     };
 
     return (
