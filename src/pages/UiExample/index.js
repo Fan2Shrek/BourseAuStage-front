@@ -359,7 +359,7 @@ const UiExample = () => {
 
                 <List
                     collection={exampleCkeditor}
-                    renderItem={({ identifier: _, ...attr }) => {
+                    renderItem={({ id: _, ...attr }) => {
                         return <Ckeditor {...attr} />
                     }}
                 />
