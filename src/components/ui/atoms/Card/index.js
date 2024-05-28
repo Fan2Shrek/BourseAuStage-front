@@ -1,8 +1,10 @@
 import './card.scss';
+import cn from '../../../../utils/classnames';
 
-const Card = () => {
+const Card = ({ children, className }) => {
     return (
-        <div className={'card'}>
+        <div className={cn('card', className)}>
+            {children}
         </div>
     );
 };

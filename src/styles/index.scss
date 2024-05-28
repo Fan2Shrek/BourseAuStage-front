@@ -29,6 +29,12 @@ body {
 
   h2 {
     font-size: 32px;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
   }
 
   a {
@@ -43,7 +49,7 @@ body {
   }
 
   img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
   }
 }

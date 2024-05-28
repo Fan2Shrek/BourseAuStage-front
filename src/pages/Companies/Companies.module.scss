@@ -3,21 +3,15 @@
         .apiCollectionList {
             margin-block: 50px;
 
-            // TEMPORAIRE EN ATTENDANT LE CARD COMPANY
             &__main {
                 .list {
                     gap: 10px 2%;
                     margin-block: 20px;
+                    justify-content: flex-start;
+                    align-items: flex-start;
 
                     &__element {
                         width: 49%;
-                        height: 100px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-weight: bold;
-                        color: var(--color-dark);
-                        background-color: var(--color-third);
                     }
                 }
             }
