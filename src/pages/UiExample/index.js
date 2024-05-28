@@ -18,9 +18,7 @@ import Card from '../../components/ui/atoms/Card';
 import Calendar from '../../components/ui/atoms/Calendar';
 import Ckeditor from '../../components/ui/atoms/Ckeditor';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
-import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
 import Banner from '../../components/layout/Banner';
-import { alphabeticalSortAZ, alphabeticalSortZA } from '../../sortings';
 
 const UiExample = () => {
     const { t } = useTranslation()
@@ -393,64 +391,6 @@ const UiExample = () => {
                         return item
                     }}
                     className={styles.underlinedContentList}
-                />
-            </Container>
-
-            <Container inline className={styles.section}>
-                <h2>Api collection utilisateur :</h2>
-
-                <ApiCollectionList
-                    url={'/users'}
-                    foundLabel={'utilisateur(s) trouvé(s)'}
-                    sortings={[
-                        alphabeticalSortAZ({
-                            name: 'alphabetical-AZ-firstName',
-                            property: 'firstName',
-                            propertyTranslation: t(tokens.entities.user.firstName)
-                        }),
-                        alphabeticalSortZA({
-                            name: 'alphabetical-ZA-firstName',
-                            property: 'firstName',
-                            propertyTranslation: t(tokens.entities.user.firstName)
-                        }),
-                        alphabeticalSortAZ({
-                            name: 'alphabetical-AZ-lastName',
-                            property: 'lastName',
-                            propertyTranslation: t(tokens.entities.user.lastName)
-                        }),
-                        alphabeticalSortZA({
-                            name: 'alphabetical-ZA-lastName',
-                            property: 'lastName',
-                            propertyTranslation: t(tokens.entities.user.lastName)
-                        }),
-                    ]}
-                    defaultSort={'alphabetical-AZ-lastName'}
-                    withFacets
-                    renderItem={user => <p className={styles.test}>{`${user.firstName} ${user.lastName}`}</p>}
-                />
-            </Container>
-
-            <Container inline className={styles.section}>
-                <h2>Api collection collaborateur :</h2>
-
-                <ApiCollectionList
-                    url={'/collaborators'}
-                    foundLabel={'collaborateur(s) trouvé(s)'}
-                    sortings={[
-                        alphabeticalSortAZ({
-                            name: 'alphabetical-AZ-companyName',
-                            property: 'company.name',
-                            propertyTranslation: t(tokens.entities.company.name)
-                        }),
-                        alphabeticalSortZA({
-                            name: 'alphabetical-ZA-companyName',
-                            property: 'company.name',
-                            propertyTranslation: t(tokens.entities.company.name)
-                        }),
-                    ]}
-                    defaultSort={'alphabetical-AZ-companyName'}
-                    withFacets
-                    renderItem={collaborator => <p className={styles.test}>{`${collaborator.firstName} ${collaborator.lastName}`}</p>}
                 />
             </Container>
         </Container>

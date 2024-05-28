@@ -29,10 +29,10 @@ const Sortings = ({
     }, [sortings])
 
     useEffect(() => {
-        if (defaultSort && sortingsNameMapping) {
+        if (defaultSort && sortingsNameMapping[defaultSort]) {
             setSelectedSort(sortingsNameMapping[defaultSort].query)
         }
-    }, [sortingsNameMapping, defaultSort])
+    }, [sortingsNameMapping, defaultSort, setSelectedSort])
 
     return <div className='sortings'>
         <p className='sortings__label'>{label}</p>
@@ -41,7 +41,7 @@ const Sortings = ({
             name={name}
             placeholder={placeholder}
             values={Object.keys(sortingsLabelMapping)}
-            defaultValue={sortingsNameMapping[defaultSort].value}
+            defaultValue={sortingsNameMapping[defaultSort]?.value ?? ''}
             secondary
             onChange={label => setSelectedSort(sortingsLabelMapping[label])}
         />

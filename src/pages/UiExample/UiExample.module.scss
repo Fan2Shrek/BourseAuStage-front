@@ -9,38 +9,6 @@
                 margin-top: 20px;
                 justify-content: left;
             }
-
-            .apiCollectionList {
-                margin-block: 50px;
-
-                .facets {
-                    .list {
-                        margin-top: 0;
-
-                        &__element {
-                            width: 100%;
-                        }
-                    }
-                }
-
-                &__main {
-                    .list {
-                        gap: 10px 2%;
-                        margin-block: 20px;
-
-                        &__element {
-                            width: 49%;
-                            height: 100px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            font-weight: bold;
-                            color: var(--color-dark);
-                            background-color: var(--color-third);
-                        }
-                    }
-                }
-            }
         }
 
         .progressBarList {

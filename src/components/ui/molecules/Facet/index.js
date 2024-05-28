@@ -13,9 +13,9 @@ const Facet = ({
     allValue = false,
     andMore = false,
     isRange = false,
-    label,
+    collectionTarget,
+    property,
     values,
-
     onSelect,
     onUnselect,
 }) => {
@@ -42,11 +42,11 @@ const Facet = ({
         }
 
         if (lastClickedValue.isActive) {
-            onSelect && onSelect(label, lastClickedValue.value)
+            onSelect && onSelect(property, lastClickedValue.value)
         } else {
-            onUnselect && onUnselect(label, lastClickedValue.value)
+            onUnselect && onUnselect(property, lastClickedValue.value)
         }
-    }, [lastClickedValue, onSelect, onUnselect, label, disabledValues])
+    }, [lastClickedValue, onSelect, onUnselect, property, disabledValues])
 
     const handleClick = useCallback(() => {
         setIsActive(isActive => !isActive)
@@ -58,7 +58,7 @@ const Facet = ({
                 setDisabledValues(values)
             } else {
                 disabledValues.forEach(value => {
-                    onUnselect && onUnselect(label, value)
+                    onUnselect && onUnselect(property, value)
                 });
 
                 setDisabledValues([])
@@ -66,7 +66,7 @@ const Facet = ({
         }
 
         setLastClickedValue({ value, isActive })
-    }, [setLastClickedValue, values, disabledValues, onUnselect, label, t])
+    }, [setLastClickedValue, values, disabledValues, onUnselect, property, t])
 
     const isLastValue = useCallback((value, index) => {
         return index === (values.length - 1 + [allValue].filter(additionnalFacet => additionnalFacet).length)
@@ -74,7 +74,7 @@ const Facet = ({
 
     return <div ref={facet} className="facet">
         <div className="facet__header" onClick={handleClick}>
-            <p>{t(`facets.label.${label}${isRange ? '.global' : ''}`, isRange
+            <p>{t(`facets.label.${collectionTarget}.${property}${isRange ? '.global' : ''}`, isRange
                 ? {
                     min: values.min ?? 0,
                     max: values.max ?? 100
@@ -90,8 +90,8 @@ const Facet = ({
         </div>
         {isRange
             ? <Input
-                id={`facet_${label}`}
-                label={`facets.label.${label}.input`}
+                id={`facet_${property}`}
+                label={`facets.label.${collectionTarget}.${property}.input`}
                 type='range'
                 min={values.min ?? 0}
                 max={values.max ?? 100}
@@ -111,7 +111,7 @@ const Facet = ({
                 ]}
                 uniqueAttr={value => value}
                 renderItem={(value, index) => <Input
-                    id={`facet_${label}_${value}`}
+                    id={`facet_${property}_${value}`}
                     label={isLastValue(value, index) && andMore ? `${value} ${t('facets.options.betweenAndMore')}` : value}
                     type='checkbox'
                     defaultChecked={defaultValues.includes(value)}

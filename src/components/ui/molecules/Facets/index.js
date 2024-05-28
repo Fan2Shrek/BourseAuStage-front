@@ -8,6 +8,7 @@ import cn from "../../../../utils/classnames"
 import FacetOptionEnum from '../../../../enum/FacetOptionEnum'
 
 const Facets = ({
+    collectionTarget,
     facets,
     defaultFacets,
     options,
@@ -38,7 +39,8 @@ const Facets = ({
             collection={Object.entries(facets ?? {})}
             uniqueAttr={([facet, _]) => facet}
             renderItem={([facet, values]) => <Facet
-                label={facet}
+                collectionTarget={collectionTarget}
+                property={facet}
                 values={values}
                 defaultValues={options[facet] && options[facet].includes(FacetOptionEnum.DEFAULT_ALL)
                     ? [t('facets.options.all')]
