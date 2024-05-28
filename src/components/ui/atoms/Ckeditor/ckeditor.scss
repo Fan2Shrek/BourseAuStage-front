@@ -38,4 +38,12 @@
             }
         }
     }
+
+    .ckeditor__count{
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        color: var(--ckeditor-text-color);
+        padding-top: 4px;
+    }
 }

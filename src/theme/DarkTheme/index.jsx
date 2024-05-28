@@ -18,6 +18,11 @@ export const Darktheme = () => {
         setProperty('--input-label-color', 'var(--color-light)');
 
         /**
+         * Ckeditor
+         */
+        setProperty('--ckeditor-text-color', 'var(--color-light)');
+
+        /**
          * BANNER
          */
         setProperty('--banner-color', 'var(--color-dark)');
