@@ -16,6 +16,7 @@ import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
 import Card from '../../components/ui/atoms/Card';
 import Calendar from '../../components/ui/atoms/Calendar';
+import Ckeditor from '../../components/ui/atoms/Ckeditor';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import ApiCollectionList from '../../components/ui/molecules/ApiCollectionList';
 import Banner from '../../components/layout/Banner';
@@ -162,6 +163,10 @@ const UiExample = () => {
 
     const exampleCalendar = useMemo(() => [
         { id: 1, label: 'Date de naissance', required: true },
+    ], [])
+
+    const exampleCkeditor = useMemo(() => [
+        { id: 1, label: 'label', placeholder: 'placeholder' },
     ], [])
 
     const exampleInputFile = useMemo(() => [
@@ -346,6 +351,19 @@ const UiExample = () => {
                         return <Calendar {...attr} />
                     }}
                 />
+            </Container>
+
+            <Container inline className={styles.section}>
+
+                <h2>Ckeditor :</h2>
+
+                <List
+                    collection={exampleCkeditor}
+                    renderItem={({ identifier: _, ...attr }) => {
+                        return <Ckeditor {...attr} />
+                    }}
+                />
+
             </Container>
 
             <Container inline className={styles.section}>
