@@ -46,6 +46,8 @@ const tokens = {
         requests: "navbar.requests",
         companies: "navbar.companies",
         students: "navbar.students",
+        internship: "navbar.internship",
+        workStudy: "navbar.workStudy",
     },
     footer: {
         description: "footer.description",

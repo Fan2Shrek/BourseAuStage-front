@@ -19,6 +19,8 @@ const fr = {
     [tokens.navbar.requests]: "Demandes",
     [tokens.navbar.companies]: "Entreprises",
     [tokens.navbar.students]: "Etudiants",
+    [tokens.navbar.internship]: "Stage",
+    [tokens.navbar.workStudy]: "Alternance",
     [tokens.footer.description]: "Première plateforme dédiée à la recherche de stages et d’alternance qui relie automatiquement les étudiants et les entreprises.",
     [tokens.footer.links.home]: "Accueil",
     [tokens.footer.links.offers]: "Offres",

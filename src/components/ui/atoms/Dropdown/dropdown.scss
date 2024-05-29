@@ -1,30 +1,28 @@
 .dropdown {
     position: relative;
-    display: inline-block;
 
     .link {
-        font-size: 16px;
-        font-weight: bold;
-        position: relative;
-        height: 100%;
         cursor: pointer;
     }
 
     &__child {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px;
+        height: 100%;
+        width: auto;
+        background-color: var(--base-color-neutral-inverted);
         display: none;
-        padding-top: 10%;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
 
-        a{
-            display: block;
-            text-decoration: none;
-            padding: 10% 0%;
-            font-size: 14px;
-            font-weight: bold;
-            position: relative;
+    &:hover {
+        .dropdown__child {
+            display: flex;
         }
     }
-}
-
-.dropdown:hover .dropdown__child {
-    display: block;
 }

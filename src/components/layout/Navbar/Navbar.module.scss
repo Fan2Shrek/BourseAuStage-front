@@ -1,77 +1,96 @@
-.navbar {
+.navbarBackground {
     height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: var(--base-color-neutral-inverted);
+    overflow: visible !important;
 
-    .links,
-    .login {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        height: 100%;
-    }
-
-    .login {
-        width: 380px;
-        justify-content: center;
-
-        .divider {
-            width: 1px;
-            height: 40px;
-            background-color: var(--color-grey);
+    :global {
+        .container {
+            overflow: visible;
         }
     }
 
-    .left {
-        display: flex;
-        gap: 48px;
+    .navbar {
         height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        a {
+        .links,
+        .login {
             display: flex;
             align-items: center;
+            gap: 20px;
+            height: 100%;
+        }
 
-            .logo {
-                height: 60px;
+        .login {
+            width: 380px;
+            justify-content: center;
+
+            .divider {
+                width: 1px;
+                height: 40px;
+                background-color: var(--color-grey);
             }
         }
 
-        :global {
-            .list__element {
-                height: 100%;
-
-            }
-        }
-
-        .link {
-            font-size: 16px;
-            font-weight: bold;
-            position: relative;
+        .left {
+            display: flex;
+            gap: 48px;
             height: 100%;
 
-            &-active::after {
-                content: '';
-                display: block;
-                width: 100%;
-                height: 4px;
-                position: absolute;
-                bottom: 0;
-                background-color: var(--color-main-alpha);
-                border-radius: 5px;
+            .logo {
+                display: flex;
+                align-items: center;
+
+                img {
+                    height: 60px;
+                }
+            }
+
+            :global {
+                .list__element {
+                    height: 100%;
+
+                }
+            }
+
+            .link {
+                font-size: 16px;
+                font-weight: bold;
+                position: relative;
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                &-active::after {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 4px;
+                    position: absolute;
+                    bottom: 0;
+                    background-color: var(--color-main-alpha);
+                    border-radius: 5px;
+                }
             }
         }
-    }
 
-    .themeSwitcher {
-        position: fixed;
-        top: 10%;
-        right: 0;
-        font-size: 40px;
-        z-index: 10;
+        .themeSwitcher {
+            position: fixed;
+            top: 10%;
+            right: 0;
+            font-size: 40px;
+            z-index: 10;
 
-        &:hover {
-            cursor: pointer;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }

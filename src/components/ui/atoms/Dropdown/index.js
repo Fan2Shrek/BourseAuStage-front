@@ -1,15 +1,20 @@
-import './dropdown.scss';
+import { Link } from 'react-router-dom';
 
-const Dropdown = () => {
-  return (
-    <div class="dropdown">
-      <a class="link">Offres</a>
-      <div class="dropdown__child">
-        <a href="">Menu 1</a>
-        <a href="">Menu 2</a>
-      </div>
+import './dropdown.scss';
+import cn from '../../../../utils/classnames';
+
+const Dropdown = ({
+    label,
+    links = [],
+    className,
+}) => {
+    console.log(links);
+    return <div className={cn('dropdown', className)}>
+        <p className="link">{label}</p>
+        <div className="dropdown__child">
+            {links.map((link, index) => <Link key={index} to={link.url}>{link.name}</Link>)}
+        </div>
     </div>
-  );
 };
 
 export default Dropdown;

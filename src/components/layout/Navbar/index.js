@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaRegMoon } from "react-icons/fa";
@@ -13,19 +13,17 @@ import List from '../../ui/atoms/List';
 import cn from '../../../utils/classnames'
 import Container from '../../ui/atoms/Container';
 import tokens from '../../../translations/tokens';
-
-const links = {
-    home: path.home,
-    offers: '/',
-    requests: '/',
-    companies: '/entreprises/',
-    students: '/',
-    UI: path.uiExample
-}
+import Dropdown from '../../ui/atoms/Dropdown';
 
 const isCurrentPage = (currentPage, route) => {
     if (route === '/') {
         return currentPage === route;
+    }
+
+    if (Array.isArray(route)) {
+        return route.some(r => r.type === 'dropdown'
+            ? isCurrentPage(currentPage, r.links)
+            : currentPage.startsWith(r.url.split('/:')[0]));
     }
 
     return currentPage.startsWith(route.split('/:')[0]);
@@ -37,33 +35,62 @@ const Navbar = () => {
     const currentRoute = useLocation().pathname;
     const { t } = useTranslation();
 
-    return <Container>
-        <div className={styles.navbar}>
+    const links = useMemo(() => [
+        { name: t(tokens.navbar['home']), type: 'classic', url: path.home },
+        {
+            name: t(tokens.navbar['offers']),
+            type: 'dropdown',
+            links: [
+                { name: t(tokens.navbar['internship']), type: 'classic', url: path.internship },
+                { name: t(tokens.navbar['workStudy']), type: 'classic', url: path.workStudy },
+            ]
+        },
+        { name: t(tokens.navbar['requests']), type: 'classic', url: '/' },
+        { name: t(tokens.navbar['companies']), type: 'classic', url: path.companies },
+        { name: t(tokens.navbar['students']), type: 'classic', url: '/' },
+        { name: t(tokens.navbar['UI']), type: 'classic', url: path.uiExample },
+    ], [t])
+
+    return <Container inline className={styles.navbarBackground}>
+        <Container className={styles.navbar}>
             <div className={styles.left}>
-                <Link to={path.home}>
+                <Link to={path.home} className={styles.logo}>
                     <img
                         src={`/images/logo${isLight ? '' : '_inverted'}.svg`}
                         alt='Logo'
-                        className={styles.logo}
                     />
                 </Link>
 
-                <List className={styles.links}
-                    collection={Object.entries(links)}
-                    uniqueAttr={([pathName, _]) => pathName}
-                    renderItem={([name, l], index) => (
-                        <Link
-                            to={l}
-                            key={index}
+                <List
+                    className={styles.links}
+                    collection={links}
+                    uniqueAttr={({ name }) => name}
+                    renderItem={({ name, type, url, links }) => {
+                        if (type === 'dropdown') {
+                            return <Dropdown
+                                label={t(tokens.navbar[name]) || name}
+                                links={links}
+                                className={cn(
+                                    styles.link,
+                                    {
+                                        [styles['link-active']]: isCurrentPage(currentRoute, links)
+                                    }
+                                )}
+                            />
+                        }
+
+                        return <Link
+                            to={url}
                             className={cn(
-                                styles.link, 
+                                styles.link,
                                 {
-                                    [styles['link-active']] : isCurrentPage(currentRoute, l)
-                                })}
+                                    [styles['link-active']]: isCurrentPage(currentRoute, url)
+                                }
+                            )}
                         >
-                            {t(tokens.navbar[name]) || name}
+                            {name}
                         </Link>
-                    )}
+                    }}
                 />
             </div>
 
@@ -78,7 +105,7 @@ const Navbar = () => {
             <div className={styles.themeSwitcher} onClick={handleTheme}>
                 {isLight ? <FaRegMoon /> : <FaRegSun />}
             </div>
-        </div>
+        </Container>
     </Container>
 }
 

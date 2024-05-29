@@ -134,6 +134,13 @@ const UiExample = () => {
         { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
     ], [])
 
+    const exampleDropdowns = useMemo(() => [
+        { id: 1, label: 'Offres', links: [
+            { name: 'Stages', url: 'entreprises/' },
+            { name: 'Alternance', url: 'entreprises/' }
+        ]},
+    ], []);
+
     const exampleInputsSimple = useMemo(() => [
         { identifier: 1, type: 'input' },
         { identifier: 2, type: 'input', placeholder: 'placeholder' },
@@ -312,7 +319,12 @@ const UiExample = () => {
             <Container inline className={styles.section}>
                 <h2>Dropdown :</h2>
 
-                <Dropdown/>
+                <List
+                    collection={exampleDropdowns}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Dropdown {...attr} />
+                    }}
+                />
             </Container>
 
             <Container inline className={styles.section}>
