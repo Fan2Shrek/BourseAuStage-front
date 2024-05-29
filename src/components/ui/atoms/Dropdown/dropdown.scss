@@ -1,0 +1,28 @@
+.dropdown {
+    position: relative;
+
+    .link {
+        cursor: pointer;
+    }
+
+    &__child {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px;
+        height: 100%;
+        width: auto;
+        background-color: var(--base-color-neutral-inverted);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &:hover {
+        .dropdown__child {
+            display: flex;
+        }
+    }
+}
