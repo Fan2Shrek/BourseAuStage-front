@@ -1,0 +1,30 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+    .link {
+        font-size: 16px;
+        font-weight: bold;
+        position: relative;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    &__child {
+        display: none;
+        padding-top: 10%;
+
+        a{
+            display: block;
+            text-decoration: none;
+            padding: 10% 0%;
+            font-size: 14px;
+            font-weight: bold;
+            position: relative;
+        }
+    }
+}
+
+.dropdown:hover .dropdown__child {
+    display: block;
+}

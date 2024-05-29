@@ -14,6 +14,7 @@ import Loader from '../../components/ui/atoms/Loader';
 import Input from '../../components/ui/molecules/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
+import Dropdown from '../../components/ui/atoms/Dropdown';
 import Card from '../../components/ui/atoms/Card';
 import Calendar from '../../components/ui/atoms/Calendar';
 import Ckeditor from '../../components/ui/atoms/Ckeditor';
@@ -306,6 +307,12 @@ const UiExample = () => {
                         return <Input {...attr} />
                     }}
                 />
+            </Container>
+
+            <Container inline className={styles.section}>
+                <h2>Dropdown :</h2>
+
+                <Dropdown/>
             </Container>
 
             <Container inline className={styles.section}>
