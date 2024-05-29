@@ -48,6 +48,7 @@ const tokens = {
         students: "navbar.students",
         internship: "navbar.internship",
         workStudy: "navbar.workStudy",
+        UI: "navbar.UI"
     },
     footer: {
         description: "footer.description",
@@ -72,6 +73,14 @@ const tokens = {
     },
     page: {
         home: {
+            hero: {
+                title: {
+                    first: "page.home.hero.title.first",
+                    underlined: "page.home.hero.title.underlined",
+                },
+                description: "page.home.hero.description",
+                offers: "page.home.hero.offers",
+            },
             incentive: {
                 title: "page.home.incentive.title",
                 text: "page.home.incentive.text",

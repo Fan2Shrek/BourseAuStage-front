@@ -14,7 +14,6 @@ import Loader from '../../components/ui/atoms/Loader';
 import Input from '../../components/ui/molecules/Input';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import Select from '../../components/ui/atoms/Select';
-import Dropdown from '../../components/ui/atoms/Dropdown';
 import Card from '../../components/ui/atoms/Card';
 import Calendar from '../../components/ui/atoms/Calendar';
 import Ckeditor from '../../components/ui/atoms/Ckeditor';
@@ -133,13 +132,6 @@ const UiExample = () => {
         { identifier: 1, id: 'required', label: 'Required', type: 'input', placeholder: 'required', required: true },
         { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
     ], [])
-
-    const exampleDropdowns = useMemo(() => [
-        { id: 1, label: 'Offres', links: [
-            { name: 'Stages', url: 'entreprises/' },
-            { name: 'Alternance', url: 'entreprises/' }
-        ]},
-    ], []);
 
     const exampleInputsSimple = useMemo(() => [
         { identifier: 1, type: 'input' },
@@ -312,17 +304,6 @@ const UiExample = () => {
                     uniqueAttr={input => input.identifier}
                     renderItem={({ identifier: _, ...attr }) => {
                         return <Input {...attr} />
-                    }}
-                />
-            </Container>
-
-            <Container inline className={styles.section}>
-                <h2>Dropdown :</h2>
-
-                <List
-                    collection={exampleDropdowns}
-                    renderItem={({ id: _, ...attr }) => {
-                        return <Dropdown {...attr} />
                     }}
                 />
             </Container>

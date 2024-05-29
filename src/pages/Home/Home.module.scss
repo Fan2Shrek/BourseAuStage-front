@@ -16,6 +16,67 @@
     .section {
         margin-block: 50px;
 
+        &.hero {
+            margin-top: 0;
+            position: relative;
+
+            :global {
+                .container {
+                    align-items: flex-start;
+                    padding-block: 80px;
+                }
+            }
+
+            .main {
+                width: 55%;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 23px;
+
+                .title {
+                    :global {
+                        .underlinedContent {
+                            display: block;
+                            width: fit-content;
+                        }
+                    }
+                }
+
+                .description {
+                    color: var(--color-middle-grey);
+                }
+
+                .offers {
+                    color: var(--color-middle-grey);
+
+                    .secondary {
+                        color: var(--color-secondary);
+                    }
+
+                    .bold {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+
+            .man {
+                position: absolute;
+                width: 40%;
+                bottom: -6px;
+                right: -25px;
+                max-height: 90%;
+            }
+
+            .heroPattern {
+                position: absolute;
+                width: 60%;
+                top: 0;
+                right: 0;
+            }
+        }
+
         &.highlightedCompanies {
             display: flex;
             flex-direction: column;

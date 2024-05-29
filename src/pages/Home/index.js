@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import styles from './Home.module.scss'
 import cn from '../../utils/classnames'
@@ -10,6 +10,7 @@ import Banner from '../../components/layout/Banner';
 import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
+import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 
 const Home = () => {
     const [highlightedCompanies, setHighlightedCompanies] = useState([])
@@ -27,8 +28,32 @@ const Home = () => {
     }, []);
 
     return <Container inline className={styles.content}>
-        <Banner>
-            <h1>Home</h1>
+        <Banner cornerBottom className={cn(styles.section, styles.hero)}>
+            <div className={styles.main}>
+                <h1 className={styles.title}>
+                    {`${t(tokens.page.home.hero.title.first)} `}
+                    <UnderlinedContent>{t(tokens.page.home.hero.title.underlined)}</UnderlinedContent>
+                </h1>
+                <p className={styles.description}>{t(tokens.page.home.hero.description)}</p>
+                <p className={styles.offers}><Trans
+                    i18nKey={tokens.page.home.hero.offers}
+                    values={{
+                        internshipsNumber: "1234",
+                        workStudiesNumber: '987',
+                    }}
+                    components={{ secondary: <span className={styles.secondary} />, bold: <span className={styles.bold} /> }}
+                /></p>
+            </div>
+            <img
+                src="/images/home/heroPattern.svg"
+                alt="hero pattern"
+                className={styles.heroPattern}
+            />
+            <img
+                src="/images/home/man.svg"
+                alt="man"
+                className={styles.man}
+            />
         </Banner>
 
         <Container className={cn(styles.section, styles.highlightedCompanies)}>
