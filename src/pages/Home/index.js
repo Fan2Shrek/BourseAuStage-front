@@ -70,7 +70,7 @@ const Home = () => {
 
         <Container cornerTop cornerBottom className={cn(styles.section, styles.incentive)}>
             <div className={styles.main}>
-                <h3>{t(tokens.page.home.incentive.title)}</h3>
+                <h3 className={styles.title}>{t(tokens.page.home.incentive.title)}</h3>
                 <p>{t(tokens.page.home.incentive.text)}</p>
                 <Button label={t(tokens.page.home.incentive.cta)} inverted className={styles.cta} />
             </div>
