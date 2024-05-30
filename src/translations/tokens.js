@@ -48,6 +48,7 @@ const tokens = {
         students: "navbar.students",
         internship: "navbar.internship",
         workStudy: "navbar.workStudy",
+        UI: "navbar.UI"
     },
     footer: {
         description: "footer.description",
@@ -71,6 +72,27 @@ const tokens = {
         copyright: "footer.copyright",
     },
     page: {
+        home: {
+            hero: {
+                title: {
+                    first: "page.home.hero.title.first",
+                    underlined: "page.home.hero.title.underlined",
+                },
+                description: "page.home.hero.description",
+                offers: "page.home.hero.offers",
+            },
+            incentive: {
+                title: "page.home.incentive.title",
+                text: "page.home.incentive.text",
+                cta: "page.home.incentive.cta",
+            },
+            highlightedCompanies: {
+                title: "page.home.highlightedCompanies.title",
+                image: {
+                    alt: "page.home.highlightedCompanies.image.alt",
+                },
+            },
+        },
         companyDetails: {
             activity: "page.companyDetails.activity",
             age: "page.companyDetails.age",

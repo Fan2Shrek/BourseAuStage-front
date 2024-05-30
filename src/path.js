@@ -4,7 +4,7 @@ const path = {
     companies: '/entreprises',
     company: '/entreprises/:id',
     internship: '/offres/stage',
-    workStudy: '/ofrres/alternance',
+    workStudy: '/offres/alternance',
 }
 
 export default path;

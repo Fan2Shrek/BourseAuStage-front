@@ -41,7 +41,7 @@ export const DefaultTheme = () => {
         // A voir selon le choix du hover
         setProperty('--base-color-neutral-alpha', 'var(--color-dark-alpha)');
         setProperty('--base-color-neutral-inverted', 'var(--color-light)');
-        setProperty('--base-inline-margin-xl', '124px')
+        setProperty('--base-inline-margin-xl', 'auto')
         setProperty('--base-inline-margin-lg', '100px')
         setProperty('--base-inline-margin-md', '70px')
         setProperty('--base-inline-margin-sm', '50px')
