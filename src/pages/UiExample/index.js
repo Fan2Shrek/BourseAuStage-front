@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaArrowRight, FaGithub } from "react-icons/fa";
 
@@ -19,8 +19,10 @@ import Calendar from '../../components/ui/atoms/Calendar';
 import Ckeditor from '../../components/ui/atoms/Ckeditor';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import Banner from '../../components/layout/Banner';
+import Modal from '../../components/ui/atoms/Modal';
 
 const UiExample = () => {
+    const [displayModal, setDisplayModal] = useState(false)
     const { t } = useTranslation()
 
     const breadCrumb = useMemo(() => [
@@ -352,7 +354,6 @@ const UiExample = () => {
             </Container>
 
             <Container inline className={styles.section}>
-
                 <h2>Ckeditor :</h2>
 
                 <List
@@ -392,6 +393,27 @@ const UiExample = () => {
                     }}
                     className={styles.underlinedContentList}
                 />
+            </Container>
+
+            <Container inline className={styles.section}>
+                <h2>Modal :</h2>
+
+                <Modal
+                    title="Exemple de modal"
+                    active={displayModal}
+                    setDisplayModal={setDisplayModal}
+                >
+                    <div className={styles.modalContent}>
+                        <p>Contenu de la modal</p>
+                        <img
+                            src={`/images/logo.svg`}
+                            alt='Logo dans la modal'
+                        />
+                        <p className={styles.bigModal}>Fin de la modal</p>
+                    </div>
+                </Modal>
+
+                <Button label={'Modal'} onClick={() => setDisplayModal(true)} />
             </Container>
         </Container>
     </Container>

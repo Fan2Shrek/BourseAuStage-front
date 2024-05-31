@@ -1,0 +1,46 @@
+.modal {
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--modal-color);
+    color: var(--modal-text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    &__background {
+        position: fixed;
+        inset: 0;
+        padding-top: 80px;
+        background-color: var(--modal-background-color);
+        z-index: 5;
+        display: none;
+        justify-content: center;
+        align-items: center;
+
+        &.active {
+            display: flex;
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 25px;
+    }
+
+    &__title {
+        font-size: 40px;
+    }
+
+    &__close {
+        cursor: pointer;
+        font-size: 40px;
+        color: var(--modal-cross-color);
+    }
+
+    &__content {
+        max-height: 70dvh;
+        overflow-y: scroll;
+    }
+}

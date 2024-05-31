@@ -1,6 +1,17 @@
 .container {
     min-height: 100dvh;
 
+    .modalContent {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 25px 25px;
+
+        .bigModal {
+            padding-top: 800px;
+        }
+    }
+
     .section {
         margin-block: 50px;
 
