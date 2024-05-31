@@ -30,6 +30,7 @@ const Company = () => {
     const { id } = useParams();
     const [company, setCompany] = useState(null);
     const [companyPictures, setCompanyPictures] = useState([]);
+    const [collaborators, setCollaborators] = useState([]);
     const { t } = useTranslation();
 
     const breadCrumb = useMemo(() => [
@@ -65,7 +66,16 @@ const Company = () => {
 
                 setCompanyPictures(response['hydra:member']);
             })
-    }, [id]);
+
+        apiClient.company.getCollaborators(id)
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                setCollaborators(response['hydra:member']);
+            })
+        }, [id]);
 
     if (!company) {
         return <></>
@@ -159,12 +169,13 @@ const Company = () => {
                     <p>{company.openingTime}</p>
                 </div>
                 <div className={styles.contacts}>
-                    {/* TODO: Attendre la partie api sur les collaborateurs */}
                     <h2>{t(tokens.page.companyDetails.contacts)}</h2>
-                    <div className={styles.contactPerson}>
-                        <p>Responasble bla bla bla</p>
-                        <p>Bob Couscous</p>
-                    </div>
+                    {collaborators.map((collaborator) =>
+                        <div className={styles.contactPerson}>
+                            <p>{collaborator.jobTitle}</p>
+                            <p>{`${collaborator.firstName} ${collaborator.lastName}`}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </Container>
