@@ -3,6 +3,9 @@ const tokens = {
         company: {
             name: "entities.company.name"
         },
+        offer: {
+            name: "entities.offer.name"
+        }
     },
     apiCollection: {
         sorting: {
@@ -118,13 +121,37 @@ const tokens = {
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
             presentationWork: "page.offerDetails.presentationWork",
-        }
+        },
+        offers: {
+            internship: {
+                title: "page.offers.internship.title",
+                apiCollectionList: {
+                    foundLabel: "page.offers.internship.apiCollectionList.foundLabel",
+                },
+            },
+            workStudy: {
+                title: "page.offers.workStudy.title",
+                apiCollectionList: {
+                    foundLabel: "page.offers.workStudy.apiCollectionList.foundLabel",
+                },
+            },
+        },
     },
     breadCrumb: {
         home: "breadCrumb.home",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
-        offers: "breadCrumb.offers",
+        offers: {
+            base: "breadCrumb.offers.base",
+            internship: "breadCrumb.offers.internship",
+            workStudy: "breadCrumb.offers.workStudy",
+        },
+    },
+    sortings: {
+        clarifications: {
+            alphabeticalSortAZ: "sortings.clarifications.alphabeticalSortAZ",
+            alphabeticalSortZA: "sortings.clarifications.alphabeticalSortZA",
+        },
     },
 }
 

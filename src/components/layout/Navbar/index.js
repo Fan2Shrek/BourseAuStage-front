@@ -23,7 +23,8 @@ const isCurrentPage = (currentPage, route) => {
     if (Array.isArray(route)) {
         return route.some(r => r.type === 'dropdown'
             ? isCurrentPage(currentPage, r.links)
-            : currentPage.startsWith(r.url.split('/:')[0]));
+            : currentPage.startsWith(r.url.split('/:')[0])
+        );
     }
 
     return currentPage.startsWith(route.split('/:')[0]);
@@ -74,6 +75,12 @@ const Navbar = () => {
                                     styles.link,
                                     {
                                         [styles['link-active']]: isCurrentPage(currentRoute, links)
+                                    }
+                                )}
+                                linkClassName={url => cn(
+                                    styles.link,
+                                    {
+                                        [styles['link-active']]: isCurrentPage(currentRoute, url)
                                     }
                                 )}
                             />

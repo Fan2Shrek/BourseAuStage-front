@@ -1,11 +1,11 @@
-export const alphabeticalSortAZ = ({ name, property, propertyTranslation }) => ({
+export const alphabeticalSortAZ = ({ name, property, propertyTranslation, clarificationTranslation = null }) => ({
     name,
-    label: `${propertyTranslation} (A-Z)`,
+    label: `${propertyTranslation}${clarificationTranslation ? ` (${clarificationTranslation})` : ''}`,
     query: `&order[${property}]=asc`
 })
 
-export const alphabeticalSortZA = ({ name, property, propertyTranslation }) => ({
+export const alphabeticalSortZA = ({ name, property, propertyTranslation, clarificationTranslation = null }) => ({
     name,
-    label: `${propertyTranslation} (Z-A)`,
+    label: `${propertyTranslation}${clarificationTranslation ? ` (${clarificationTranslation})` : ''}`,
     query: `&order[${property}]=desc`
 })

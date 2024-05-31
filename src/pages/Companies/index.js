@@ -51,12 +51,14 @@ const Companies = () => {
                     alphabeticalSortAZ({
                         name: 'alphabetical-AZ-companyName',
                         property: 'name',
-                        propertyTranslation: t(tokens.entities.company.name)
+                        propertyTranslation: t(tokens.entities.company.name),
+                        clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortAZ),
                     }),
                     alphabeticalSortZA({
                         name: 'alphabetical-ZA-companyName',
                         property: 'name',
-                        propertyTranslation: t(tokens.entities.company.name)
+                        propertyTranslation: t(tokens.entities.company.name),
+                        clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortZA),
                     }),
                 ]}
                 defaultSort={'alphabetical-AZ-companyName'}

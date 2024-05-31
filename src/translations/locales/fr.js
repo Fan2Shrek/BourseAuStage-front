@@ -2,6 +2,7 @@ import tokens from "../tokens";
 
 const fr = {
     [tokens.entities.company.name]: "Nom",
+    [tokens.entities.offer.name]: "Nom",
     [tokens.apiCollection.sorting.label]: "Trier par :",
     [tokens.facets.label.companies.activities.name]: "Secteurs d'activité",
     [tokens.facets.label.companies.category.name]: "Catégorie",
@@ -19,8 +20,8 @@ const fr = {
     [tokens.navbar.requests]: "Demandes",
     [tokens.navbar.companies]: "Entreprises",
     [tokens.navbar.students]: "Etudiants",
-    [tokens.navbar.internship]: "Stage",
-    [tokens.navbar.workStudy]: "Alternance",
+    [tokens.navbar.internship]: "Offre de stage",
+    [tokens.navbar.workStudy]: "Offre d'alternance",
     [tokens.navbar.UI]: "UI",
     [tokens.footer.description]: "Première plateforme dédiée à la recherche de stages et d’alternance qui relie automatiquement les étudiants et les entreprises.",
     [tokens.footer.links.home]: "Accueil",
@@ -51,6 +52,10 @@ const fr = {
     [tokens.page.companies.title]: "Liste des entreprises",
     [tokens.page.companies.description]: "Découvrez les entreprises qui proposent des offres de stage ou d’alternance",
     [tokens.page.companies.apiCollectionList.foundLabel]: "entreprise(s) trouvée(s)",
+    [tokens.page.offers.internship.title]: "Offres de stage",
+    [tokens.page.offers.internship.apiCollectionList.foundLabel]: "offre(s) de stage trouvée(s)",
+    [tokens.page.offers.workStudy.title]: "Offres d'alternance",
+    [tokens.page.offers.workStudy.apiCollectionList.foundLabel]: "offre(s) d'alternance trouvée(s)",
     [tokens.page.home.hero.title.first]: "Trouver un stage n'aura jamais été",
     [tokens.page.home.hero.title.underlined]: "aussi facile !",
     [tokens.page.home.hero.description]: "Trouvez les offres de stage ou d’alternance près de chez vous qui correspondent à votre profil et à vos attentes.",
@@ -65,7 +70,11 @@ const fr = {
     [tokens.breadCrumb.home]: "Accueil",
     [tokens.breadCrumb.uiExample]: "Exemples d'UI",
     [tokens.breadCrumb.companies]: "Entreprises",
-    [tokens.breadCrumb.offers]: "Offres",
+    [tokens.breadCrumb.offers.base]: "Offres",
+    [tokens.breadCrumb.offers.internship]: "Stages",
+    [tokens.breadCrumb.offers.workStudy]: "Alternances",
+    [tokens.sortings.clarifications.alphabeticalSortAZ]: "A-Z",
+    [tokens.sortings.clarifications.alphabeticalSortZA]: " Z-A",
 }
 
 export default fr
