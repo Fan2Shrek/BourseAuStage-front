@@ -7,6 +7,10 @@ class Company {
         return this.apiClient.get('/companies');
     }
 
+    async getCollaborators(id) {
+        return this.apiClient.get(`/companies/${id}/collaborators`);
+    }
+
     async get(id) {
         return this.apiClient.get(`/companies/${id}`);
     }
