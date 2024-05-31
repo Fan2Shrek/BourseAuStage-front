@@ -2,6 +2,16 @@
     .pageContent{
         &Left{
             width: 70%;
+
+            h2 {
+                margin: 50px 0px 25px 0px;
+                color: #25324B;
+            }
+
+            p {
+                margin-top: 20px;
+                color: #515B6F;
+            }
         }
     }
 }

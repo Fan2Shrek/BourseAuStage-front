@@ -56,6 +56,8 @@ const Offer = () => {
                 ) : (
                     <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
                 )}
+                <p>{offer.description}</p>
+                <h2>Missions</h2>
             </div>
         </Container>
     </div>
