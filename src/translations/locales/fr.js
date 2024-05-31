@@ -63,6 +63,7 @@ const fr = {
     [tokens.breadCrumb.home]: "Accueil",
     [tokens.breadCrumb.uiExample]: "Exemples d'UI",
     [tokens.breadCrumb.companies]: "Entreprises",
+    [tokens.breadCrumb.offers]: "Offres",
 }
 
 export default fr

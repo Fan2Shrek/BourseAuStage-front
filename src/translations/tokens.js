@@ -120,6 +120,7 @@ const tokens = {
         home: "breadCrumb.home",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
+        offers: "breadCrumb.offers",
     },
 }
 
