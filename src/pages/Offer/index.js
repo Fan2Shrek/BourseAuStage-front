@@ -7,6 +7,7 @@ import styles from './Offer.module.scss';
 import Banner from "../../components/layout/Banner";
 import path from "../../path";
 import tokens from "../../translations/tokens";
+import Container from '../../components/ui/atoms/Container';
 
 const Offer = () => {
 
@@ -48,6 +49,15 @@ const Offer = () => {
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
         </Banner>
+        <Container className={styles.pageContent}>
+            <div className={styles.pageContentLeft}>
+                {offer?.internship ? (
+                    <h2>{t(tokens.page.offerDetails.presentationInternShip)}</h2>
+                ) : (
+                    <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
+                )}
+            </div>
+        </Container>
     </div>
 }
 
