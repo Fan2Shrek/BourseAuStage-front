@@ -1,10 +1,12 @@
 import { apiBaseUrl } from "../tools"
 import Company from "./Resource/company"
+import Offer from "./Resource/offer"
 
 class ApiClient {
     constructor() {
         this.baseUrl = apiBaseUrl;
         this.company = new Company(this);
+        this.offer = new Offer(this);
     }
 
     async get(url) {
