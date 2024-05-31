@@ -51,8 +51,8 @@ const Home = () => {
             />
             <img
                 src="/images/home/man.svg"
-                alt="man"
-                className={styles.man}
+                alt="pioupiou"
+                className={styles.pioupiou}
             />
         </Banner>
 
