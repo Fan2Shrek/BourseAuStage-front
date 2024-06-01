@@ -61,85 +61,91 @@ const Offer = () => {
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
         </Banner>
-        <Container className={styles.pageContent}>
-            <div className={styles.pageContentLeft}>
-                {offer?.internship ? (
-                    <h2>{t(tokens.page.offerDetails.presentationInternShip)}</h2>
-                ) : (
-                    <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
-                )}
-                <p>{offer.description}</p>
-                <h2>Missions</h2>
-                <ul>
-                    {missions.map((description, index) => (
-                        <li key={index}>
-                            <CiCircleCheck />
-                            {description}
-                        </li>
-                    ))}
-                </ul>
-                <h2>Profil recherché</h2>
-                {console.log(offer)}
-                <ul>
-                    {profils.map((description, index) => (
-                        <li key={index}>
-                            <CiCircleCheck />
-                            {description}
-                        </li>
-                    ))}
-                </ul>
-                {/* redirection à faire */}
-                <Button className={styles.link} label='Postuler' redirectTo=''/>
-            </div>
-            <div className={styles.pageContentRight}>
-                <h3>Échéances</h3>
-                <div className={styles.rightText}>
-                    <p>Postuler avant le</p>
-                    <p>{availableAt}</p>
-                </div>
-                <div className={styles.rightText}>
-                    <p>Offre publié le</p>
-                    <p>{createdAt}</p>
-                </div>
-                <div className={styles.rightText}>
-                    <p>Type d'offre</p>
+        <Container >
+            <div className={styles.pageContent}>
+                <div className={styles.pageContentLeft}>
                     {offer?.internship ? (
-                        <p>Stage</p>
+                        <h2>{t(tokens.page.offerDetails.presentationInternShip)}</h2>
                     ) : (
-                        <p>Alternance</p>
+                        <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
                     )}
+                    <p>{offer.description}</p>
+                    <h2>Missions</h2>
+                    <ul>
+                        {missions.map((description, index) => (
+                            <li key={index}>
+                                <CiCircleCheck />
+                                {description}
+                            </li>
+                        ))}
+                    </ul>
+                    <h2>Profil recherché</h2>
+                    {console.log(offer)}
+                    <ul>
+                        {profils.map((description, index) => (
+                            <li key={index}>
+                                <CiCircleCheck />
+                                {description}
+                            </li>
+                        ))}
+                    </ul>
+                    {/* redirection à faire */}
+                    <Button className={styles.link} label='Postuler' redirectTo=''/>
                 </div>
-                <div className={styles.rightText}>
-                    <p>Gratification</p>
-                    {offer?.payed ? (
-                        <p>Obligatoire</p>
-                    ) : (
-                        <p>Non obligatoire</p>
-                    )}
+                <div className={styles.pageContentRight}>
+                    <h3>Échéances</h3>
+                    <div className={styles.rightText}>
+                        <p>Postuler avant le</p>
+                        <p>{availableAt}</p>
+                    </div>
+                    <div className={styles.rightText}>
+                        <p>Offre publié le</p>
+                        <p>{createdAt}</p>
+                    </div>
+                    <div className={styles.rightText}>
+                        <p>Type d'offre</p>
+                        {offer?.internship ? (
+                            <p>Stage</p>
+                        ) : (
+                            <p>Alternance</p>
+                        )}
+                    </div>
+                    <div className={styles.rightText}>
+                        <p>Gratification</p>
+                        {offer?.payed ? (
+                            <p>Obligatoire</p>
+                        ) : (
+                            <p>Non obligatoire</p>
+                        )}
+                    </div>
+                    <div className={styles.rightText}>
+                        <p>Candidatures déposées</p>
+                        {/* a faire */}
+                        <p>1</p>
+                    </div>
+                    <div className={styles.border}></div>
+                    <h3>Profils métiers</h3>
+                    <ul>
+                        {activities.map((activity, index) => (
+                            <li key={index}>
+                                <Tag label={activity.name} color={activity.color} secondary/>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={styles.border}></div>
+                    <h3>Compétences recherchées</h3>
+                    <ul>
+                        {skills.map((name, index) => (
+                            <li key={index}>
+                                <Tag label={name} color={'#4640DE'} secondary radius={0}/>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <div className={styles.rightText}>
-                    <p>Candidatures déposées</p>
-                    {/* a faire */}
-                    <p>1</p>
-                </div>
-                <div className={styles.border}></div>
-                <h3>Profils métiers</h3>
-                <ul>
-                    {activities.map((activity, index) => (
-                        <li key={index}>
-                            <Tag label={activity.name} color={activity.color} secondary/>
-                        </li>
-                    ))}
-                </ul>
-                <div className={styles.border}></div>
-                <h3>Compétences recherchées</h3>
-                <ul>
-                    {skills.map((name, index) => (
-                        <li key={index}>
-                            <Tag label={name} color={'#4640DE'} secondary radius={0}/>
-                        </li>
-                    ))}
-                </ul>
+            </div>
+            <div className={styles.separate}></div>
+            <div className={styles.pageContent}>
+                
             </div>
         </Container>
     </div>
