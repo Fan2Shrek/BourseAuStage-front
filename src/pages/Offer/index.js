@@ -84,6 +84,13 @@ const Offer = () => {
                 {/* redirection à faire */}
                 <Button className={styles.link} label='Postuler' redirectTo=''/>
             </div>
+            <div className={styles.pageContentRight}>
+                <h3>Échéances</h3>
+                <div>
+                    <p>Postuler avant le</p>
+                    <p>{offer.availableAt}</p>
+                </div>
+            </div>
         </Container>
     </div>
 }
