@@ -31,6 +31,11 @@ const Offer = () => {
             link: path.offer
         },
         {
+            label: offer?.internship ? 'Stage' : 'Alternance',
+            //a changer
+            link: path.offer
+        },
+        {
             label: offer?.name ?? '',
             link: null
         },
