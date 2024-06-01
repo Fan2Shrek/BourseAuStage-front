@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import apiClient from "../../api/ApiClient";
+import { CiCircleCheck } from "react-icons/ci";
 
 import styles from './Offer.module.scss';
 import Banner from "../../components/layout/Banner";
@@ -61,8 +62,11 @@ const Offer = () => {
                 <p>{offer.description}</p>
                 <h2>Missions</h2>
                 <ul>
-                    {missions.map((description) => (
-                        <li key={description}>{description}</li>
+                    {missions.map((description, index) => (
+                        <li key={index}>
+                            <CiCircleCheck />
+                            {description}
+                        </li>
                     ))}
                 </ul>
                 <h2>Profil recherché</h2>

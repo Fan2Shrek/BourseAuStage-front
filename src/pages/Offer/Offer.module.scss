@@ -16,6 +16,14 @@
             ul{
                 li{
                     margin-top: 10px;
+
+                    svg{
+                        color: var(--color-success);
+                        height: 14px;
+                        width: 14px;
+                        margin-right: 1%;
+                    }
+
                 }
             }
         }
