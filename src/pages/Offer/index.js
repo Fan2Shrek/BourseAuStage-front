@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import apiClient from "../../api/ApiClient";
 import { CiCircleCheck } from "react-icons/ci";
 import { format } from 'date-fns';
-import { fr } from 'date-fns/locale'; // Importer la locale française
+import { fr } from 'date-fns/locale';
 
 import styles from './Offer.module.scss';
 import Banner from "../../components/layout/Banner";
@@ -145,7 +145,7 @@ const Offer = () => {
             </div>
             <div className={styles.separate}></div>
             <div className={styles.pageContent}>
-                
+                {/* company */}
             </div>
         </Container>
     </div>
