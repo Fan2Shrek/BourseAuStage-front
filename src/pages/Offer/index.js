@@ -92,7 +92,6 @@ const Offer = () => {
                         ))}
                     </ul>
                     <h2>Profil recherché</h2>
-                    {console.log(offer)}
                     <ul>
                         {profils.map((description, index) => (
                             <li key={index}>
@@ -168,7 +167,7 @@ const Offer = () => {
                 </div>
                 <div className={styles.pageCompanyRight}>
                     <div className={styles.left}>
-                        <p>j</p>
+                        {/* photos company */}
                     </div>
                     <div className={styles.right}>
                         <div className={styles.map}>
