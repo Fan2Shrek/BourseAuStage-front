@@ -49,7 +49,7 @@ const Offer = () => {
     }
 
     const missions = offer.missions.map(mission => mission.description);
-    const skills = offer.searchSkills.map(skill => skill.name);
+    const profils = offer.profils.map(profil => profil.description);
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
@@ -72,11 +72,12 @@ const Offer = () => {
                     ))}
                 </ul>
                 <h2>Profil recherché</h2>
+                {console.log(offer)}
                 <ul>
-                    {skills.map((name, index) => (
+                    {profils.map((description, index) => (
                         <li key={index}>
                             <CiCircleCheck />
-                            {name}
+                            {description}
                         </li>
                     ))}
                 </ul>
