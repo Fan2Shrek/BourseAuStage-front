@@ -46,6 +46,8 @@ const Offer = () => {
         return <></>
     }
 
+    const missions = offer.missions.map(mission => mission.description);
+
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
         </Banner>
@@ -58,6 +60,12 @@ const Offer = () => {
                 )}
                 <p>{offer.description}</p>
                 <h2>Missions</h2>
+                <ul>
+                    {missions.map((description) => (
+                        <li key={description}>{description}</li>
+                    ))}
+                </ul>
+                <h2>Profil recherché</h2>
             </div>
         </Container>
     </div>
