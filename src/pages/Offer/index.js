@@ -9,6 +9,7 @@ import Banner from "../../components/layout/Banner";
 import path from "../../path";
 import tokens from "../../translations/tokens";
 import Container from '../../components/ui/atoms/Container';
+import Button from '../../components/ui/atoms/Button';
 
 const Offer = () => {
 
@@ -79,6 +80,8 @@ const Offer = () => {
                         </li>
                     ))}
                 </ul>
+                {/* redirection à faire */}
+                <Button className={styles.link} label='Postuler' redirectTo=''/>
             </div>
         </Container>
     </div>
