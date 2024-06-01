@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import apiClient from "../../api/ApiClient";
 import { CiCircleCheck } from "react-icons/ci";
-import { format } from 'date-fns';
+import { format, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 import styles from './Offer.module.scss';
@@ -13,6 +13,7 @@ import tokens from "../../translations/tokens";
 import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
 import Tag from '../../components/ui/atoms/Tag';
+import ProgressBar from '../../components/ui/atoms/ProgressBar';
 
 const Offer = () => {
 
@@ -63,6 +64,9 @@ const Offer = () => {
     const availableAt = format(new Date(offer.availableAt), "dd MMMM yyyy", { locale: fr });
     const createdAt = format(new Date(offer.createdAt), "dd MMMM yyyy", { locale: fr });
 
+    const available = new Date(offer.availableAt);
+    const remainingDays = differenceInDays(available, new Date());
+
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
         </Banner>
@@ -99,6 +103,12 @@ const Offer = () => {
                 </div>
                 <div className={styles.pageContentRight}>
                     <h3>Échéances</h3>
+                    <div className={styles.progress}>
+                        <Banner>
+                            <p>Reste {remainingDays} jours pour postuler</p>
+                            <ProgressBar />
+                        </Banner>
+                    </div>
                     <div className={styles.rightText}>
                         <p>Postuler avant le</p>
                         <p>{availableAt}</p>
