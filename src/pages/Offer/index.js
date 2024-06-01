@@ -5,6 +5,8 @@ import apiClient from "../../api/ApiClient";
 import { CiCircleCheck } from "react-icons/ci";
 import { format, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import getPicturePath from "../../utils/getPicturePath";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 import styles from './Offer.module.scss';
 import Banner from "../../components/layout/Banner";
@@ -158,8 +160,15 @@ const Offer = () => {
                 </div>
             </div>
             <div className={styles.separate}></div>
-            <div className={styles.pageContent}>
-                {/* company */}
+            <div className={styles.pageCompany}>
+                <div className={styles.pageCompanyLeft}>
+                    <img src={getPicturePath(offer.company.logo)} alt={offer.company.name}/> 
+                    <p>{offer.company.description}</p>
+                    <a href={`/entreprises/${offer.company.id}`}>En savoir plus sur {offer.company.name}<span><FaArrowRightLong /></span></a>
+                </div>
+                <div className={styles.pageCompanyRight}>
+                    
+                </div>
             </div>
         </Container>
     </div>

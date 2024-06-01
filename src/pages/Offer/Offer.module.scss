@@ -89,4 +89,26 @@
         border-bottom: 1px solid var(--color-grey);
         padding-top: 2%;
     }
+
+    .pageCompany{
+        margin: 5% 0%;
+        display: flex;
+
+        p{
+            padding: 15% 0%;
+        }
+
+        a{
+            color: var(--color-main);
+            font-weight: bold;
+            position: relative;
+
+            span {
+                position: absolute;
+                margin-left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
 }
