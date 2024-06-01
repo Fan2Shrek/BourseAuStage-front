@@ -6,7 +6,7 @@
     position: relative;
     overflow: hidden;
     max-width: 1200px;
-    margin-inline: var(--container-inline-margin);
+    margin: 0 var(--container-inline-margin);
 
     @include m.above(sm) {
         --container-inline-margin: var(--base-inline-margin-sm);
