@@ -163,7 +163,7 @@ const Offer = () => {
             <div className={styles.pageCompany}>
                 <div className={styles.pageCompanyLeft}>
                     <img src={getPicturePath(offer.company.logo)} alt={offer.company.name}/> 
-                    <p>{offer.company.description}</p>
+                    <p>{offer.company.presentation}</p>
                     <a href={`/entreprises/${offer.company.id}`}>En savoir plus sur {offer.company.name}<span><FaArrowRightLong /></span></a>
                 </div>
                 <div className={styles.pageCompanyRight}>

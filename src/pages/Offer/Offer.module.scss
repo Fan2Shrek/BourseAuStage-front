@@ -85,23 +85,25 @@
         }
     }
 
-    .separate{
+    .separate {
         border-bottom: 1px solid var(--color-grey);
         padding-top: 2%;
     }
 
-    .pageCompany{
+    .pageCompany {
         margin: 5% 0%;
         display: flex;
         justify-content: space-between;
         width: 100%;
 
-        .pageCompanyLeft{
-            p{
-                padding: 15% 0%;
+        .pageCompanyLeft {
+            width: 50%;
+            
+            p {
+                padding: 5% 1% 5% 0%;
             }
     
-            a{
+            a {
                 color: var(--color-main);
                 font-weight: bold;
                 position: relative;
@@ -115,17 +117,17 @@
             }
         }
 
-        .pageCompanyRight{
-            width: 50%;
+        .pageCompanyRight {
             display: flex;
             justify-content: space-around;
+            width: 50%;
 
-            .left{
+            .left {
                 width: 30%;
             }
 
-            .right{
-                .map{
+            .right {
+                .map {
                     height: 300px;
                     width: 300px;
                     background-color: var(--color-dark);
