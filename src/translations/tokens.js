@@ -114,12 +114,17 @@ const tokens = {
             apiCollectionList: {
                 foundLabel: "page.companies.apiCollectionList.foundLabel",
             }
+        },
+        offerDetails: {
+            presentationInternShip: "page.offerDetails.presentationInternShip",
+            presentationWork: "page.offerDetails.presentationWork",
         }
     },
     breadCrumb: {
         home: "breadCrumb.home",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
+        offers: "breadCrumb.offers",
     },
 }
 

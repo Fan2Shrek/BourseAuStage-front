@@ -60,9 +60,12 @@ const fr = {
     [tokens.page.home.incentive.title]: "Entreprises, déposez vos offres gratuitement",
     [tokens.page.home.incentive.text]: "Vous pourrez gérer votre planning d’accueil et bénéficier de nombreux services intégrés.",
     [tokens.page.home.incentive.cta]: "Créer votre compte",
+    [tokens.page.offerDetails.presentationInternShip]: "A propos de ce stage",
+    [tokens.page.offerDetails.presentationWork]: "A propos de cette alternance",
     [tokens.breadCrumb.home]: "Accueil",
     [tokens.breadCrumb.uiExample]: "Exemples d'UI",
     [tokens.breadCrumb.companies]: "Entreprises",
+    [tokens.breadCrumb.offers]: "Offres",
 }
 
 export default fr
