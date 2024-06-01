@@ -12,6 +12,7 @@ import path from "../../path";
 import tokens from "../../translations/tokens";
 import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
+import Tag from '../../components/ui/atoms/Tag';
 
 const Offer = () => {
 
@@ -52,6 +53,8 @@ const Offer = () => {
 
     const missions = offer.missions.map(mission => mission.description);
     const profils = offer.profils.map(profil => profil.description);
+    const activities = (offer.activities);
+    const skills = offer.searchSkills.map(skill => skill.name);
     const availableAt = format(new Date(offer.availableAt), "dd MMMM yyyy", { locale: fr });
     const createdAt = format(new Date(offer.createdAt), "dd MMMM yyyy", { locale: fr });
 
@@ -119,6 +122,24 @@ const Offer = () => {
                     {/* a faire */}
                     <p>1</p>
                 </div>
+                <div className={styles.border}></div>
+                <h3>Profils métiers</h3>
+                <ul>
+                    {activities.map((activity, index) => (
+                        <li key={index}>
+                            <Tag label={activity.name} color={activity.color} secondary/>
+                        </li>
+                    ))}
+                </ul>
+                <div className={styles.border}></div>
+                <h3>Compétences recherchées</h3>
+                <ul>
+                    {skills.map((name, index) => (
+                        <li key={index}>
+                            <Tag label={name} color={'#4640DE'} secondary radius={0}/>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </Container>
     </div>
