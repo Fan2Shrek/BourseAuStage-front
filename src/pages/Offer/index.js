@@ -105,10 +105,8 @@ const Offer = () => {
                 <div className={styles.pageContentRight}>
                     <h3>Échéances</h3>
                     <div className={styles.progress}>
-                        <Banner>
-                            <p>Reste {remainingDays} jours pour postuler</p>
-                            <ProgressBar value={progress} />
-                        </Banner>
+                        <p>Reste {remainingDays} jours pour postuler</p>
+                        <ProgressBar value={progress} />
                     </div>
                     <div className={styles.rightText}>
                         <p>Postuler avant le</p>

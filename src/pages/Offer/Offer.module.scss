@@ -46,6 +46,17 @@
                 margin: 50px 0px 25px 0px;
             }
 
+            .progress{
+                background-color: #F8F8FD;
+                padding: 16px;
+                margin-bottom: 6%;
+
+                p{
+                    font-weight: bold;
+                    padding-bottom: 5%;
+                }
+            }
+
             .rightText {
                 display: flex;
                 justify-content: space-between;
