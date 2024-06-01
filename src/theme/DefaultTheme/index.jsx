@@ -83,6 +83,14 @@ export const DefaultTheme = () => {
          * BANNER
          */
         setProperty('--banner-color', 'var(--color-third)');
+
+        /**
+         * MODAL
+         */
+        setProperty('--modal-color', 'var(--color-light)');
+        setProperty('--modal-text-color', 'var(--color-dark)');
+        setProperty('--modal-background-color', 'var(--color-dark-alpha)');
+        setProperty('--modal-cross-color', 'var(--color-dark-grey)');
     }, [])
 
     return <></>
