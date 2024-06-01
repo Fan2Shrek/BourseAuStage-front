@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import path from "../../path";
 import styles from "./Offers.module.scss"
@@ -9,7 +10,9 @@ import Banner from "../../components/layout/Banner";
 import UnderlinedContent from "../../components/ui/atoms/UnderlinedText";
 import Container from "../../components/ui/atoms/Container";
 import ApiCollectionList from "../../components/ui/molecules/ApiCollectionList";
-import { alphabeticalSortAZ, alphabeticalSortZA } from "../../sortings";
+import OfferCard from "../../components/offer/OfferCard";
+import { alphabeticalSortAZ, alphabeticalSortZA } from "../../api/sortings";
+import { futureDate, notNull, offerType } from "../../api/filters";
 
 const Offers = ({ type }) => {
     const { t } = useTranslation();
@@ -46,10 +49,15 @@ const Offers = ({ type }) => {
 
         {[OfferTypeEnum.INTERNSHIP, OfferTypeEnum.WORKSTUDY].includes(type) && <Container>
             <ApiCollectionList
-                url={`/offers/${type}`}
-                // withFacets
+                url={`/offers`}
+                withFacets
                 itemsPerPage={8}
                 foundLabel={t(tokens.page.offers[type].apiCollectionList.foundLabel)}
+                defaultFilters={[
+                    offerType({ type }),
+                    notNull({ property: 'deletedAt' }),
+                    futureDate({ property: 'availableAt' }),
+                ]}
                 sortings={[
                     alphabeticalSortAZ({
                         name: 'alphabetical-AZ-offerName',
@@ -65,7 +73,15 @@ const Offers = ({ type }) => {
                     }),
                 ]}
                 defaultSort={'alphabetical-AZ-offerName'}
-                renderItem={offer => <p>{offer.name}</p>}
+                renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
+                    <OfferCard
+                        offer={offer}
+                        type={type}
+                        row
+                        payed={offer.payed}
+                        withProgress
+                    />
+                </Link>}
             />
         </Container>}
     </div>

@@ -20,7 +20,11 @@ class Company {
     }
 
     async getHighlight() {
-        return this.apiClient.get(`/companies/highlight`);
+        return this.apiClient.get('/companies/highlight');
+    }
+
+    async getOffers(id) {
+        return this.apiClient.get(`/companies/${id}/offers`);
     }
 }
 

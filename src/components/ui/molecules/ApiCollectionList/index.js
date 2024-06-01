@@ -13,8 +13,9 @@ import Sortings from '../Sortings'
 import FacetOptionEnum from '../../../../enum/FacetOptionEnum'
 import Loader from '../../atoms/Loader'
 
-const buildQuery = (url, currentPage, itemsPerPage, t, sort = '', facets = {}, options = []) => {
-    const query = `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}&exists[deletedAt]=false${sort}`
+const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = '', facets = {}, options = []) => {
+    const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
+    const query = `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}${defaultFiltersQuery}${sort}`
 
     const facetsQuery = (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
         if (
@@ -31,6 +32,20 @@ const buildQuery = (url, currentPage, itemsPerPage, t, sort = '', facets = {}, o
         }
 
         if (options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN)) {
+            values.map(value => {
+                const [min, max] = value.split('-')
+
+                let query = ''
+
+                if (!max) {
+                    query = `${encodeURI(facet)}[gt]=${min}`
+                } else {
+                    query = `&${encodeURI(facet)}[gt]=${min}&${encodeURI(facet)}[lt]=${max}`
+                }
+
+                // A FAIRE
+            });
+
             const [min, max] = values.reduce((acc, value) => {
                 const [min, max] = value.split('-')
 
@@ -82,6 +97,7 @@ const ApiCollectionList = ({
     itemsPerPage = 10,
     url,
     foundLabel,
+    defaultFilters,
     sortings,
     defaultSort,
     renderItem,
@@ -110,12 +126,13 @@ const ApiCollectionList = ({
     }, [url, itemsPerPage, selectedFacets, selectedSort])
 
     useEffect(() => {
-        setQuery(buildQuery(url, currentPage, itemsPerPage, t, selectedSort, selectedFacets, facetsOptions))
-    }, [url, currentPage, itemsPerPage, t, selectedSort, selectedFacets, facetsOptions])
+        setQuery(buildQuery(url, currentPage, itemsPerPage, t, defaultFilters, selectedSort, selectedFacets, facetsOptions))
+    }, [url, currentPage, itemsPerPage, t, defaultFilters, selectedSort, selectedFacets, facetsOptions])
 
     useEffect(() => {
         if (withFacets) {
-            apiClient.get(`${url}/facets`)
+            const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
+            apiClient.get(`${url}/facets?${defaultFiltersQuery.slice(1)}`)
                 .then(data => {
                     setFacets(data.facets)
                     setDefaultFacets(data.defaultFacets)
@@ -126,7 +143,7 @@ const ApiCollectionList = ({
             setDefaultFacets({})
             setFacetsOptions([])
         }
-    }, [url, withFacets])
+    }, [url, withFacets, defaultFilters])
 
     useEffect(() => {
         if (debouncedQuery) {
@@ -174,14 +191,14 @@ const ApiCollectionList = ({
         )}>
             <div className='apiCollectionList__header'>
                 <div>
-                    <h2>Resultats</h2>
+                    <h2>{t(tokens.apiCollectionList.title)}</h2>
                     <p>{`${totalResult} ${foundLabel}`}</p>
                 </div>
 
                 {loader && <Loader />}
 
                 {sortings && <Sortings
-                    label={t(tokens.apiCollection.sorting.label)}
+                    label={t(tokens.apiCollectionList.sorting.label)}
                     sortings={sortings}
                     setSelectedSort={setSelectedSort}
                     defaultSort={defaultSort}

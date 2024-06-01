@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import apiClient from "../../api/ApiClient";
 import { CiCircleCheck } from "react-icons/ci";
 import { format, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import getPicturePath from "../../utils/getPicturePath";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import styles from './Offer.module.scss';
+import apiClient from "../../api/ApiClient";
+import getPicturePath from "../../utils/getPicturePath";
 import Banner from "../../components/layout/Banner";
 import path from "../../path";
 import tokens from "../../translations/tokens";
@@ -29,14 +29,12 @@ const Offer = () => {
             link: path.home
         },
         {
-            label: t(tokens.breadCrumb.offers),
-            //a changer
-            link: path.offer
+            label: t(tokens.breadCrumb.offers.base),
+            link: null
         },
         {
-            label: offer?.internship ? 'Stage' : 'Alternance',
-            //a changer
-            link: path.offer
+            label: t(tokens.breadCrumb.offers[offer?.internship ? 'internship' : 'workStudy']),
+            link: path[offer?.internship ? 'internship' : 'workStudy']
         },
         {
             label: offer?.name ?? '',
@@ -67,8 +65,8 @@ const Offer = () => {
     const createdAt = format(new Date(offer.createdAt), "dd MMMM yyyy", { locale: fr });
 
     const available = new Date(offer.availableAt);
-    const remainingDays = differenceInDays(available, new Date());
-    const progress = (remainingDays * 90) /100;
+    const remainingDays = differenceInDays(available, new Date()) + 1;
+    const progress = (remainingDays * 80) / 100;
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
@@ -101,7 +99,7 @@ const Offer = () => {
                         ))}
                     </ul>
                     {/* redirection à faire */}
-                    <Button className={styles.link} label='Postuler' redirectTo=''/>
+                    <Button className={styles.link} label='Postuler' redirectTo='' />
                 </div>
                 <div className={styles.pageContentRight}>
                     <h3>Échéances</h3>
@@ -143,7 +141,7 @@ const Offer = () => {
                     <ul>
                         {activities.map((activity, index) => (
                             <li key={index}>
-                                <Tag label={activity.name} color={activity.color} secondary/>
+                                <Tag label={activity.name} color={activity.color} secondary />
                             </li>
                         ))}
                     </ul>
@@ -152,7 +150,7 @@ const Offer = () => {
                     <ul>
                         {skills.map((name, index) => (
                             <li key={index}>
-                                <Tag label={name} color={'#4640DE'} secondary radius={0}/>
+                                <Tag label={name} color={'#4640DE'} secondary radius={0} />
                             </li>
                         ))}
                     </ul>
@@ -161,7 +159,7 @@ const Offer = () => {
             <div className={styles.separate}></div>
             <div className={styles.pageCompany}>
                 <div className={styles.pageCompanyLeft}>
-                    <img src={getPicturePath(offer.company.logo)} alt={offer.company.name}/> 
+                    <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
                     <p>{offer.company.presentation}</p>
                     <a href={`/entreprises/${offer.company.id}`}>En savoir plus sur {offer.company.name}<span><FaArrowRightLong /></span></a>
                 </div>
