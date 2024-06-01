@@ -66,6 +66,7 @@ const Offer = () => {
 
     const available = new Date(offer.availableAt);
     const remainingDays = differenceInDays(available, new Date());
+    const progress = (remainingDays * 90) /100;
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
@@ -106,7 +107,7 @@ const Offer = () => {
                     <div className={styles.progress}>
                         <Banner>
                             <p>Reste {remainingDays} jours pour postuler</p>
-                            <ProgressBar />
+                            <ProgressBar value={progress} />
                         </Banner>
                     </div>
                     <div className={styles.rightText}>
