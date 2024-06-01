@@ -98,6 +98,11 @@ export const DefaultTheme = () => {
         setProperty('--card-color', 'var(--color-light)');
         setProperty('--card-text-color', 'var(--color-dark)');
         setProperty('--card-border-color', 'var(--color-grey)');
+
+        /**
+         * HOME
+         */
+        setProperty('--home-last-request-section-color', 'var(--color-third)');
     }, [])
 
     return <></>

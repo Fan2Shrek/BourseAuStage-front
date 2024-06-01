@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 import styles from './Home.module.scss'
 import cn from '../../utils/classnames'
 import getPicturePath from '../../utils/getPicturePath';
 import tokens from '../../translations/tokens';
+import path from '../../path';
 import apiClient from '../../api/ApiClient';
 import Banner from '../../components/layout/Banner';
 import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
-import { Link } from 'react-router-dom';
 import OfferCard from '../../components/offer/OfferCard';
-import path from '../../path';
 import OfferTypeEnum from '../../enum/OfferTypeEnum';
+import RequestCard from '../../components/request/RequestCard';
 
 const Home = () => {
     const [highlightedCompanies, setHighlightedCompanies] = useState([])
     const [lastOffers, setLastOffers] = useState([])
+    const [lastRequests, setLastRequests] = useState([])
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -32,13 +34,22 @@ const Home = () => {
                 setHighlightedCompanies(response['hydra:member']);
             })
 
-        apiClient.offer.getLastOffers()
+        apiClient.offer.getLast()
             .then(response => {
                 if (response.status === 404) {
                     return;
                 }
 
                 setLastOffers(response['hydra:member']);
+            })
+
+        apiClient.request.getLast()
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                setLastRequests(response['hydra:member']);
             })
     }, []);
 
@@ -128,6 +139,36 @@ const Home = () => {
                 </Link>}
                 className={styles.offerList}
             />
+        </Container>
+
+        <Container inline cornerTop className={cn(styles.section, styles.lastRequest)}>
+            <Container>
+                <div className={styles.header}>
+                    <h2><Trans
+                        i18nKey={tokens.page.home.lastRequests.title}
+                        components={{ secondary: <span className={styles.secondary} /> }}
+                    /></h2>
+                    <Button
+                        label={t(tokens.page.home.lastRequests.cta)}
+                        secondary
+                        inverted
+                        withoutBorder
+                        icon={<FaArrowRight />}
+                        rightIcon
+                        className={styles.cta}
+                    />
+                </div>
+
+                <List
+                    collection={lastRequests}
+                    renderItem={request => <Link to=''>
+                        <RequestCard
+                            request={request}
+                        />
+                    </Link>}
+                    className={styles.requestList}
+                />
+            </Container>
         </Container>
     </Container>
 }

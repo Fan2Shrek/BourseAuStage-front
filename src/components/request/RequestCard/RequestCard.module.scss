@@ -1,0 +1,43 @@
+.card {
+    display: flex;
+    gap: 24px;
+
+    .avatar {
+        min-width: 64px;
+        max-width: 64px;
+        height: 64px;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .mainInfos {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .dotLine {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    .moreInfos {
+        display: flex;
+        gap: 8px;
+
+        :global {
+            .tag {
+                height: 34px;
+            }
+        }
+
+        .type {
+            padding-right: 8px;
+            border-right: 1px solid var(--color-grey);
+        }
+    }
+}

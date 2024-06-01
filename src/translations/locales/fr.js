@@ -68,11 +68,13 @@ const fr = {
     [tokens.page.home.hero.offers]: "<secondary>{{internshipsNumber}}</secondary> offres de <bold>stages</bold> <bold>|</bold> <secondary>{{workStudiesNumber}}</secondary> offres <bold>d’alternance</bold> n’attendent que vous !",
     [tokens.page.home.highlightedCompanies.title]: "Entreprises à la une",
     [tokens.page.home.highlightedCompanies.image.alt]: "Logo de {{company}}",
-    [tokens.page.home.lastOffers.title]: "Dernières <secondary>offres</secondary>",
-    [tokens.page.home.lastOffers.cta]: "Toutes les offres",
     [tokens.page.home.incentive.title]: "Entreprises, déposez vos offres gratuitement",
     [tokens.page.home.incentive.text]: "Vous pourrez gérer votre planning d’accueil et bénéficier de nombreux services intégrés.",
     [tokens.page.home.incentive.cta]: "Créer votre compte",
+    [tokens.page.home.lastOffers.title]: "Dernières <secondary>offres</secondary>",
+    [tokens.page.home.lastOffers.cta]: "Toutes les offres",
+    [tokens.page.home.lastRequests.title]: "Dernières <secondary>demandes</secondary>",
+    [tokens.page.home.lastRequests.cta]: "Toutes les demandes",
     [tokens.page.offerDetails.presentationInternShip]: "A propos de ce stage",
     [tokens.page.offerDetails.presentationWork]: "A propos de cette alternance",
     [tokens.page.offerDetails.mission]: "Missions",
@@ -113,6 +115,10 @@ const fr = {
     [tokens.card.offer.cta.button.more]: "En savoir plus",
     [tokens.card.offer.cta.progress.singular]: "Reste {{remainingDays}} jour pour postuler",
     [tokens.card.offer.cta.progress.plural]: "Reste {{remainingDays}} jours pour postuler",
+    [tokens.card.request.studentLine]: "{{firstName}} ({{age}} ans)",
+    [tokens.card.request.internship]: "Stage",
+    [tokens.card.request.workStudy]: "Alternance",
+    [tokens.card.request.dates]: "Du {{start}} au {{end}} ({{duration}} jours)",
 }
 
 export default fr
