@@ -20,6 +20,7 @@ import Ckeditor from '../../components/ui/atoms/Ckeditor';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import Banner from '../../components/layout/Banner';
 import Modal from '../../components/ui/atoms/Modal';
+import Dot from '../../components/ui/atoms/Dot';
 
 const UiExample = () => {
     const [displayModal, setDisplayModal] = useState(false)
@@ -183,10 +184,18 @@ const UiExample = () => {
         },
     ], [])
 
+    const exampleDots = useMemo(() => [
+        { id: 1 },
+        { id: 2, size: 8 },
+        { id: 2, size: 16 },
+        { id: 2, size: 32 },
+    ], [])
+
     const exampleUnderlinedTexts = useMemo(() => [
         { id: 1, item: <h2>Ce texte est <UnderlinedContent>souligné</UnderlinedContent></h2> },
         { id: 2, item: <h3><UnderlinedContent>Ce texte est completement souligné</UnderlinedContent></h3> },
     ], [])
+
 
     return <Container inline className={styles.container}>
         <Banner breadCrumb={breadCrumb}>
@@ -381,6 +390,17 @@ const UiExample = () => {
                 <h2>Base carte :</h2>
 
                 <Card />
+            </Container>
+
+            <Container inline className={styles.section}>
+                <h2>Point :</h2>
+
+                <List
+                    collection={exampleDots}
+                    renderItem={({ id: _, ...attr }) => {
+                        return <Dot {...attr} />
+                    }}
+                />
             </Container>
 
             <Container inline className={styles.section}>
