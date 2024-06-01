@@ -44,6 +44,16 @@
                 color: var(--color-main);
                 margin: 50px 0px 25px 0px;
             }
+
+            .rightText{
+                display: flex;
+                justify-content: space-between;
+                padding: 4% 0%;
+
+                p:last-child{
+                    color: var(--color-main);
+                }
+            }
         }
     }
 }

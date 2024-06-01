@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import apiClient from "../../api/ApiClient";
 import { CiCircleCheck } from "react-icons/ci";
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale'; // Importer la locale française
 
 import styles from './Offer.module.scss';
 import Banner from "../../components/layout/Banner";
@@ -50,6 +52,8 @@ const Offer = () => {
 
     const missions = offer.missions.map(mission => mission.description);
     const profils = offer.profils.map(profil => profil.description);
+    const availableAt = format(new Date(offer.availableAt), "dd MMMM yyyy", { locale: fr });
+    const createdAt = format(new Date(offer.createdAt), "dd MMMM yyyy", { locale: fr });
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
@@ -86,9 +90,34 @@ const Offer = () => {
             </div>
             <div className={styles.pageContentRight}>
                 <h3>Échéances</h3>
-                <div>
+                <div className={styles.rightText}>
                     <p>Postuler avant le</p>
-                    <p>{offer.availableAt}</p>
+                    <p>{availableAt}</p>
+                </div>
+                <div className={styles.rightText}>
+                    <p>Offre publié le</p>
+                    <p>{createdAt}</p>
+                </div>
+                <div className={styles.rightText}>
+                    <p>Type d'offre</p>
+                    {offer?.internship ? (
+                        <p>Stage</p>
+                    ) : (
+                        <p>Alternance</p>
+                    )}
+                </div>
+                <div className={styles.rightText}>
+                    <p>Gratification</p>
+                    {offer?.payed ? (
+                        <p>Obligatoire</p>
+                    ) : (
+                        <p>Non obligatoire</p>
+                    )}
+                </div>
+                <div className={styles.rightText}>
+                    <p>Candidatures déposées</p>
+                    {/* a faire */}
+                    <p>1</p>
                 </div>
             </div>
         </Container>
