@@ -93,21 +93,48 @@
     .pageCompany{
         margin: 5% 0%;
         display: flex;
+        justify-content: space-between;
+        width: 100%;
 
-        p{
-            padding: 15% 0%;
+        .pageCompanyLeft{
+            p{
+                padding: 15% 0%;
+            }
+    
+            a{
+                color: var(--color-main);
+                font-weight: bold;
+                position: relative;
+    
+                span {
+                    position: absolute;
+                    margin-left: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
         }
 
-        a{
-            color: var(--color-main);
-            font-weight: bold;
-            position: relative;
+        .pageCompanyRight{
+            width: 50%;
+            display: flex;
+            justify-content: space-around;
 
-            span {
-                position: absolute;
-                margin-left: 15px;
-                top: 50%;
-                transform: translateY(-50%);
+            .left{
+                width: 30%;
+            }
+
+            .right{
+                .map{
+                    height: 300px;
+                    width: 300px;
+                    background-color: var(--color-dark);
+                    margin-block: 5px;
+                    color: var(--color-light);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
         }
     }

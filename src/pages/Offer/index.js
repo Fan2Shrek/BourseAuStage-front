@@ -167,7 +167,14 @@ const Offer = () => {
                     <a href={`/entreprises/${offer.company.id}`}>En savoir plus sur {offer.company.name}<span><FaArrowRightLong /></span></a>
                 </div>
                 <div className={styles.pageCompanyRight}>
-                    
+                    <div className={styles.left}>
+                        <p>j</p>
+                    </div>
+                    <div className={styles.right}>
+                        <div className={styles.map}>
+                            MAP
+                        </div>
+                    </div>
                 </div>
             </div>
         </Container>
