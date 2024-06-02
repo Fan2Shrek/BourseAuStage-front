@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./Companies.module.scss";
 import tokens from "../../translations/tokens";
 import path from "../../path";
-import { alphabeticalSortAZ, alphabeticalSortZA } from "../../api/sortings";
+import { AscSort, DescSort } from "../../api/sortings";
 import { notNull } from "../../api/filters";
 import UnderlinedContent from "../../components/ui/atoms/UnderlinedText";
 import Banner from "../../components/layout/Banner";
@@ -52,13 +52,13 @@ const Companies = () => {
                     notNull({ property: 'deletedAt' }),
                 ]}
                 sortings={[
-                    alphabeticalSortAZ({
+                    AscSort({
                         name: 'alphabetical-AZ-companyName',
                         property: 'name',
                         propertyTranslation: t(tokens.entities.company.name),
                         clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortAZ),
                     }),
-                    alphabeticalSortZA({
+                    DescSort({
                         name: 'alphabetical-ZA-companyName',
                         property: 'name',
                         propertyTranslation: t(tokens.entities.company.name),

@@ -103,6 +103,11 @@ export const DefaultTheme = () => {
          * HOME
          */
         setProperty('--home-last-request-section-color', 'var(--color-third)');
+
+        /**
+         * COMPANY
+         */
+        setProperty('--company-related-offers-section-color', 'var(--color-third)');
     }, [])
 
     return <></>

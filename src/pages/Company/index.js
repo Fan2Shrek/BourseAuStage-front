@@ -18,6 +18,9 @@ import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
 import IconBadge from "../../components/ui/atoms/IconBadge";
 import Banner from "../../components/layout/Banner";
+import OfferTypeEnum from "../../enum/OfferTypeEnum";
+import OfferCard from "../../components/offer/OfferCard";
+import List from "../../components/ui/atoms/List";
 
 const socialsLinks = {
     'linkedInLink': <CiLinkedin />,
@@ -31,6 +34,8 @@ const Company = () => {
     const [company, setCompany] = useState(null);
     const [companyPictures, setCompanyPictures] = useState([]);
     const [collaborators, setCollaborators] = useState([]);
+    const [internshipOffers, setInternshipOffers] = useState([]);
+    const [workStudyOffers, setWorkStudyOffers] = useState([]);
     const { t } = useTranslation();
 
     const breadCrumb = useMemo(() => [
@@ -75,7 +80,25 @@ const Company = () => {
 
                 setCollaborators(response['hydra:member']);
             })
-        }, [id]);
+    }, [id]);
+
+    useEffect(() => {
+        if (!company) {
+            return;
+        }
+
+        apiClient.company.getOffers(company.id)
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                const offers = response['hydra:member'] ?? []
+
+                setInternshipOffers(offers.filter(offer => offer.internship))
+                setWorkStudyOffers(offers.filter(offer => !offer.internship))
+            })
+    }, [company]);
 
     if (!company) {
         return <></>
@@ -168,7 +191,7 @@ const Company = () => {
                     <p className={styles.name}>{t(tokens.page.companyDetails.phone)}: {company.phone}</p>
                     <p>{company.openingTime}</p>
                 </div>
-                <div className={styles.contacts}>
+                {collaborators.length > 1 && <div className={styles.contacts}>
                     <h2>{t(tokens.page.companyDetails.contacts)}</h2>
                     {collaborators.map((collaborator) =>
                         <div className={styles.contactPerson}>
@@ -176,9 +199,44 @@ const Company = () => {
                             <p>{`${collaborator.firstName} ${collaborator.lastName}`}</p>
                         </div>
                     )}
-                </div>
+                </div>}
             </div>
         </Container>
+
+        {internshipOffers.length + workStudyOffers.length > 0 && <Container
+            cornerTop
+            inline
+            className={styles.relatedOffers}
+        >
+            <Container>
+                {internshipOffers.length > 0 && <div className={styles.internships}>
+                    <h2>{t(tokens.page.companyDetails.relatedOffers.internship)}</h2>
+                    <List
+                        collection={internshipOffers}
+                        renderItem={offer => <OfferCard
+                            offer={offer}
+                            type={OfferTypeEnum.INTERNSHIP}
+                            withDates
+                            withDescription
+                            withActivities
+                        />}
+                    />
+                </div>}
+                {workStudyOffers.length > 0 && <div className={styles.workStudies}>
+                    <h2>{t(tokens.page.companyDetails.relatedOffers.workStudy)}</h2>
+                    <List
+                        collection={workStudyOffers}
+                        renderItem={offer => <OfferCard
+                            offer={offer}
+                            type={OfferTypeEnum.WORKSTUDY}
+                            withDates
+                            withDescription
+                            withActivities
+                        />}
+                    />
+                </div>}
+            </Container>
+        </Container>}
     </div>
 }
 

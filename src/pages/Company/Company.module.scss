@@ -148,4 +148,22 @@
             }
         }
     }
+
+    .relatedOffers {
+        padding-block: 72px;
+        background-color: var(--company-related-offers-section-color);
+
+        :global {
+            .list {
+                gap: 10px 2%;
+                margin-block: 20px;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                .list__element {
+                    width: 23%;
+                }
+            }
+        }
+    }
 }
