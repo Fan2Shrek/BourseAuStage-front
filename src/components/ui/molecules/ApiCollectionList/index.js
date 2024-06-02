@@ -32,20 +32,6 @@ const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = ''
         }
 
         if (options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN)) {
-            values.map(value => {
-                const [min, max] = value.split('-')
-
-                let query = ''
-
-                if (!max) {
-                    query = `${encodeURI(facet)}[gt]=${min}`
-                } else {
-                    query = `&${encodeURI(facet)}[gt]=${min}&${encodeURI(facet)}[lt]=${max}`
-                }
-
-                // A FAIRE
-            });
-
             const [min, max] = values.reduce((acc, value) => {
                 const [min, max] = value.split('-')
 
