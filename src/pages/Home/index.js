@@ -119,8 +119,10 @@ const Home = () => {
                     secondary
                     inverted
                     withoutBorder
+                    transparent
                     icon={<FaArrowRight />}
                     rightIcon
+                    redirectTo={path.internship}
                     className={styles.cta}
                 />
             </div>
@@ -153,6 +155,7 @@ const Home = () => {
                         secondary
                         inverted
                         withoutBorder
+                        transparent
                         icon={<FaArrowRight />}
                         rightIcon
                         className={styles.cta}

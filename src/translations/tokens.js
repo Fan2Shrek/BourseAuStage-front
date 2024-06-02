@@ -200,6 +200,10 @@ const tokens = {
             profileJob: "page.offerDetails.profileJob",
             skills: "page.offerDetails.skills",
             more: "page.offerDetails.more",
+            cta: "page.offerDetails.request",
+            images: {
+                alt: "page.companyDetails.images.alt"
+            }
         },
         offers: {
             internship: {
