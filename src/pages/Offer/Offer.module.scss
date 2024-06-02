@@ -1,4 +1,8 @@
-.offer{
+.offer {
+    .card {
+        width: 100%;
+    }
+
     .pageContent {
         display: flex;
         gap: 5%;
@@ -9,32 +13,37 @@
 
             h2 {
                 margin: 50px 0px 25px 0px;
-                color: #25324B;
             }
 
             p {
                 margin-top: 20px;
-                color: #515B6F;
             }
 
-            ul {
-                li {
-                    margin-top: 10px;
+            :global {
+                display: flex;
+                flex-direction: column;
+
+                .list__element {
+                    width: 100%;
+                    display: flex;
+                    gap: 10px;
 
                     svg {
                         color: var(--color-success);
-                        height: 14px;
-                        width: 14px;
-                        margin-right: 1%;
+                        min-width: 20px;
+                        height: 20px;
                     }
 
+                    p {
+                        margin-top: 4px;
+                    }
                 }
             }
 
             .link {
                 margin-top: 6%;
-                padding-left: 5%;
-                padding-right: 5%;
+                width: 190px;
+                padding: 14px 56px;
             }
         }
 
@@ -46,12 +55,12 @@
                 margin: 50px 0px 25px 0px;
             }
 
-            .progress{
+            .progress {
                 background-color: var(--color-third);
                 padding: 16px;
                 margin-bottom: 6%;
 
-                p{
+                p {
                     font-weight: bold;
                     padding-bottom: 5%;
                 }
@@ -72,14 +81,17 @@
                 padding: 5% 0%;
             }
 
-            ul {
-                li {
-                    display: inline-block;
-                    margin: 2%;
-                }
+            .tagList {
+                :global {
+                    .list {
+                        justify-content: flex-start;
+                        gap: 10px;
+                        margin-block: 0;
 
-                li:first-child {
-                    margin-left: 0%;
+                        .list__element {
+                            width: auto;
+                        }
+                    }
                 }
             }
         }
@@ -98,45 +110,61 @@
 
         .pageCompanyLeft {
             width: 50%;
-            
+
             p {
                 padding: 5% 1% 5% 0%;
             }
-    
-            a {
-                color: var(--color-main);
-                font-weight: bold;
-                position: relative;
-    
-                span {
-                    position: absolute;
-                    margin-left: 15px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
+
+            img {
+                width: auto;
+                max-width: 70%;
+                max-height: 150px;
+            }
+
+            .cta {
+                padding: 0;
             }
         }
 
         .pageCompanyRight {
-            display: flex;
-            justify-content: space-around;
             width: 50%;
+            display: grid;
+            grid-template-columns: 150px 2fr;
+            grid-template-rows: 300px;
+            grid-gap: 10px;
+            padding-left: 50px;
 
-            .left {
-                width: 30%;
+            :global {
+                .list {
+                    grid-column: 1;
+                    display: grid;
+                    grid-gap: 10px;
+                    grid-template-rows: repeat(3, 1fr);
+
+                    .list__element {
+                        grid-column: 1;
+                        width: 150px;
+                        height: 100%;
+                        position: relative;
+                        overflow: hidden;
+
+                        img {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                    }
+                }
             }
 
-            .right {
-                .map {
-                    height: 300px;
-                    width: 300px;
-                    background-color: var(--color-dark);
-                    margin-block: 5px;
-                    color: var(--color-light);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
+            .map {
+                grid-column: 2;
+                background-color: var(--base-color-neutral);
+                color: var(--base-color-neutral-inverted);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }

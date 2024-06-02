@@ -108,10 +108,9 @@
 
                 .map {
                     height: 300px;
-                    width: 300px;
-                    background-color: var(--color-dark);
+                    background-color: var(--base-color-neutral);
                     margin-block: 5px;
-                    color: var(--color-light);
+                    color: var(--base-color-neutral-inverted);
                     display: flex;
                     justify-content: center;
                     align-items: center;

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { GrShareOption } from "react-icons/gr";
 import { differenceInDays } from 'date-fns'
 
@@ -29,6 +29,10 @@ const RowCard = ({
         new Date()
     ) + 1, [offer])
 
+    const handleShare = useCallback(() => {
+        navigator.clipboard.writeText(window.location.href);
+    }, [offer])
+
     return <Card className={cn(styles.card, styles.row, className)}>
         <div className={cn(styles.infos, {
             [styles.centeredLogo]: withCenteredLogo
@@ -38,7 +42,9 @@ const RowCard = ({
             </div>
             <div className={styles.mainInfos}>
                 {withMainTitle ? <h1>{offer.name}</h1> : <h3>{offer.name}</h3>}
-                <div className={styles.dotLine}>
+                <div className={cn(styles.dotLine, {
+                    [styles.mainTitle]: withMainTitle
+                })}>
                     <p className={styles.companyName}>{offer.company.name}</p>
                     <Dot size={4} />
                     <p>{offer.company.city}</p>
@@ -75,7 +81,7 @@ const RowCard = ({
         <div className={styles.actions}>
             {withShare && <>
                 <div className={styles.share}>
-                    <GrShareOption />
+                    <GrShareOption onClick={handleShare} />
                 </div>
                 <div className={styles.divider}></div>
             </>}
