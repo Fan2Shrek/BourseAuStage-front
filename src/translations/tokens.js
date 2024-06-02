@@ -166,6 +166,25 @@ const tokens = {
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
             presentationWork: "page.offerDetails.presentationWork",
+            mission: "page.offerDetails.mission",
+            profile: "page.offerDetails.profile",
+            deadlines: "page.offerDetails.deadlines",
+            progress: {
+                singular: "card.offer.progress.singular",
+                plural: "card.offer.progress.plural",
+            },
+            availableAt: "page.offerDetails.availableAt",
+            createdAt: "page.offerDetails.createdAt",
+            typeOffer: "page.offerDetails.typeOffer",
+            internship: "page.offerDetails.internship",
+            workStudy: "page.offerDetails.workStudy",
+            payed: "page.offerDetails.payed",
+            isPayed: "page.offerDetails.isPayed",
+            isNotPayed: "page.offerDetails.isNotPayed",
+            submitted: "page.offerDetails.submitted",
+            profileJob: "page.offerDetails.profileJob",
+            skills: "page.offerDetails.skills",
+            more: "page.offerDetails.more",
         },
         offers: {
             internship: {

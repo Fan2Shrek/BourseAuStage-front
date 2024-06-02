@@ -80,7 +80,7 @@ const Offer = () => {
                         <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
                     )}
                     <p>{offer.description}</p>
-                    <h2>Missions</h2>
+                    <h2>{t(tokens.page.offerDetails.mission)}</h2>
                     <ul>
                         {missions.map((description, index) => (
                             <li key={index}>
@@ -89,7 +89,7 @@ const Offer = () => {
                             </li>
                         ))}
                     </ul>
-                    <h2>Profil recherché</h2>
+                    <h2>{t(tokens.page.offerDetails.profile)}</h2>
                     <ul>
                         {profils.map((description, index) => (
                             <li key={index}>
@@ -102,42 +102,44 @@ const Offer = () => {
                     <Button className={styles.link} label='Postuler' redirectTo='' />
                 </div>
                 <div className={styles.pageContentRight}>
-                    <h3>Échéances</h3>
+                    <h3>{t(tokens.page.offerDetails.deadlines)}</h3>
                     <div className={styles.progress}>
-                        <p>Reste {remainingDays} jours pour postuler</p>
+                        <p>{t(tokens.page.offerDetails.progress[remainingDays > 1 ? 'plural' : 'singular'], {
+                            remainingDays
+                        })}</p>
                         <ProgressBar value={progress} />
                     </div>
                     <div className={styles.rightText}>
-                        <p>Postuler avant le</p>
+                        <p>{t(tokens.page.offerDetails.availableAt)}</p>
                         <p>{availableAt}</p>
                     </div>
                     <div className={styles.rightText}>
-                        <p>Offre publié le</p>
+                        <p>{t(tokens.page.offerDetails.createdAt)}</p>
                         <p>{createdAt}</p>
                     </div>
                     <div className={styles.rightText}>
-                        <p>Type d'offre</p>
+                        <p>{t(tokens.page.offerDetails.typeOffer)}</p>
                         {offer?.internship ? (
-                            <p>Stage</p>
+                            <p>{t(tokens.page.offerDetails.internship)}</p>
                         ) : (
-                            <p>Alternance</p>
+                            <p>{t(tokens.page.offerDetails.workStudy)}</p>
                         )}
                     </div>
                     <div className={styles.rightText}>
-                        <p>Gratification</p>
+                        <p>{t(tokens.page.offerDetails.payed)}</p>
                         {offer?.payed ? (
-                            <p>Obligatoire</p>
+                            <p>{t(tokens.page.offerDetails.isPayed)}</p>
                         ) : (
-                            <p>Non obligatoire</p>
+                            <p>{t(tokens.page.offerDetails.isNotPayed)}</p>
                         )}
                     </div>
                     <div className={styles.rightText}>
-                        <p>Candidatures déposées</p>
+                        <p>{t(tokens.page.offerDetails.submitted)}</p>
                         {/* a faire */}
                         <p>1</p>
                     </div>
                     <div className={styles.border}></div>
-                    <h3>Profils métiers</h3>
+                    <h3>{t(tokens.page.offerDetails.profileJob)}</h3>
                     <ul>
                         {activities.map((activity, index) => (
                             <li key={index}>
@@ -146,11 +148,11 @@ const Offer = () => {
                         ))}
                     </ul>
                     <div className={styles.border}></div>
-                    <h3>Compétences recherchées</h3>
+                    <h3>{t(tokens.page.offerDetails.skills)}</h3>
                     <ul>
                         {skills.map((name, index) => (
                             <li key={index}>
-                                <Tag label={name} color={'#4640DE'} secondary radius={0} />
+                                <Tag label={name} secondary radius={0} />
                             </li>
                         ))}
                     </ul>
@@ -161,7 +163,7 @@ const Offer = () => {
                 <div className={styles.pageCompanyLeft}>
                     <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
                     <p>{offer.company.presentation}</p>
-                    <a href={`/entreprises/${offer.company.id}`}>En savoir plus sur {offer.company.name}<span><FaArrowRightLong /></span></a>
+                    <a href={`/entreprises/${offer.company.id}`}>{t(tokens.page.offerDetails.more)} {offer.company.name}<span><FaArrowRightLong /></span></a>
                 </div>
                 <div className={styles.pageCompanyRight}>
                     <div className={styles.left}>
