@@ -150,7 +150,7 @@ const Offer = () => {
                     <ul>
                         {skills.map((name, index) => (
                             <li key={index}>
-                                <Tag label={name} color={'#4640DE'} secondary radius={0} />
+                                <Tag label={name} secondary radius={0} />
                             </li>
                         ))}
                     </ul>
