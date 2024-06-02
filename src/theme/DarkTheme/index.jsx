@@ -26,6 +26,11 @@ export const Darktheme = () => {
          * HOME
          */
         setProperty('--home-last-request-section-color', 'transparent');
+
+        /**
+        * COMPANY
+        */
+        setProperty('--company-related-offers-section-color', 'transparent');
     }, [])
 
     return <></>

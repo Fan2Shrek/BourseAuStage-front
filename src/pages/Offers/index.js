@@ -11,7 +11,7 @@ import UnderlinedContent from "../../components/ui/atoms/UnderlinedText";
 import Container from "../../components/ui/atoms/Container";
 import ApiCollectionList from "../../components/ui/molecules/ApiCollectionList";
 import OfferCard from "../../components/offer/OfferCard";
-import { alphabeticalSortAZ, alphabeticalSortZA } from "../../api/sortings";
+import { AscSort, DescSort } from "../../api/sortings";
 import { futureDate, notNull, offerType } from "../../api/filters";
 
 const Offers = ({ type }) => {
@@ -59,20 +59,44 @@ const Offers = ({ type }) => {
                     futureDate({ property: 'availableAt' }),
                 ]}
                 sortings={[
-                    alphabeticalSortAZ({
+                    AscSort({
+                        name: 'date-ASC-creation',
+                        property: 'createAt',
+                        propertyTranslation: t(tokens.entities.offer.createdAt),
+                        clarificationTranslation: t(tokens.sortings.clarifications.dateASC),
+                    }),
+                    DescSort({
+                        name: 'date-DESC-creation',
+                        property: 'createAt',
+                        propertyTranslation: t(tokens.entities.offer.createdAt),
+                        clarificationTranslation: t(tokens.sortings.clarifications.dateDESC),
+                    }),
+                    AscSort({
                         name: 'alphabetical-AZ-offerName',
                         property: 'name',
                         propertyTranslation: t(tokens.entities.offer.name),
                         clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortAZ),
                     }),
-                    alphabeticalSortZA({
+                    DescSort({
                         name: 'alphabetical-ZA-offerName',
                         property: 'name',
                         propertyTranslation: t(tokens.entities.offer.name),
                         clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortZA),
                     }),
+                    AscSort({
+                        name: 'date-ASC-available',
+                        property: 'availableAt',
+                        propertyTranslation: t(tokens.entities.offer.availableAt),
+                        clarificationTranslation: t(tokens.sortings.clarifications.dateASC),
+                    }),
+                    DescSort({
+                        name: 'date-DESC-available',
+                        property: 'availableAt',
+                        propertyTranslation: t(tokens.entities.offer.availableAt),
+                        clarificationTranslation: t(tokens.sortings.clarifications.dateDESC),
+                    }),
                 ]}
-                defaultSort={'alphabetical-AZ-offerName'}
+                defaultSort={'date-ASC-creation'}
                 renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
                     <OfferCard
                         offer={offer}

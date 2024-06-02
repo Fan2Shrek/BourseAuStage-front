@@ -4,7 +4,9 @@ const tokens = {
             name: "entities.company.name"
         },
         offer: {
-            name: "entities.offer.name"
+            name: "entities.offer.name",
+            createdAt: "entities.offer.createdAt",
+            availableAt: "entities.offer.availableAt",
         }
     },
     apiCollectionList: {
@@ -169,7 +171,11 @@ const tokens = {
             phone: "page.companyDetails.phone",
             images: {
                 alt: "page.companyDetails.images.alt"
-            }
+            },
+            relatedOffers: {
+                internship: "page.companyDetails.relatedOffers.internship",
+                workStudy: "page.companyDetails.relatedOffers.workStudy",
+            },
         },
         companies: {
             title: "page.companies.title",
@@ -234,6 +240,8 @@ const tokens = {
         clarifications: {
             alphabeticalSortAZ: "sortings.clarifications.alphabeticalSortAZ",
             alphabeticalSortZA: "sortings.clarifications.alphabeticalSortZA",
+            dateASC: "sortings.clarifications.dateASC",
+            dateDESC: "sortings.clarifications.dateDESC",
         },
     },
 }

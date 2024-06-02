@@ -27,7 +27,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 8px;
 
             .companyPresentation {
                 display: flex;
@@ -47,6 +47,7 @@
                 text-overflow: ellipsis;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
+                margin-top: 10px;
             }
         }
 
