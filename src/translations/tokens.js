@@ -43,6 +43,12 @@ const tokens = {
                 },
             },
         },
+        request: {
+            studentLine: "card.request.studentLine",
+            internship: "card.request.internship",
+            workStudy: "card.request.workStudy",
+            dates: "card.request.dates",
+        },
     },
     facets: {
         label: {
@@ -143,7 +149,12 @@ const tokens = {
             lastOffers: {
                 title: "page.home.lastOffers.title",
                 cta: "page.home.lastOffers.cta",
-            }
+            },
+            lastRequests: {
+                title: "page.home.lastRequests.title",
+                cta: "page.home.lastRequests.cta",
+                studentLine: "page.home.lastRequests.studentLine",
+            },
         },
         companyDetails: {
             activity: "page.companyDetails.activity",

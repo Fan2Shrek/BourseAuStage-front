@@ -21,6 +21,11 @@ export const Darktheme = () => {
          * BANNER
          */
         setProperty('--banner-color', 'var(--color-dark)');
+
+        /**
+         * HOME
+         */
+        setProperty('--home-last-request-section-color', 'transparent');
     }, [])
 
     return <></>

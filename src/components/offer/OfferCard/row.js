@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { GrShareOption } from "react-icons/gr";
 import { differenceInDays } from 'date-fns'
 
@@ -12,7 +13,6 @@ import Dot from '../../ui/atoms/Dot'
 import tokens from '../../../translations/tokens'
 import Button from "../../ui/atoms/Button";
 import ProgressBar from "../../ui/atoms/ProgressBar";
-import { useMemo } from "react";
 
 const RowCard = ({
     payed = false,
@@ -44,7 +44,7 @@ const RowCard = ({
                     <p className={styles.dates}>{t(tokens.card.offer.dates.row, {
                         start: (new Date(offer.start)).toLocaleDateString(),
                         end: (new Date(offer.end)).toLocaleDateString(),
-                        duration: differenceInDays(new Date(offer.end), new Date(offer.start)),
+                        duration: differenceInDays(new Date(offer.end), new Date(offer.start) + 1),
                         interpolation: { escapeValue: false }
                     })}</p>
                     {payed && <div className={styles.payed}><Dot size={10} />{t(tokens.card.offer.payed)}</div>}

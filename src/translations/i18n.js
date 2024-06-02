@@ -15,5 +15,8 @@ i18next
             en: {
                 translation: en
             },
+        },
+        interpolation: {
+            escapeValue: false
         }
     })
