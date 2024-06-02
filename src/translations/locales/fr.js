@@ -63,6 +63,7 @@ const fr = {
     [tokens.page.companyDetails.relatedOffers.workStudy]: "Offres en alternance proposées",
     [tokens.page.companies.title]: "Liste des entreprises",
     [tokens.page.companies.description]: "Découvrez les entreprises qui proposent des offres de stage ou d’alternance",
+    [tokens.page.companies.apiCollectionList.foundLabel]: "entreprise(s) trouvée(s)",
     [tokens.page.offers.internship.title]: "Offres de stage",
     [tokens.page.offers.internship.apiCollectionList.foundLabel]: "offre(s) de stage trouvée(s)",
     [tokens.page.offers.workStudy.title]: "Offres d'alternance",

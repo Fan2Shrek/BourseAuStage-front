@@ -182,6 +182,9 @@ const tokens = {
         companies: {
             title: "page.companies.title",
             description: "page.companies.description",
+            apiCollectionList: {
+                foundLabel: "page.companies.apiCollectionList.foundLabel",
+            },
         },
         apply: {
             duration: "page.apply.duration",
@@ -227,9 +230,6 @@ const tokens = {
             coverLetterRequirements: "page.apply.coverLetterRequirements",
             otherField: "page.apply.otherField",
             otherRequirements: "page.apply.otherRequirements",
-            apiCollectionList: {
-                foundLabel: "page.companies.apiCollectionList.foundLabel",
-            }
         },
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
