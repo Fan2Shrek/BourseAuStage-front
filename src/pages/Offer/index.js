@@ -4,23 +4,25 @@ import { useTranslation } from "react-i18next";
 import { CiCircleCheck } from "react-icons/ci";
 import { format, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa";
 
 import styles from './Offer.module.scss';
 import apiClient from "../../api/ApiClient";
 import getPicturePath from "../../utils/getPicturePath";
-import Banner from "../../components/layout/Banner";
 import path from "../../path";
 import tokens from "../../translations/tokens";
+import Banner from "../../components/layout/Banner";
 import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
 import Tag from '../../components/ui/atoms/Tag';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
+import OfferCard from "../../components/offer/OfferCard";
+import List from "../../components/ui/atoms/List";
 
 const Offer = () => {
-
-    const { id } = useParams();
     const [offer, setOffer] = useState(null);
+    const [companyPictures, setCompanyPictures] = useState([]);
+    const { id } = useParams();
     const { t } = useTranslation();
 
     const breadCrumb = useMemo(() => [
@@ -53,14 +55,25 @@ const Offer = () => {
             })
     }, [id]);
 
+    useEffect(() => {
+        if (!offer) {
+            return
+        }
+
+        apiClient.company.getPictures(offer.company.id)
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                setCompanyPictures(response['hydra:member']);
+            })
+    }, [offer]);
+
     if (!offer) {
         return <></>
     }
 
-    const missions = offer.missions.map(mission => mission.description);
-    const profils = offer.profils.map(profil => profil.description);
-    const activities = (offer.activities);
-    const skills = offer.searchSkills.map(skill => skill.name);
     const availableAt = format(new Date(offer.availableAt), "dd MMMM yyyy", { locale: fr });
     const createdAt = format(new Date(offer.createdAt), "dd MMMM yyyy", { locale: fr });
 
@@ -70,6 +83,13 @@ const Offer = () => {
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
+            <OfferCard
+                offer={offer}
+                row
+                withMainTitle
+                withShare
+                className={styles.card}
+            />
         </Banner>
         <Container >
             <div className={styles.pageContent}>
@@ -81,25 +101,23 @@ const Offer = () => {
                     )}
                     <p>{offer.description}</p>
                     <h2>{t(tokens.page.offerDetails.mission)}</h2>
-                    <ul>
-                        {missions.map((description, index) => (
-                            <li key={index}>
-                                <CiCircleCheck />
-                                {description}
-                            </li>
-                        ))}
-                    </ul>
+                    <List
+                        collection={offer.missions}
+                        renderItem={({ description }) => <>
+                            <CiCircleCheck />
+                            <p>{description}</p>
+                        </>}
+                    />
                     <h2>{t(tokens.page.offerDetails.profile)}</h2>
-                    <ul>
-                        {profils.map((description, index) => (
-                            <li key={index}>
-                                <CiCircleCheck />
-                                {description}
-                            </li>
-                        ))}
-                    </ul>
+                    <List
+                        collection={offer.profils}
+                        renderItem={({ description }) => <>
+                            <CiCircleCheck />
+                            <p>{description}</p>
+                        </>}
+                    />
                     {/* redirection à faire */}
-                    <Button className={styles.link} label='Postuler' redirectTo='' />
+                    <Button className={styles.link} label={t(tokens.page.offerDetails.cta)} redirectTo='' />
                 </div>
                 <div className={styles.pageContentRight}>
                     <h3>{t(tokens.page.offerDetails.deadlines)}</h3>
@@ -140,22 +158,28 @@ const Offer = () => {
                     </div>
                     <div className={styles.border}></div>
                     <h3>{t(tokens.page.offerDetails.profileJob)}</h3>
-                    <ul>
-                        {activities.map((activity, index) => (
-                            <li key={index}>
-                                <Tag label={activity.name} color={activity.color} secondary />
-                            </li>
-                        ))}
-                    </ul>
+                    <div className={styles.tagList}>
+                        <List
+                            collection={offer.activities}
+                            renderItem={({ name, color }) => <Tag
+                                label={name}
+                                color={color}
+                                secondary
+                            />}
+                        />
+                    </div>
                     <div className={styles.border}></div>
                     <h3>{t(tokens.page.offerDetails.skills)}</h3>
-                    <ul>
-                        {skills.map((name, index) => (
-                            <li key={index}>
-                                <Tag label={name} secondary radius={0} />
-                            </li>
-                        ))}
-                    </ul>
+                    <div className={styles.tagList}>
+                        <List
+                            collection={offer.searchSkills}
+                            renderItem={({ name }) => <Tag
+                                label={name}
+                                redius={0}
+                                secondary
+                            />}
+                        />
+                    </div>
                 </div>
             </div>
             <div className={styles.separate}></div>
@@ -163,16 +187,27 @@ const Offer = () => {
                 <div className={styles.pageCompanyLeft}>
                     <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
                     <p>{offer.company.presentation}</p>
-                    <a href={`/entreprises/${offer.company.id}`}>{t(tokens.page.offerDetails.more)} {offer.company.name}<span><FaArrowRightLong /></span></a>
+                    <Button
+                        label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
+                        redirectTo={path.company.replace(':id', `${offer.company.id}`)}
+                        inverted
+                        withoutBorder
+                        icon={<FaArrowRight />}
+                        rightIcon
+                        className={styles.cta}
+                    />
                 </div>
                 <div className={styles.pageCompanyRight}>
-                    <div className={styles.left}>
-                        {/* photos company */}
-                    </div>
-                    <div className={styles.right}>
-                        <div className={styles.map}>
-                            MAP
-                        </div>
+                    <List
+                        collection={companyPictures}
+                        renderItem={picture => <img
+                            src={getPicturePath(picture.path)}
+                            alt={t(tokens.page.companyDetails.images.alt, { company: offer.company.name })}
+                            className={styles.picture}
+                        />}
+                    />
+                    <div className={styles.map}>
+                        MAP
                     </div>
                 </div>
             </div>

@@ -92,6 +92,7 @@
 
                 h1 {
                     font-size: 38px;
+                    margin: 0;
                 }
 
                 .dotLine {
@@ -99,6 +100,10 @@
                     flex-wrap: wrap;
                     align-items: center;
                     gap: 8px;
+
+                    &.mainTitle {
+                        font-size: 20px;
+                    }
 
                     .companyName {
                         font-weight: bold;
@@ -160,6 +165,7 @@
                 font-size: 32px;
                 color: var(--color-middle-grey);
                 height: 32px;
+                cursor: pointer;
             }
 
             .divider {

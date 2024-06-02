@@ -46,9 +46,9 @@ const Navbar = () => {
                 { name: t(tokens.navbar['workStudy']), type: 'classic', url: path.workStudy },
             ]
         },
-        { name: t(tokens.navbar['requests']), type: 'classic', url: '/' },
+        { name: t(tokens.navbar['requests']), type: 'classic', url: '#' },
         { name: t(tokens.navbar['companies']), type: 'classic', url: path.companies },
-        { name: t(tokens.navbar['students']), type: 'classic', url: '/' },
+        { name: t(tokens.navbar['students']), type: 'classic', url: '#' },
         { name: t(tokens.navbar['UI']), type: 'classic', url: path.uiExample },
     ], [t])
 
