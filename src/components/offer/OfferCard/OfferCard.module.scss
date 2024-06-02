@@ -33,6 +33,12 @@
                 display: flex;
                 align-items: center;
                 gap: 8px;
+
+                :global {
+                    .dot {
+                        min-width: 4px;
+                    }
+                }
             }
 
             .description {
@@ -52,7 +58,7 @@
                     margin-block: 0;
 
                     .list__element {
-                        width: auto;
+                        width: auto !important;
                     }
                 }
             }
@@ -95,18 +101,15 @@
                         font-weight: bold;
                     }
 
-                    .dottedText {
+                    .payed {
                         display: flex;
                         align-items: center;
                         gap: 8px;
+                        color: var(--color-danger);
 
-                        &.payed {
-                            color: var(--color-danger);
-
-                            :global {
-                                .dot {
-                                    background-color: var(--color-danger);
-                                }
+                        :global {
+                            .dot {
+                                background-color: var(--color-danger);
                             }
                         }
                     }

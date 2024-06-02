@@ -51,6 +51,14 @@
     .section {
         margin-block: 50px;
 
+        .secondary {
+            color: var(--color-secondary);
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+
         &.hero {
             margin-top: 0;
             position: relative;
@@ -85,14 +93,6 @@
 
                 .offers {
                     color: var(--color-middle-grey);
-
-                    .secondary {
-                        color: var(--color-secondary);
-                    }
-
-                    .bold {
-                        font-weight: 600;
-                    }
                 }
             }
 
@@ -170,6 +170,41 @@
                 width: 55%;
                 display: flex;
                 align-items: flex-end;
+            }
+        }
+
+        &.lastOffers {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+
+                .cta {
+                    font-weight: 600;
+                    padding: 0;
+                }
+            }
+
+            .offerList {
+                gap: 10px 2%;
+                margin-block: 20px;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                h3 {
+                    font-size: 24px;
+                }
+
+                :global {
+                    .list__element {
+                        width: 23%;
+                    }
+                }
             }
         }
     }

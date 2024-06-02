@@ -68,6 +68,8 @@ const fr = {
     [tokens.page.home.hero.offers]: "<secondary>{{internshipsNumber}}</secondary> offres de <bold>stages</bold> <bold>|</bold> <secondary>{{workStudiesNumber}}</secondary> offres <bold>d’alternance</bold> n’attendent que vous !",
     [tokens.page.home.highlightedCompanies.title]: "Entreprises à la une",
     [tokens.page.home.highlightedCompanies.image.alt]: "Logo de {{company}}",
+    [tokens.page.home.lastOffers.title]: "Dernières <secondary>offres</secondary>",
+    [tokens.page.home.lastOffers.cta]: "Toutes les offres",
     [tokens.page.home.incentive.title]: "Entreprises, déposez vos offres gratuitement",
     [tokens.page.home.incentive.text]: "Vous pourrez gérer votre planning d’accueil et bénéficier de nombreux services intégrés.",
     [tokens.page.home.incentive.cta]: "Créer votre compte",
