@@ -8,7 +8,7 @@
         }
     }
 
-    .card__content  {
+    .card__content {
         position: relative;
         display: flex;
         flex-direction: row;
@@ -60,7 +60,7 @@
                 border-radius: 50%;
             }
         }
-        
+
         .activities {
             display: flex;
             flex-direction: row;
@@ -85,7 +85,7 @@
     padding-block: 72px;
     display: flex;
     gap: 50px;
-    
+
     .divider {
         height: 2px;
         width: 100%;
@@ -108,6 +108,7 @@
             grid-gap: 10px;
             grid-auto-rows: minmax(100px, auto);
             grid-template-columns: repeat(6, 1fr);
+
 
             .c2 {
                 grid-column: span 2;
@@ -142,6 +143,32 @@
             font-weight: 600;
             color: var(--color-main);
         }
+
+        .avatarBlock {
+            display: flex;
+            gap: 10px;
+
+            .avatar {
+                min-width: 72px;
+                height: 72px;
+                background-color: var(--color-middle-grey);
+                border-radius: 50%;
+            }
+
+            .multiLine {
+                display: flex;
+                flex-direction: column;
+
+                .main {
+                    color: var(--color-main);
+                }
+
+                .grey {
+                    color: var(--color-middle-grey);
+                }
+            }
+        }
+
 
         p:not(.subtitle) {
             font-size: 16px;

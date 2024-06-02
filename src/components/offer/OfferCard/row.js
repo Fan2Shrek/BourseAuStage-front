@@ -5,6 +5,7 @@ import { differenceInDays } from 'date-fns'
 import styles from './OfferCard.module.scss'
 import cn from "../../../utils/classnames"
 import getPicturePath from '../../../utils/getPicturePath'
+import path from "../../../path";
 import OfferTypeEnum from '../../../enum/OfferTypeEnum'
 import Card from "../../ui/atoms/Card"
 import Tag from '../../ui/atoms/Tag'
@@ -86,7 +87,10 @@ const RowCard = ({
                 <div className={styles.divider}></div>
             </>}
             <div className={styles.cta}>
-                <Button label={t(tokens.card.offer.cta.button[withMainTitle ? 'main' : 'more'])} />
+                <Button
+                    label={t(tokens.card.offer.cta.button[withMainTitle ? 'main' : 'more'])}
+                    redirectTo={path.apply.replace(':id', offer.company.id)}
+                />
                 {withProgress && <div className={styles.progressBlock}>
                     <ProgressBar
                         width="100%"

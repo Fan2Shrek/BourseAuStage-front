@@ -189,7 +189,10 @@ const tokens = {
         apply: {
             duration: "page.apply.duration",
             title: "page.apply.title",
-            myPhoto: "page.apply.myPhoto",
+            myPhoto: {
+                label: "page.apply.myPhoto.label",
+                placeholder: "page.apply.myPhoto.placeholder",
+            },
             youAre: "page.apply.youAre",
             gender: "page.apply.gender",
             firstname: "page.apply.firstname",
@@ -224,12 +227,22 @@ const tokens = {
             documentsDescription: "page.apply.documentsDescription",
             experiences: "page.apply.experiences",
             experiencesDescription: "page.apply.experiencesDescription",
-            cvField: "page.apply.cv",
+            cvField: {
+                label: "page.apply.cvField.title",
+                placeholder: "page.apply.cvField.label",
+            },
             cvRequirements: "page.apply.cvRequirements",
-            coverLetterField: "page.apply.coverLetterField",
+            coverLetterField: {
+                label: "page.apply.coverLetterField.title",
+                placeholder: "page.apply.coverLetterField.label",
+            },
             coverLetterRequirements: "page.apply.coverLetterRequirements",
-            otherField: "page.apply.otherField",
+            otherField: {
+                label: "page.apply.otherField.label",
+                placeholder: "page.apply.otherField.placeholder",
+            },
             otherRequirements: "page.apply.otherRequirements",
+            motivations: "page.apply.motivations",
         },
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
