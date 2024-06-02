@@ -140,6 +140,10 @@ const tokens = {
                     alt: "page.home.highlightedCompanies.image.alt",
                 },
             },
+            lastOffers: {
+                title: "page.home.lastOffers.title",
+                cta: "page.home.lastOffers.cta",
+            }
         },
         companyDetails: {
             activity: "page.companyDetails.activity",

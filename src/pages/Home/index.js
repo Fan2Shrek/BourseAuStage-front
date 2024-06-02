@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { FaArrowRight } from "react-icons/fa6";
 
 import styles from './Home.module.scss'
 import cn from '../../utils/classnames'
@@ -11,9 +12,14 @@ import Container from '../../components/ui/atoms/Container';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
+import { Link } from 'react-router-dom';
+import OfferCard from '../../components/offer/OfferCard';
+import path from '../../path';
+import OfferTypeEnum from '../../enum/OfferTypeEnum';
 
 const Home = () => {
     const [highlightedCompanies, setHighlightedCompanies] = useState([])
+    const [lastOffers, setLastOffers] = useState([])
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -24,6 +30,15 @@ const Home = () => {
                 }
 
                 setHighlightedCompanies(response['hydra:member']);
+            })
+
+        apiClient.offer.getLastOffers()
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                setLastOffers(response['hydra:member']);
             })
     }, []);
 
@@ -80,6 +95,39 @@ const Home = () => {
                     alt="Dashboard"
                 />
             </div>
+        </Container>
+
+        <Container className={cn(styles.section, styles.lastOffers)}>
+            <div className={styles.header}>
+                <h2><Trans
+                    i18nKey={tokens.page.home.lastOffers.title}
+                    components={{ secondary: <span className={styles.secondary} /> }}
+                /></h2>
+                <Button
+                    label={t(tokens.page.home.lastOffers.cta)}
+                    secondary
+                    inverted
+                    withoutBorder
+                    icon={<FaArrowRight />}
+                    rightIcon
+                    className={styles.cta}
+                />
+            </div>
+
+            <List
+                collection={lastOffers}
+                renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
+                    <OfferCard
+                        offer={offer}
+                        type={offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY}
+                        withHeader
+                        withLocaltion
+                        withDescription
+                        withActivities
+                    />
+                </Link>}
+                className={styles.offerList}
+            />
         </Container>
     </Container>
 }

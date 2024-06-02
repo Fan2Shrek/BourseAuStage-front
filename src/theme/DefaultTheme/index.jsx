@@ -91,6 +91,13 @@ export const DefaultTheme = () => {
         setProperty('--modal-text-color', 'var(--color-dark)');
         setProperty('--modal-background-color', 'var(--color-dark-alpha)');
         setProperty('--modal-cross-color', 'var(--color-dark-grey)');
+
+        /**
+         * CARD
+         */
+        setProperty('--card-color', 'var(--color-light)');
+        setProperty('--card-text-color', 'var(--color-dark)');
+        setProperty('--card-border-color', 'var(--color-grey)');
     }, [])
 
     return <></>

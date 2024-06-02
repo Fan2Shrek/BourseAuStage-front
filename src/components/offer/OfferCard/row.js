@@ -38,17 +38,16 @@ const RowCard = ({
                 {withMainTitle ? <h1>{offer.name}</h1> : <h3>{offer.name}</h3>}
                 <div className={styles.dotLine}>
                     <p className={styles.companyName}>{offer.company.name}</p>
-                    <div className={styles.dottedText}><Dot size={4} />{offer.company.city}</div>
-                    <div className={cn(styles.dates, styles.dottedText)}>
-                        <Dot size={4} />
-                        {t(tokens.card.offer.dates.row, {
-                            start: (new Date(offer.start)).toLocaleDateString(),
-                            end: (new Date(offer.end)).toLocaleDateString(),
-                            duration: differenceInDays(new Date(offer.end), new Date(offer.start)),
-                            interpolation: { escapeValue: false }
-                        })}
-                    </div>
-                    <div className={cn(styles.payed, styles.dottedText)}><Dot size={10} />{t(tokens.card.offer.payed)}</div>
+                    <Dot size={4} />
+                    <p>{offer.company.city}</p>
+                    <Dot size={4} />
+                    <p className={styles.dates}>{t(tokens.card.offer.dates.row, {
+                        start: (new Date(offer.start)).toLocaleDateString(),
+                        end: (new Date(offer.end)).toLocaleDateString(),
+                        duration: differenceInDays(new Date(offer.end), new Date(offer.start)),
+                        interpolation: { escapeValue: false }
+                    })}</p>
+                    {payed && <div className={styles.payed}><Dot size={10} />{t(tokens.card.offer.payed)}</div>}
                 </div>
                 <div className={styles.tags}>
                     <div className={styles.type}>
