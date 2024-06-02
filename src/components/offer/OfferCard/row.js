@@ -16,6 +16,7 @@ import ProgressBar from "../../ui/atoms/ProgressBar";
 
 const RowCard = ({
     payed = false,
+    withCenteredLogo = false,
     withMainTitle = false,
     withShare = false,
     withProgress = false,
@@ -23,14 +24,15 @@ const RowCard = ({
     t,
     className,
 }) => {
-
     const remainingDays = useMemo(() => differenceInDays(
         new Date(offer.availableAt),
         new Date()
     ) + 1, [offer])
 
     return <Card className={cn(styles.card, styles.row, className)}>
-        <div className={styles.infos}>
+        <div className={cn(styles.infos, {
+            [styles.centeredLogo]: withCenteredLogo
+        })}>
             <div className={styles.logo}>
                 <img src={getPicturePath(offer.company.logoIcon)} alt='logo' />
             </div>

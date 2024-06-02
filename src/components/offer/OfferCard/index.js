@@ -6,6 +6,7 @@ import RowCard from './row'
 const OfferCard = ({
     row = false,
     payed = false,
+    withCenteredLogo = false,
     withMainTitle = false,
     withHeader = false,
     withLocaltion = false,
@@ -23,6 +24,7 @@ const OfferCard = ({
         ? <RowCard
             payed={payed}
             withMainTitle={withMainTitle}
+            withCenteredLogo={withCenteredLogo}
             withShare={withShare}
             withProgress={withProgress}
             offer={offer}
