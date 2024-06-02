@@ -1,0 +1,42 @@
+.container {
+    min-height: 100dvh;
+
+    .modalContent {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 25px 25px;
+
+        .bigModal {
+            padding-top: 800px;
+        }
+    }
+
+    .section {
+        margin-block: 50px;
+
+        :global {
+            .list {
+                margin-top: 20px;
+                justify-content: left;
+            }
+        }
+
+        .progressBarList {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .underlinedContentList {
+            flex-direction: column;
+            align-items: flex-start;
+            padding-bottom: 15px;
+        }
+
+        &.bg {
+            color: var(--color-dark);
+            background-color: var(--color-third);
+            padding: 70px;
+        }
+    }
+}

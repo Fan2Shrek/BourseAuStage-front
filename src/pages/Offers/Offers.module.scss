@@ -1,0 +1,22 @@
+.offers {
+    :global {
+        .apiCollectionList {
+            margin-block: 50px;
+
+            &__main {
+                .list {
+
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-block: 20px;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+
+                    &__element {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

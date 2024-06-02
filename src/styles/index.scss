@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  // A VOIR
+  transition: all .2s linear, color 0s, cursor 0s;
+  font-family: "Epilogue", sans-serif;
+}
+
+body {
+  font-size: var(--text-size);
+  background-color: var(--base-color-neutral-inverted);
+  color: var(--text-color);
+  accent-color: var(--color-main);
+  padding-top: 80px;
+
+  // TODO : font-size des <h?>
+  // Size à adaptées sur la homepage
+
+  h1 {
+    font-size: 48px;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,20 @@
+.companies {
+    :global {
+        .apiCollectionList {
+            margin-block: 50px;
+
+            &__main {
+                .list {
+                    gap: 10px 2%;
+                    margin-block: 20px;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+
+                    &__element {
+                        width: 49%;
+                    }
+                }
+            }
+        }
+    }
+}

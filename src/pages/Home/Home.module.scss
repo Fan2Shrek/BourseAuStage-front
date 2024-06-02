@@ -1,0 +1,246 @@
+@use "../../styles/mixins" as m;
+
+@keyframes rotatelascar {
+    to {
+        rotate: 2turn;
+    }
+}
+
+@keyframes scalelascar {
+    0% {
+        transform: scaleY(1) scaleX(1);
+    }
+    25% {
+        transform: scaleX(.1) scaleY(1);
+    }
+    50% {
+        transform: scaleX(1) scaleY(1);
+    }
+    75% {
+        transform: scaleX(1) scaleY(.1);
+    }
+    100% {
+        transform: scaleY(1) scaleX(1);
+    }
+}
+
+@keyframes filterlascar {
+    50% {
+        filter: blur(7px);
+    }
+    100% {
+        filter: blur(0);
+    }
+}
+
+.content {
+    min-height: 100dvh;
+
+    h1 {
+        font-size: 72px
+    }
+
+    h2 {
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 36px;
+    }
+
+    .section {
+        margin-block: 50px;
+
+        .secondary {
+            color: var(--color-secondary);
+        }
+
+        .bold {
+            font-weight: 600;
+        }
+
+        &.hero {
+            margin-top: 0;
+            position: relative;
+
+            :global {
+                .container {
+                    align-items: flex-start;
+                    padding-block: 80px;
+                    overflow: visible;
+                }
+            }
+
+            .main {
+                width: 55%;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 23px;
+
+                .title {
+                    :global {
+                        .underlinedContent {
+                            display: block;
+                            width: fit-content;
+                        }
+                    }
+                }
+
+                .description {
+                    color: var(--color-middle-grey);
+                }
+
+                .offers {
+                    color: var(--color-middle-grey);
+                }
+            }
+
+
+            .pioupiou {
+                position: absolute;
+                width: 40%;
+                bottom: -6px;
+                right: calc(min((var(--container-inline-margin) / 2), 10%) * -1);
+                max-height: 90%;
+
+                @include m.above(xl) {
+                    right: -10%;
+                }
+
+                // animation:
+                //     scalelascar 2s infinite linear,
+                //     rotatelascar 2s infinite linear,
+                //     filterlascar 1s infinite linear;
+            }
+
+            .heroPattern {
+                position: absolute;
+                width: 60%;
+                top: 0;
+                right: 0;
+            }
+        }
+
+        &.highlightedCompanies {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            :global {
+                .list {
+                    gap: 6.25%;
+
+                    .list__element {
+                        width: 15%;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+        &.incentive {
+            display: flex;
+            justify-content: center;
+            gap: 5%;
+            padding-inline: 5%;
+            padding-top: 65px;
+            color: var(--color-light);
+            background-color: var(--color-main);
+
+            .main {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                padding-block: 30px 50px;
+
+                .title {
+                    max-width: 380px;
+                }
+
+                .cta {
+                    width: fit-content;
+                    font-weight: 700;
+                }
+            }
+
+            .image {
+                width: 55%;
+                display: flex;
+                align-items: flex-end;
+            }
+        }
+
+        &.lastOffers {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+
+                .cta {
+                    font-weight: 600;
+                    padding: 0;
+                }
+            }
+
+            .offerList {
+                gap: 10px 2%;
+                margin-block: 20px;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                h3 {
+                    font-size: 24px;
+                }
+
+                :global {
+                    .list__element {
+                        width: 23%;
+                    }
+                }
+            }
+        }
+
+        &.lastRequest {
+            background-color: var(--home-last-request-section-color);
+            padding-block: 72px;
+            margin-bottom: 0;
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+
+                .cta {
+                    font-weight: 600;
+                    padding: 0;
+                }
+            }
+
+            .requestList {
+                gap: 10px 2%;
+                margin-block: 20px;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                h3 {
+                    font-size: 24px;
+                }
+
+                :global {
+                    .list__element {
+                        width: 49%;
+                    }
+                }
+            }
+        }
+    }
+}

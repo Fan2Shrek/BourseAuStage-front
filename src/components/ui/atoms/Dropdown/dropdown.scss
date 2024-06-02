@@ -1,0 +1,32 @@
+.dropdown {
+    position: relative;
+
+    .link {
+        cursor: pointer;
+    }
+
+    &__child {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        background-color: var(--base-color-neutral-inverted);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        transition: padding .1s linear, height .1s linear, opacity .4s linear;
+    }
+
+    &:hover {
+        .dropdown__child {
+            opacity: 1;
+            height: 60px;
+            padding: 0 20px;
+        }
+    }
+}

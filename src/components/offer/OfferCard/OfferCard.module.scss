@@ -1,0 +1,201 @@
+.card {
+    &.column {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 2%;
+
+        .logo {
+            width: 64px;
+            height: 64px;
+        }
+
+        .type {
+            width: 100%;
+            max-width: calc(100% - 64px - 2%);
+            display: flex;
+            justify-content: flex-end;
+
+            :global {
+                .tag {
+                    width: fit-content;
+                    height: fit-content;
+                }
+            }
+        }
+
+        .mainInfos {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .companyPresentation {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                :global {
+                    .dot {
+                        min-width: 4px;
+                    }
+                }
+            }
+
+            .description {
+                display: -webkit-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                margin-top: 10px;
+            }
+        }
+
+        .activityList {
+            :global {
+                .list {
+                    justify-content: flex-start;
+                    gap: 10px;
+                    margin-block: 0;
+
+                    .list__element {
+                        width: auto !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &.row {
+        display: flex;
+        gap: 24px;
+        justify-content: space-between;
+
+
+        .infos {
+            display: flex;
+            gap: 24px;
+
+            &.centeredLogo {
+                align-items: center;
+            }
+
+            .logo {
+                min-width: 64px;
+                max-width: 64px;
+                height: 64px;
+            }
+
+            .mainInfos {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                h1 {
+                    font-size: 38px;
+                    margin: 0;
+                }
+
+                .dotLine {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 8px;
+
+                    &.mainTitle {
+                        font-size: 20px;
+                    }
+
+                    .companyName {
+                        font-weight: bold;
+                    }
+
+                    .payed {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--color-danger);
+
+                        :global {
+                            .dot {
+                                background-color: var(--color-danger);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tags {
+                display: flex;
+                gap: 8px;
+
+                :global {
+                    .tag {
+                        height: 34px;
+                    }
+                }
+
+                .type {
+                    padding-right: 8px;
+                    border-right: 1px solid var(--color-grey);
+                }
+
+                .activityList {
+                    :global {
+                        .list {
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            gap: 8px;
+                            margin-block: 0;
+
+                            .list__element {
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            .share {
+                font-size: 32px;
+                color: var(--color-middle-grey);
+                height: 32px;
+                cursor: pointer;
+            }
+
+            .divider {
+                width: 1px;
+                height: 50px;
+                background-color: var(--color-grey);
+            }
+
+            .cta {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                :global {
+                    .button {
+                        min-width: 160px;
+                        max-width: 160px;
+                        height: 50px;
+                    }
+                }
+
+                .progressBlock {
+                    display: flex;
+                    flex-direction: column;
+                    width: 160px;
+                    gap: 8px;
+                }
+            }
+
+        }
+    }
+}

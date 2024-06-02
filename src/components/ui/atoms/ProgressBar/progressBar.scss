@@ -1,0 +1,11 @@
+.progressBar {
+    width: var(--progressBar-width);
+    height: 8px;
+    background-color: var(--color-third);
+
+    &__value {
+        width: var(--progressBar-value);
+        height: 100%;
+        background-color: var(--progressBar-color);
+    }
+}

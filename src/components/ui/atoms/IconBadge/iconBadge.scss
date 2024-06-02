@@ -1,0 +1,10 @@
+.iconBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    color: var(--color-light);
+    background-color: var(--color-light-alpha-20);
+    border-radius: 50px;
+}

@@ -1,0 +1,36 @@
+/**
+* Used to declare media queries. Usage examples :
+* - @use .../mixins as m
+* - @include m.above(sm) {...}
+* - @include m.below(sm) {...}
+*/
+
+$breakpoints: (xs: 440px, sm: 768px, md: 990px, lg: 1280px, xl: 1440px);
+
+// @include above(sm) {}
+@mixin above($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    }
+    @else {
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+// @include below(sm) {}
+@mixin below($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        @media (max-width: ($breakpoint-value - 1)) {
+            @content;
+        }
+    }
+    @else {
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}

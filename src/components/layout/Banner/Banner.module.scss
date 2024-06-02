@@ -1,0 +1,27 @@
+.bannerBackground {
+    background-color: var(--banner-color);
+
+    .banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-block: 60px 30px;
+        min-height: 250px;
+        position: relative;
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        :global {
+            .breadCrumb {
+                position: absolute;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                padding-block: 20px;
+            }
+        }
+    }
+}

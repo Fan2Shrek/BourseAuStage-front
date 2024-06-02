@@ -1,0 +1,48 @@
+.ckeditor__container {
+
+    &__label {
+        color: var(--input-label-color);
+    }
+
+    .ck.ck-editor {
+        display: flex;
+        flex-direction: column-reverse;
+        border: 1px solid var(--color-grey);
+
+        &__top{
+            .ck-sticky-panel{
+                .ck-sticky-panel__content{
+                    border: 0;
+                    border-top: 1px solid var(--color-grey);
+
+                    .ck-toolbar{
+                        button{
+                            color: var(--color-middle-grey);
+                        }
+                    }
+                }
+            }
+        }
+
+        &__main{
+            .ck-content{
+                border: 0;
+                height: 152px;
+            }
+
+            .ck-content:focus{
+                border-color: var(--color-main);
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    }
+
+    .ckeditor__count{
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        color: var(--color-middle-grey);
+        padding-top: 4px;
+    }
+}

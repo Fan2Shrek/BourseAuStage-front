@@ -1,0 +1,18 @@
+.tag {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 16px;
+    color: var(--tag-text-color);
+    background-color: transparent;
+    border: 1px solid var(--tag-text-color);
+    border-radius: var(--tag-radius);
+
+    &.secondary {
+        border-color: transparent;
+        background-color: var(--tag-color);
+    }
+}
