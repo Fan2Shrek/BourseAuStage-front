@@ -1,11 +1,14 @@
-import './ckeditor.scss';
 import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import './ckeditor.scss';
+import cn from '../../../../utils/classnames';
+
 const Ckeditor = ({
     label = null,
     placeholder,
+    className,
 }) => {
     const [charCount, setCharCount] = useState(0);
     const maxChar = 500;
@@ -23,7 +26,7 @@ const Ckeditor = ({
     };
 
     return (
-        <div className={'ckeditor__container'}>
+        <div className={cn('ckeditor__container', className)}>
             {label && (
                 <label className={'ckeditor__label'}>
                     {label}

@@ -116,8 +116,11 @@ const Offer = () => {
                             <p>{description}</p>
                         </>}
                     />
-                    {/* redirection à faire */}
-                    <Button className={styles.link} label={t(tokens.page.offerDetails.cta)} redirectTo='' />
+                    <Button
+                        label={t(tokens.page.offerDetails.cta)}
+                        redirectTo={path.apply.replace(':id', offer.company.id)}
+                        className={styles.link}
+                    />
                 </div>
                 <div className={styles.pageContentRight}>
                     <h3>{t(tokens.page.offerDetails.deadlines)}</h3>
@@ -189,7 +192,7 @@ const Offer = () => {
                     <p>{offer.company.presentation}</p>
                     <Button
                         label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
-                        redirectTo={path.company.replace(':id', `${offer.company.id}`)}
+                        redirectTo={path.company.replace(':id', offer.company.id)}
                         inverted
                         withoutBorder
                         transparent

@@ -18,6 +18,7 @@ const Input = ({
     min = null,
     step = null,
     accept = null,
+    withoutIcon = false,
     id,
     name,
     placeholder,
@@ -46,7 +47,7 @@ const Input = ({
 
         if (['input', 'range'].includes(type)) {
             setValue(e.target.value)
-            onChange && onChange(e.target.value)
+            onChange && onChange(e)
         }
     }, [isActive, onChange, type])
 
@@ -99,7 +100,7 @@ const Input = ({
         {type === 'file' && <>
             <Button
                 label={placeholder ?? ''}
-                icon={<FiPaperclip />}
+                icon={!withoutIcon && <FiPaperclip />}
                 inverted
                 dashedBorder
                 onClick={() => target.current?.click()}

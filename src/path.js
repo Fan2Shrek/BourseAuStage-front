@@ -6,7 +6,7 @@ const path = {
     internship: '/offres/stage',
     workStudy: '/offres/alternance',
     offer: '/offres/:id',
-    requestDetail: '/demandes/:id'
+    requestDetail: '/demandes/:id',
+    apply: '/offres/postuler/:id',
 }
-
 export default path;
