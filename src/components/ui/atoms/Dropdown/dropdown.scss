@@ -7,28 +7,26 @@
 
     &__child {
         position: absolute;
-        opacity: 0;
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
-        height: 100%;
         width: auto;
         background-color: var(--base-color-neutral-inverted);
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 30px;
         height: 0;
         padding: 0;
         overflow: hidden;
-        transform: padding .1 linear, height .1 linear, opacity .4 linear;
+        transition: padding .1s linear, height .1s linear, opacity .4s linear;
     }
 
     &:hover {
         .dropdown__child {
             opacity: 1;
-            height: auto;
-            padding: 20px;
+            height: 60px;
+            padding: 0 20px;
         }
     }
 }

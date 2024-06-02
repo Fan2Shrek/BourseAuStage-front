@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import styles from "./Companies.module.scss";
 import tokens from "../../translations/tokens";
 import path from "../../path";
-import { alphabeticalSortAZ, alphabeticalSortZA } from "../../sortings";
+import { alphabeticalSortAZ, alphabeticalSortZA } from "../../api/sortings";
+import { notNull } from "../../api/filters";
 import UnderlinedContent from "../../components/ui/atoms/UnderlinedText";
 import Banner from "../../components/layout/Banner";
 import ApiCollectionList from "../../components/ui/molecules/ApiCollectionList";
@@ -47,16 +48,21 @@ const Companies = () => {
                 withFacets
                 itemsPerPage={8}
                 foundLabel={t(tokens.page.companies.apiCollectionList.foundLabel)}
+                defaultFilters={[
+                    notNull({ property: 'deletedAt' }),
+                ]}
                 sortings={[
                     alphabeticalSortAZ({
                         name: 'alphabetical-AZ-companyName',
                         property: 'name',
-                        propertyTranslation: t(tokens.entities.company.name)
+                        propertyTranslation: t(tokens.entities.company.name),
+                        clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortAZ),
                     }),
                     alphabeticalSortZA({
                         name: 'alphabetical-ZA-companyName',
                         property: 'name',
-                        propertyTranslation: t(tokens.entities.company.name)
+                        propertyTranslation: t(tokens.entities.company.name),
+                        clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortZA),
                     }),
                 ]}
                 defaultSort={'alphabetical-AZ-companyName'}

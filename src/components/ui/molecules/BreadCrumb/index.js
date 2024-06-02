@@ -8,7 +8,7 @@ const BreadCrumb = ({ data = {}, className }) => {
     return <List
         uniqueAttr={step => step.label}
         collection={data}
-        renderItem={({ label, link }) => link
+        renderItem={({ label, link }, index) => index < data.length - 1
             ? <p className='breadCrumb__item'><Link to={link}>{label}</Link> /</p>
             : <p className='breadCrumb__active'>{label}</p>
         }

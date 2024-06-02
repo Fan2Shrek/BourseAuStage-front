@@ -3,10 +3,45 @@ const tokens = {
         company: {
             name: "entities.company.name"
         },
+        offer: {
+            name: "entities.offer.name"
+        }
     },
-    apiCollection: {
+    apiCollectionList: {
+        title: "apiCollection.title",
         sorting: {
             label: "apiCollection.sorting.label",
+        },
+    },
+    card: {
+        company: {
+            internship: {
+                singular: "card.company.internship.singular",
+                plural: "card.company.internship.plural",
+            },
+            workStudy: {
+                singular: "card.company.workStudy.singular",
+                plural: "card.company.workStudy.plural",
+            },
+        },
+        offer: {
+            internship: "card.offer.internship",
+            workStudy: "card.offer.workStudy",
+            dates: {
+                column: "card.offer.dates.column",
+                row: "card.offer.dates.row",
+            },
+            payed: "card.offer.payed",
+            cta: {
+                button: {
+                    main: "card.offer.cta.button.main",
+                    more: "card.offer.cta.button.more",
+                },
+                progress: {
+                    singular: "card.offer.progress.singular",
+                    plural: "card.offer.progress.plural",
+                },
+            },
         },
     },
     facets: {
@@ -24,6 +59,19 @@ const tokens = {
                     input: "facets.label.companies.range.input",
                 },
             },
+            offers: {
+                activities: {
+                    name: "facets.label.offers.activities.name",
+                },
+                studyLevel: {
+                    name: "facets.label.offers.studyLevel.name",
+                },
+                end: "facets.label.offers.end",
+                range: {
+                    global: "facets.label.offers.range.global",
+                    input: "facets.label.offers.range.input",
+                },
+            }
         },
         options: {
             all: "facets.options.all",
@@ -118,13 +166,37 @@ const tokens = {
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
             presentationWork: "page.offerDetails.presentationWork",
-        }
+        },
+        offers: {
+            internship: {
+                title: "page.offers.internship.title",
+                apiCollectionList: {
+                    foundLabel: "page.offers.internship.apiCollectionList.foundLabel",
+                },
+            },
+            workStudy: {
+                title: "page.offers.workStudy.title",
+                apiCollectionList: {
+                    foundLabel: "page.offers.workStudy.apiCollectionList.foundLabel",
+                },
+            },
+        },
     },
     breadCrumb: {
         home: "breadCrumb.home",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
-        offers: "breadCrumb.offers",
+        offers: {
+            base: "breadCrumb.offers.base",
+            internship: "breadCrumb.offers.internship",
+            workStudy: "breadCrumb.offers.workStudy",
+        },
+    },
+    sortings: {
+        clarifications: {
+            alphabeticalSortAZ: "sortings.clarifications.alphabeticalSortAZ",
+            alphabeticalSortZA: "sortings.clarifications.alphabeticalSortZA",
+        },
     },
 }
 

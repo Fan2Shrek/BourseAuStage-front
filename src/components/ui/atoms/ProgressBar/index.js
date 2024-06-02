@@ -1,9 +1,9 @@
-import {useEffect, useRef} from "react"
+import { useEffect, useRef } from "react"
 
 import './progressBar.scss'
 import cn from "../../../../utils/classnames"
 
-const ProgressBar = ({width = '200px', value = 100, classname}) => {
+const ProgressBar = ({ width = '200px', value = 100, classname }) => {
     const progressBar = useRef(null)
 
     useEffect(() => {
@@ -13,9 +13,9 @@ const ProgressBar = ({width = '200px', value = 100, classname}) => {
 
         let color = ''
 
-        if (value <= 5) {
+        if (value <= (5 * 80) / 100) {
             color = 'var(--progressBar-color-danger)'
-        } else if (value <= 10) {
+        } else if (value <= (10 * 80) / 100) {
             color = 'var(--progressBar-color-warning)'
         } else {
             color = 'var(--progressBar-color-success)'
