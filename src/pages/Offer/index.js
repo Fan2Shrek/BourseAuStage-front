@@ -212,16 +212,18 @@ const Offer = () => {
                         <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
                     </Link>
                     <p>{offer.company.presentation}</p>
-                    <Button
-                        label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
-                        redirectTo={path.company.replace(':id', offer.company.id)}
-                        inverted
-                        withoutBorder
-                        transparent
-                        icon={<FaArrowRight />}
-                        rightIcon
-                        className={styles.cta}
-                    />
+                    <div className={styles.buttonOffer}>
+                        <Button
+                            label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
+                            redirectTo={path.company.replace(':id', offer.company.id)}
+                            inverted
+                            withoutBorder
+                            transparent
+                            icon={<FaArrowRight />}
+                            rightIcon
+                            className={styles.cta}
+                        />
+                    </div>
                 </div>
                 <div className={styles.pageCompanyRight}>
                     <List
