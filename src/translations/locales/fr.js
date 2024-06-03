@@ -102,6 +102,8 @@ const fr = {
     [tokens.page.offerDetails.more]: "En savoir plus sur {{company}}",
     [tokens.page.offerDetails.cta]: "Postuler",
     [tokens.page.offerDetails.images.alt]: "Image de {{company}}",
+    [tokens.page.offerDetails.similar.title]: "Offre de stage similaires",
+    [tokens.page.offerDetails.similar.cta]: "Voir toutes les offres",
     [tokens.breadCrumb.home]: "Accueil",
     [tokens.breadCrumb.uiExample]: "Exemples d'UI",
     [tokens.breadCrumb.companies]: "Entreprises",

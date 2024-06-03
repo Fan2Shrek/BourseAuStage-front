@@ -269,7 +269,11 @@ const tokens = {
             cta: "page.offerDetails.request",
             images: {
                 alt: "page.companyDetails.images.alt"
-            }
+            },
+            similar: {
+                title: "page.offerDetails.similar.title",
+                cta: "page.offerDetails.similar.cta",
+            },
         },
         offers: {
             internship: {
