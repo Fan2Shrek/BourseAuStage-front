@@ -170,33 +170,35 @@
     }
 
     .similarOffers {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        background-color: var(--banner-color);
+        background-color: var(--home-last-request-section-color);
+        padding-block: 72px;
+        margin-bottom: 0;
 
-        &Container {
-            padding-block: 30px;
-    
-            .header {
-                display: flex;
-                justify-content: space;
-                align-items: center;
-                gap: 16px;
-                padding-block: 20px;
-    
-                .cta {
-                    color: var(--color-main);
-                }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+
+            .cta {
+                font-weight: 600;
+                padding: 0;
             }
-            
-            :global {
-                .list {
-                    justify-content: left;
+        }
 
-                    .list__element {
-                        width: 25%;
-                    }
+        .offerList {
+            gap: 10px 2%;
+            margin-block: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            h3 {
+                font-size: 24px;
+            }
+
+            :global {
+                .list__element {
+                    width: 23%;
                 }
             }
         }

@@ -234,8 +234,8 @@ const Offer = () => {
                 </div>
             </div>
         </Container>
-        <Container  inline cornerTop className={styles.similarOffers}>
-            <Container className={styles.similarOffersContainer}>
+        <Container inline cornerTop className={styles.similarOffers}>
+            <Container>
                 <div className={styles.header}>
                     <h2><Trans
                         i18nKey={tokens.page.offerDetails.similar.title}
@@ -266,7 +266,7 @@ const Offer = () => {
                         />
                     </Link>}
                     className={styles.offerList}
-                    />
+                />
             </Container>
         </Container>
     </div>
