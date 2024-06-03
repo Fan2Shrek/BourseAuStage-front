@@ -168,4 +168,39 @@
             }
         }
     }
+
+    .similarOffers {
+        background-color: var(--home-last-request-section-color);
+        padding-block: 72px;
+        margin-bottom: 0;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+
+            .cta {
+                font-weight: 600;
+                padding: 0;
+            }
+        }
+
+        .offerList {
+            gap: 10px 2%;
+            margin-block: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            h3 {
+                font-size: 24px;
+            }
+
+            :global {
+                .list__element {
+                    width: 23%;
+                }
+            }
+        }
+    }
 }

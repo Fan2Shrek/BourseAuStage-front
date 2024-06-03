@@ -10,6 +10,10 @@ class Offer {
     async getLast() {
         return this.apiClient.get(`/offers?page=1&itemsPerPage=8&exists[deletedAt]=false&order[id]=desc`);
     }
+
+    async getAll(query) {
+        return this.apiClient.get(`/offers?${query}`);
+    }
 }
 
 export default Offer;
