@@ -206,7 +206,9 @@ const Offer = () => {
             <div className={styles.separate}></div>
             <div className={styles.pageCompany}>
                 <div className={styles.pageCompanyLeft}>
-                    <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
+                    <Link to={path.company.replace(':id', offer.company.id)}>
+                        <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
+                    </Link>
                     <p>{offer.company.presentation}</p>
                     <Button
                         label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
