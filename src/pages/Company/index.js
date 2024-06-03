@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { FaArrowRight, FaRegMoneyBillAlt } from "react-icons/fa";
 import { CiCircleCheck } from "react-icons/ci";
 import { AiOutlineFire } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi";
 import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter } from "react-icons/ci";
+import { MdOutlineEmail } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
 
 import styles from './Company.module.scss';
@@ -189,17 +191,31 @@ const Company = () => {
                 </div>
                 <div className={styles.contact}>
                     <h2>{t(tokens.page.companyDetails.contact)}</h2>
-                    <p className={styles.name}>{t(tokens.page.companyDetails.phone)}: {company.phone}</p>
-                    <p>{company.openingTime}</p>
+                    <div>
+                        <p className={styles.name}>{t(tokens.page.companyDetails.phone)}: {company.phone}</p>
+                        <p>{company.openingTime}</p>
+                    </div>
+                    <Button
+                        label={t(tokens.page.companyDetails.contactUs)}
+                        inverted
+                        withoutBorder
+                        icon={<FaArrowRight />}
+                        rightIcon
+                        className={styles.cta}
+                    />
                 </div>
-                {collaborators.length > 1 && <div className={styles.contacts}>
+                {collaborators.length > 0 && <div className={styles.contacts}>
                     <h2>{t(tokens.page.companyDetails.contacts)}</h2>
-                    {collaborators.map((collaborator) =>
-                        <div className={styles.contactPerson}>
-                            <p>{collaborator.jobTitle}</p>
-                            <p>{`${collaborator.firstName} ${collaborator.lastName}`}</p>
-                        </div>
-                    )}
+                    <List
+                        collection={collaborators}
+                        renderItem={collaborator => <>
+                            <p className={styles.jobTitle}>{collaborator.jobTitle}</p>
+                            <p>{`${collaborator.firstName} ${collaborator.lastName.toUpperCase()}`}</p>
+                            <a href={`mailto:${collaborator.email}`} className={styles.mailto}>
+                                <MdOutlineEmail />
+                            </a>
+                        </>}
+                    />
                 </div>}
             </div>
         </Container>
@@ -214,26 +230,30 @@ const Company = () => {
                     <h2>{t(tokens.page.companyDetails.relatedOffers.internship)}</h2>
                     <List
                         collection={internshipOffers}
-                        renderItem={offer => <OfferCard
-                            offer={offer}
-                            type={OfferTypeEnum.INTERNSHIP}
-                            withDates
-                            withDescription
-                            withActivities
-                        />}
+                        renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
+                            <OfferCard
+                                offer={offer}
+                                type={OfferTypeEnum.INTERNSHIP}
+                                withDates
+                                withDescription
+                                withActivities
+                            />
+                        </Link>}
                     />
                 </div>}
                 {workStudyOffers.length > 0 && <div className={styles.workStudies}>
                     <h2>{t(tokens.page.companyDetails.relatedOffers.workStudy)}</h2>
                     <List
                         collection={workStudyOffers}
-                        renderItem={offer => <OfferCard
-                            offer={offer}
-                            type={OfferTypeEnum.WORKSTUDY}
-                            withDates
-                            withDescription
-                            withActivities
-                        />}
+                        renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
+                            <OfferCard
+                                offer={offer}
+                                type={OfferTypeEnum.WORKSTUDY}
+                                withDates
+                                withDescription
+                                withActivities
+                            />
+                        </Link>}
                     />
                 </div>}
             </Container>

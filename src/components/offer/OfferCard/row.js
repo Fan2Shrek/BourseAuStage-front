@@ -32,7 +32,7 @@ const RowCard = ({
 
     const handleShare = useCallback(() => {
         navigator.clipboard.writeText(window.location.href);
-    }, [offer])
+    }, [])
 
     return <Card className={cn(styles.card, styles.row, className)}>
         <div className={cn(styles.infos, {
@@ -94,7 +94,7 @@ const RowCard = ({
                 {withProgress && <div className={styles.progressBlock}>
                     <ProgressBar
                         width="100%"
-                        value={(remainingDays * 80) / 100}
+                        value={(remainingDays * 100) / 80}
                     />
                     <p>{t(tokens.card.offer.cta.progress[remainingDays > 1 ? 'plural' : 'singular'], {
                         remainingDays

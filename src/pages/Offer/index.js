@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { CiCircleCheck } from "react-icons/ci";
 import { format, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import styles from './Offer.module.scss';
 import apiClient from "../../api/ApiClient";
@@ -18,10 +19,12 @@ import Tag from '../../components/ui/atoms/Tag';
 import ProgressBar from '../../components/ui/atoms/ProgressBar';
 import OfferCard from "../../components/offer/OfferCard";
 import List from "../../components/ui/atoms/List";
+import OfferTypeEnum from "../../enum/OfferTypeEnum";
 
 const Offer = () => {
     const [offer, setOffer] = useState(null);
     const [companyPictures, setCompanyPictures] = useState([]);
+    const [similarOffers, setSimilarOffers] = useState([]);
     const { id } = useParams();
     const { t } = useTranslation();
 
@@ -70,6 +73,21 @@ const Offer = () => {
             })
     }, [offer]);
 
+    useEffect(() => {
+        if (!offer) {
+            return
+        }
+
+        apiClient.offer.getAll(`isInternship=${offer.internship}` + offer.activities.reduce((acc, cur) => `${acc}&activities.name[]=${cur.name}`, ''))
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                setSimilarOffers(response['hydra:member']);
+            })
+    }, [offer]);
+
     if (!offer) {
         return <></>
     }
@@ -79,7 +97,7 @@ const Offer = () => {
 
     const available = new Date(offer.availableAt);
     const remainingDays = differenceInDays(available, new Date()) + 1;
-    const progress = (remainingDays * 80) / 100;
+    const progress = (remainingDays * 100) / 80;
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
@@ -188,7 +206,9 @@ const Offer = () => {
             <div className={styles.separate}></div>
             <div className={styles.pageCompany}>
                 <div className={styles.pageCompanyLeft}>
-                    <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
+                    <Link to={path.company.replace(':id', offer.company.id)}>
+                        <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
+                    </Link>
                     <p>{offer.company.presentation}</p>
                     <Button
                         label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
@@ -215,6 +235,41 @@ const Offer = () => {
                     </div>
                 </div>
             </div>
+        </Container>
+        <Container inline cornerTop className={styles.similarOffers}>
+            <Container>
+                <div className={styles.header}>
+                    <h2><Trans
+                        i18nKey={tokens.page.offerDetails.similar.title}
+                        components={{ secondary: <span className={styles.secondary} /> }}
+                    /></h2>
+                    <Button
+                        label={t(tokens.page.offerDetails.similar.cta)}
+                        secondary
+                        inverted
+                        withoutBorder
+                        transparent
+                        icon={<FaArrowRight />}
+                        rightIcon
+                        className={styles.cta}
+                    />
+                </div>
+
+                <List
+                    collection={similarOffers}
+                    renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
+                        <OfferCard
+                            offer={offer}
+                            type={offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY}
+                            withHeader
+                            withLocaltion
+                            withDescription
+                            withActivities
+                        />
+                    </Link>}
+                    className={styles.offerList}
+                />
+            </Container>
         </Container>
     </div>
 }

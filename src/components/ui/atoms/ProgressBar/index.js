@@ -13,9 +13,9 @@ const ProgressBar = ({ width = '200px', value = 100, classname }) => {
 
         let color = ''
 
-        if (value <= (5 * 80) / 100) {
+        if (value <= (5 * 100) / 80) {
             color = 'var(--progressBar-color-danger)'
-        } else if (value <= (10 * 80) / 100) {
+        } else if (value <= (10 * 100) / 80) {
             color = 'var(--progressBar-color-warning)'
         } else {
             color = 'var(--progressBar-color-success)'
