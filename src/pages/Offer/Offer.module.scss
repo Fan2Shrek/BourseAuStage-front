@@ -114,6 +114,24 @@
                 }
             }
 
+            &Right {
+                width: 100%;
+                margin-top: 5%;
+
+                h2 {
+                    margin-top: 10%;
+                }
+
+                .rightText {
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        margin: 0% 0% 1% 0%;
+                    }
+                }
+            }
+
             .buttonOffer {
                 display: flex;
                 align-items: center;
@@ -128,6 +146,14 @@
                 h2 {
                     font-size: 25px;
                     margin-top: 15%;
+                }
+            }
+
+            &Right {
+                .rightText {
+                    p {
+                        margin: 0% 0% 3% 0%;
+                    }
                 }
             }
 
