@@ -32,9 +32,9 @@ const Footer = () => {
                     <div className={styles.links}>
                         <div className={styles.column}>
                             <Link to={path.home}>{t(tokens.footer.links.home)}</Link>
-                            <Link to="/">{t(tokens.footer.links.offers)}</Link>
+                            <Link to={path.internship}>{t(tokens.footer.links.offers)}</Link>
                             <Link to="/">{t(tokens.footer.links.students)}</Link>
-                            <Link to="/">{t(tokens.footer.links.companies)}</Link>
+                            <Link to={path.companies}>{t(tokens.footer.links.companies)}</Link>
                         </div>
 
                         <div className={styles.column}>
