@@ -147,9 +147,9 @@ const UiExample = () => {
 
     const exampleProgressBars = useMemo(() => [
         { id: 1 },
-        { id: 2, value: 80 },
-        { id: 3, value: 10 },
-        { id: 4, value: 5 },
+        { id: 2, value: (40 * 100) / 80 },
+        { id: 3, value: (10 * 100) / 80 },
+        { id: 4, value: (5 * 100) / 80 },
     ], [])
 
     const exampleSelects = useMemo(() => [
