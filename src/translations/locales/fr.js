@@ -57,6 +57,7 @@ const fr = {
     [tokens.page.companyDetails.socialsLinks]: "Réseaux sociaux",
     [tokens.page.companyDetails.contact]: "Nous joindre",
     [tokens.page.companyDetails.contacts]: "Vos contacts",
+    [tokens.page.companyDetails.contactUs]: "Nous envoyer un message",
     [tokens.page.companyDetails.phone]: "Téléphone",
     [tokens.page.companyDetails.images.alt]: "Image de {{company}}",
     [tokens.page.companyDetails.relatedOffers.internship]: "Offres de stage proposées",
