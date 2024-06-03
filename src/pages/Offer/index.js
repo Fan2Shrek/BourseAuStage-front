@@ -79,7 +79,7 @@ const Offer = () => {
 
     const available = new Date(offer.availableAt);
     const remainingDays = differenceInDays(available, new Date()) + 1;
-    const progress = (remainingDays * 80) / 100;
+    const progress = (remainingDays * 100) / 80;
 
     return <div className={styles.offer}>
         <Banner breadCrumb={breadCrumb}>
