@@ -170,6 +170,7 @@ const tokens = {
             socialsLinks: "page.companyDetails.socialsLinks",
             contact: "page.companyDetails.contact",
             contacts: "page.companyDetails.contacts",
+            contactUs: "page.companyDetails.contactUs",
             phone: "page.companyDetails.phone",
             images: {
                 alt: "page.companyDetails.images.alt"
