@@ -1,3 +1,5 @@
+@use './../../styles/mixins' as m;
+
 .offer {
     .card {
         width: 100%;
@@ -94,6 +96,23 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @include m.below(md) {
+        .pageContent {
+            display: flex;
+            flex-direction: column;
+            margin: 0% 5%;
+
+            &Left {
+                width: 100%;
+            }
+
+            .buttonOffer {
+                display: flex;
+                align-items: center;
             }
         }
     }

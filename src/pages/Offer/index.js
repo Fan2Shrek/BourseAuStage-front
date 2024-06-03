@@ -134,11 +134,13 @@ const Offer = () => {
                             <p>{description}</p>
                         </>}
                     />
-                    <Button
-                        label={t(tokens.page.offerDetails.cta)}
-                        redirectTo={path.apply.replace(':id', offer.company.id)}
-                        className={styles.link}
-                    />
+                    <div className={styles.buttonOffer}>
+                        <Button
+                            label={t(tokens.page.offerDetails.cta)}
+                            redirectTo={path.apply.replace(':id', offer.company.id)}
+                            className={styles.link}
+                        />
+                    </div>
                 </div>
                 <div className={styles.pageContentRight}>
                     <h3>{t(tokens.page.offerDetails.deadlines)}</h3>
