@@ -138,6 +138,10 @@
                 flex-direction: column;
             }
         }
+
+        .separate {
+            margin-top: 5%;
+        }
     }
 
     @include m.below(sm) {
@@ -163,6 +167,10 @@
                 align-items: center;
                 margin-top: 10%;
             }
+        }
+
+        .separate {
+            margin: 15% 0%;
         }
     }
 
