@@ -87,10 +87,12 @@ const Home = () => {
 
             <List
                 collection={highlightedCompanies}
-                renderItem={company => <img
-                    src={getPicturePath(company.logo)}
-                    alt={t(tokens.page.home.highlightedCompanies.image.alt, { company: company.name })}
-                />}
+                renderItem={company => <Link to={path.company.replace(':id', company.id)}>
+                    <img
+                        src={getPicturePath(company.logo)}
+                        alt={t(tokens.page.home.highlightedCompanies.image.alt, { company: company.name })}
+                    />
+                </Link>}
             />
         </Container>
 
