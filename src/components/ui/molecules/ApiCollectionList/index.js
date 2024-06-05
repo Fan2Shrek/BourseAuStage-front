@@ -13,11 +13,8 @@ import Sortings from '../Sortings'
 import FacetOptionEnum from '../../../../enum/FacetOptionEnum'
 import Loader from '../../atoms/Loader'
 
-const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = '', facets = {}, options = []) => {
-    const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
-    const query = `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}${defaultFiltersQuery}${sort}`
-
-    const facetsQuery = (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
+const buildFacetsQuery = (facets, options, t) => {
+    return (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
         if (
             !values
             || values.length === 0
@@ -29,6 +26,24 @@ const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = ''
 
         if (options[facet] && options[facet].includes(FacetOptionEnum.ALL) && values.includes(t('facets.options.all'))) {
             return acc
+        }
+
+        if (options[facet] && options[facet].includes(FacetOptionEnum.DURATION)) {
+            const baseQuery = `&${FacetOptionEnum.DURATION}[${encodeURI(facet)}][bt]`
+
+            return values.reduce((acc, value) => {
+                if (Array.isArray(value)) {
+                    return `${acc}${baseQuery}[]=${encodeURI(value[0])},${encodeURI(value[1])}`
+                }
+
+                if (value.startsWith('<')) {
+                    return `${acc}${baseQuery}[lt]=${value.slice(1)}`
+                }
+
+                if (value.startsWith('>')) {
+                    return `${acc}${baseQuery}[gt]=${value.slice(1)}`
+                }
+            }, '')
         }
 
         if (options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN)) {
@@ -65,8 +80,12 @@ const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = ''
             return `${acc}${values.reduce((acc, value) => `${acc}&${encodeURI(facet)}[]=${encodeURI(value)}`, '')}`
         }
     }, '')
+}
 
-    return `${query}${facetsQuery}`
+const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = '', facets = {}, options = []) => {
+    const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
+    const facetsQuery = buildFacetsQuery(facets, options, t)
+    return `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}${defaultFiltersQuery}${sort}${facetsQuery}`
 }
 
 const getTotalPageFromHydraView = hydraView => {

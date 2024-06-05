@@ -13,6 +13,7 @@ const Facet = ({
     allValue = false,
     andMore = false,
     isRange = false,
+    isDuration = false,
     collectionTarget,
     property,
     values,
@@ -65,6 +66,12 @@ const Facet = ({
             }
         }
 
+        if (isDuration) {
+            setLastClickedValue({ value: values[value], isActive })
+
+            return
+        }
+
         setLastClickedValue({ value, isActive })
     }, [setLastClickedValue, values, disabledValues, onUnselect, property, t])
 
@@ -107,7 +114,7 @@ const Facet = ({
             : <List
                 collection={[
                     ...(allValue ? [t('facets.options.all')] : []),
-                    ...values,
+                    ...(isDuration ? Object.keys(values) : values),
                 ]}
                 uniqueAttr={value => value}
                 renderItem={(value, index) => <Input

@@ -53,6 +53,7 @@ const Facets = ({
                 allValue={options[facet] && options[facet].includes(FacetOptionEnum.ALL)}
                 andMore={options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN_AND_MORE)}
                 isRange={options[facet] && options[facet].includes(FacetOptionEnum.RANGE)}
+                isDuration={options[facet] && options[facet].includes(FacetOptionEnum.DURATION)}
                 onSelect={selectFacet}
                 onUnselect={unselectFacet}
             />}
