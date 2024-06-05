@@ -134,11 +134,13 @@ const Offer = () => {
                             <p>{description}</p>
                         </>}
                     />
-                    <Button
-                        label={t(tokens.page.offerDetails.cta)}
-                        redirectTo={path.apply.replace(':id', offer.company.id)}
-                        className={styles.link}
-                    />
+                    <div className={styles.buttonOffer}>
+                        <Button
+                            label={t(tokens.page.offerDetails.cta)}
+                            redirectTo={path.apply.replace(':id', offer.company.id)}
+                            className={styles.link}
+                        />
+                    </div>
                 </div>
                 <div className={styles.pageContentRight}>
                     <h3>{t(tokens.page.offerDetails.deadlines)}</h3>
@@ -210,16 +212,18 @@ const Offer = () => {
                         <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
                     </Link>
                     <p>{offer.company.presentation}</p>
-                    <Button
-                        label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
-                        redirectTo={path.company.replace(':id', offer.company.id)}
-                        inverted
-                        withoutBorder
-                        transparent
-                        icon={<FaArrowRight />}
-                        rightIcon
-                        className={styles.cta}
-                    />
+                    <div className={styles.buttonOffer}>
+                        <Button
+                            label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
+                            redirectTo={path.company.replace(':id', offer.company.id)}
+                            inverted
+                            withoutBorder
+                            transparent
+                            icon={<FaArrowRight />}
+                            rightIcon
+                            className={styles.cta}
+                        />
+                    </div>
                 </div>
                 <div className={styles.pageCompanyRight}>
                     <List

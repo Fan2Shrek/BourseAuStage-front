@@ -1,3 +1,5 @@
+@use './../../styles/mixins' as m;
+
 .offer {
     .card {
         width: 100%;
@@ -98,6 +100,80 @@
         }
     }
 
+    @include m.below(md) {
+        .pageContent {
+            display: flex;
+            flex-direction: column;
+            margin: 0% 5%;
+
+            &Left {
+                width: 100%;
+
+                h2 {
+                    margin-top: 10%;
+                }
+            }
+
+            &Right {
+                width: 100%;
+                margin-top: 5%;
+
+                h2 {
+                    margin-top: 10%;
+                }
+
+                .rightText {
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        margin: 0% 0% 1% 0%;
+                    }
+                }
+            }
+
+            .buttonOffer {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+        }
+
+        .separate {
+            margin-top: 5%;
+        }
+    }
+
+    @include m.below(sm) {
+        .pageContent {
+            &Left {
+                h2 {
+                    font-size: 25px;
+                    margin-top: 15%;
+                }
+            }
+
+            &Right {
+                .rightText {
+                    p {
+                        margin: 0% 0% 3% 0%;
+                    }
+                }
+            }
+
+            .buttonOffer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10%;
+            }
+        }
+
+        .separate {
+            margin: 10% 0% 5% 0%;
+        }
+    }
+
     .separate {
         border-bottom: 1px solid var(--color-grey);
         padding-top: 2%;
@@ -120,6 +196,8 @@
                 width: auto;
                 max-width: 70%;
                 max-height: 150px;
+                max-width: 200px;
+                object-fit: contain;
             }
 
             .cta {
@@ -170,6 +248,57 @@
         }
     }
 
+    @include m.below(md) {
+        .pageCompany {
+            flex-direction: column;
+
+            .pageCompanyLeft {
+                width: 100%;
+
+                a {
+                    justify-content: center;
+
+                    img {
+                        width: 50%;
+                    }
+                }
+
+                .buttonOffer {
+                    display: flex;
+                    align-content: center;
+                }
+            }
+
+            .pageCompanyRight {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 0px;
+
+                .map {
+                    padding: 100px;
+                }
+            }
+        }
+    }
+
+    @include m.below(sm) {
+        .pageCompany {
+            .pageCompanyLeft {
+                a {
+                    img {
+                        width: 80%;
+                    }
+                }
+
+                p,
+                .buttonOffer {
+                    margin: 10% 0%;
+                }
+            }
+        }
+    }
+
     .similarOffers {
         background-color: var(--home-last-request-section-color);
         padding-block: 72px;
@@ -201,6 +330,18 @@
                 .list__element {
                     width: 23%;
                 }
+            }
+        }
+    }
+
+    @include m.below(md) {
+        .similarOffers {
+            .header {
+                flex-direction: column;
+            }
+
+            ul {
+                display: ruby;
             }
         }
     }
