@@ -333,4 +333,16 @@
             }
         }
     }
+
+    @include m.below(md) {
+        .similarOffers {
+            .header {
+                flex-direction: column;
+            }
+
+            ul {
+                display: ruby;
+            }
+        }
+    }
 }
