@@ -1,0 +1,101 @@
+@keyframes grow {
+    to {
+        width: 90%;
+        left: 50%;
+        transform: translate(-50%, calc(var(--top-position) * -1));
+    }
+}
+
+@keyframes croce-in-first {
+    to {
+        width: 90%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        rotate: 45deg;
+    }
+}
+
+@keyframes croce-in-second {
+    to {
+        width: 90%;
+        opacity: 0;
+    }
+}
+
+@keyframes croce-in-third {
+    to {
+        width: 90%;
+        top: 50%;
+        left: 3px;
+        transform: translateY(-50%);
+        rotate: -45deg;
+    }
+}
+
+@keyframes croce-out-first {
+    to {
+    }
+}
+
+@keyframes croce-out-second {
+    to {
+    }
+}
+
+@keyframes croce-out-third {
+    to {
+    }
+}
+
+.burger {
+    position: relative;
+    width: var(--burger-size);
+    height: var(--burger-size);
+    cursor: pointer;
+
+    &__line {
+        position: absolute;
+        height: calc(var(--burger-size) / 10);
+        background-color: var(--burger-color);
+        border-radius: 25px;
+        top: var(--top-position);
+        transform: translate(-50%, calc(var(--top-position) * -1));
+
+        &.first {
+            --top-position: 25%;
+            width: 90%;
+            left: 50%;
+        }
+
+        &.second {
+            --top-position: 50%;
+            width: 75%;
+            left: 57.5%;
+        }
+
+        &.third {
+            --top-position: 75%;
+            width: 60%;
+            left: 65%;
+        }
+    }
+
+    &.active {
+        .burger__line {
+            animation: grow .2s linear forwards;
+
+            &.first {
+                animation: croce-in-first .2s linear forwards .2s;
+            }
+
+            &.second {
+                animation: croce-in-second .2s linear forwards .2s;
+            }
+
+            &.third {
+                animation: croce-in-third .2s linear forwards .2s;
+            }
+        }
+    }
+}

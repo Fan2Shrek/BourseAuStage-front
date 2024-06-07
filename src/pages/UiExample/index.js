@@ -21,6 +21,7 @@ import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import Banner from '../../components/layout/Banner';
 import Modal from '../../components/ui/atoms/Modal';
 import Dot from '../../components/ui/atoms/Dot';
+import Burger from '../../components/ui/atoms/Burger';
 
 const UiExample = () => {
     const [displayModal, setDisplayModal] = useState(false)
@@ -201,6 +202,10 @@ const UiExample = () => {
         <Banner breadCrumb={breadCrumb}>
             <h1>Ui Exemples</h1>
         </Banner>
+
+        <Container className={styles.section}>
+            <Burger />
+        </Container>
 
         <Container>
             <Container inline className={styles.section}>

@@ -108,6 +108,12 @@ export const DefaultTheme = () => {
          * COMPANY
          */
         setProperty('--company-related-offers-section-color', 'var(--color-third)');
+
+        /**
+         * BURGER
+         */
+        setProperty('--burger-size', '40px')
+        setProperty('--burger-color', 'var(--base-color-neutral)')
     }, [])
 
     return <></>
