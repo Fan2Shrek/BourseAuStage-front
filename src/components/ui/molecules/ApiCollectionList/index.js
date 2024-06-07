@@ -28,8 +28,17 @@ const buildFacetsQuery = (facets, options, t) => {
             return acc
         }
 
-        if (options[facet] && options[facet].includes(FacetOptionEnum.DURATION)) {
-            const baseQuery = `&${FacetOptionEnum.DURATION}[${encodeURI(facet)}][bt]`
+        if (options[facet] && (
+            options[facet].includes(FacetOptionEnum.DURATION)
+            || options[facet].includes(FacetOptionEnum.BETWEEN)
+        )) {
+            let baseQuery = ''
+
+            if (options[facet].includes(FacetOptionEnum.DURATION)) {
+                baseQuery = `&${FacetOptionEnum.DURATION}[${encodeURI(facet)}][bt]`
+            } else if (options[facet].includes(FacetOptionEnum.BETWEEN)) {
+                baseQuery = `&${FacetOptionEnum.BETWEEN}[${encodeURI(facet)}]`
+            }
 
             return values.reduce((acc, value) => {
                 if (Array.isArray(value)) {
@@ -43,48 +52,19 @@ const buildFacetsQuery = (facets, options, t) => {
                 if (value.startsWith('>')) {
                     return `${acc}${baseQuery}[gt]=${value.slice(1)}`
                 }
+
+                return ''
             }, '')
         }
 
-        if (options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN)) {
-            const [min, max] = values.reduce((acc, value) => {
-                const [min, max] = value.split('-')
-
-                if (acc[0] === null) {
-                    acc[0] = parseInt(min, 10)
-                }
-
-                if (min < acc[0]) {
-                    acc[0] = parseInt(min, 10)
-                }
-
-                if (max) {
-                    if (acc[1] === null) {
-                        acc[1] = parseInt(max, 10)
-                    }
-
-                    if (max > acc[1]) {
-                        acc[1] = parseInt(max, 10)
-                    }
-                }
-
-                return acc
-            }, [null, null])
-
-            if (!max) {
-                return `${acc}&${encodeURI(facet)}[gt]=${min}`
-            }
-
-            return `${acc}&${encodeURI(facet)}[gt]=${min}&${encodeURI(facet)}[lt]=${max}`
-        } else {
-            return `${acc}${values.reduce((acc, value) => `${acc}&${encodeURI(facet)}[]=${encodeURI(value)}`, '')}`
-        }
+        return `${acc}${values.reduce((acc, value) => `${acc}&${encodeURI(facet)}[]=${encodeURI(value)}`, '')}`
     }, '')
 }
 
 const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = '', facets = {}, options = []) => {
     const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
     const facetsQuery = buildFacetsQuery(facets, options, t)
+
     return `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}${defaultFiltersQuery}${sort}${facetsQuery}`
 }
 
