@@ -99,14 +99,21 @@ const tokens = {
         add: "actions.add",
     },
     navbar: {
-        home: "navbar.home",
-        offers: "navbar.offers",
-        requests: "navbar.requests",
-        companies: "navbar.companies",
-        students: "navbar.students",
-        internship: "navbar.internship",
-        workStudy: "navbar.workStudy",
-        UI: "navbar.UI"
+        modal: {
+            title: "navbar.modal.title",
+            student: "navbar.modal.student",
+            company: "navbar.modal.company",
+        },
+        links: {
+            home: "navbar.links.home",
+            offers: "navbar.links.offers",
+            requests: "navbar.links.requests",
+            companies: "navbar.links.companies",
+            students: "navbar.links.students",
+            internship: "navbar.links.internship",
+            workStudy: "navbar.links.workStudy",
+            UI: "navbar.links.UI",
+        },
     },
     footer: {
         description: "footer.description",

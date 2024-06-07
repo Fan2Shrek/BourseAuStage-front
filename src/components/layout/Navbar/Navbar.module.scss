@@ -20,6 +20,20 @@
         justify-content: space-between;
         align-items: center;
 
+        .modal {
+            display: flex;
+            justify-content: center;
+            gap: 10%;
+            padding-block: 20px;
+
+            :global {
+                .button {
+                    font-weight: 600;
+                    padding: 20px 50px 20px 40px;
+                }
+            }
+        }
+
         .links,
         .login {
             display: flex;

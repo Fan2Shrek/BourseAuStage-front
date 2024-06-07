@@ -8,5 +8,7 @@ const path = {
     offer: '/offres/:id',
     requestDetail: '/demandes/:id',
     apply: '/offres/postuler/:id',
+    studentRegistration: '/inscription?profil=etudiant',
+    companyRegistration: '/inscription?profil=entreprise',
 }
 export default path;
