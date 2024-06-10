@@ -1,0 +1,114 @@
+.content {
+    padding-block: 72px;
+    display: flex;
+    gap: 50px;
+
+    .divider {
+        height: 2px;
+        width: 100%;
+        margin-block: 20px;
+        background-color: var(--color-third);
+    }
+
+    .left {
+        width: 66%;
+
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .form {
+            margin-top: 30px;
+            display: grid;
+            grid-gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+            grid-template-columns: repeat(6, 1fr);
+
+
+            .c2 {
+                grid-column: span 2;
+            }
+
+            .c3 {
+                grid-column: span 3;
+            }
+
+            .c6 {
+                grid-column: span 6;
+            }
+
+            h3 {
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            :global {
+                .button {
+                    height: 50px;
+                }
+            }
+        }
+    }
+
+    .right {
+        width: 33%;
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-main);
+        }
+
+        .avatarBlock {
+            display: flex;
+            gap: 10px;
+
+            .avatar {
+                min-width: 72px;
+                height: 72px;
+                background-color: var(--color-middle-grey);
+                border-radius: 50%;
+            }
+
+            .multiLine {
+                display: flex;
+                flex-direction: column;
+
+                .main {
+                    color: var(--color-main);
+                }
+
+                .grey {
+                    color: var(--color-middle-grey);
+                }
+            }
+        }
+
+
+        p:not(.subtitle) {
+            font-size: 16px;
+            margin-block: 17px;
+        }
+
+        .btn {
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+
+        .buttonContainer {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .documentRow {
+            p span {
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -10,5 +10,6 @@ const path = {
     apply: '/offres/postuler/:id',
     studentRegistration: '/inscription?profil=etudiant',
     companyRegistration: '/inscription?profil=entreprise',
+    profil: '/profile',
 }
 export default path;
