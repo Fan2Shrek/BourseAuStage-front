@@ -42,7 +42,7 @@ const Input = ({
 
         if (type === 'file') {
             setValue(e.target.files[0])
-            onChange && onChange(e.target.files[0])
+            onChange && onChange(e)
         }
 
         if (['input', 'range'].includes(type)) {

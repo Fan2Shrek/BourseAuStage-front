@@ -10,6 +10,10 @@ class Me {
     async post(body) {
         return this.apiClient.post(`/me`, body);
     }
+
+    async getStudyLevels() {
+        return this.apiClient.get(`/study_levels`);
+    }
 }
 
 export default Me;  

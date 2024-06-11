@@ -12,7 +12,7 @@ class ApiClient {
         this.request = new Request(this);
         this.me = new Me(this);
 
-        this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTgxMzYyNTUsImV4cCI6MTcxODEzOTg1NSwicm9sZXMiOlsiUk9MRV9TVFVERU5UIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmV2YS50b3duZUBob3RtYWlsLmNvbSJ9.XnX8_kHzciMYQvzXdr2pfY_M8RaQJt6oPxWoO1BOEjUYKYUyADg72ZPYmZC8bqOtNhLf2jbboG2vgn6IxG5hb8yxvmu9f9ROqNoWfLCLSnlRv-jTjYMWefNEIqOH2Sr2ykljXYz-XxUWd1pzxw9rznMYqdwHwUldNe7tSbSSb8MbTxCqOBKYsthi7tDtre4SyImFSsObl1MbPUSyL9nsV43ugtytRYZB0Nb4yi1NkhSFYxfUEjUuwgo0aFNCSWu5VQ1OXJO0LwNL5iVUarjEp57kV7yy-7huRNou9aG6-HVeUZEalGmWnGDkkFWaJ0N9qTnaFgQoO2ehmIASeGXimg";
+        this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTgxMzk4ODEsImV4cCI6MTcxODE0MzQ4MSwicm9sZXMiOlsiUk9MRV9TVFVERU5UIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmV2YS50b3duZUBob3RtYWlsLmNvbSJ9.W6D-_pIKz_x3BhWd5x_7-74_BLuLQ9ilMWd_FjWrxMDn-l6gKYPKBTnGt7AJBev4mkU-l-zMXz8JeHoUyMagfbJ8HaKb8mLeQSUCsNwZ_Adx1ghruSeFEQjj_blS8cXZsR21mFd5RlmUCyhTSZTVpCNe01pci7A32D_snRhRLjrQmkumZk5BX7LSMugnVmEnat4NBPRX6I9e5ZINRc8W2g9nPXDOJb6vr4q8CvHJcLe-FPbOOvmKfRXCb-XVRRqqRKG_ENeZua-TGfJtwNOPK0re0pgPSKLHuqjF2d4ql_RZaFglO4gPgCP-sELmI2WEzM0PygcQ7b6_uQAL9iAWFw";
     }
 
     async get(url) {

@@ -1,5 +1,5 @@
 import { FaArrowLeft,FaPlus } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { RxCross1 } from "react-icons/rx";
 import dayjs from "dayjs";
@@ -20,11 +20,15 @@ const ProfilForm = ({isApplyment = false}) => {
     const [profil, setProfile] = useState(null);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
+
+    const [studyLevels, setStudyLevels] = useState([]);
+
     const [skills, setSkills] = useState(['Skill 1', 'Skill 2', 'Skill 3']);
     const [languages, setLanguages] = useState(['Langage 1', 'Langage 2', 'Langage 3']);
     const [experiences, setExperiences] = useState(['Experience 1', 'Experience 2', 'Experience 3']);
 
     const handleChange = (e) => {
+        console.log(e)
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -48,9 +52,10 @@ const ProfilForm = ({isApplyment = false}) => {
     }
 
     const handleSubmit = async () => {
-        const response = await apiClient.me.post(form);
+        console.log(form)
+        // const response = await apiClient.me.post(form);
 
-        setErrors(response)
+        // setErrors(response)
     }
 
     useEffect(() => {
@@ -59,6 +64,17 @@ const ProfilForm = ({isApplyment = false}) => {
         });
 
     }, []);
+
+    useEffect(() => {
+        apiClient.me.getStudyLevels().then(response => {
+            setStudyLevels(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+        });
+
+    }, []);
+
+    const study = useMemo(() => {
+        return profil && profil.studyLevel.replace('/api/study_levels/', '');
+    }, [profil]);
 
     if (!profil) {
         return <></>;
@@ -102,8 +118,8 @@ const ProfilForm = ({isApplyment = false}) => {
                 <div className={cn(styles.divider, styles['c6'])}></div>
                 <h3 className={styles['c6']}>{t(tokens.page.apply.mySituation)}</h3>
 
-                <Select name='study' label={t(tokens.page.apply.study)} type='text' required values={['Bac', 'Bac+2']} className={styles['c2']} />
-                <Select name='currentDiploma' label={t(tokens.page.apply.currentDiploma)} type='text' values={['Bac', 'Bac+2']} className={styles['c2']} />
+                <Select keyValue="value" defaultValue={study} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c2']} />
+                <Input name='diploma' defaultValue={profil.diploma} label={t(tokens.page.apply.currentDiploma)} onChange={handleChange} className={styles['c2']} />
                 <Input name='school' defaultValue={profil.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
 
                 <Input name='formation' defaultValue={profil.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
@@ -136,7 +152,7 @@ const ProfilForm = ({isApplyment = false}) => {
             <div className={styles.avatarBlock}>
                 <div className={styles.avatar}></div>
 
-                <Input type="file" withoutIcon placeholder={<Trans
+                <Input onChange={handleChange} name='profilPicture' type="file" withoutIcon placeholder={<Trans
                     i18nKey={tokens.page.apply.myPhoto.placeholder}
                     components={{
                         multiLine: <span className={styles.multiLine} />,

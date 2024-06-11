@@ -19,9 +19,9 @@ const Select = ({
 }) => {
     const [currentValue, setValue] = useState(defaultValue)
 
-    const handleChange = useCallback(({ target: { value } }) => {
-        setValue(value)
-        onChange && onChange(value)
+    const handleChange = useCallback((e) => {
+        setValue(e.target.value)
+        onChange && onChange(e)
     }, [setValue])
 
     return <div className={cn(
@@ -58,10 +58,11 @@ const Select = ({
 
                 {values.map((value, index) => <option
                     key={index}
-                    value={value}
+                    value={(typeof value === 'object' && value.value) || value}
                     className='select__option'
+                    selected={currentValue === ((typeof value === 'object' ? value.value : value.value))}
                 >
-                    {value}
+                    {(typeof value === 'object' && value.name) || value}
                 </option>)}
 
             </select>
