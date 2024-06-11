@@ -183,6 +183,7 @@ const fr = {
     [tokens.page.apply.otherField.placeholder]: "Importer un autre document",
     [tokens.page.apply.otherRequirements]: "format PDF ou ZIP, 50 Mo max",
     [tokens.page.apply.motivations]: "Vos atouts & motivations pour postuler à cette offre de stage",
+    [tokens.page.profil.update]: "Modifier mon profil",
 }
 
 export default fr

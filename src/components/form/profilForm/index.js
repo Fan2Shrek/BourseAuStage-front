@@ -2,6 +2,7 @@ import { FaArrowLeft,FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { RxCross1 } from "react-icons/rx";
+import dayjs from "dayjs";
 
 import styles from './profilForm.module.scss';
 import tokens from "../../../translations/tokens";
@@ -11,12 +12,14 @@ import cn from '../../../utils/classnames';
 import Button from "../../../components/ui/atoms/Button";
 import Ckeditor from "../../../components/ui/atoms/Ckeditor";
 import apiClient from "../../../api/ApiClient";
+import Calendar from "../../../components/ui/atoms/Calendar";
 
 const ProfilForm = ({isApplyment = false}) => {
     const { t } = useTranslation();
 
     const [profil, setProfile] = useState(null);
     const [form, setForm] = useState({});
+    const [errors, setErrors] = useState({});
     const [skills, setSkills] = useState(['Skill 1', 'Skill 2', 'Skill 3']);
     const [languages, setLanguages] = useState(['Langage 1', 'Langage 2', 'Langage 3']);
     const [experiences, setExperiences] = useState(['Experience 1', 'Experience 2', 'Experience 3']);
@@ -44,8 +47,10 @@ const ProfilForm = ({isApplyment = false}) => {
         }
     }
 
-    const handleSubmit = () => {
-        apiClient.me.post(form);
+    const handleSubmit = async () => {
+        const response = await apiClient.me.post(form);
+
+        setErrors(response)
     }
 
     useEffect(() => {
@@ -72,7 +77,10 @@ const ProfilForm = ({isApplyment = false}) => {
                 <Input name='firstName' defaultValue={profil.firstName} onChange={handleChange} required label={t(tokens.page.apply.firstname)} className={styles['c2']} />
                 <Input name='lastName' defaultValue={profil.lastName} onChange={handleChange} required label={t(tokens.page.apply.lastname)} className={styles['c2']} />
 
-                {/* calendar */} <Input name='birth' onChange={handleChange} required label={t(tokens.page.apply.birth)} className={styles['c3']} />
+                <div className={styles['c3']}>
+                    <Calendar onChange={(e) => (setForm({...form, birthdayAt: e['$d']}))} value={dayjs(profil.birthdayAt)} label={t(tokens.page.apply.birth)} required />
+                </div>
+
                 <Input name='phone' defaultValue={profil.phone} onChange={handleChange} required label={t(tokens.page.apply.phone)} className={styles['c3']} />
 
                 <Input name='email' defaultValue={profil.email} onChange={handleChange} required label={t(tokens.page.apply.email)} className={styles['c3']} />
@@ -98,7 +106,7 @@ const ProfilForm = ({isApplyment = false}) => {
                 <Select name='currentDiploma' label={t(tokens.page.apply.currentDiploma)} type='text' values={['Bac', 'Bac+2']} className={styles['c2']} />
                 <Input name='school' defaultValue={profil.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
 
-                <Input name='currentFormation' onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
+                <Input name='formation' defaultValue={profil.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
  
                 {isApplyment && <>
                         <Ckeditor label={t(tokens.page.apply.motivations)} className={styles['c6']} />
@@ -110,7 +118,10 @@ const ProfilForm = ({isApplyment = false}) => {
 
                     </>
                 }
-                <Button label={t(tokens.page.apply.submit)} onClick={handleSubmit} className={styles['c6']} />
+                <Button label={isApplyment ? t(tokens.page.apply.submit) : t(tokens.page.profil.update)} onClick={handleSubmit} className={styles['c6']} />
+                <div className={styles['c6']}>
+                    {Object.entries(errors).map(([name, error]) => <p className={styles.errors}>{error}</p>)}
+                </div>
                 {isApplyment && <>
                         <p className={cn(styles.legal, styles['c6'])}>{t(tokens.page.apply.legal)}</p>
                         <Button label={t(tokens.actions.back)} inverted icon={<FaArrowLeft />} />

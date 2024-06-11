@@ -167,6 +167,9 @@ const tokens = {
                 studentLine: "page.home.lastRequests.studentLine",
             },
         },
+        profil: {
+            update: "page.profil.update",
+        },
         companyDetails: {
             activity: "page.companyDetails.activity",
             age: "page.companyDetails.age",

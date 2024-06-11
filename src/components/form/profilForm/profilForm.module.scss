@@ -26,6 +26,9 @@
             grid-auto-rows: minmax(100px, auto);
             grid-template-columns: repeat(6, 1fr);
 
+            .calendar {
+                width: 100%;
+            }
 
             .c2 {
                 grid-column: span 2;
@@ -49,6 +52,10 @@
                     height: 50px;
                 }
             }
+        }
+
+        .errors {
+            color: red;
         }
     }
 
