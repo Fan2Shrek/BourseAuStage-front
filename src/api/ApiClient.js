@@ -12,7 +12,7 @@ class ApiClient {
         this.request = new Request(this);
         this.me = new Me(this);
 
-        this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTgxMzk4ODEsImV4cCI6MTcxODE0MzQ4MSwicm9sZXMiOlsiUk9MRV9TVFVERU5UIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmV2YS50b3duZUBob3RtYWlsLmNvbSJ9.W6D-_pIKz_x3BhWd5x_7-74_BLuLQ9ilMWd_FjWrxMDn-l6gKYPKBTnGt7AJBev4mkU-l-zMXz8JeHoUyMagfbJ8HaKb8mLeQSUCsNwZ_Adx1ghruSeFEQjj_blS8cXZsR21mFd5RlmUCyhTSZTVpCNe01pci7A32D_snRhRLjrQmkumZk5BX7LSMugnVmEnat4NBPRX6I9e5ZINRc8W2g9nPXDOJb6vr4q8CvHJcLe-FPbOOvmKfRXCb-XVRRqqRKG_ENeZua-TGfJtwNOPK0re0pgPSKLHuqjF2d4ql_RZaFglO4gPgCP-sELmI2WEzM0PygcQ7b6_uQAL9iAWFw";
+        this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTgyMTIyNDIsImV4cCI6MTcxODIxNTg0Miwicm9sZXMiOlsiUk9MRV9TVFVERU5UIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicmV2YS50b3duZUBob3RtYWlsLmNvbSJ9.Qccq3yQCf2Dp-8Vd6GiaehhaBUYCq_OR0TOaj99Jflsjo3NthJH6qCizKTANmUL79Zipp5QhYsuPBBluQBcOAxG6VrhPn6UiDkhg-RT9yEZglfB_N5Yamay_N9o_DfYqb8O0DkQW-XNcY-XKSm180mrGLxct0mlWi1Saj06AGX5AFlUcJwIwdxBUrpa7Ckjev_oqR4f_EKlAiSQ97p56r6sRhXQfZQm4LO9TQ03tP_Wb_3HP6vREggSTzWhW1fWzbOu1x5n66KdeJGZXnUX6bW9kk3N4uku-nW70Apm93EceHY4JuxoRpnbFfs7QSOVg5-QHc8F__Y7faVPZBzDh-A";
     }
 
     async get(url) {
@@ -20,15 +20,22 @@ class ApiClient {
             .then(response => response.json())
     }
 
-    async post(url, body) {
+    async post(url, body, asFormData = false) {
+        const headers = {
+            accept: 'application/json',
+        }
+
+        if (!asFormData) {
+            headers['Content-Type'] = 'application/json'
+        }
+
         return fetch(`${this.baseUrl}${url}`, {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                ...headers,
                 Authorization: this.token ? `Bearer ${this.token}` : null
             },
-            body: JSON.stringify(body)
+            body: asFormData ? body : JSON.stringify(body)
         })
             .then(response => response.json())
     }

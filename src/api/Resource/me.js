@@ -8,7 +8,7 @@ class Me {
     }
 
     async post(body) {
-        return this.apiClient.post(`/me`, body);
+        return this.apiClient.post(`/me`, body, true);
     }
 
     async getStudyLevels() {

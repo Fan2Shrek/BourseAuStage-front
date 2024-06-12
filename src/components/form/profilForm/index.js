@@ -13,6 +13,7 @@ import Button from "../../../components/ui/atoms/Button";
 import Ckeditor from "../../../components/ui/atoms/Ckeditor";
 import apiClient from "../../../api/ApiClient";
 import Calendar from "../../../components/ui/atoms/Calendar";
+import getPicturePath from '../../../utils/getPicturePath'
 
 const ProfilForm = ({isApplyment = false}) => {
     const { t } = useTranslation();
@@ -28,7 +29,6 @@ const ProfilForm = ({isApplyment = false}) => {
     const [experiences, setExperiences] = useState(['Experience 1', 'Experience 2', 'Experience 3']);
 
     const handleChange = (e) => {
-        console.log(e)
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -52,10 +52,15 @@ const ProfilForm = ({isApplyment = false}) => {
     }
 
     const handleSubmit = async () => {
-        console.log(form)
-        // const response = await apiClient.me.post(form);
+        const formData = new FormData();
 
-        // setErrors(response)
+        Object.entries(form).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+
+        const response = await apiClient.me.post(formData);
+
+        setErrors(response)
     }
 
     useEffect(() => {
@@ -108,7 +113,7 @@ const ProfilForm = ({isApplyment = false}) => {
                 <Input name='postCode' defaultValue={profil.postCode} onChange={handleChange} label={t(tokens.page.apply.postalCode)} className={styles['c3']} />
                 <Input name='city' defaultValue={profil.city} onChange={handleChange} label={t(tokens.page.apply.city)} className={styles['c3']} />
 
-                <Input name='personalWebsite' defaultValue={profil.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
+                <Input name='website' defaultValue={profil.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
 
                 <Input name='linkedIn' defaultValue={profil.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
 
@@ -150,9 +155,9 @@ const ProfilForm = ({isApplyment = false}) => {
             <p>{t(tokens.page.apply.photoDescription)}</p>
 
             <div className={styles.avatarBlock}>
-                <div className={styles.avatar}></div>
+                <div className={styles.avatar}><img alt={profil.firstName} width={70} height={70} src={getPicturePath(`img/user/${profil.profilPicture}`)} /></div>
 
-                <Input onChange={handleChange} name='profilPicture' type="file" withoutIcon placeholder={<Trans
+                <Input onChange={(e) => setForm({...form, profilPicture: e.target.files[0]})} name='profilPicture' type="file" withoutIcon placeholder={<Trans
                     i18nKey={tokens.page.apply.myPhoto.placeholder}
                     components={{
                         multiLine: <span className={styles.multiLine} />,
