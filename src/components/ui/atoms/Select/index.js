@@ -22,7 +22,7 @@ const Select = ({
     const handleChange = useCallback((e) => {
         setValue(e.target.value)
         onChange && onChange(e)
-    }, [setValue])
+    }, [setValue, onChange])
 
     return <div className={cn(
         'select',
@@ -60,7 +60,7 @@ const Select = ({
                     key={index}
                     value={(typeof value === 'object' && value.value) || value}
                     className='select__option'
-                    selected={currentValue === ((typeof value === 'object' ? value.value : value.value))}
+                    selected={currentValue === ((typeof value === 'object' ? value.value : value))}
                 >
                     {(typeof value === 'object' && value.name) || value}
                 </option>)}

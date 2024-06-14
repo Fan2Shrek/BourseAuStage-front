@@ -15,6 +15,11 @@ const tokens = {
             label: "apiCollection.sorting.label",
         },
     },
+    sexes: {
+        man: "sexes.man",
+        woman: "sexes.woman",
+        nonBinary: "sexes.nonBinary"
+    },
     card: {
         company: {
             internship: {
@@ -238,6 +243,11 @@ const tokens = {
             documentsDescription: "page.apply.documentsDescription",
             experiences: "page.apply.experiences",
             experiencesDescription: "page.apply.experiencesDescription",
+            add: {
+                skill: "page.apply.add.skill",
+                language: "page.apply.add.language",
+                experience: "page.apply.add.experience",
+            },
             cvField: {
                 label: "page.apply.cvField.title",
                 placeholder: "page.apply.cvField.label",
@@ -252,8 +262,12 @@ const tokens = {
                 label: "page.apply.otherField.label",
                 placeholder: "page.apply.otherField.placeholder",
             },
+            errors: {
+                emailsNotMatch: "page.apply.errors.emailsNotMatch",
+            },
             otherRequirements: "page.apply.otherRequirements",
             motivations: "page.apply.motivations",
+            addSkill: "page.apply.addSkill",
         },
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
