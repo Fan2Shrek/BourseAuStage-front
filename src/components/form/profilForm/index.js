@@ -236,15 +236,18 @@ const ProfilForm = ({isApplyment = false}) => {
             <div className={styles.documentRow}>
                 <p><span>{t(tokens.page.apply.cvField.title)}</span> ({t(tokens.page.apply.cvRequirements)})</p>
                 <Input type="file" onChange={(e) => setForm({...form, cv: e.target.files[0]})} placeholder={t(tokens.page.apply.cvField.placeholder)} />
+                <span>{profil.cv}</span>
             </div>
             {isApplyment && <>
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.coverLetterField.label)}</span> ({t(tokens.page.apply.coverLetterRequirements)})</p>
                     <Input type="file" placeholder={t(tokens.page.apply.coverLetterField.placeholder)} />
+                    <span>{profil.cv}</span>
                 </div>
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.otherField.label)}</span> ({t(tokens.page.apply.otherRequirements)})</p>
                     <Input type="file" placeholder={t(tokens.page.apply.otherField.placeholder)} />
+                    <span>{profil.cv}</span>
                 </div>
             </>}
         </div>
