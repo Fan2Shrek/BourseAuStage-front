@@ -10,6 +10,9 @@ const Calendar = ({
   label = null,
   id,
   required = false,
+  value = null,
+  name = '',
+  onChange = () => {},
 }) => {
   return (
     <>
@@ -27,6 +30,9 @@ const Calendar = ({
           id={id}
           renderInput={(params) => <TextField {...params} />}
           inputFormat="DD/MM/YYYY"
+          defaultValue={value}
+          onChange={onChange}
+          name={name}
         />
       </LocalizationProvider>
     </>

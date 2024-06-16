@@ -183,6 +183,15 @@ const fr = {
     [tokens.page.apply.otherField.placeholder]: "Importer un autre document",
     [tokens.page.apply.otherRequirements]: "format PDF ou ZIP, 50 Mo max",
     [tokens.page.apply.motivations]: "Vos atouts & motivations pour postuler à cette offre de stage",
+    [tokens.page.profil.update]: "Modifier mon profil",
+    [tokens.page.apply.add.skill]: "Ajouter une compétence",
+    [tokens.page.apply.add.language]: "Ajouter une langue",
+    [tokens.page.apply.add.experience]: "Ajouter une expérience",
+    [tokens.page.apply.addSkill]: "Sélectionner une compétence",
+    [tokens.sexes.man]: "Homme",
+    [tokens.sexes.woman]: "Femme",
+    [tokens.sexes.nonBinary]: "Non-binaire",
+    [tokens.page.apply.errors.emailsNotMatch]: "Les emails ne correspondent pas",
 }
 
 export default fr

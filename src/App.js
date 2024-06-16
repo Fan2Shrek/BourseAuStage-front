@@ -9,6 +9,7 @@ import Company from "./pages/Company";
 import Apply from "./pages/Offers/Apply";
 import Companies from "./pages/Companies";
 import Offer from "./pages/Offer";
+import Profil from "./pages/Profil";
 import Offers from "./pages/Offers";
 import OfferTypeEnum from "./enum/OfferTypeEnum";
 
@@ -24,6 +25,7 @@ function App() {
                     <Route index path={path.internship} element={<Offers type={OfferTypeEnum.INTERNSHIP} />} />
                     <Route index path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
                     <Route index path={path.apply} element={<Apply />} />
+                    <Route index path={path.profil} element={<Profil />} />
                     {/* A enlever plus tard */}
                     <Route index path={path.uiExample} element={<UiExample />} />
                 </Route>
