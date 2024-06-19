@@ -9,13 +9,8 @@ export const getCookie = (name) => {
     return decodeURIComponent(value)
 }
 
-export const setCookie = (name, value, days) => {
-    let expire = null
-
-    if (days) {
-        expire = new Date()
-        expire.setDate(expire.getDate() + days)
-    } else if (value === null) {
+export const setCookie = (name, value, expire = null) => {
+    if (value === null) {
         expire = new Date()
     }
 

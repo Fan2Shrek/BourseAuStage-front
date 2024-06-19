@@ -67,6 +67,7 @@ export const DefaultTheme = () => {
         setProperty('--input-required-color', 'var(--color-danger)');
         setProperty('--input-label-color', 'var(--color-dark-grey)');
         setProperty('--input-disabled-color', 'var(--color-grey)');
+        setProperty('--input-password-eye-color', 'var(--color-main)');
         setProperty('--input-range-label-color', 'var(--color-main)');
         setProperty('--input-range-track', 'var(--color-dark-grey)');
         setProperty('--input-range-thumb', 'var(--color-main)');

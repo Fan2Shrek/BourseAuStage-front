@@ -172,6 +172,19 @@ const tokens = {
                 studentLine: "page.home.lastRequests.studentLine",
             },
         },
+        login: {
+            hero: {
+                title: {
+                    first: "page.login.hero.title.first",
+                    underlined: "page.login.hero.title.underlined",
+                },
+            },
+            form: {
+                email: "page.login.form.email",
+                password: "page.login.form.password",
+                submit: "page.login.form.submit",
+            },
+        },
         profil: {
             update: "page.profil.update",
         },
@@ -317,6 +330,7 @@ const tokens = {
     },
     breadCrumb: {
         home: "breadCrumb.home",
+        login: "breadCrumb.login",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
         offers: {

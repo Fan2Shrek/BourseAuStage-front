@@ -1,18 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import path from "./path";
-import { ThemeContextProvider } from "./context/ThemeContext";
-import { UserContextProvider } from "./context/UserContext";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import UiExample from "./pages/UiExample";
-import Company from "./pages/Company";
-import Apply from "./pages/Offers/Apply";
-import Companies from "./pages/Companies";
-import Offer from "./pages/Offer";
-import Profil from "./pages/Profil";
-import Offers from "./pages/Offers";
-import OfferTypeEnum from "./enum/OfferTypeEnum";
+import path from "./path"
+import { ThemeContextProvider } from "./context/ThemeContext"
+import { UserContextProvider } from "./context/UserContext"
+import Layout from "./components/layout/Layout"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import UiExample from "./pages/UiExample"
+import Company from "./pages/Company"
+import Apply from "./pages/Offers/Apply"
+import Companies from "./pages/Companies"
+import Offer from "./pages/Offer"
+import Profil from "./pages/Profil"
+import Offers from "./pages/Offers"
+import OfferTypeEnum from "./enum/OfferTypeEnum"
 
 function App() {
     return <ThemeContextProvider>
@@ -21,6 +22,7 @@ function App() {
                 <Routes>
                     <Route element={<Layout />}>
                         <Route index path={path.home} element={<Home />} />
+                        <Route index path={path.login} element={<Login />} />
                         <Route index path={path.companies} element={<Companies />} />
                         <Route index path={path.company} element={<Company />} />
                         <Route index path={path.offer} element={<Offer />} />
@@ -34,8 +36,8 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </UserContextProvider>
-    </ThemeContextProvider>;
+    </ThemeContextProvider>
 }
 
 
-export default App;
+export default App

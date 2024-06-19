@@ -14,12 +14,12 @@ class ApiClient {
         this.request = new Request(this);
         this.me = new Me(this);
         this.skill = new Skill(this);
+
+        this.token = getCookie('token')
     }
 
     async get(url) {
-        const token = getCookie('token')
-
-        return fetch(`${this.baseUrl}${url}`, token ? { headers: { Authorization: `Bearer ${token}` } } : null)
+        return fetch(`${this.baseUrl}${url}`, this.token ? { headers: { Authorization: `Bearer ${this.token}` } } : null)
             .then(response => response.json())
     }
 
@@ -32,13 +32,11 @@ class ApiClient {
             headers['Content-Type'] = 'application/json'
         }
 
-        const token = getCookie('token')
-
         return fetch(`${this.baseUrl}${url}`, {
             method: 'POST',
             headers: {
                 ...headers,
-                Authorization: token ? `Bearer ${token}` : null
+                Authorization: this.token ? `Bearer ${this.token}` : null
             },
             body: asFormData ? body : JSON.stringify(body)
         })
@@ -56,16 +54,16 @@ class ApiClient {
     }
 
     async login(email, password) {
-        this.post('/login', { email, password })
+        return this.post('/login', { email, password })
             .then(response => {
                 if (response.token) {
-                    setCookie('token', response.token)
+                    const decodedToken = JSON.parse(atob(response.token.split('.')[1]));
+                    setCookie('token', response.token, new Date(decodedToken.exp * 1000))
+                    this.token = response.token
                 }
-            })
-    }
 
-    async logout() {
-        setCookie('token', null)
+                return response
+            })
     }
 }
 

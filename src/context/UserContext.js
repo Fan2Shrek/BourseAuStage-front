@@ -1,14 +1,15 @@
-import { createContext, useEffect, useState } from "react";
-import { getCookie } from "../utils/cookies";
-import apiClient from "../api/ApiClient";
+import { createContext, useEffect, useState } from "react"
+
+import { getCookie } from "../utils/cookies"
+import apiClient from "../api/ApiClient"
 
 export const UserContext = createContext({
     user: null,
     setUser: () => {},
-});
+})
 
 export const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         const token = getCookie('token')
@@ -26,5 +27,5 @@ export const UserContextProvider = ({ children }) => {
         setUser,
     }}>
         {children}
-    </UserContext.Provider>;
-};
+    </UserContext.Provider>
+}
