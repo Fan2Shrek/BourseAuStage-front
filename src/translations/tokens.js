@@ -184,6 +184,9 @@ const tokens = {
                 password: "page.login.form.password",
                 submit: "page.login.form.submit",
             },
+            notifications: {
+                error: "page.login.notification.error",
+            },
         },
         profil: {
             update: "page.profil.update",
@@ -346,6 +349,10 @@ const tokens = {
             dateASC: "sortings.clarifications.dateASC",
             dateDESC: "sortings.clarifications.dateDESC",
         },
+    },
+    notifications: {
+        login: "notifications.login",
+        logout: "notifications.logout",
     },
 }
 

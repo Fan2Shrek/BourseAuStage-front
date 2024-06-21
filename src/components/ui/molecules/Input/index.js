@@ -102,6 +102,7 @@ const Input = ({
                 ref={target}
                 placeholder={placeholder}
                 {...displayValue()}
+                {...(type === 'password' ? { autoComplete: 'false' } : {})}
                 {...(type === 'range' ? { min, max, step } : {})}
                 {...(type === 'file' ? { accept } : {})}
                 disabled={disabled}

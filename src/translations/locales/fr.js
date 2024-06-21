@@ -90,6 +90,7 @@ const fr = {
     [tokens.page.login.form.email]: "Identifiant",
     [tokens.page.login.form.password]: "Mot de passe",
     [tokens.page.login.form.submit]: "Connexion",
+    [tokens.page.login.notifications.error]: "Email ou mot de passe incorrect",
     [tokens.page.offerDetails.presentationInternShip]: "A propos de ce stage",
     [tokens.page.offerDetails.presentationWork]: "A propos de cette alternance",
     [tokens.page.offerDetails.mission]: "Missions",
@@ -198,6 +199,9 @@ const fr = {
     [tokens.sexes.woman]: "Femme",
     [tokens.sexes.nonBinary]: "Non-binaire",
     [tokens.page.apply.errors.emailsNotMatch]: "Les emails ne correspondent pas",
+    [tokens.notifications.login]: "Connecter en tant que {{name}}",
+    [tokens.notifications.logout]: "Vous êtes actuellement déconnecté"
+
 }
 
 export default fr

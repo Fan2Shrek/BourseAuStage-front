@@ -30,6 +30,7 @@ export const DefaultTheme = () => {
         setProperty('--color-middle-grey', '#7C8493')
         setProperty('--color-dark-grey', '#5c626e')
 
+        setProperty('--color-info', 'var(--color-secondary)');
         setProperty('--color-danger', '#ff007a');
         setProperty('--color-warning', '#ff9900');
         setProperty('--color-success', '#56cdad');
