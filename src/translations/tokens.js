@@ -172,6 +172,22 @@ const tokens = {
                 studentLine: "page.home.lastRequests.studentLine",
             },
         },
+        login: {
+            hero: {
+                title: {
+                    first: "page.login.hero.title.first",
+                    underlined: "page.login.hero.title.underlined",
+                },
+            },
+            form: {
+                email: "page.login.form.email",
+                password: "page.login.form.password",
+                submit: "page.login.form.submit",
+            },
+            notifications: {
+                error: "page.login.notification.error",
+            },
+        },
         profil: {
             update: "page.profil.update",
         },
@@ -317,6 +333,7 @@ const tokens = {
     },
     breadCrumb: {
         home: "breadCrumb.home",
+        login: "breadCrumb.login",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
         offers: {
@@ -332,6 +349,10 @@ const tokens = {
             dateASC: "sortings.clarifications.dateASC",
             dateDESC: "sortings.clarifications.dateDESC",
         },
+    },
+    notifications: {
+        login: "notifications.login",
+        logout: "notifications.logout",
     },
 }
 

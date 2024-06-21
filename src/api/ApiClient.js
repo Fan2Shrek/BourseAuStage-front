@@ -4,6 +4,7 @@ import Offer from "./Resource/offer"
 import Request from "./Resource/request"
 import Me from "./Resource/me"
 import Skill from "./Resource/skill"
+import { getCookie, setCookie } from "../utils/cookies"
 
 class ApiClient {
     constructor() {
@@ -14,11 +15,11 @@ class ApiClient {
         this.me = new Me(this);
         this.skill = new Skill(this);
 
-        this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MTg0NTUzNzEsImV4cCI6MTcxODgxNTM3MSwicm9sZXMiOlsiUk9MRV9TVFVERU5UIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGVzdEB0ZXN0dC5jb20ifQ.nDnndEKoO3snsQb4GZ28whn8OocsoRacZ58sfoqbR7HS6UgSACilKJ28X_z8T7fOTWUyAdva1gK3oCwn6jrwJVWSsrEalrOOrugD120JA5jRXju3qmeoB4r2q9U3HppQed_8p53WmUzJsHtbECW9ZbAEhhOnHgeQZZo2ec1lY-uQIuxjJPeyliu833FVqhfdaA8jG4aLjj-QEpmnfcw1IFDqicrqo3sE0ejNlNFGcDkQ_FYNLYpBs5NkQ5Bm7S9lH7C6-7vy-XUt8vnQXYM3FsNlpjXepDs9pYIjGkFMo_Yrv8P4m5bxzPKCFUr4BJomLmHavnw3v5eXPVTE9W8Dpg";
+        this.token = getCookie('token')
     }
 
     async get(url) {
-        return fetch(`${this.baseUrl}${url}`, this.token ? {headers: {Authorization: `Bearer ${this.token}`}} : null)
+        return fetch(`${this.baseUrl}${url}`, this.token ? { headers: { Authorization: `Bearer ${this.token}` } } : null)
             .then(response => response.json())
     }
 
@@ -50,6 +51,29 @@ class ApiClient {
             },
         })
             .then(response => response.json())
+    }
+
+    async login(email, password) {
+        return this.post('/login', { email, password })
+            .then(response => {
+                if (response.token) {
+                    const decodedToken = JSON.parse(atob(response.token.split('.')[1]));
+                    setCookie('token', response.token, new Date(decodedToken.exp * 1000))
+                    this.token = response.token
+                }
+
+                return response
+            })
+            .then(async (response) => {
+                if (response.token) {
+                    return {
+                        ...response,
+                        user: await this.me.get().then(user => user)
+                    }
+                }
+
+                return response
+            })
     }
 }
 

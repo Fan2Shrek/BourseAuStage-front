@@ -85,6 +85,12 @@ const fr = {
     [tokens.page.home.lastOffers.cta]: "Toutes les offres",
     [tokens.page.home.lastRequests.title]: "Dernières <secondary>demandes</secondary>",
     [tokens.page.home.lastRequests.cta]: "Toutes les demandes",
+    [tokens.page.login.hero.title.first]: "De retour ?",
+    [tokens.page.login.hero.title.underlined]: "Connectez-vous",
+    [tokens.page.login.form.email]: "Identifiant",
+    [tokens.page.login.form.password]: "Mot de passe",
+    [tokens.page.login.form.submit]: "Connexion",
+    [tokens.page.login.notifications.error]: "Email ou mot de passe incorrect",
     [tokens.page.offerDetails.presentationInternShip]: "A propos de ce stage",
     [tokens.page.offerDetails.presentationWork]: "A propos de cette alternance",
     [tokens.page.offerDetails.mission]: "Missions",
@@ -109,6 +115,7 @@ const fr = {
     [tokens.page.offerDetails.similar.title]: "Offre de stage similaires",
     [tokens.page.offerDetails.similar.cta]: "Voir toutes les offres",
     [tokens.breadCrumb.home]: "Accueil",
+    [tokens.breadCrumb.login]: "Connexion",
     [tokens.breadCrumb.uiExample]: "Exemples d'UI",
     [tokens.breadCrumb.companies]: "Entreprises",
     [tokens.breadCrumb.offers.base]: "Offres",
@@ -192,6 +199,8 @@ const fr = {
     [tokens.sexes.woman]: "Femme",
     [tokens.sexes.nonBinary]: "Non-binaire",
     [tokens.page.apply.errors.emailsNotMatch]: "Les emails ne correspondent pas",
+    [tokens.notifications.login]: "Connecter en tant que {{name}}",
+    [tokens.notifications.logout]: "Vous avez bien été déconnecté",
 }
 
 export default fr

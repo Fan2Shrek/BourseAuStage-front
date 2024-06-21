@@ -1,5 +1,6 @@
 const path = {
     home: '/',
+    login: '/connexion',
     uiExample: '/ui-example',
     companies: '/entreprises',
     company: '/entreprises/:id',
