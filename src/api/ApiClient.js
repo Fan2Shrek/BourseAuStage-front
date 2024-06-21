@@ -64,6 +64,16 @@ class ApiClient {
 
                 return response
             })
+            .then(async (response) => {
+                if (response.token) {
+                    return {
+                        ...response,
+                        user: await this.me.get().then(user => user)
+                    }
+                }
+
+                return response
+            })
     }
 }
 

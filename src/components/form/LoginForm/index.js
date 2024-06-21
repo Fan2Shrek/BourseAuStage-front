@@ -1,21 +1,23 @@
-import { useState } from "react"
+import { useCallback, useContext, useState } from "react"
 import { useNavigate } from "react-router"
 import { useTranslation } from "react-i18next"
 
 import styles from './LoginForm.module.scss'
 import tokens from "../../../translations/tokens"
-import cn from '../../../utils/classnames'
 import apiClient from "../../../api/ApiClient"
 import path from "../../../path"
 import Input from "../../../components/ui/molecules/Input"
 import Button from "../../../components/ui/atoms/Button"
-import Container from "../../ui/atoms/Container"
+import { NotificationContext } from "../../../context/NotificationContext"
+import { UserContext } from "../../../context/UserContext"
 
 const LoginForm = () => {
+    const [isFetching, setIsFetching] = useState(false)
     const [form, setForm] = useState({})
-    const [error, setError] = useState(null)
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const { addNotification } = useContext(NotificationContext)
+    const { setUser } = useContext(UserContext)
 
     const handleChange = (e) => {
         setForm({
@@ -24,25 +26,34 @@ const LoginForm = () => {
         })
     }
 
-    const handleSubmit = async () => {
-        apiClient.login(form.email, form.password)
-            .then(response => {
-                if (!response.token) {
-                    // a changer par notif
-                    setError('Email ou mot de passe incorrect')
-                } else {
-                    setError(null)
-                    navigate(path.profil)
-                }
-            })
-    }
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault()
 
-    return <Container inline className={styles.form}>
+        if (!isFetching) {
+            setIsFetching(true)
+
+            apiClient.login(form.email, form.password)
+                .then(response => {
+                    setIsFetching(false)
+
+                    if (!response.token) {
+                        addNotification({
+                            message: t(tokens.page.login.notifications.error),
+                            type: 'danger',
+                        })
+                    } else {
+                        setUser(response.user)
+                        navigate(path.profil)
+                    }
+                })
+        }
+    }, [form, isFetching, addNotification, t, setUser, navigate])
+
+    return <form onSubmit={handleSubmit} className={styles.form}>
         <Input name='email' onChange={handleChange} required label={t(tokens.page.login.form.email)} />
         <Input name='password' type="password" onChange={handleChange} required label={t(tokens.page.login.form.password)} />
-        {error && <div className={cn(styles.error)}>{error}</div>}
-        <Button label={t(tokens.page.login.form.submit)} onClick={handleSubmit}></Button>
-    </Container>
+        <Button label={t(tokens.page.login.form.submit)} type='submit' />
+    </form>
 }
 
 export default LoginForm
