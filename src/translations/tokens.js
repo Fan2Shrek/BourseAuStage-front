@@ -205,6 +205,10 @@ const tokens = {
             },
         },
         register: {
+            title: {
+                collaborator: "page.register.form.collaborator",
+                company: "page.register.form.company"
+            },
             form: {
                 gender: "page.register.form.gender",
                 lastname: "page.register.form.lastname",
@@ -215,7 +219,16 @@ const tokens = {
                 password: "page.register.form.password",
                 confirmPassword: "page.register.form.confirmPassword",
                 phone: "page.register.form.phone",
-                next: "page.register.form.next"
+                name: "page.register.form.name",
+                siretNumber: "page.register.form.siretNumber",
+                activities: "page.register.form.activities",
+                category: "page.register.form.category",
+                address: "page.register.form.address",
+                additionalAddress: "page.register.form.additionalAddress",
+                city: "page.register.form.city",
+                postCode: "page.register.form.postcode",
+                phoneCompany: "page.register.form.phoneCompany",
+                submit: "page.register.form.submit"
             },
         },
         profil: {
