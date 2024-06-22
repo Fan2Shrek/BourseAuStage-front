@@ -14,6 +14,7 @@ import Companies from "./pages/Companies"
 import Offer from "./pages/Offer"
 import Profil from "./pages/Profil"
 import Offers from "./pages/Offers"
+import RegisterCompany from "./pages/Register/Company"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
 import Page403 from "./pages/Error/403"
 import Create from "./pages/Offers/Create"
@@ -38,6 +39,7 @@ function App() {
                             <Route path={path.unauthorized} element={<Page403 />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
+                            <Route index path={path.companyRegistration} element={<RegisterCompany />} />
                         </Route>
                         <Route path={'/admin'} element={<MySpaceLayout />}>
                             <Route path={path.admin.profil} element={<Profil />} />

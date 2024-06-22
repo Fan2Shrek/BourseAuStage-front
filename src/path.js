@@ -9,7 +9,7 @@ const path = {
     requestDetail: '/demandes/:id',
     apply: '/offres/postuler/:id',
     studentRegistration: '/inscription?profil=etudiant',
-    companyRegistration: '/inscription?profil=entreprise',
+    companyRegistration: '/inscription/entreprise',
     createOffer: '/offres/creer',
     unauthorized: '/403',
     uiExample: '/ui-example',
