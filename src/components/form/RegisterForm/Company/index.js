@@ -9,15 +9,6 @@ import Button from "../../../ui/atoms/Button";
 const RegisterFormCompany = () => {
     const { t } = useTranslation();
 
-    const [form, setForm] = useState({});
-
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
-    }
-
     const sexes = useMemo(() => [{
         value: 'M',
         name: t(tokens.sexes.man)
@@ -33,16 +24,16 @@ const RegisterFormCompany = () => {
         <div>
             <p>Inscription</p>
             <div>
-                <Select name='gender' onChange={handleChange} type='text' required label={t(tokens.page.register.form.gender)} values={sexes} />
-                <Input name='lastName' onChange={handleChange} required label={t(tokens.page.register.form.lastname)} />
-                <Input name='firstName' onChange={handleChange} required label={t(tokens.page.register.form.firstname)} />
-                <Input name='jobTitle' onChange={handleChange} required label={t(tokens.page.register.form.jobTitle)} />
-                <Input name='email' onChange={handleChange} required label={t(tokens.page.register.form.email)} />
-                <Input name='confirmEmail' onChange={handleChange} required label={t(tokens.page.register.form.confirmEmail)} />
-                <Input name='password' onChange={handleChange} type='password' required label={t(tokens.page.register.form.password)} />
-                <Input name='confirmPassword' onChange={handleChange} type='password' required label={t(tokens.page.register.form.confirmPassword)} />
-                <Input name='phone' onChange={handleChange} required label={t(tokens.page.register.form.phone)} />
-                <Button label={t(tokens.page.register.form.next)} onChange={handleChange} />
+                <Select name='gender' type='text' required label={t(tokens.page.register.form.gender)} values={sexes} />
+                <Input name='lastName' required label={t(tokens.page.register.form.lastname)} />
+                <Input name='firstName' required label={t(tokens.page.register.form.firstname)} />
+                <Input name='jobTitle' required label={t(tokens.page.register.form.jobTitle)} />
+                <Input name='email' required label={t(tokens.page.register.form.email)} />
+                <Input name='confirmEmail' required label={t(tokens.page.register.form.confirmEmail)} />
+                <Input name='password' type='password' required label={t(tokens.page.register.form.password)} />
+                <Input name='confirmPassword' type='password' required label={t(tokens.page.register.form.confirmPassword)} />
+                <Input name='phone' required label={t(tokens.page.register.form.phone)} />
+                <Button label={t(tokens.page.register.form.next)} />
             </div>
         </div>
     </div>
