@@ -101,6 +101,7 @@ const fr = {
     [tokens.page.login.form.password]: "Mot de passe",
     [tokens.page.login.form.submit]: "Connexion",
     [tokens.page.login.notifications.error]: "Email ou mot de passe incorrect",
+    [tokens.page.register.titleCompany]: "Créer un compte entreprise",
     [tokens.page.register.title.collaborator]: "Vous êtes",
     [tokens.page.register.title.company]: "Votre organisation",
     [tokens.page.register.form.gender]: "Genre",

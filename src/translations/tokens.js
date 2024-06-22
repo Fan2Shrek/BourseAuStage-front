@@ -205,6 +205,7 @@ const tokens = {
             },
         },
         register: {
+            titleCompany: "page.register.titleCompany",
             title: {
                 collaborator: "page.register.form.collaborator",
                 company: "page.register.form.company"
