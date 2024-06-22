@@ -204,6 +204,20 @@ const tokens = {
                 error: "page.login.notification.error",
             },
         },
+        register: {
+            form: {
+                gender: "page.register.form.gender",
+                lastname: "page.register.form.lastname",
+                firstname: "page.register.form.firstname",
+                jobTitle: "page.register.form.jobTitle",
+                email: "page.register.form.email",
+                confirmEmail: "page.register.form.confirmEmail",
+                password: "page.register.form.password",
+                confirmPassword: "page.register.form.confirmPassword",
+                phone: "page.register.form.phone",
+                next: "page.register.form.next"
+            },
+        },
         profil: {
             update: "page.profil.update",
         },

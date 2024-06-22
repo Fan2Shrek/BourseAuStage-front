@@ -9,7 +9,6 @@ const RegisterCompany = () => {
 
     return <Container>
         <RegisterCompanyForm />
-        <p>test</p>
     </Container>
 }
 
