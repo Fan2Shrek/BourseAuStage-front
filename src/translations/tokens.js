@@ -330,6 +330,21 @@ const tokens = {
                 },
             },
         },
+        createOffer: {
+            title: "page.createOffer.title",
+            states: {
+                1: {
+                    name: "page.createOffer.states.1.name",
+                },
+                2: {
+                    name: "page.createOffer.states.2.name",
+                },
+                3: {
+                    name: "page.createOffer.states.3.name",
+                },
+            },
+            step: "page.createOffer.step",
+        }
     },
     breadCrumb: {
         home: "breadCrumb.home",

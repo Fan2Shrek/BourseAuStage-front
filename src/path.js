@@ -12,5 +12,6 @@ const path = {
     studentRegistration: '/inscription?profil=etudiant',
     companyRegistration: '/inscription?profil=entreprise',
     profil: '/profile',
+    createOffer: '/offres/creer',
 }
 export default path;

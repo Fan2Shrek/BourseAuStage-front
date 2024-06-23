@@ -15,6 +15,7 @@ import Offer from "./pages/Offer"
 import Profil from "./pages/Profil"
 import Offers from "./pages/Offers"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
+import Create from "./pages/Offers/Create"
 
 function App() {
     return <ThemeContextProvider>
@@ -32,6 +33,7 @@ function App() {
                             <Route index path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
                             <Route index path={path.apply} element={<Apply />} />
                             <Route index path={path.profil} element={<Profil />} />
+                            <Route index path={path.createOffer} element={<Create />} />
                             {/* A enlever plus tard */}
                             <Route index path={path.uiExample} element={<UiExample />} />
                         </Route>

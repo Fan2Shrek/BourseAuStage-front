@@ -201,6 +201,11 @@ const fr = {
     [tokens.page.apply.errors.emailsNotMatch]: "Les emails ne correspondent pas",
     [tokens.notifications.login]: "Connecter en tant que {{name}}",
     [tokens.notifications.logout]: "Vous avez bien été déconnecté",
+    [tokens.page.createOffer.title]: "Publier une offre",
+    [tokens.page.createOffer.states[1].name]: "Type d'offre",
+    [tokens.page.createOffer.states[2].name]: "Description",
+    [tokens.page.createOffer.states[3].name]: "Publique",
+    [tokens.page.createOffer.step]: "Etape",
 }
 
 export default fr
