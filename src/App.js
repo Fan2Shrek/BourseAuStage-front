@@ -15,8 +15,9 @@ import Offer from "./pages/Offer"
 import Profil from "./pages/Profil"
 import Offers from "./pages/Offers"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
-import Page403 from "./pages/Error/403"     
+import Page403 from "./pages/Error/403"
 import Create from "./pages/Offers/Create"
+import MySpaceLayout from "./components/layout/Layout/MySpaceLayout"
 
 function App() {
     return <ThemeContextProvider>
@@ -33,11 +34,13 @@ function App() {
                             <Route path={path.internship} element={<Offers type={OfferTypeEnum.INTERNSHIP} />} />
                             <Route path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
                             <Route path={path.apply} element={<Apply />} />
-                            <Route path={path.profil} element={<Profil />} />
                             <Route path={path.createOffer} element={<Create />} />
-                            <Route path={path.unauthorized} element={<Page403 />}/>
+                            <Route path={path.unauthorized} element={<Page403 />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
+                        </Route>
+                        <Route path={'/admin'} element={<MySpaceLayout />}>
+                            <Route path={path.admin.profil} element={<Profil />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

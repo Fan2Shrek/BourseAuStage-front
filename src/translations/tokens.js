@@ -9,6 +9,12 @@ const tokens = {
             availableAt: "entities.offer.availableAt",
         }
     },
+    roles: {
+        collaborator: "roles.collaborator",
+        student: "roles.student",
+        sponsor: "roles.sponsor",
+        admin: "roles.admin",
+    },
     apiCollectionList: {
         title: "apiCollection.title",
         sorting: {
@@ -98,6 +104,7 @@ const tokens = {
     },
     actions: {
         login: "actions.login",
+        myAccount: "actions.myAccount",
         createAccount: "actions.createAccount",
         logout: "actions.logout",
         back: "actions.back",
@@ -140,6 +147,15 @@ const tokens = {
             submit: "footer.register.submit",
         },
         copyright: "footer.copyright",
+    },
+    sidebar: {
+        title: "sidebar.admin.title",
+        links: {
+            myCompany: "sidebar.links.myCompany",
+            requests: "sidebar.links.requests",
+            offers: "sidebar.links.offers",
+            parameters: "sidebar.links.parameters",
+        }
     },
     page: {
         home: {
@@ -402,6 +418,13 @@ const tokens = {
             },
             success: "page.createOffer.success",
         }
+    },
+    admin: {
+        company: {
+            actions: {
+                addOffer: "admin.company.actions.addOffer",
+            },
+        },
     },
     breadCrumb: {
         home: "breadCrumb.home",

@@ -152,8 +152,9 @@ const Navbar = () => {
                 />
                 <div className={styles.divider} />
                 <Button
-                    label={t(tokens.actions.createAccount)}
-                    onClick={() => setDisplayModal(true)}
+                    label={t(tokens.actions[user ? 'myAccount' : 'createAccount'])}
+                    {...(!user && { onClick: () => setDisplayModal(true) })}
+                    {...(user && { redirectTo: path.admin.profil })}
                 />
             </div>
 

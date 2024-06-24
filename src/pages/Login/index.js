@@ -27,7 +27,7 @@ const Login = () => {
     ], [t])
 
     if (user) {
-        navigate(path.profil)
+        navigate(path.admin.profil)
     }
 
     return <Container inline>

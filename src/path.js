@@ -1,7 +1,6 @@
 const path = {
     home: '/',
     login: '/connexion',
-    uiExample: '/ui-example',
     companies: '/entreprises',
     company: '/entreprises/:id',
     internship: '/offres/stage',
@@ -11,8 +10,11 @@ const path = {
     apply: '/offres/postuler/:id',
     studentRegistration: '/inscription?profil=etudiant',
     companyRegistration: '/inscription?profil=entreprise',
-    profil: '/profile',
     createOffer: '/offres/creer',
-    unauthorized: '/403'
+    unauthorized: '/403',
+    uiExample: '/ui-example',
+    admin: {
+        profil: '/admin/profil',
+    },
 }
 export default path;
