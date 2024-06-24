@@ -76,7 +76,7 @@ const Home = () => {
                 className={styles.heroPattern}
             />
             <img
-                src="/images/home/man.svg"
+                src="/images/home/man.png"
                 alt="pioupiou"
                 className={styles.pioupiou}
             />
@@ -104,7 +104,7 @@ const Home = () => {
             </div>
             <div className={styles.image}>
                 <img
-                    src="/images/home/dashboard.svg"
+                    src="/images/home/dashboard.png"
                     alt="Dashboard"
                 />
             </div>
