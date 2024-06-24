@@ -5,9 +5,14 @@ const tokens = {
         },
         offer: {
             name: "entities.offer.name",
-            createdAt: "entities.offer.createdAt",
+            createdAt: {
+                first: "entities.offer.createdAt.first",
+                second: "entities.offer.createdAt.second",
+            },
             availableAt: "entities.offer.availableAt",
-        }
+            deletedAt: "entities.offer.deletedAt",
+            isInternship: "entities.offer.isInternship",
+        },
     },
     roles: {
         collaborator: "roles.collaborator",
@@ -16,9 +21,18 @@ const tokens = {
         admin: "roles.admin",
     },
     apiCollectionList: {
-        title: "apiCollection.title",
+        title: "apiCollectionList.title",
         sorting: {
-            label: "apiCollection.sorting.label",
+            label: "apiCollectionList.sorting.label",
+        },
+    },
+    apiCollectionTable: {
+        title: "apiCollectionTable.title",
+        filter: {
+            label: "apiCollectionTable.filter.label",
+        },
+        itemsPerPage: {
+            label: "apiCollectionTable.itemsPerPage.label",
         },
     },
     sexes: {
@@ -96,6 +110,9 @@ const tokens = {
             all: "facets.options.all",
             betweenAndMore: "facets.options.betweenAndMore",
         }
+    },
+    filters: {
+        all: "filters.all",
     },
     input: {
         file: {
@@ -409,7 +426,7 @@ const tokens = {
             },
             start: {
                 title: "page.createOffer.start.title",
-            }, 
+            },
             end: {
                 title: "page.createOffer.end.title",
             },
@@ -417,7 +434,23 @@ const tokens = {
                 title: "page.createOffer.availableAt.title",
             },
             success: "page.createOffer.success",
-        }
+        },
+        admin: {
+            offers: {
+                apiCollectionTable: {
+                    foundLabel: "page.admin.offers.apiCollectionTable.foundLabel",
+                    itemsPerPageLabel: "page.admin.offers.apiCollectionTable.itemsPerPageLabel",
+                },
+                status: {
+                    active: "page.admin.offers.status.active",
+                    inactive: "page.admin.offers.status.inactive",
+                },
+                type: {
+                    internship: "page.admin.offers.type.internship",
+                    workStudy: "page.admin.offers.type.workStudy",
+                },
+            },
+        },
     },
     admin: {
         company: {

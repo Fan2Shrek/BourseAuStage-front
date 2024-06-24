@@ -111,6 +111,13 @@ export const DefaultTheme = () => {
          * COMPANY
          */
         setProperty('--company-related-offers-section-color', 'var(--color-third)');
+
+        /**
+         * TABLE
+         */
+        setProperty('--table-border-color', 'var(--color-third)');
+        setProperty('--table-secondary-color', 'var(--color-third)');
+        setProperty('--table-headers-color', 'var(--color-middle-grey)');
     }, [])
 
     return <></>

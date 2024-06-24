@@ -9,7 +9,7 @@ import tokens from '../../../../translations/tokens'
 import List from '../../atoms/List'
 import Pagination from '../../atoms/Pagination'
 import Facets from '../Facets'
-import Sortings from '../Sortings'
+import DataParameters from '../DataParameters'
 import FacetOptionEnum from '../../../../enum/FacetOptionEnum'
 import Loader from '../../atoms/Loader'
 
@@ -182,11 +182,11 @@ const ApiCollectionList = ({
 
                 {loader && <Loader />}
 
-                {sortings && <Sortings
+                {sortings && <DataParameters
                     label={t(tokens.apiCollectionList.sorting.label)}
-                    sortings={sortings}
-                    setSelectedSort={setSelectedSort}
-                    defaultSort={defaultSort}
+                    parameters={sortings}
+                    setSelectedParameter={setSelectedSort}
+                    defaultParameter={defaultSort}
                 />}
             </div>
 

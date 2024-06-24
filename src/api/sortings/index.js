@@ -1,10 +1,10 @@
-export const AscSort = ({ name, property, propertyTranslation, clarificationTranslation = null }) => ({
+export const ascSort = ({ name, property, propertyTranslation, clarificationTranslation = null }) => ({
     name,
     label: `${propertyTranslation}${clarificationTranslation ? ` (${clarificationTranslation})` : ''}`,
     query: `&order[${property}]=asc`
 })
 
-export const DescSort = ({ name, property, propertyTranslation, clarificationTranslation = null }) => ({
+export const descSort = ({ name, property, propertyTranslation, clarificationTranslation = null }) => ({
     name,
     label: `${propertyTranslation}${clarificationTranslation ? ` (${clarificationTranslation})` : ''}`,
     query: `&order[${property}]=desc`
