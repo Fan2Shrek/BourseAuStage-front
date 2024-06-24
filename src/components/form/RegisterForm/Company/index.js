@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from './RegisterFormCompany.module.scss';
@@ -6,9 +6,19 @@ import tokens from "../../../../translations/tokens";
 import Select from "../../../ui/atoms/Select";
 import Input from "../../../ui/molecules/Input";
 import Button from "../../../ui/atoms/Button";
+import apiClient from "../../../../api/ApiClient";
 
 const RegisterFormCompany = () => {
     const { t } = useTranslation();
+
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        apiClient.category.getAll().then(response => {
+            setCategory(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+        });
+
+    }, []);
 
     const sexes = useMemo(() => [{
         value: 'M',
@@ -41,7 +51,7 @@ const RegisterFormCompany = () => {
             <Input name='siretNumber' required label={t(tokens.page.register.form.siretNumber)} />
             <Input name='phoneCompany' required label={t(tokens.page.register.form.phoneCompany)} />
             <Select name='activities' required label={t(tokens.page.register.form.activities)} />
-            <Select name='category' required label={t(tokens.page.register.form.category)} />
+            <Select name='category' required label={t(tokens.page.register.form.category)} type='text' values={category} />
             <Input name='address' required label={t(tokens.page.register.form.address)} />
             <Input name='city' required label={t(tokens.page.register.form.city)} />
             <Input name='postCode' required label={t(tokens.page.register.form.postCode)} />
