@@ -9,6 +9,8 @@ const Ckeditor = ({
     label = null,
     placeholder,
     className,
+    onChange = null,
+    defaultValue = null,
 }) => {
     const [charCount, setCharCount] = useState(0);
     const maxChar = 500;
@@ -23,6 +25,8 @@ const Ckeditor = ({
         } else {
             event.stop();
         }
+
+        onChange && onChange(plainText);
     };
 
     return (
@@ -40,6 +44,7 @@ const Ckeditor = ({
                     placeholder: placeholder
                 }}
                 onChange={handleInput}
+                onReady={editor => (editor.setData(defaultValue))}
             />
             <div className="ckeditor__count">
                 <p>Maximum: {maxChar} caractères</p>

@@ -24,7 +24,8 @@ const Input = ({
     name,
     placeholder,
     onChange,
-    className
+    className,
+    ...props
 }) => {
     const [isActive, setIsActive] = useState(defaultChecked)
     const [value, setValue] = useState(defaultValue)
@@ -107,6 +108,7 @@ const Input = ({
                 {...(type === 'file' ? { accept } : {})}
                 disabled={disabled}
                 onChange={handleChange}
+                {...props}
             />
             {type === 'password' && <div className='input__eye' onClick={handlePasswordVisibility}>
                 {passwordVisible ? <FaRegEyeSlash /> : <FaRegEye />}

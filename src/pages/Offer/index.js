@@ -119,21 +119,9 @@ const Offer = () => {
                     )}
                     <p>{offer.description}</p>
                     <h2>{t(tokens.page.offerDetails.mission)}</h2>
-                    <List
-                        collection={offer.missions}
-                        renderItem={({ description }) => <>
-                            <CiCircleCheck />
-                            <p>{description}</p>
-                        </>}
-                    />
+                    <p>{offer.missions}</p>
                     <h2>{t(tokens.page.offerDetails.profile)}</h2>
-                    <List
-                        collection={offer.profils}
-                        renderItem={({ description }) => <>
-                            <CiCircleCheck />
-                            <p>{description}</p>
-                        </>}
-                    />
+                    <p>{offer.profils}</p>
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.cta)}

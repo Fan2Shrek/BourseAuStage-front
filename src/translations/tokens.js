@@ -344,6 +344,59 @@ const tokens = {
                 },
             },
             step: "page.createOffer.step",
+            name: {
+                title: "page.createOffer.name.title",
+                description: "page.createOffer.name.description",
+                placeholder: "page.createOffer.name.placeholder",
+                formInfo: "page.createOffer.name.formInfo",
+            },
+            type: {
+                title: "page.createOffer.type.title",
+                internship: "page.createOffer.type.internship",
+                workStudy: "page.createOffer.type.workStudy",
+            },
+            remuneration: {
+                title: "page.createOffer.remuneration.title",
+                placeholder: "page.createOffer.remuneration.placeholder",
+                formInfo: "page.createOffer.remuneration.formInfo",
+            },
+            searchSkills: {
+                title: "page.createOffer.searchSkills.title",
+                description: "page.createOffer.searchSkills.description",
+                formInfo: "page.createOffer.searchSkills.formInfo",
+            },
+            skills: {
+                title: "page.createOffer.skills.title",
+                description: "page.createOffer.skills.description",
+            },
+            add: {
+                searchSkills: "page.createOffer.add.profilfr",
+                skill: "page.createOffer.add.skill",
+            },
+            nextStep: "page.createOffer.nextStep",
+            previousStep: "page.createOffer.previousStep",
+            submit: "page.createOffer.submit",
+            description: {
+                title: "page.createOffer.description.title",
+                description: "page.createOffer.description.description",
+                placeholder: "page.createOffer.description.placeholder",
+            },
+            missions: {
+                title: "page.createOffer.missions.title",
+                description: "page.createOffer.missions.description",
+                placeholder: "page.createOffer.missions.placeholder",
+            },
+            profils: {
+                title: "page.createOffer.profils.title",
+                description: "page.createOffer.profils.description",
+                placeholder: "page.createOffer.profils.placeholder",
+            },
+            start: {
+                title: "page.createOffer.start.title",
+            }, 
+            end: {
+                title: "page.createOffer.end.title",
+            }, 
         }
     },
     breadCrumb: {

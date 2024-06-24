@@ -19,8 +19,7 @@
                 padding: 0 20px;
 
                 .title {
-                    font-size: 20px;
-                    color: var(--color-main);
+                    font-size: 15OPpx;
                     padding-block: 10px;
                 }
             }
@@ -53,5 +52,91 @@
     .divider {
         border-top: 1px solid var(--color-grey);
         margin-block: 20px;
+    }
+
+    .formRow {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        height: 80px;
+
+        h3 {
+            font-size: 20px;
+            padding-block: 10px;
+        }
+
+        .formLeft {
+            width: 40%;
+
+            p {
+                padding-right: 10px;
+            }
+        }
+
+        .formRight {
+            width: 60%;
+
+            > p {
+                font-size: 14px;
+                color: var(--color-grey);
+                padding-block: 10px;
+            }
+        }
+
+        .list {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .select {
+            display: flex;
+            flex-direction: column;
+
+            .radio {
+                appearance: none;
+                background-color: #fff;
+                width: 1.15em;
+                height: 1.15em;
+                border: 1px solid var(--color-grey);
+                border-radius: 0;
+                margin-right: 10px;
+
+                &:checked {
+                    background-color: var(--color-main);
+                }
+            }
+        }
+    }
+
+    .step2 {
+        .formRow {
+            height: 110%;
+        }
+    }
+
+    .modalContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0px;
+
+        input {
+            border: 1px solid var(--color-grey);
+            width: 50%;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 5%;
+        }
+
+        .modalBtn {
+            margin-top: 50px;
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
     }
 }
