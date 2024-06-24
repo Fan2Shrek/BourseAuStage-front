@@ -12,10 +12,18 @@ const RegisterFormCompany = () => {
     const { t } = useTranslation();
 
     const [category, setCategory] = useState([]);
+    const [activity, setActivity] = useState([]);
 
     useEffect(() => {
         apiClient.category.getAll().then(response => {
             setCategory(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+        });
+
+    }, []);
+
+    useEffect(() => {
+        apiClient.activity.getAll().then(response => {
+            setActivity(response['hydra:member'].map(({name, id}) => ({name, value: id})));
         });
 
     }, []);
@@ -50,7 +58,7 @@ const RegisterFormCompany = () => {
             <Input name='name' required label={t(tokens.page.register.form.name)} />
             <Input name='siretNumber' required label={t(tokens.page.register.form.siretNumber)} />
             <Input name='phoneCompany' required label={t(tokens.page.register.form.phoneCompany)} />
-            <Select name='activities' required label={t(tokens.page.register.form.activities)} />
+            <Select name='activities' required label={t(tokens.page.register.form.activities)} type='text' values={activity} />
             <Select name='category' required label={t(tokens.page.register.form.category)} type='text' values={category} />
             <Input name='address' required label={t(tokens.page.register.form.address)} />
             <Input name='city' required label={t(tokens.page.register.form.city)} />
