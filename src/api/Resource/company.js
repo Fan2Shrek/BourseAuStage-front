@@ -26,6 +26,10 @@ class Company {
     async getOffers(id) {
         return this.apiClient.get(`/companies/${id}/offers`);
     }
+
+    async post(body) {
+        return this.apiClient.post(`/inscription/entreprise`, body, true);
+    }
 }
 
 export default Company;

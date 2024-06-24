@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { RxCross1 } from "react-icons/rx";
+import { FaPlus } from "react-icons/fa";
 
 import styles from './RegisterFormCompany.module.scss';
 import tokens from "../../../../translations/tokens";
@@ -7,12 +9,40 @@ import Select from "../../../ui/atoms/Select";
 import Input from "../../../ui/molecules/Input";
 import Button from "../../../ui/atoms/Button";
 import apiClient from "../../../../api/ApiClient";
+import Modal from "../../../ui/atoms/Modal";
 
 const RegisterFormCompany = () => {
     const { t } = useTranslation();
 
+    const [form, setForm] = useState({});
     const [category, setCategory] = useState([]);
-    const [activity, setActivity] = useState([]);
+    const [activitiesList, setActivitiesList] = useState([]);
+    const [activities, setActivities] = useState([]);
+    const [currentSelection, setCurrentSelection] = useState({});
+    const [displayModal, setDisplayModal] = useState('');
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const handleDelete = (value) => {
+         setActivities(activities.filter(activity => activity !== value));
+    }
+
+    const handleSubmit = async () => {
+        const formData = new FormData();
+        
+        Object.entries(form).forEach(([key, value]) => {
+            formData.append(key, value);
+        });
+            
+        formData.append('activities', JSON.stringify(activities));
+
+        const response = await apiClient.company.post(formData);
+    }
 
     useEffect(() => {
         apiClient.category.getAll().then(response => {
@@ -23,7 +53,7 @@ const RegisterFormCompany = () => {
 
     useEffect(() => {
         apiClient.activity.getAll().then(response => {
-            setActivity(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+            setActivitiesList(response['hydra:member'].map(({name, id}) => ({name, value: id})));
         });
 
     }, []);
@@ -43,31 +73,48 @@ const RegisterFormCompany = () => {
         <h2>{t(tokens.page.register.titleCompany)}</h2>
         <p className={styles.title}>{t(tokens.page.register.title.collaborator)}</p>
         <div className={styles.form}>
-            <Select name='gender' type='text' required label={t(tokens.page.register.form.gender)} values={sexes} />
-            <Input name='lastName' required label={t(tokens.page.register.form.lastname)} />
-            <Input name='firstName' required label={t(tokens.page.register.form.firstname)} />
-            <Input name='phone' required label={t(tokens.page.register.form.phone)} />
-            <Input name='email' required label={t(tokens.page.register.form.email)} />
-            <Input name='confirmEmail' required label={t(tokens.page.register.form.confirmEmail)} />
-            <Input name='password' type='password' required label={t(tokens.page.register.form.password)} />
-            <Input name='confirmPassword' type='password' required label={t(tokens.page.register.form.confirmPassword)} />
-            <Input name='jobTitle' required label={t(tokens.page.register.form.jobTitle)} />
+            <Select name='gender' placeholder={'todo'} required label={t(tokens.page.register.form.gender)} values={sexes} onChange={handleChange} />
+            <Input name='lastName' required label={t(tokens.page.register.form.lastname)} onChange={handleChange} />
+            <Input name='firstName' required label={t(tokens.page.register.form.firstname)} onChange={handleChange} />
+            <Input name='phone' required label={t(tokens.page.register.form.phone)} onChange={handleChange} />
+            <Input name='email' required label={t(tokens.page.register.form.email)} onChange={handleChange} />
+            <Input name='confirmEmail' required label={t(tokens.page.register.form.confirmEmail)} onChange={handleChange} />
+            <Input name='password' type='password' required label={t(tokens.page.register.form.password)} onChange={handleChange} />
+            <Input name='confirmPassword' type='password' required label={t(tokens.page.register.form.confirmPassword)} onChange={handleChange} />
+            <Input name='jobTitle' required label={t(tokens.page.register.form.jobTitle)} onChange={handleChange} />
         </div>
         <p className={styles.title}>{t(tokens.page.register.title.company)}</p>
         <div className={styles.form}>
-            <Input name='name' required label={t(tokens.page.register.form.name)} />
-            <Input name='siretNumber' required label={t(tokens.page.register.form.siretNumber)} />
-            <Input name='phoneCompany' required label={t(tokens.page.register.form.phoneCompany)} />
-            <Select name='activities' required label={t(tokens.page.register.form.activities)} type='text' values={activity} />
-            <Select name='category' required label={t(tokens.page.register.form.category)} type='text' values={category} />
-            <Input name='address' required label={t(tokens.page.register.form.address)} />
-            <Input name='city' required label={t(tokens.page.register.form.city)} />
-            <Input name='postCode' required label={t(tokens.page.register.form.postCode)} />
-            <Input name='additionalAddress' label={t(tokens.page.register.form.additionalAddress)} />
+            <Input name='name' required label={t(tokens.page.register.form.name)} onChange={handleChange} />
+            <Input name='siretNumber' required label={t(tokens.page.register.form.siretNumber)} onChange={handleChange} />
+            <Input name='phoneCompany' required label={t(tokens.page.register.form.phoneCompany)} onChange={handleChange} />
+            <div className={styles.buttonContainer}>
+                {activities.map((activity) => <Button  label={activity.name} onClick={() => handleDelete(activity)} key={activity} icon={<RxCross1 />} rightIcon />)}
+                {<Button onClick={() => setDisplayModal('activity')} icon={<FaPlus />} inverted rightIcon />}
+            </div>
+            <Select name='category' placeholder={'todo'} required label={t(tokens.page.register.form.category)} values={category} onChange={handleChange} />
+            <Input name='address' required label={t(tokens.page.register.form.address)} onChange={handleChange} />
+            <Input name='city' required label={t(tokens.page.register.form.city)} onChange={handleChange} />
+            <Input name='postCode' required label={t(tokens.page.register.form.postCode)} onChange={handleChange} />
+            <Input name='additionalAddress' label={t(tokens.page.register.form.additionalAddress)} onChange={handleChange} />
         </div>
         <div className={styles.buttonContainer}>
-            <Button label={t(tokens.page.register.form.submit)} />
+            <Button label={t(tokens.page.register.form.submit)} onClick={handleSubmit} />
         </div>
+        <Modal
+            title='test'
+            active={displayModal}
+            setDisplayModal={setDisplayModal}
+        >
+            <div className={styles.modalContent}>
+                <Select onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} placeholder={'todo'} values={activitiesList.filter(s => !activities.includes(s))} />
+                <Button label={t(tokens.actions.add)} onClick={() => {
+                    setActivities([...activities, ...activitiesList.filter(el => el.value === currentSelection.value)]);
+                    setCurrentSelection('');
+                    setDisplayModal('');
+                }} />
+            </div>
+        </Modal>
     </div>
 }
 
