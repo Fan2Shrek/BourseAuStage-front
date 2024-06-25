@@ -50,6 +50,15 @@ const RegisterFormCompany = () => {
                 return false;
             }
         }
+
+        if (activities.length === 0) {
+            addNotification({
+                message: t(tokens.page.register.form.requiredFields),
+                type: 'danger',
+            });
+            return false;
+        }
+
         return true;
     }
 
