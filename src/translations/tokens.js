@@ -232,7 +232,8 @@ const tokens = {
                 city: "page.register.form.city",
                 postCode: "page.register.form.postcode",
                 phoneCompany: "page.register.form.phoneCompany",
-                submit: "page.register.form.submit"
+                submit: "page.register.form.submit",
+                requiredFields: "page.register.form.requiredField",
             },
             modal: {
                 title: "page.register.modal.title",

@@ -126,6 +126,7 @@ const fr = {
     [tokens.page.register.form.postCode]: "Code postal",
     [tokens.page.register.form.phoneCompany]: "Téléphone",
     [tokens.page.register.form.submit]: "S'inscrire",
+    [tokens.page.register.form.requiredFields]: "Veuillez remplir les champs obligatoires",
     [tokens.page.register.modal.title]: "Sélectionnez des activités",
     [tokens.page.offerDetails.presentationInternShip]: "A propos de ce stage",
     [tokens.page.offerDetails.presentationWork]: "A propos de cette alternance",

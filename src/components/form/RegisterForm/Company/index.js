@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { RxCross1 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
@@ -10,6 +10,7 @@ import Input from "../../../ui/molecules/Input";
 import Button from "../../../ui/atoms/Button";
 import apiClient from "../../../../api/ApiClient";
 import Modal from "../../../ui/atoms/Modal";
+import { NotificationContext } from "../../../../context/NotificationContext"
 
 const RegisterFormCompany = () => {
     const { t } = useTranslation();
@@ -20,7 +21,7 @@ const RegisterFormCompany = () => {
     const [activities, setActivities] = useState([]);
     const [currentSelection, setCurrentSelection] = useState({});
     const [displayModal, setDisplayModal] = useState('');
-    const [errors, setErrors] = useState({});
+    const { addNotification } = useContext(NotificationContext)
 
     const handleChange = (e) => {
         setForm({
@@ -33,7 +34,28 @@ const RegisterFormCompany = () => {
          setActivities(activities.filter(activity => activity !== value));
     }
 
+    const validateForm = () => {
+        const requiredFields = [
+            'gender', 'lastName', 'firstName', 'phone', 'email', 'confirmEmail', 
+            'password', 'confirmPassword', 'jobTitle', 'name', 'siretNumber', 
+            'phoneCompany', 'category', 'address', 'city', 'postCode'
+        ];
+
+        for (const field of requiredFields) {
+            if (!form[field]) {
+                addNotification({
+                    message: t(tokens.page.register.form.requiredFields),
+                    type: 'danger',
+                });
+                return false;
+            }
+        }
+        return true;
+    }
+
     const handleSubmit = async () => {
+
+        if (!validateForm()) return;
 
         const formData = new FormData();
         
@@ -43,9 +65,7 @@ const RegisterFormCompany = () => {
             
         formData.append('activities', JSON.stringify(activities));
 
-        const response = await apiClient.company.post(formData);
-
-        setErrors(response)
+        await apiClient.company.post(formData);
     }
 
     useEffect(() => {
@@ -82,7 +102,6 @@ const RegisterFormCompany = () => {
             <Input name='firstName' required label={t(tokens.page.register.form.firstname)} onChange={handleChange} />
             <Input name='phone' required label={t(tokens.page.register.form.phone)} onChange={handleChange} />
             <Input name='email' required label={t(tokens.page.register.form.email)} onChange={handleChange} />
-            <span>{errors.email}</span>
             <Input name='confirmEmail' required label={t(tokens.page.register.form.confirmEmail)} onChange={handleChange} />
             <Input name='password' type='password' required label={t(tokens.page.register.form.password)} onChange={handleChange} />
             <Input name='confirmPassword' type='password' required label={t(tokens.page.register.form.confirmPassword)} onChange={handleChange} />
