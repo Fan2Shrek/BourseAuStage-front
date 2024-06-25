@@ -88,9 +88,12 @@ const RegisterFormCompany = () => {
             <Input name='name' required label={t(tokens.page.register.form.name)} onChange={handleChange} />
             <Input name='siretNumber' required label={t(tokens.page.register.form.siretNumber)} onChange={handleChange} />
             <Input name='phoneCompany' required label={t(tokens.page.register.form.phoneCompany)} onChange={handleChange} />
-            <div className={styles.buttonContainer}>
-                {activities.map((activity) => <Button  label={activity.name} onClick={() => handleDelete(activity)} key={activity} icon={<RxCross1 />} rightIcon />)}
-                {<Button onClick={() => setDisplayModal('activity')} icon={<FaPlus />} inverted rightIcon />}
+            <div className={styles.buttonModal}>
+                <p>{t(tokens.page.register.form.activities)}<span>*</span></p>
+                <div className={styles.activitySelected}>
+                    {activities.map((activity) => <Button  label={activity.name} onClick={() => handleDelete(activity)} key={activity} icon={<RxCross1 />} rightIcon />)}
+                    {<Button onClick={() => setDisplayModal('activity')} icon={<FaPlus />} inverted rightIcon />}
+                </div>
             </div>
             <Select name='category' placeholder={'todo'} required label={t(tokens.page.register.form.category)} values={category} onChange={handleChange} />
             <Input name='address' required label={t(tokens.page.register.form.address)} onChange={handleChange} />
@@ -102,7 +105,7 @@ const RegisterFormCompany = () => {
             <Button label={t(tokens.page.register.form.submit)} onClick={handleSubmit} />
         </div>
         <Modal
-            title='test'
+            title={t(tokens.page.register.modal.title)}
             active={displayModal}
             setDisplayModal={setDisplayModal}
         >

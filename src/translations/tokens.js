@@ -231,6 +231,9 @@ const tokens = {
                 phoneCompany: "page.register.form.phoneCompany",
                 submit: "page.register.form.submit"
             },
+            modal: {
+                title: "page.register.modal.title",
+            },
         },
         profil: {
             update: "page.profil.update",
