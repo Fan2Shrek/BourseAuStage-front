@@ -20,6 +20,7 @@ const RegisterFormCompany = () => {
     const [activities, setActivities] = useState([]);
     const [currentSelection, setCurrentSelection] = useState({});
     const [displayModal, setDisplayModal] = useState('');
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         setForm({
@@ -33,6 +34,7 @@ const RegisterFormCompany = () => {
     }
 
     const handleSubmit = async () => {
+
         const formData = new FormData();
         
         Object.entries(form).forEach(([key, value]) => {
@@ -42,6 +44,8 @@ const RegisterFormCompany = () => {
         formData.append('activities', JSON.stringify(activities));
 
         const response = await apiClient.company.post(formData);
+
+        setErrors(response)
     }
 
     useEffect(() => {
@@ -78,6 +82,7 @@ const RegisterFormCompany = () => {
             <Input name='firstName' required label={t(tokens.page.register.form.firstname)} onChange={handleChange} />
             <Input name='phone' required label={t(tokens.page.register.form.phone)} onChange={handleChange} />
             <Input name='email' required label={t(tokens.page.register.form.email)} onChange={handleChange} />
+            <span>{errors.email}</span>
             <Input name='confirmEmail' required label={t(tokens.page.register.form.confirmEmail)} onChange={handleChange} />
             <Input name='password' type='password' required label={t(tokens.page.register.form.password)} onChange={handleChange} />
             <Input name='confirmPassword' type='password' required label={t(tokens.page.register.form.confirmPassword)} onChange={handleChange} />
