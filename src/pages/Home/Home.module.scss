@@ -100,6 +100,7 @@
             .pioupiou {
                 position: absolute;
                 width: 40%;
+                max-width: 430px;
                 bottom: -6px;
                 right: calc(min((var(--container-inline-margin) / 2), 10%) * -1);
                 max-height: 90%;
