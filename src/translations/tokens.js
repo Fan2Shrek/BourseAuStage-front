@@ -212,6 +212,7 @@ const tokens = {
             },
             form: {
                 gender: "page.register.form.gender",
+                genderPlaceholder: "page.register.form.genderPlaceholder",
                 lastname: "page.register.form.lastname",
                 firstname: "page.register.form.firstname",
                 jobTitle: "page.register.form.jobTitle",
@@ -223,7 +224,9 @@ const tokens = {
                 name: "page.register.form.name",
                 siretNumber: "page.register.form.siretNumber",
                 activities: "page.register.form.activities",
+                activitiesPlaceholder: "page.register.form.activitiesPlaceholder",
                 category: "page.register.form.category",
+                categoryPlaceholder: "page.register.form.categoryPlaceholder",
                 address: "page.register.form.address",
                 additionalAddress: "page.register.form.additionalAddress",
                 city: "page.register.form.city",

@@ -73,7 +73,7 @@ const RegisterFormCompany = () => {
         <h2>{t(tokens.page.register.titleCompany)}</h2>
         <p className={styles.title}>{t(tokens.page.register.title.collaborator)}</p>
         <div className={styles.form}>
-            <Select name='gender' placeholder={'todo'} required label={t(tokens.page.register.form.gender)} values={sexes} onChange={handleChange} />
+            <Select name='gender' placeholder={t(tokens.page.register.form.genderPlaceholder)} required label={t(tokens.page.register.form.gender)} values={sexes} onChange={handleChange} />
             <Input name='lastName' required label={t(tokens.page.register.form.lastname)} onChange={handleChange} />
             <Input name='firstName' required label={t(tokens.page.register.form.firstname)} onChange={handleChange} />
             <Input name='phone' required label={t(tokens.page.register.form.phone)} onChange={handleChange} />
@@ -95,7 +95,7 @@ const RegisterFormCompany = () => {
                     {<Button onClick={() => setDisplayModal('activity')} icon={<FaPlus />} inverted rightIcon />}
                 </div>
             </div>
-            <Select name='category' placeholder={'todo'} required label={t(tokens.page.register.form.category)} values={category} onChange={handleChange} />
+            <Select name='category' placeholder={t(tokens.page.register.form.categoryPlaceholder)} required label={t(tokens.page.register.form.category)} values={category} onChange={handleChange} />
             <Input name='address' required label={t(tokens.page.register.form.address)} onChange={handleChange} />
             <Input name='city' required label={t(tokens.page.register.form.city)} onChange={handleChange} />
             <Input name='postCode' required label={t(tokens.page.register.form.postCode)} onChange={handleChange} />
@@ -110,7 +110,7 @@ const RegisterFormCompany = () => {
             setDisplayModal={setDisplayModal}
         >
             <div className={styles.modalContent}>
-                <Select onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} placeholder={'todo'} values={activitiesList.filter(s => !activities.includes(s))} />
+                <Select onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} placeholder={t(tokens.page.register.form.activitiesPlaceholder)} values={activitiesList.filter(s => !activities.includes(s))} />
                 <Button label={t(tokens.actions.add)} onClick={() => {
                     setActivities([...activities, ...activitiesList.filter(el => el.value === currentSelection.value)]);
                     setCurrentSelection('');
