@@ -19,7 +19,7 @@
                 padding: 0 20px;
 
                 .title {
-                    font-size: 15OPpx;
+                    font-size: 15px;
                     padding-block: 10px;
                 }
             }
@@ -138,5 +138,9 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row-reverse;
+    }
+
+    .error { 
+        color: var(--color-danger);
     }
 }

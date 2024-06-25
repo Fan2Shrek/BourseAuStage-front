@@ -26,7 +26,7 @@ const Ckeditor = ({
             event.stop();
         }
 
-        onChange && onChange(plainText);
+        onChange && onChange(data);
     };
 
     return (

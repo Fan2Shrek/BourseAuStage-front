@@ -13,5 +13,6 @@ const path = {
     companyRegistration: '/inscription?profil=entreprise',
     profil: '/profile',
     createOffer: '/offres/creer',
+    unauthorized: '/403'
 }
 export default path;

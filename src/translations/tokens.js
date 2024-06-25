@@ -370,7 +370,7 @@ const tokens = {
                 description: "page.createOffer.skills.description",
             },
             add: {
-                searchSkills: "page.createOffer.add.profilfr",
+                activity: "page.createOffer.add.activity",
                 skill: "page.createOffer.add.skill",
             },
             nextStep: "page.createOffer.nextStep",
@@ -396,7 +396,11 @@ const tokens = {
             }, 
             end: {
                 title: "page.createOffer.end.title",
-            }, 
+            },
+            availableAt: {
+                title: "page.createOffer.availableAt.title",
+            },
+            success: "page.createOffer.success",
         }
     },
     breadCrumb: {

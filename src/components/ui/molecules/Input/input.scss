@@ -25,6 +25,10 @@
                 outline: none;
             }
         }
+
+        .input__error {
+            border-color: red;
+        }
     }
 
     &.password {

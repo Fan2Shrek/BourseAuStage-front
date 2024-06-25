@@ -4,4 +4,4 @@ const Page403 = () => {
     </>
 }
 
-export default () => <Page403 />;
+export default Page403;

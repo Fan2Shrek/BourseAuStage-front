@@ -15,6 +15,7 @@ import Offer from "./pages/Offer"
 import Profil from "./pages/Profil"
 import Offers from "./pages/Offers"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
+import Page403 from "./pages/Error/403"     
 import Create from "./pages/Offers/Create"
 
 function App() {
@@ -25,17 +26,18 @@ function App() {
                     <Routes>
                         <Route element={<Layout />}>
                             <Route index path={path.home} element={<Home />} />
-                            <Route index path={path.login} element={<Login />} />
-                            <Route index path={path.companies} element={<Companies />} />
-                            <Route index path={path.company} element={<Company />} />
-                            <Route index path={path.offer} element={<Offer />} />
-                            <Route index path={path.internship} element={<Offers type={OfferTypeEnum.INTERNSHIP} />} />
-                            <Route index path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
-                            <Route index path={path.apply} element={<Apply />} />
-                            <Route index path={path.profil} element={<Profil />} />
-                            <Route index path={path.createOffer} element={<Create />} />
+                            <Route path={path.login} element={<Login />} />
+                            <Route path={path.companies} element={<Companies />} />
+                            <Route path={path.company} element={<Company />} />
+                            <Route path={path.offer} element={<Offer />} />
+                            <Route path={path.internship} element={<Offers type={OfferTypeEnum.INTERNSHIP} />} />
+                            <Route path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
+                            <Route path={path.apply} element={<Apply />} />
+                            <Route path={path.profil} element={<Profil />} />
+                            <Route path={path.createOffer} element={<Create />} />
+                            <Route path={path.unauthorized} element={<Page403 />}/>
                             {/* A enlever plus tard */}
-                            <Route index path={path.uiExample} element={<UiExample />} />
+                            <Route path={path.uiExample} element={<UiExample />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

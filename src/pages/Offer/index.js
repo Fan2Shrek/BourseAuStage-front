@@ -117,11 +117,11 @@ const Offer = () => {
                     ) : (
                         <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
                     )}
-                    <p>{offer.description}</p>
+                    <div dangerouslySetInnerHTML={{__html: offer.description}}></div>
                     <h2>{t(tokens.page.offerDetails.mission)}</h2>
-                    <p>{offer.missions}</p>
+                    <div dangerouslySetInnerHTML={{__html: offer.missions}}></div>
                     <h2>{t(tokens.page.offerDetails.profile)}</h2>
-                    <p>{offer.profils}</p>
+                    <div dangerouslySetInnerHTML={{__html: offer.profils}}></div>
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.cta)}

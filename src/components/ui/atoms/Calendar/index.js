@@ -13,6 +13,7 @@ const Calendar = ({
   value = null,
   name = '',
   onChange = () => {},
+  ...props
 }) => {
   return (
     <>
@@ -33,6 +34,7 @@ const Calendar = ({
           defaultValue={value}
           onChange={onChange}
           name={name}
+          {...props}
         />
       </LocalizationProvider>
     </>

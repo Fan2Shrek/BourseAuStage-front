@@ -25,6 +25,7 @@ const Input = ({
     placeholder,
     onChange,
     className,
+    errored = false,
     ...props
 }) => {
     const [isActive, setIsActive] = useState(defaultChecked)
@@ -96,7 +97,7 @@ const Input = ({
         </label>}
         <div className='input__wrapper'>
             <input
-                className='input__target'
+                className={cn('input__target', errored ? 'input__error' : '')}
                 type={dynamicType}
                 id={id}
                 name={name}

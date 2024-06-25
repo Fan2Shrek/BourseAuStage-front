@@ -11,7 +11,7 @@ const Profil = () => {
     const handleSubmit = () => {}
 
     return <Container className={styles.content}>
-        {/* <ProfilForm /> */}
+        <ProfilForm />
     </Container>
 }
 

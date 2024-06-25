@@ -5,9 +5,10 @@ import { GiHandBag } from "react-icons/gi";
 import { TbNotes } from "react-icons/tb";
 import { CiGift } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 import {UserContext} from "../../../context/UserContext";
-import page403 from "../../Error/403";
 import tokens from "../../../translations/tokens";
 import styles from "./Create.module.scss";
 import Container from "../../../components/ui/atoms/Container"
@@ -20,6 +21,8 @@ import apiClient from "../../../api/ApiClient";
 import Modal from "../../..//components/ui/atoms/Modal";
 import Select from "../../../components/ui/atoms/Select";
 import Calendar from "../../../components/ui/atoms/Calendar";
+import { NotificationContext } from "../../../context/NotificationContext";
+import path from "../../../path";
 
 const states = {
     1: {
@@ -40,32 +43,57 @@ const states = {
 const Create = () => {
     const { user } = useContext(UserContext);
     const { t } = useTranslation();
+    const { addNotification } = useContext(NotificationContext);
+    const navigate = useNavigate();
 
     const [state, setState] = useState(1);
-    const [form, setForm] = useState({});
-
-    const [searchSkills, setSearchSkills] = useState([]);
-    const [skills, setSkills] = useState([]);
+    const [form, setForm] = useState({
+        start: dayjs()['$d'],
+        end: dayjs()['$d'],
+        availableAt: dayjs()['$d'],
+        isInternship: true
+    });
 
     const [activities, setActivities] = useState([]);
+    const [skills, setSkills] = useState([]);
+
+    const [activitiesList, setActivitiesList] = useState([]);
     const [skillsList, setSkillsList] = useState([]);
 
     const [displayModal, setDisplayModal] = useState(false);
     const [currentSelection, setCurrentSelection] = useState({});
-    
+
+    const [errors, setErrors] = useState({});   
+
+    if (!user || !user.roles.includes('ROLE_COLLABORATOR')) {
+        return navigate(path.unauthorized);
+    }
+
     const handleDelete = (type, value) => {
         switch (type) {
             case 'skill':
                 setSkills(skills.filter(skill => skill !== value));
                 break;
-            case 'searchSkill':
-                setSearchSkills(searchSkills.filter(searchSkill => searchSkill !== value));
+            case 'activity':
+                setActivities(activities.filter(activity => activity !== value));
                 break;
         }
     };
 
-    const handleSubmit = () => {
-        console.log(form);
+    const handleSubmit = async () => {
+        form.skills = JSON.stringify(skills.map(skill => skill.id));
+        form.activities = JSON.stringify(activities.map(activity => activity.id));
+
+        const response = await apiClient.offer.post(form);
+
+        if (response.id) {
+            addNotification({type: 'success', message: t(tokens.page.createOffer.success) });
+            navigate(path.offer.replace(':id', response.id));
+            return;
+        }
+
+        setErrors(response);
+        setState(1);
     }
 
     // @todo: avec kevin
@@ -97,10 +125,6 @@ const Create = () => {
         setState(state + 1);
     }
 
-    if (!user || !user.roles.includes('ROLE_COLLABORATOR')) {
-        return page403();
-    }
-
     return <Container className={styles.content}>
         <h2>{t(tokens.page.createOffer.title)}</h2>
         <div className={styles.header}>
@@ -122,7 +146,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.name.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Input className={styles.input} name='name' placeholder={t(tokens.page.createOffer.name.placeholder)} onChange={handleChange} value={form.name || ""}/>
+                    <Input errored={errors.name || false} className={styles.input} name='name' placeholder={t(tokens.page.createOffer.name.placeholder)} onChange={handleChange} value={form.name || ""}/>
                     <p>{t(tokens.page.createOffer.name.formInfo)}</p>
                 </div>
             </div>
@@ -134,11 +158,11 @@ const Create = () => {
                 <div className={styles.formRight}>
                     <div className={styles.select}>
                         <div>
-                            <input type='radio' className={cn(styles.input, styles.radio)} checked={form.isIntership || true} name='isInternship' onChange={() => setForm({...form, isIntership: true})} />
+                            <input type='radio' className={cn(styles.input, styles.radio)} checked={form.isInternship} name='isInternship' onChange={() => setForm({...form, isInternship: true})} />
                             <label>{t(tokens.page.createOffer.type.internship)}</label>
                         </div>
                         <div>
-                            <input type='radio' className={cn(styles.input, styles.radio)} checked={!form.isIntership && false} name='isInternship' onChange={(e) => setForm({...form, isIntership: false})} />
+                            <input type='radio' className={cn(styles.input, styles.radio)} checked={!form.isInternship} name='isInternship' onChange={(e) => setForm({...form, isInternship: false})} />
                             <label>{t(tokens.page.createOffer.type.workStudy)}</label>
                         </div>
                     </div>
@@ -161,8 +185,8 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.searchSkills.description)}</p>
                 </div>
                 <div className={cn(styles.formRight, styles.list)}>
-                    {searchSkills.map((searchSkill) => <Button onClick={() => handleDelete('searchSkill', searchSkill)} className={styles.btn} key={searchSkill} label={searchSkill.name} icon={<RxCross1 />} rightIcon />)}
-                    <Button onClick={() => setDisplayModal('searchSkills')} className={styles.btn} label={t(tokens.actions.add)} icon={<FaPlus />} inverted rightIcon />
+                    {activities.map((activity) => <Button onClick={() => handleDelete('activity', activity)} className={styles.btn} key={activity} label={activity.name} icon={<RxCross1 />} rightIcon />)}
+                    <Button onClick={() => setDisplayModal('activity')} className={styles.btn} label={t(tokens.actions.add)} icon={<FaPlus />} inverted rightIcon />
                 </div>
             </div>
             <div className={styles.divider}></div>
@@ -211,11 +235,21 @@ const Create = () => {
         {state === 3 && <div>
             <div className={styles.formRow}>
                 <div className={styles.formLeft}>
+                    <h3>{t(tokens.page.createOffer.availableAt.title)}</h3>
+                    <p>{t(tokens.page.createOffer.availableAt.description)}</p>
+                </div>
+                <div className={styles.formRight}>
+                    <Calendar className={styles.input} onChange={(e) => setForm({...form, availableAt: e['$d']})} value={dayjs(form.availableAt)}/>
+                </div>
+            </div>
+            <div className={styles.divider}></div>
+            <div className={styles.formRow}>
+                <div className={styles.formLeft}>
                     <h3>{t(tokens.page.createOffer.start.title)}</h3>
                     <p>{t(tokens.page.createOffer.start.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Calendar className={styles.input} onChange={(e) => setForm({...form, start: e['$d']})} defaultValue={form.start || ""}/>
+                    <Calendar className={styles.input} onChange={(e) => setForm({...form, start: e['$d']})} value={dayjs(form.start)}/>
                 </div>
             </div>
             <div className={styles.divider}></div>
@@ -225,10 +259,14 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.end.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Calendar className={styles.input} onChange={(e) => setForm({...form, end: e['$d']})} defaultValue={form.end || ""}/>
+                    <Calendar className={styles.input} onChange={(e) => setForm({...form, end: e['$d']})} value={dayjs(form.end)}/>
                 </div>
             </div>
         </div>}
+        {Object.keys(errors).length !== 0 && <>
+            <div className={styles.divider}></div>
+            {Object.entries(errors).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
+        </>}
         <div className={styles.divider}></div>
         <div className={styles.footer}> 
             <Button label={state === Object.keys(states).length ? t(tokens.page.createOffer.submit) : t(tokens.page.createOffer.nextStep)} onClick={handleButton}/>
@@ -240,7 +278,7 @@ const Create = () => {
             setDisplayModal={setDisplayModal}
         >
             <div className={styles.modalContent}>
-                {displayModal === 'searchSkills' && searchSkills.map((el) => <Button key={el.id} label={el.name} onClick={() => setSearchSkills(searchSkills.filter(p => p.id !== el.id))} />)}
+                {displayModal === 'activity' && activities.map((el) => <Button key={el.id} label={el.name} onClick={() => setActivities(activities.filter(p => p.id !== el.id))} />)}
                 {displayModal === 'skill' && <Select placeholder={t(tokens.page.apply.addSkill)} onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} values={skillsList.filter(s => !skills.includes(s))} />}
                 <Button className={styles.modalBtn} label={t(tokens.actions.add)} onClick={() => {
                     switch (displayModal) {
