@@ -47,6 +47,7 @@ const RegisterFormCompany = () => {
                     message: t(tokens.page.register.form.requiredFields),
                     type: 'danger',
                 });
+
                 return false;
             }
         }
@@ -56,6 +57,25 @@ const RegisterFormCompany = () => {
                 message: t(tokens.page.register.form.requiredFields),
                 type: 'danger',
             });
+
+            return false;
+        }
+
+        if (form.email !== form.confirmEmail) {
+            addNotification({
+                message: t(tokens.page.register.form.emailError),
+                type: 'danger',
+            });
+
+            return false;
+        }
+
+        if (form.password !== form.confirmPassword) {
+            addNotification({
+                message: t(tokens.page.register.form.passwordError),
+                type: 'danger',
+            });
+
             return false;
         }
 

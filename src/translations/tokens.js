@@ -234,6 +234,8 @@ const tokens = {
                 phoneCompany: "page.register.form.phoneCompany",
                 submit: "page.register.form.submit",
                 requiredFields: "page.register.form.requiredField",
+                emailError: "page.register.form.emailError",
+                passwordError: "page.register.form.passwordError",
             },
             modal: {
                 title: "page.register.modal.title",
