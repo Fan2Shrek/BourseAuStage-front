@@ -1,25 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { Trans, useTranslation } from "react-i18next";
-import { CiCircleCheck } from "react-icons/ci";
 import { format, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import styles from './Offer.module.scss';
-import apiClient from "../../api/ApiClient";
-import getPicturePath from "../../utils/getPicturePath";
-import path from "../../path";
-import tokens from "../../translations/tokens";
-import Banner from "../../components/layout/Banner";
-import Container from '../../components/ui/atoms/Container';
-import Button from '../../components/ui/atoms/Button';
-import Tag from '../../components/ui/atoms/Tag';
-import ProgressBar from '../../components/ui/atoms/ProgressBar';
-import OfferCard from "../../components/offer/OfferCard";
-import List from "../../components/ui/atoms/List";
-import OfferTypeEnum from "../../enum/OfferTypeEnum";
+import apiClient from "../../../api/ApiClient";
+import getPicturePath from "../../../utils/getPicturePath";
+import path from "../../../path";
+import tokens from "../../../translations/tokens";
+import Banner from "../../../components/layout/Banner";
+import Container from '../../../components/ui/atoms/Container';
+import Button from '../../../components/ui/atoms/Button';
+import Tag from '../../../components/ui/atoms/Tag';
+import ProgressBar from '../../../components/ui/atoms/ProgressBar';
+import OfferCard from "../../../components/offer/OfferCard";
+import List from "../../../components/ui/atoms/List";
+import OfferTypeEnum from "../../../enum/OfferTypeEnum";
 
 const Offer = () => {
     const [offer, setOffer] = useState(null);
@@ -117,11 +116,11 @@ const Offer = () => {
                     ) : (
                         <h2>{t(tokens.page.offerDetails.presentationWork)}</h2>
                     )}
-                    <div dangerouslySetInnerHTML={{__html: offer.description}}></div>
+                    <div dangerouslySetInnerHTML={{ __html: offer.description }}></div>
                     <h2>{t(tokens.page.offerDetails.mission)}</h2>
-                    <div dangerouslySetInnerHTML={{__html: offer.missions}}></div>
+                    <div dangerouslySetInnerHTML={{ __html: offer.missions }}></div>
                     <h2>{t(tokens.page.offerDetails.profile)}</h2>
-                    <div dangerouslySetInnerHTML={{__html: offer.profils}}></div>
+                    <div dangerouslySetInnerHTML={{ __html: offer.profils }}></div>
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.cta)}

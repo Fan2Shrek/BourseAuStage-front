@@ -11,18 +11,18 @@ import { MdOutlineEmail } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
 
 import styles from './Company.module.scss';
-import apiClient from "../../api/ApiClient";
-import getPicturePath from "../../utils/getPicturePath";
-import getDomainName from '../../utils/getDomainName';
-import path from "../../path";
-import tokens from "../../translations/tokens";
-import Container from '../../components/ui/atoms/Container';
-import Button from '../../components/ui/atoms/Button';
-import IconBadge from "../../components/ui/atoms/IconBadge";
-import Banner from "../../components/layout/Banner";
-import OfferTypeEnum from "../../enum/OfferTypeEnum";
-import OfferCard from "../../components/offer/OfferCard";
-import List from "../../components/ui/atoms/List";
+import apiClient from "../../../api/ApiClient";
+import getPicturePath from "../../../utils/getPicturePath";
+import getDomainName from '../../../utils/getDomainName';
+import path from "../../../path";
+import tokens from "../../../translations/tokens";
+import Container from '../../../components/ui/atoms/Container';
+import Button from '../../../components/ui/atoms/Button';
+import IconBadge from "../../../components/ui/atoms/IconBadge";
+import Banner from "../../../components/layout/Banner";
+import OfferTypeEnum from "../../../enum/OfferTypeEnum";
+import OfferCard from "../../../components/offer/OfferCard";
+import List from "../../../components/ui/atoms/List";
 
 const socialsLinks = {
     'linkedInLink': <CiLinkedin />,

@@ -11,17 +11,12 @@ import CompanyAdminHeader from "../../../company/CompanyAdminHeader";
 const MySpaceLayout = () => {
     const { user } = useContext(UserContext)
 
-    if (!user) {
-        // 403
-        return <></>
-    }
-
     return <>
         <Navbar />
         <div className={styles.content}>
             <Sidebar />
             <main className={styles.main}>
-                {user.company && <CompanyAdminHeader
+                {user?.company && <CompanyAdminHeader
                     name={user.company.name}
                     logoIcon={user.company.logoIcon}
                 />}

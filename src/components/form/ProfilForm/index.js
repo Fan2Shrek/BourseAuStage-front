@@ -1,22 +1,22 @@
-import { FaArrowLeft,FaPlus } from "react-icons/fa";
+import { FaArrowLeft, FaPlus } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { RxCross1 } from "react-icons/rx";
 import dayjs from "dayjs";
 
-import styles from './profilForm.module.scss';
+import styles from './ProfilForm.module.scss';
 import tokens from "../../../translations/tokens";
-import Select from "../../../components/ui/atoms/Select";
-import Input from "../../../components/ui/molecules/Input";
+import Select from "../../ui/atoms/Select";
+import Input from "../../ui/molecules/Input";
 import cn from '../../../utils/classnames';
-import Button from "../../../components/ui/atoms/Button";
-import Ckeditor from "../../../components/ui/atoms/Ckeditor";
+import Button from "../../ui/atoms/Button";
+import Ckeditor from "../../ui/atoms/Ckeditor";
 import apiClient from "../../../api/ApiClient";
-import Calendar from "../../../components/ui/atoms/Calendar";
+import Calendar from "../../ui/atoms/Calendar";
 import getPicturePath from '../../../utils/getPicturePath'
 import Modal from "../../ui/atoms/Modal";
 
-const ProfilForm = ({isApplyment = false}) => {
+const ProfilForm = ({ isApplyment = false }) => {
     const { t } = useTranslation();
 
     const [profil, setProfile] = useState(null);
@@ -26,7 +26,7 @@ const ProfilForm = ({isApplyment = false}) => {
     const [studyLevels, setStudyLevels] = useState([]);
     const [currentSelection, setCurrentSelection] = useState({});
     const [skills, setSkills] = useState([]);
-    
+
     const [skillsList, setSkillsList] = useState([]);
     const [languages, setLanguages] = useState([]);
     const [experiences, setExperiences] = useState([]);
@@ -59,17 +59,17 @@ const ProfilForm = ({isApplyment = false}) => {
     const handleSubmit = async () => {
         if (form.email !== null) {
             if (form.email !== form.confirmEmail) {
-                setErrors({email: t(tokens.page.apply.errors.emailsNotMatch)});
+                setErrors({ email: t(tokens.page.apply.errors.emailsNotMatch) });
                 return;
             }
         }
 
         const formData = new FormData();
-        
+
         Object.entries(form).forEach(([key, value]) => {
             formData.append(key, value);
         });
-            
+
         formData.append('experiences', JSON.stringify(experiences));
         formData.append('languages', JSON.stringify(languages));
         formData.append('skills', JSON.stringify(skills));
@@ -92,14 +92,14 @@ const ProfilForm = ({isApplyment = false}) => {
 
     useEffect(() => {
         apiClient.me.getStudyLevels().then(response => {
-            setStudyLevels(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+            setStudyLevels(response['hydra:member'].map(({ name, id }) => ({ name, value: id })));
         });
 
     }, []);
 
     useEffect(() => {
         apiClient.skill.getAll().then(response => {
-            setSkillsList(response['hydra:member'].map((el) => ({...el, value: el.id})));
+            setSkillsList(response['hydra:member'].map((el) => ({ ...el, value: el.id })));
         });
 
     }, []);
@@ -114,7 +114,7 @@ const ProfilForm = ({isApplyment = false}) => {
     }, {
         value: 'F',
         name: t(tokens.sexes.woman)
-    },  {
+    }, {
         value: 'NB',
         name: t(tokens.sexes.nonBinary)
     }], [t]);
@@ -128,7 +128,7 @@ const ProfilForm = ({isApplyment = false}) => {
             {isApplyment && <>
                 <h2>{t(tokens.page.apply.title)}</h2>
                 <div className={styles.divider}></div>
-                </>
+            </>
             }
             <p className={styles.subtitle}>{t(tokens.page.apply.youAre)}</p>
             <div className={styles.form}>
@@ -137,7 +137,7 @@ const ProfilForm = ({isApplyment = false}) => {
                 <Input name='lastName' defaultValue={profil.lastName} onChange={handleChange} required label={t(tokens.page.apply.lastname)} className={styles['c2']} />
 
                 <div className={styles['c3']}>
-                    <Calendar onChange={(e) => (setForm({...form, birthdayAt: e['$d']}))} value={dayjs(profil.birthdayAt)} label={t(tokens.page.apply.birth)} required />
+                    <Calendar onChange={(e) => (setForm({ ...form, birthdayAt: e['$d'] }))} value={dayjs(profil.birthdayAt)} label={t(tokens.page.apply.birth)} required />
                 </div>
 
                 <Input name='phone' defaultValue={profil.phone} onChange={handleChange} required label={t(tokens.page.apply.phone)} className={styles['c3']} />
@@ -155,8 +155,8 @@ const ProfilForm = ({isApplyment = false}) => {
 
                 <Input name='linkedIn' defaultValue={profil.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
 
-                <Input onChange={(value) => handleChange({target: {name: 'hasDriverLicence', value}})} defaultChecked={profil.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
-                <Input onChange={(value) => handleChange({target: {name: 'isDisabled', value}})} defaultChecked={profil.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
+                <Input onChange={(value) => handleChange({ target: { name: 'hasDriverLicence', value } })} defaultChecked={profil.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
+                <Input onChange={(value) => handleChange({ target: { name: 'isDisabled', value } })} defaultChecked={profil.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
 
                 <div className={cn(styles.divider, styles['c6'])}></div>
                 <h3 className={styles['c6']}>{t(tokens.page.apply.mySituation)}</h3>
@@ -166,25 +166,25 @@ const ProfilForm = ({isApplyment = false}) => {
                 <Input name='school' defaultValue={profil.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
 
                 <Input name='formation' defaultValue={profil.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
- 
+
                 {isApplyment && <>
-                        <Ckeditor label={t(tokens.page.apply.motivations)} className={styles['c6']} />
+                    <Ckeditor label={t(tokens.page.apply.motivations)} className={styles['c6']} />
 
-                        <Input name='coverLetter' onChange={handleChange} label={t(tokens.page.apply.coverLetter)} className={styles['c6']} />
-                        <div className={cn(styles.divider, styles['c6'])}></div>
+                    <Input name='coverLetter' onChange={handleChange} label={t(tokens.page.apply.coverLetter)} className={styles['c6']} />
+                    <div className={cn(styles.divider, styles['c6'])}></div>
 
-                        <Input name='createAccount' type='checkbox' label={t(tokens.page.apply.createAccount)} className={styles['c6']} />
+                    <Input name='createAccount' type='checkbox' label={t(tokens.page.apply.createAccount)} className={styles['c6']} />
 
-                    </>
+                </>
                 }
                 <Button label={isApplyment ? t(tokens.page.apply.submit) : t(tokens.page.profil.update)} onClick={handleSubmit} className={styles['c6']} />
                 <div className={styles['c6']}>
                     {Object.entries(errors).map(([name, error]) => <p className={styles.errors}>{error}</p>)}
                 </div>
                 {isApplyment && <>
-                        <p className={cn(styles.legal, styles['c6'])}>{t(tokens.page.apply.legal)}</p>
-                        <Button label={t(tokens.actions.back)} inverted icon={<FaArrowLeft />} />
-                    </>
+                    <p className={cn(styles.legal, styles['c6'])}>{t(tokens.page.apply.legal)}</p>
+                    <Button label={t(tokens.actions.back)} inverted icon={<FaArrowLeft />} />
+                </>
                 }
             </div>
         </div>
@@ -195,7 +195,7 @@ const ProfilForm = ({isApplyment = false}) => {
             <div className={styles.avatarBlock}>
                 <div className={styles.avatar}><img alt={profil.firstName} width={70} height={70} src={getPicturePath(`img/user/${profil.profilPicture}`)} /></div>
 
-                <Input onChange={(e) => setForm({...form, profilPicture: e.target.files[0]})} name='profilPicture' type="file" withoutIcon placeholder={<Trans
+                <Input onChange={(e) => setForm({ ...form, profilPicture: e.target.files[0] })} name='profilPicture' type="file" withoutIcon placeholder={<Trans
                     i18nKey={tokens.page.apply.myPhoto.placeholder}
                     components={{
                         multiLine: <span className={styles.multiLine} />,
@@ -235,7 +235,7 @@ const ProfilForm = ({isApplyment = false}) => {
             <p>{t(tokens.page.apply.documentsDescription)}</p>
             <div className={styles.documentRow}>
                 <p><span>{t(tokens.page.apply.cvField.title)}</span> ({t(tokens.page.apply.cvRequirements)})</p>
-                <Input type="file" onChange={(e) => setForm({...form, cv: e.target.files[0]})} placeholder={t(tokens.page.apply.cvField.placeholder)} />
+                <Input type="file" onChange={(e) => setForm({ ...form, cv: e.target.files[0] })} placeholder={t(tokens.page.apply.cvField.placeholder)} />
                 <span>{profil.cv}</span>
             </div>
             {isApplyment && <>
@@ -258,14 +258,14 @@ const ProfilForm = ({isApplyment = false}) => {
         >
             <div className={styles.modalContent}>
                 {displayModal === 'experience' && <>
-                    <input onChange={(e) => setCurrentSelection({name: e.target.value})} value={currentSelection && currentSelection.name} />
+                    <input onChange={(e) => setCurrentSelection({ name: e.target.value })} value={currentSelection && currentSelection.name} />
                 </>}
                 {displayModal === 'language' && <>
-                    <input onChange={(e) => setCurrentSelection({...currentSelection, name: e.target.value})} value={currentSelection.name || ''} />
-                    <input onChange={(e) => setCurrentSelection({...currentSelection, level: e.target.value})} value={currentSelection.level || ''} />
+                    <input onChange={(e) => setCurrentSelection({ ...currentSelection, name: e.target.value })} value={currentSelection.name || ''} />
+                    <input onChange={(e) => setCurrentSelection({ ...currentSelection, level: e.target.value })} value={currentSelection.level || ''} />
                 </>}
                 {displayModal === 'skill' && <>
-                    <Select placeholder={t(tokens.page.apply.addSkill)} onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} values={skillsList.filter(s => !skills.includes(s))} />
+                    <Select placeholder={t(tokens.page.apply.addSkill)} onChange={(e) => setCurrentSelection({ value: parseInt(e.target.value, 10) })} values={skillsList.filter(s => !skills.includes(s))} />
                 </>}
                 <Button label={t(tokens.actions.add)} onClick={() => {
                     switch (displayModal) {

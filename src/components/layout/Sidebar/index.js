@@ -33,7 +33,7 @@ const Sidebar = () => {
             ? [
                 { icon: <BsBuildings className={styles.icon} />, name: t(tokens.sidebar.links.myCompany), url: '#' },
                 { icon: <IoPeopleOutline className={styles.icon} />, name: t(tokens.sidebar.links.requests), url: '#' },
-                { icon: <IoNewspaperOutline className={styles.icon} />, name: t(tokens.sidebar.links.offers), url: '#' },
+                { icon: <IoNewspaperOutline className={styles.icon} />, name: t(tokens.sidebar.links.offers), url: path.admin.offers },
             ]
             : []
         ),

@@ -51,10 +51,6 @@ const ApiCollectionTable = ({
     const { t } = useTranslation()
 
     useEffect(() => {
-        setSelectedFilter(defaultFilter)
-    }, [defaultFilter])
-
-    useEffect(() => {
         setSelectedItemsPerPage(defaultItemsPerPage)
     }, [defaultItemsPerPage])
 

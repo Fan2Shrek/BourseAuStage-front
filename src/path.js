@@ -15,6 +15,7 @@ const path = {
     uiExample: '/ui-example',
     admin: {
         profil: '/admin/profil',
+        offers: '/admin/offres',
     },
 }
 export default path;
