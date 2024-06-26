@@ -1,6 +1,4 @@
 .content {
-    padding: 20px 0;
-
     .header {
         height: 85px;
         border: 1px solid var(--color-grey);
@@ -36,19 +34,19 @@
                 color: var(--color-black);
             }
 
-            &.current {    
+            &.current {
                 .icon {
                     background-color: var(--color-main);
                     color: var(--color-light);
                 }
-    
+
                 .name {
                     font-weight: bold;
                 }
             }
         }
     }
-    
+
     .divider {
         border-top: 1px solid var(--color-grey);
         margin-block: 20px;
@@ -140,7 +138,7 @@
         flex-direction: row-reverse;
     }
 
-    .error { 
+    .error {
         color: var(--color-danger);
     }
 }

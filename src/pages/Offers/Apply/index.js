@@ -1,27 +1,18 @@
 import { useEffect, useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { FaArrowLeft, FaPlus } from "react-icons/fa";
-import { RxCross1 } from "react-icons/rx";
+import { useTranslation } from "react-i18next";
+import { FaArrowLeft } from "react-icons/fa";
 
 import Card from "../../../components/ui/atoms/Card";
 import Container from "../../../components/ui/atoms/Container";
 import styles from './apply.module.scss';
 import tokens from "../../../translations/tokens";
 import Tag from "../../../components/ui/atoms/Tag";
-import Select from "../../../components/ui/atoms/Select";
-import Input from "../../../components/ui/molecules/Input";
-import cn from '../../../utils/classnames';
 import Button from "../../../components/ui/atoms/Button";
 import Banner from "../../../components/layout/Banner";
-import Ckeditor from "../../../components/ui/atoms/Ckeditor";
-import ProfilForm from "../../../components/form/profilForm";
+import ProfilForm from "../../../components/form/ProfilForm";
 
 const Apply = () => {
     const [offer, setOffer] = useState(null);
-
-    const [skills, setSkills] = useState(['Skill 1', 'Skill 2', 'Skill 3']);
-    const [languages, setLanguages] = useState(['Langage 1', 'Langage 2', 'Langage 3']);
-    const [experiences, setExperiences] = useState(['Experience 1', 'Experience 2', 'Experience 3']);
 
     const { t } = useTranslation();
 

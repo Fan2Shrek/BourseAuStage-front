@@ -8,21 +8,21 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 
-import { UserContext } from "../../../context/UserContext";
-import tokens from "../../../translations/tokens";
+import { UserContext } from "../../../../context/UserContext";
+import tokens from "../../../../translations/tokens";
 import styles from "./Create.module.scss";
-import Container from "../../../components/ui/atoms/Container"
-import IconBadge from "../../../components/ui/atoms/IconBadge";
-import cn from "../../../utils/classnames";
-import Input from "../../../components/ui/molecules/Input";
-import Button from "../../../components/ui/atoms/Button";
-import Ckeditor from "../../../components/ui/atoms/Ckeditor";
-import apiClient from "../../../api/ApiClient";
-import Modal from "../../..//components/ui/atoms/Modal";
-import Select from "../../../components/ui/atoms/Select";
-import Calendar from "../../../components/ui/atoms/Calendar";
-import { NotificationContext } from "../../../context/NotificationContext";
-import path from "../../../path";
+import Container from "../../../../components/ui/atoms/Container"
+import IconBadge from "../../../../components/ui/atoms/IconBadge";
+import cn from "../../../../utils/classnames";
+import Input from "../../../../components/ui/molecules/Input";
+import Button from "../../../../components/ui/atoms/Button";
+import Ckeditor from "../../../../components/ui/atoms/Ckeditor";
+import apiClient from "../../../../api/ApiClient";
+import Modal from "../../../../components/ui/atoms/Modal";
+import Select from "../../../../components/ui/atoms/Select";
+import Calendar from "../../../../components/ui/atoms/Calendar";
+import { NotificationContext } from "../../../../context/NotificationContext";
+import path from "../../../../path";
 
 const states = {
     1: {
@@ -125,7 +125,7 @@ const Create = () => {
         setState(state + 1);
     }
 
-    return <Container className={styles.content}>
+    return <Container admin className={styles.content}>
         <h2>{t(tokens.page.createOffer.title)}</h2>
         <div className={styles.header}>
             {Object.entries(states).map(([key, value]) =>

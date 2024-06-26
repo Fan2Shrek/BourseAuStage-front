@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 import path from "./path"
 import { ThemeContextProvider } from "./context/ThemeContext"
@@ -8,17 +8,18 @@ import Layout from "./components/layout/Layout"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import UiExample from "./pages/UiExample"
-import Company from "./pages/Company"
 import Apply from "./pages/Offers/Apply"
 import Companies from "./pages/Companies"
-import Offer from "./pages/Offer"
-import Profil from "./pages/Profil"
+import Company from "./pages/Companies/Company"
+import Profil from "./pages/admin/Profil"
 import Offers from "./pages/Offers"
 import RegisterCompany from "./pages/Register/Company"
+import Offer from "./pages/Offers/Offer"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
 import Page403 from "./pages/Error/403"
-import Create from "./pages/Offers/Create"
+import Create from "./pages/admin/Offers/Create"
 import MySpaceLayout from "./components/layout/Layout/MySpaceLayout"
+import AdminOffers from "./pages/admin/Offers"
 
 function App() {
     return <ThemeContextProvider>
@@ -27,7 +28,7 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route element={<Layout />}>
-                            <Route index path={path.home} element={<Home />} />
+                            <Route index element={<Home />} />
                             <Route path={path.login} element={<Login />} />
                             <Route path={path.companies} element={<Companies />} />
                             <Route path={path.company} element={<Company />} />
@@ -42,7 +43,9 @@ function App() {
                             <Route path={path.uiExample} element={<UiExample />} />
                         </Route>
                         <Route path={'/admin'} element={<MySpaceLayout />}>
+                            <Route index element={<Navigate to={path.admin.profil} replace />} />
                             <Route path={path.admin.profil} element={<Profil />} />
+                            <Route path={path.admin.offers} element={<AdminOffers />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>
