@@ -16,6 +16,7 @@ export const DefaultTheme = () => {
         setProperty('--color-secondary-alpha', '#26a4ffe6');
 
         setProperty('--color-third', '#f8f8fd');
+        setProperty('--color-third-contrast', '#e9ebfd');
 
         setProperty('--color-light', '#fff')
         // A voir selon le choix du hover

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 
-import {UserContext} from "../../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import tokens from "../../../translations/tokens";
 import styles from "./Create.module.scss";
 import Container from "../../../components/ui/atoms/Container"
@@ -63,7 +63,14 @@ const Create = () => {
     const [displayModal, setDisplayModal] = useState(false);
     const [currentSelection, setCurrentSelection] = useState({});
 
-    const [errors, setErrors] = useState({});   
+    const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        apiClient.skill.getAll().then(response => {
+            setSkillsList(response['hydra:member'].map((el) => ({ ...el, value: el.id })));
+        });
+
+    }, []);
 
     if (!user || !user.roles.includes('ROLE_COLLABORATOR')) {
         return navigate(path.unauthorized);
@@ -87,7 +94,7 @@ const Create = () => {
         const response = await apiClient.offer.post(form);
 
         if (response.id) {
-            addNotification({type: 'success', message: t(tokens.page.createOffer.success) });
+            addNotification({ type: 'success', message: t(tokens.page.createOffer.success) });
             navigate(path.offer.replace(':id', response.id));
             return;
         }
@@ -101,13 +108,6 @@ const Create = () => {
     //     apiClient.activities.get()
     // }, []);
 
-    useEffect(() => {
-        apiClient.skill.getAll().then(response => {
-            setSkillsList(response['hydra:member'].map((el) => ({...el, value: el.id})));
-        });
-
-    }, []);
-
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -118,7 +118,7 @@ const Create = () => {
     const handleButton = () => {
         if (state === Object.keys(states).length) {
             handleSubmit();
-            
+
             return;
         }
 
@@ -128,9 +128,9 @@ const Create = () => {
     return <Container className={styles.content}>
         <h2>{t(tokens.page.createOffer.title)}</h2>
         <div className={styles.header}>
-            {Object.entries(states).map(([key, value]) => 
+            {Object.entries(states).map(([key, value]) =>
                 <div key={key} className={cn(styles.stateStep, state == key ? styles.current : '')}>
-                    <IconBadge icon={value.icon} className={styles.icon}/>
+                    <IconBadge icon={value.icon} className={styles.icon} />
                     <div className={styles.description}>
                         <span className={styles.title}>{t(tokens.page.createOffer.step)} {key}/{Object.keys(states).length}</span>
                         <span className={styles.name}>{t(value.name)}</span>
@@ -146,7 +146,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.name.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Input errored={errors.name || false} className={styles.input} name='name' placeholder={t(tokens.page.createOffer.name.placeholder)} onChange={handleChange} value={form.name || ""}/>
+                    <Input errored={errors.name || false} className={styles.input} name='name' placeholder={t(tokens.page.createOffer.name.placeholder)} onChange={handleChange} value={form.name || ""} />
                     <p>{t(tokens.page.createOffer.name.formInfo)}</p>
                 </div>
             </div>
@@ -158,11 +158,11 @@ const Create = () => {
                 <div className={styles.formRight}>
                     <div className={styles.select}>
                         <div>
-                            <input type='radio' className={cn(styles.input, styles.radio)} checked={form.isInternship} name='isInternship' onChange={() => setForm({...form, isInternship: true})} />
+                            <input type='radio' className={cn(styles.input, styles.radio)} checked={form.isInternship} name='isInternship' onChange={() => setForm({ ...form, isInternship: true })} />
                             <label>{t(tokens.page.createOffer.type.internship)}</label>
                         </div>
                         <div>
-                            <input type='radio' className={cn(styles.input, styles.radio)} checked={!form.isInternship} name='isInternship' onChange={(e) => setForm({...form, isInternship: false})} />
+                            <input type='radio' className={cn(styles.input, styles.radio)} checked={!form.isInternship} name='isInternship' onChange={(e) => setForm({ ...form, isInternship: false })} />
                             <label>{t(tokens.page.createOffer.type.workStudy)}</label>
                         </div>
                     </div>
@@ -174,7 +174,7 @@ const Create = () => {
                     <h3>{t(tokens.page.createOffer.remuneration.title)}</h3>
                 </div>
                 <div className={styles.formRight}>
-                    <Input className={styles.input} name='remuneration' placeholder={t(tokens.page.createOffer.remuneration.placeholder)} onChange={handleChange} defaultValue={form.remuneration || ""}/>
+                    <Input className={styles.input} name='remuneration' placeholder={t(tokens.page.createOffer.remuneration.placeholder)} onChange={handleChange} defaultValue={form.remuneration || ""} />
                     <p>{t(tokens.page.createOffer.remuneration.formInfo)}</p>
                 </div>
             </div>
@@ -208,7 +208,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.description.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Ckeditor className={styles.input} placeholder={t(tokens.page.createOffer.description.placeholder)} onChange={(content) => setForm({...form, description: content})} defaultValue={form.description || ""}/>
+                    <Ckeditor className={styles.input} placeholder={t(tokens.page.createOffer.description.placeholder)} onChange={(content) => setForm({ ...form, description: content })} defaultValue={form.description || ""} />
                 </div>
             </div>
             <div className={styles.divider}></div>
@@ -218,7 +218,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.missions.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Ckeditor className={styles.input} placeholder={t(tokens.page.createOffer.missions.placeholder)} onChange={(content) => setForm({...form, missions: content})} defaultValue={form.missions || ""}/>
+                    <Ckeditor className={styles.input} placeholder={t(tokens.page.createOffer.missions.placeholder)} onChange={(content) => setForm({ ...form, missions: content })} defaultValue={form.missions || ""} />
                 </div>
             </div>
             <div className={styles.divider}></div>
@@ -228,7 +228,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.profils.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Ckeditor className={styles.input} placeholder={t(tokens.page.createOffer.profils.placeholder)} onChange={(content) => setForm({...form, profils: content})} defaultValue={form.profils || ""}/>
+                    <Ckeditor className={styles.input} placeholder={t(tokens.page.createOffer.profils.placeholder)} onChange={(content) => setForm({ ...form, profils: content })} defaultValue={form.profils || ""} />
                 </div>
             </div>
         </div>}
@@ -239,7 +239,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.availableAt.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Calendar className={styles.input} onChange={(e) => setForm({...form, availableAt: e['$d']})} value={dayjs(form.availableAt)}/>
+                    <Calendar className={styles.input} onChange={(e) => setForm({ ...form, availableAt: e['$d'] })} value={dayjs(form.availableAt)} />
                 </div>
             </div>
             <div className={styles.divider}></div>
@@ -249,7 +249,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.start.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Calendar className={styles.input} onChange={(e) => setForm({...form, start: e['$d']})} value={dayjs(form.start)}/>
+                    <Calendar className={styles.input} onChange={(e) => setForm({ ...form, start: e['$d'] })} value={dayjs(form.start)} />
                 </div>
             </div>
             <div className={styles.divider}></div>
@@ -259,7 +259,7 @@ const Create = () => {
                     <p>{t(tokens.page.createOffer.end.description)}</p>
                 </div>
                 <div className={styles.formRight}>
-                    <Calendar className={styles.input} onChange={(e) => setForm({...form, end: e['$d']})} value={dayjs(form.end)}/>
+                    <Calendar className={styles.input} onChange={(e) => setForm({ ...form, end: e['$d'] })} value={dayjs(form.end)} />
                 </div>
             </div>
         </div>}
@@ -268,8 +268,8 @@ const Create = () => {
             {Object.entries(errors).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
         </>}
         <div className={styles.divider}></div>
-        <div className={styles.footer}> 
-            <Button label={state === Object.keys(states).length ? t(tokens.page.createOffer.submit) : t(tokens.page.createOffer.nextStep)} onClick={handleButton}/>
+        <div className={styles.footer}>
+            <Button label={state === Object.keys(states).length ? t(tokens.page.createOffer.submit) : t(tokens.page.createOffer.nextStep)} onClick={handleButton} />
             {state !== 1 && <Button label={t(tokens.page.createOffer.previousStep)} onClick={() => setState(state - 1)} />}
         </div>
         <Modal
@@ -279,7 +279,7 @@ const Create = () => {
         >
             <div className={styles.modalContent}>
                 {displayModal === 'activity' && activities.map((el) => <Button key={el.id} label={el.name} onClick={() => setActivities(activities.filter(p => p.id !== el.id))} />)}
-                {displayModal === 'skill' && <Select placeholder={t(tokens.page.apply.addSkill)} onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} values={skillsList.filter(s => !skills.includes(s))} />}
+                {displayModal === 'skill' && <Select placeholder={t(tokens.page.apply.addSkill)} onChange={(e) => setCurrentSelection({ value: parseInt(e.target.value, 10) })} values={skillsList.filter(s => !skills.includes(s))} />}
                 <Button className={styles.modalBtn} label={t(tokens.actions.add)} onClick={() => {
                     switch (displayModal) {
                         case 'skill':

@@ -43,7 +43,7 @@ const LoginForm = () => {
                         })
                     } else {
                         setUser(response.user)
-                        navigate(path.profil)
+                        navigate(path.admin.profil)
                     }
                 })
         }
