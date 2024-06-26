@@ -14,6 +14,7 @@ import Companies from "./pages/Companies"
 import Offer from "./pages/Offer"
 import Profil from "./pages/Profil"
 import Offers from "./pages/Offers"
+import RegisterCompany from "./pages/Register/Company"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
 import Page403 from "./pages/Error/403"
 import Create from "./pages/Offers/Create"
@@ -36,6 +37,7 @@ function App() {
                             <Route path={path.apply} element={<Apply />} />
                             <Route path={path.createOffer} element={<Create />} />
                             <Route path={path.unauthorized} element={<Page403 />} />
+                            <Route path={path.companyRegistration} element={<RegisterCompany />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
                         </Route>
