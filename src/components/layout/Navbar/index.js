@@ -79,6 +79,7 @@ const Navbar = () => {
                         label={t(tokens.navbar.modal.student)}
                         inverted
                         transparent
+                        onClick={() => setDisplayModal(false)}
                         icon={<PiStudent size={35} />}
                         redirectTo={path.studentRegistration}
                     />
@@ -87,6 +88,7 @@ const Navbar = () => {
                         label={t(tokens.navbar.modal.company)}
                         inverted
                         transparent
+                        onClick={() => setDisplayModal(false)}
                         icon={<PiBuildingOffice size={35} />}
                         redirectTo={path.companyRegistration}
                     />
