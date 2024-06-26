@@ -97,9 +97,11 @@ const RegisterFormCompany = () => {
             
         formData.append('activities', JSON.stringify(activities));
 
-        await apiClient.company.post(formData);
+        const response = await apiClient.company.post(formData);
 
-        navigate(path.login)
+        if(response == ''){
+            navigate(path.login)
+        }
     }
 
     useEffect(() => {
