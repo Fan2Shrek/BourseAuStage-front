@@ -10,9 +10,9 @@ export const getCookie = (name) => {
 }
 
 export const setCookie = (name, value, expire = null) => {
-    if (value === null) {
-        expire = new Date()
-    }
-
     document.cookie = `${name}=${encodeURIComponent(value)}; ${expire ? `expires=${expire.toUTCString()};` : ''}`
+}
+
+export const eraseCookie = (name) => {
+    document.cookie = `${name}=; Max-Age=-99999999;`;
 }
