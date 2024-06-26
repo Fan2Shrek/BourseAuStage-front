@@ -1,0 +1,32 @@
+.table {
+    overflow-x: scroll;
+
+    table, tr {
+        border: 2px solid var(--table-border-color);
+        border-collapse: collapse;
+    }
+
+    table {
+        min-width: 100%;
+    }
+
+    tr {
+        th, td {
+            padding: 20px;
+        }
+
+        th {
+            text-align: start;
+            font-weight: inherit;
+            color: var(--table-headers-color);
+
+            &.sortable {
+                cursor: pointer;
+            }
+        }
+
+        &:nth-child(2n) {
+            background-color: var(--table-secondary-color);
+        }
+    }
+}

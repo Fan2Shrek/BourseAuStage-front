@@ -15,12 +15,12 @@ export const Darktheme = () => {
         /**
          * INPUT
          */
-        setProperty('--input-label-color', 'var(--color-light)');
+        setProperty('--input-label-color', 'var(--base-color-neutral)');
 
         /**
          * BANNER
          */
-        setProperty('--banner-color', 'var(--color-dark)');
+        setProperty('--banner-color', 'var(--base-color-neutral-inverted)');
 
         /**
          * HOME
@@ -31,6 +31,11 @@ export const Darktheme = () => {
         * COMPANY
         */
         setProperty('--company-related-offers-section-color', 'transparent');
+
+        /**
+         * TABLE
+         */
+        setProperty('--table-secondary-color', 'transparent');
     }, [])
 
     return <></>

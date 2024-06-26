@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./Companies.module.scss";
 import tokens from "../../translations/tokens";
 import path from "../../path";
-import { AscSort, DescSort } from "../../api/sortings";
+import { ascSort, descSort } from "../../api/sortings";
 import { notNull } from "../../api/filters";
 import UnderlinedContent from "../../components/ui/atoms/UnderlinedText";
 import Banner from "../../components/layout/Banner";
@@ -36,7 +36,7 @@ const Companies = () => {
         },
     ], [t])
 
-    return <div className={styles.companies}>
+    return <Container inline className={styles.companies}>
         <Banner breadCrumb={breadCrumb}>
             <h1>{underlined && title.join(' ')} <UnderlinedContent>{underlined || title.join(' ')}</UnderlinedContent></h1>
             <p>{t(tokens.page.companies.description)}</p>
@@ -52,13 +52,13 @@ const Companies = () => {
                     notNull({ property: 'deletedAt' }),
                 ]}
                 sortings={[
-                    AscSort({
+                    ascSort({
                         name: 'alphabetical-AZ-companyName',
                         property: 'name',
                         propertyTranslation: t(tokens.entities.company.name),
                         clarificationTranslation: t(tokens.sortings.clarifications.alphabeticalSortAZ),
                     }),
-                    DescSort({
+                    descSort({
                         name: 'alphabetical-ZA-companyName',
                         property: 'name',
                         propertyTranslation: t(tokens.entities.company.name),
@@ -71,7 +71,7 @@ const Companies = () => {
                 </Link>}
             />
         </Container>
-    </div>
+    </Container>
 }
 
 export default Companies;
