@@ -36,6 +36,11 @@ export const Darktheme = () => {
          * TABLE
          */
         setProperty('--table-secondary-color', 'transparent');
+
+        /**
+         * SIDEBAR
+         */
+        setProperty('--sidebar-color', 'transparent');
     }, [])
 
     return <></>

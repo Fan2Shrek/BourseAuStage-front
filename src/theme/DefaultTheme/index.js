@@ -118,6 +118,11 @@ export const DefaultTheme = () => {
         setProperty('--table-border-color', 'var(--color-third)');
         setProperty('--table-secondary-color', 'var(--color-third)');
         setProperty('--table-headers-color', 'var(--color-middle-grey)');
+
+        /**
+         * SIDEBAR
+         */
+        setProperty('--sidebar-color', 'var(--color-third)');
     }, [])
 
     return <></>

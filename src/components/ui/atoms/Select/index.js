@@ -60,7 +60,6 @@ const Select = ({
                     key={index}
                     value={(typeof value === 'object' && value.value) || value}
                     className='select__option'
-                    selected={currentValue === ((typeof value === 'object' ? value.value : value))}
                 >
                     {(typeof value === 'object' && value.name) || value}
                 </option>)}

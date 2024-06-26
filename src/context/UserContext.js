@@ -27,23 +27,23 @@ export const UserContextProvider = ({ children }) => {
             .then(response => setUserState(response))
     }, [])
 
-    const setUser = useCallback(user => {
-        if (user) {
+    const setUser = useCallback(usr => {
+        if (usr) {
             addNotification({
                 message: t(tokens.notifications.login, {
-                    name: `${user.firstName} ${user.lastName}`,
+                    name: `${usr.firstName} ${usr.lastName}`,
                 }),
                 type: 'success',
             })
-        } else if (user === null) {
+        } else if (usr === null) {
             addNotification({
                 message: t(tokens.notifications.logout),
                 type: 'warning',
             })
         }
 
-        setUserState(user)
-    }, [addNotification, t])
+        setUserState(usr)
+    }, [addNotification, t, setUserState])
 
     return <UserContext.Provider value={{
         user,

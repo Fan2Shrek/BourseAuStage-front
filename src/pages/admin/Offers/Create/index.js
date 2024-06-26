@@ -8,12 +8,16 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 
-import { UserContext } from "../../../../context/UserContext";
-import tokens from "../../../../translations/tokens";
 import styles from "./Create.module.scss";
+import { getCookie } from "../../../../utils/cookies";
+import tokens from "../../../../translations/tokens";
+import path from "../../../../path";
+import cn from "../../../../utils/classnames";
+import UserRoleEnum from "../../../../enum/UserRoleEnum";
+import { UserContext } from "../../../../context/UserContext";
+import { NotificationContext } from "../../../../context/NotificationContext";
 import Container from "../../../../components/ui/atoms/Container"
 import IconBadge from "../../../../components/ui/atoms/IconBadge";
-import cn from "../../../../utils/classnames";
 import Input from "../../../../components/ui/molecules/Input";
 import Button from "../../../../components/ui/atoms/Button";
 import Ckeditor from "../../../../components/ui/atoms/Ckeditor";
@@ -21,8 +25,6 @@ import apiClient from "../../../../api/ApiClient";
 import Modal from "../../../../components/ui/atoms/Modal";
 import Select from "../../../../components/ui/atoms/Select";
 import Calendar from "../../../../components/ui/atoms/Calendar";
-import { NotificationContext } from "../../../../context/NotificationContext";
-import path from "../../../../path";
 
 const states = {
     1: {
@@ -72,8 +74,14 @@ const Create = () => {
 
     }, []);
 
-    if (!user || !user.roles.includes('ROLE_COLLABORATOR')) {
-        return navigate(path.unauthorized);
+    useEffect(() => {
+        if (!getCookie('token') || (user && !user.roles.includes(UserRoleEnum.COLLABORATOR))) {
+            navigate(path.unauthorized);
+        }
+    }, [user, navigate]);
+
+    if (!user || !user.roles.includes(UserRoleEnum.COLLABORATOR)) {
+        return <></>;
     }
 
     const handleDelete = (type, value) => {

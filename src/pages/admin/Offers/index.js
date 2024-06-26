@@ -4,8 +4,10 @@ import { useTranslation } from "react-i18next";
 
 import { UserContext } from "../../../context/UserContext";
 import { existsFilter, withCompany } from "../../../api/filters";
+import { getCookie } from "../../../utils/cookies";
 import path from "../../../path";
 import tokens from "../../../translations/tokens";
+import UserRoleEnum from "../../../enum/UserRoleEnum";
 import Container from "../../../components/ui/atoms/Container";
 import Tag from "../../../components/ui/atoms/Tag";
 import ApiCollectionTable from "../../../components/ui/molecules/ApiCollectionTable";
@@ -16,10 +18,14 @@ const Offers = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user || !user.roles.includes('ROLE_COLLABORATOR')) {
-            return navigate(path.unauthorized);
+        if (!getCookie('token') || (user && !user.roles.includes(UserRoleEnum.COLLABORATOR))) {
+            navigate(path.unauthorized);
         }
     }, [user, navigate]);
+
+    if (!user || !user.roles.includes(UserRoleEnum.COLLABORATOR)) {
+        return <></>;
+    }
 
     return <Container admin>
         <ApiCollectionTable
