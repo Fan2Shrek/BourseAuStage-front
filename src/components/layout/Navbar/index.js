@@ -8,7 +8,7 @@ import styles from './Navbar.module.scss'
 import path from '../../../path'
 import tokens from '../../../translations/tokens'
 import apiClient from '../../../api/ApiClient'
-import { setCookie } from '../../../utils/cookies'
+import { eraseCookie } from '../../../utils/cookies'
 import { UserContext } from '../../../context/UserContext'
 import { ThemeContext } from '../../../context/ThemeContext'
 import ThemeEnum from '../../../enum/ThemeEnum'
@@ -61,7 +61,7 @@ const Navbar = () => {
     const handleLogBtn = useCallback(() => {
         if (user) {
             setUser(null)
-            setCookie('token', null)
+            eraseCookie('token')
             apiClient.token = null
         }
     }, [user, setUser])
