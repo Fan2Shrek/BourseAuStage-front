@@ -7,6 +7,7 @@ import Skill from "./Resource/skill"
 import Category from "./Resource/category"
 import Activity from "./Resource/activity"
 import { getCookie, setCookie } from "../utils/cookies"
+import StudyLevel from "./Resource/studyLevel"
 
 class ApiClient {
     constructor() {
@@ -18,6 +19,7 @@ class ApiClient {
         this.skill = new Skill(this);
         this.category = new Category(this);
         this.activity = new Activity(this);
+        this.studyLevel = new StudyLevel(this);
 
         this.token = getCookie('token')
     }

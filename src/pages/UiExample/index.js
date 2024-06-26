@@ -134,13 +134,13 @@ const UiExample = () => {
     ], [])
 
     const exampleInputs = useMemo(() => [
-        { identifier: 1, id: 'required', label: 'Required', type: 'input', placeholder: 'required', required: true },
-        { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
+        { identifier: 1, id: 'required', label: 'Required', type: 'text', placeholder: 'required', required: true },
+        { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'text', placeholder: 'not required', required: false },
     ], [])
 
     const exampleInputsSimple = useMemo(() => [
-        { identifier: 1, type: 'input' },
-        { identifier: 2, type: 'input', placeholder: 'placeholder' },
+        { identifier: 1, type: 'text' },
+        { identifier: 2, type: 'text', placeholder: 'placeholder' },
     ], [])
 
     const exampleCheckbox = useMemo(() => [

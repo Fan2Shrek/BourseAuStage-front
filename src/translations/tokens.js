@@ -1,5 +1,8 @@
 const tokens = {
     entities: {
+        collaborator: {
+            jobTitle: "entities.collaborator.jobTitle",
+        },
         company: {
             name: "entities.company.name"
         },
@@ -126,6 +129,7 @@ const tokens = {
         logout: "actions.logout",
         back: "actions.back",
         add: "actions.add",
+        update: "actions.update",
     },
     navbar: {
         modal: {
@@ -259,7 +263,9 @@ const tokens = {
             },
         },
         profil: {
-            update: "page.profil.update",
+            notifications: {
+                success: "page.profil.notifications.success",
+            },
         },
         companyDetails: {
             activity: "page.companyDetails.activity",
@@ -516,6 +522,7 @@ const tokens = {
         },
     },
     notifications: {
+        accountUpdated: "notifications.accountUpdated",
         login: "notifications.login",
         logout: "notifications.logout",
     },

@@ -1,6 +1,7 @@
 import tokens from "../tokens";
 
 const fr = {
+    [tokens.entities.collaborator.jobTitle]: "Poste occupé",
     [tokens.entities.company.name]: "Nom",
     [tokens.entities.offer.name]: "Nom",
     [tokens.entities.offer.createdAt.first]: "Date",
@@ -36,6 +37,7 @@ const fr = {
     [tokens.actions.logout]: "Se déconnecter",
     [tokens.actions.back]: "Retour",
     [tokens.actions.add]: "Ajouter",
+    [tokens.actions.update]: "Mettre à jour",
     [tokens.navbar.modal.title]: "Vous êtes",
     [tokens.navbar.modal.student]: "Un étudiant",
     [tokens.navbar.modal.company]: "Une entreprise",
@@ -122,8 +124,8 @@ const fr = {
     [tokens.page.register.form.phone]: "Téléphone",
     [tokens.page.register.form.name]: "Nom",
     [tokens.page.register.form.siretNumber]: "Numéro de siret",
-    [tokens.page.register.form.activities]: "Secteur d\'activité",
-    [tokens.page.register.form.activitiesPlaceholder]: "Secteur d\'activité",
+    [tokens.page.register.form.activities]: "Secteur d'activité",
+    [tokens.page.register.form.activitiesPlaceholder]: "Secteur d'activité",
     [tokens.page.register.form.category]: "Catégorie",
     [tokens.page.register.form.categoryPlaceholder]: "Catégorie",
     [tokens.page.register.form.address]: "Adresse",
@@ -241,7 +243,6 @@ const fr = {
     [tokens.page.apply.otherField.placeholder]: "Importer un autre document",
     [tokens.page.apply.otherRequirements]: "format PDF ou ZIP, 50 Mo max",
     [tokens.page.apply.motivations]: "Vos atouts & motivations pour postuler à cette offre de stage",
-    [tokens.page.profil.update]: "Modifier mon profil",
     [tokens.page.apply.add.skill]: "Ajouter une compétence",
     [tokens.page.apply.add.language]: "Ajouter une langue",
     [tokens.page.apply.add.experience]: "Ajouter une expérience",
@@ -253,6 +254,7 @@ const fr = {
     [tokens.admin.company.actions.addOffer]: "Nouvelle offre",
     [tokens.notifications.login]: "Connecter en tant que {{name}}",
     [tokens.notifications.logout]: "Vous avez bien été déconnecté",
+    [tokens.notifications.accountUpdated]: "Compte mis à jour",
     [tokens.page.createOffer.title]: "Publier une offre",
     [tokens.page.createOffer.states[1].name]: "Type d'offre",
     [tokens.page.createOffer.states[2].name]: "Description",

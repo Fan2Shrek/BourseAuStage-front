@@ -59,7 +59,6 @@ const Create = () => {
     const [activities, setActivities] = useState([]);
     const [skills, setSkills] = useState([]);
 
-    const [activitiesList, setActivitiesList] = useState([]);
     const [skillsList, setSkillsList] = useState([]);
 
     const [displayModal, setDisplayModal] = useState(false);
@@ -91,6 +90,8 @@ const Create = () => {
                 break;
             case 'activity':
                 setActivities(activities.filter(activity => activity !== value));
+                break;
+            default:
                 break;
         }
     };
@@ -137,7 +138,7 @@ const Create = () => {
         <h2>{t(tokens.page.createOffer.title)}</h2>
         <div className={styles.header}>
             {Object.entries(states).map(([key, value]) =>
-                <div key={key} className={cn(styles.stateStep, state == key ? styles.current : '')}>
+                <div key={key} className={cn(styles.stateStep, state === key ? styles.current : '')}>
                     <IconBadge icon={value.icon} className={styles.icon} />
                     <div className={styles.description}>
                         <span className={styles.title}>{t(tokens.page.createOffer.step)} {key}/{Object.keys(states).length}</span>
