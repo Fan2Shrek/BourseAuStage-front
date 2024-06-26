@@ -25,6 +25,7 @@ const RegisterFormCompany = () => {
     const [displayModal, setDisplayModal] = useState('');
     const { addNotification } = useContext(NotificationContext)
     const navigate = useNavigate()
+    const [errors, setErrors] = useState({ collaborator: {}, company: {} });
 
     const handleChange = (e) => {
         setForm({
@@ -86,9 +87,9 @@ const RegisterFormCompany = () => {
     }
 
     const handleSubmit = async () => {
-
+        
         if (!validateForm()) return;
-
+        
         const formData = new FormData();
         
         Object.entries(form).forEach(([key, value]) => {
@@ -96,12 +97,14 @@ const RegisterFormCompany = () => {
         });
             
         formData.append('activities', JSON.stringify(activities));
-
+        
         const response = await apiClient.company.post(formData);
-
+        
         if(response == ''){
             navigate(path.login)
         }
+
+        setErrors(response);
     }
 
     useEffect(() => {
@@ -136,18 +139,18 @@ const RegisterFormCompany = () => {
             <Select name='gender' placeholder={t(tokens.page.register.form.genderPlaceholder)} required label={t(tokens.page.register.form.gender)} values={sexes} onChange={handleChange} />
             <Input name='lastName' required label={t(tokens.page.register.form.lastname)} onChange={handleChange} />
             <Input name='firstName' required label={t(tokens.page.register.form.firstname)} onChange={handleChange} />
-            <Input name='phone' required label={t(tokens.page.register.form.phone)} onChange={handleChange} />
-            <Input name='email' required label={t(tokens.page.register.form.email)} onChange={handleChange} />
-            <Input name='confirmEmail' required label={t(tokens.page.register.form.confirmEmail)} onChange={handleChange} />
-            <Input name='password' type='password' required label={t(tokens.page.register.form.password)} onChange={handleChange} />
-            <Input name='confirmPassword' type='password' required label={t(tokens.page.register.form.confirmPassword)} onChange={handleChange} />
+            <Input name='phone' errored={errors.collaborator.phone || false} required label={t(tokens.page.register.form.phone)} onChange={handleChange} />
+            <Input name='email' errored={errors.collaborator.email || false} required label={t(tokens.page.register.form.email)} onChange={handleChange} />
+            <Input name='confirmEmail' errored={errors.collaborator.confirmEmail || false} required label={t(tokens.page.register.form.confirmEmail)} onChange={handleChange} />
+            <Input name='password' type='password' errored={errors.collaborator.password || false} required label={t(tokens.page.register.form.password)} onChange={handleChange} />
+            <Input name='confirmPassword' type='password' errored={errors.collaborator.confirmPassword || false} required label={t(tokens.page.register.form.confirmPassword)} onChange={handleChange} />
             <Input name='jobTitle' required label={t(tokens.page.register.form.jobTitle)} onChange={handleChange} />
         </div>
         <p className={styles.title}>{t(tokens.page.register.title.company)}</p>
         <div className={styles.form}>
             <Input name='name' required label={t(tokens.page.register.form.name)} onChange={handleChange} />
-            <Input name='siretNumber' required label={t(tokens.page.register.form.siretNumber)} onChange={handleChange} />
-            <Input name='phoneCompany' required label={t(tokens.page.register.form.phoneCompany)} onChange={handleChange} />
+            <Input name='siretNumber' errored={errors.company.siretNumber || false} required label={t(tokens.page.register.form.siretNumber)} onChange={handleChange} />
+            <Input name='phoneCompany' errored={errors.company.phoneCompany || false} required label={t(tokens.page.register.form.phoneCompany)} onChange={handleChange} />
             <div className={styles.buttonModal}>
                 <p>{t(tokens.page.register.form.activities)}<span>*</span></p>
                 <div className={styles.activitySelected}>
@@ -158,12 +161,14 @@ const RegisterFormCompany = () => {
             <Select name='category' placeholder={t(tokens.page.register.form.categoryPlaceholder)} required label={t(tokens.page.register.form.category)} values={category} onChange={handleChange} />
             <Input name='address' required label={t(tokens.page.register.form.address)} onChange={handleChange} />
             <Input name='city' required label={t(tokens.page.register.form.city)} onChange={handleChange} />
-            <Input name='postCode' required label={t(tokens.page.register.form.postCode)} onChange={handleChange} />
+            <Input name='postCode' errored={errors.company.postCode || false} required label={t(tokens.page.register.form.postCode)} onChange={handleChange} />
             <Input name='additionalAddress' label={t(tokens.page.register.form.additionalAddress)} onChange={handleChange} />
         </div>
         <div className={styles.buttonContainer}>
             <Button label={t(tokens.page.register.form.submit)} onClick={handleSubmit} />
         </div>
+        {Object.entries(errors.collaborator).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
+        {Object.entries(errors.company).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
         <Modal
             title={t(tokens.page.register.modal.title)}
             active={displayModal}
