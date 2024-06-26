@@ -14,6 +14,10 @@ class Offer {
     async getAll(query) {
         return this.apiClient.get(`/offers?${query}`);
     }
+
+    async post(body) {
+        return this.apiClient.post('/offers', body);
+    }
 }
 
 export default Offer;

@@ -330,6 +330,78 @@ const tokens = {
                 },
             },
         },
+        createOffer: {
+            title: "page.createOffer.title",
+            states: {
+                1: {
+                    name: "page.createOffer.states.1.name",
+                },
+                2: {
+                    name: "page.createOffer.states.2.name",
+                },
+                3: {
+                    name: "page.createOffer.states.3.name",
+                },
+            },
+            step: "page.createOffer.step",
+            name: {
+                title: "page.createOffer.name.title",
+                description: "page.createOffer.name.description",
+                placeholder: "page.createOffer.name.placeholder",
+                formInfo: "page.createOffer.name.formInfo",
+            },
+            type: {
+                title: "page.createOffer.type.title",
+                internship: "page.createOffer.type.internship",
+                workStudy: "page.createOffer.type.workStudy",
+            },
+            remuneration: {
+                title: "page.createOffer.remuneration.title",
+                placeholder: "page.createOffer.remuneration.placeholder",
+                formInfo: "page.createOffer.remuneration.formInfo",
+            },
+            searchSkills: {
+                title: "page.createOffer.searchSkills.title",
+                description: "page.createOffer.searchSkills.description",
+                formInfo: "page.createOffer.searchSkills.formInfo",
+            },
+            skills: {
+                title: "page.createOffer.skills.title",
+                description: "page.createOffer.skills.description",
+            },
+            add: {
+                activity: "page.createOffer.add.activity",
+                skill: "page.createOffer.add.skill",
+            },
+            nextStep: "page.createOffer.nextStep",
+            previousStep: "page.createOffer.previousStep",
+            submit: "page.createOffer.submit",
+            description: {
+                title: "page.createOffer.description.title",
+                description: "page.createOffer.description.description",
+                placeholder: "page.createOffer.description.placeholder",
+            },
+            missions: {
+                title: "page.createOffer.missions.title",
+                description: "page.createOffer.missions.description",
+                placeholder: "page.createOffer.missions.placeholder",
+            },
+            profils: {
+                title: "page.createOffer.profils.title",
+                description: "page.createOffer.profils.description",
+                placeholder: "page.createOffer.profils.placeholder",
+            },
+            start: {
+                title: "page.createOffer.start.title",
+            }, 
+            end: {
+                title: "page.createOffer.end.title",
+            },
+            availableAt: {
+                title: "page.createOffer.availableAt.title",
+            },
+            success: "page.createOffer.success",
+        }
     },
     breadCrumb: {
         home: "breadCrumb.home",
