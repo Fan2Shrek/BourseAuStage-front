@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router"
 import { RxCross1 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 
@@ -10,6 +11,7 @@ import Input from "../../../ui/molecules/Input";
 import Button from "../../../ui/atoms/Button";
 import apiClient from "../../../../api/ApiClient";
 import Modal from "../../../ui/atoms/Modal";
+import path from "../../../../path"
 import { NotificationContext } from "../../../../context/NotificationContext"
 
 const RegisterFormCompany = () => {
@@ -22,6 +24,7 @@ const RegisterFormCompany = () => {
     const [currentSelection, setCurrentSelection] = useState({});
     const [displayModal, setDisplayModal] = useState('');
     const { addNotification } = useContext(NotificationContext)
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setForm({
@@ -95,6 +98,8 @@ const RegisterFormCompany = () => {
         formData.append('activities', JSON.stringify(activities));
 
         await apiClient.company.post(formData);
+
+        navigate(path.login)
     }
 
     useEffect(() => {
