@@ -24,9 +24,11 @@
             display: flex;
             flex-wrap: wrap;
 
-            button{
-                margin: 0px 2px 1px 2px;
-                padding: 16px;
+            :global{
+                .button{
+                    margin: 0px 2px 1px 2px;
+                    padding: 16px;
+                }
             }
         }
         p{
@@ -54,12 +56,15 @@
         align-items: center;
         padding: 20px 0px;
 
-        select {
-            border: 1px solid var(--color-grey);
+        :global{
+            .select__target {
+                border: 1px solid var(--color-grey);
+            }
+    
+            .button{
+                margin-top: 50px;
+            }
         }
-
-        button{
-            margin-top: 50px;
-        }
+        
     }
 }

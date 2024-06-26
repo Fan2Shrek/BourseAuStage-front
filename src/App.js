@@ -37,9 +37,9 @@ function App() {
                             <Route path={path.apply} element={<Apply />} />
                             <Route path={path.createOffer} element={<Create />} />
                             <Route path={path.unauthorized} element={<Page403 />} />
+                            <Route path={path.companyRegistration} element={<RegisterCompany />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
-                            <Route index path={path.companyRegistration} element={<RegisterCompany />} />
                         </Route>
                         <Route path={'/admin'} element={<MySpaceLayout />}>
                             <Route path={path.admin.profil} element={<Profil />} />
