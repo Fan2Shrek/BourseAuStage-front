@@ -164,11 +164,13 @@ const RegisterFormCompany = () => {
             <Input name='postCode' errored={errors.company.postCode || false} required label={t(tokens.page.register.form.postCode)} onChange={handleChange} />
             <Input name='additionalAddress' label={t(tokens.page.register.form.additionalAddress)} onChange={handleChange} />
         </div>
+        <div className={errors}>
+            {Object.entries(errors.collaborator).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
+            {Object.entries(errors.company).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
+        </div>
         <div className={styles.buttonContainer}>
             <Button label={t(tokens.page.register.form.submit)} onClick={handleSubmit} />
         </div>
-        {Object.entries(errors.collaborator).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
-        {Object.entries(errors.company).map(([key, value]) => <p key={key} className={styles.error}>{value}</p>)}
         <Modal
             title={t(tokens.page.register.modal.title)}
             active={displayModal}
