@@ -14,7 +14,7 @@ export const NotificationContextProvider = ({ children }) => {
     const addNotification = useCallback(notification => {
         setNotification(notifications => [...notifications, {
             ...notification,
-            id: count,
+            id: `${count}-${Math.random(1, 1000000)}`,
         }])
         setCount(count => count + 1)
     }, [count, setCount, setNotification])
