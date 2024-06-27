@@ -28,7 +28,7 @@ class Company {
     }
 
     async post(body) {
-        return this.apiClient.post(`/inscription/entreprise`, body, true);
+        return this.apiClient.post(`/register/company`, body, true);
     }
 }
 

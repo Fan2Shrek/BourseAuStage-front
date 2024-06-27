@@ -5,6 +5,7 @@ import Request from "./Resource/request"
 import Me from "./Resource/me"
 import Skill from "./Resource/skill"
 import Category from "./Resource/category"
+import Student from "./Resource/student"
 import Activity from "./Resource/activity"
 import { getCookie, setCookie } from "../utils/cookies"
 import StudyLevel from "./Resource/studyLevel"
@@ -20,6 +21,7 @@ class ApiClient {
         this.category = new Category(this);
         this.activity = new Activity(this);
         this.studyLevel = new StudyLevel(this);
+        this.student = new Student(this);
 
         this.token = getCookie('token')
     }

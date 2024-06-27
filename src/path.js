@@ -8,7 +8,7 @@ const path = {
     offer: '/offres/:id',
     requestDetail: '/demandes/:id',
     apply: '/offres/postuler/:id',
-    studentRegistration: '/inscription?profil=etudiant',
+    studentRegistration: '/inscription/etudiant',
     companyRegistration: '/inscription/entreprise',
     createOffer: '/offres/creer',
     uiExample: '/ui-example',
@@ -16,5 +16,7 @@ const path = {
         profil: '/admin/profil',
         offers: '/admin/offres',
     },
+    confirmation: '/confirmation'
 }
+
 export default path;

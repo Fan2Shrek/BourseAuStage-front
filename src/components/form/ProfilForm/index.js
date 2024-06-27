@@ -18,13 +18,18 @@ import apiClient from "../../../api/ApiClient";
 import Calendar from "../../ui/atoms/Calendar";
 import getPicturePath from '../../../utils/getPicturePath'
 import Modal from "../../ui/atoms/Modal";
+import { useNavigate } from "react-router";
+import path from "../../../path";
 
-const ProfilForm = ({ isApplyment = false }) => {
+const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
     const { t } = useTranslation();
     const { user, setUser } = useContext(UserContext);
     const { addNotification } = useContext(NotificationContext)
+    const navigate = useNavigate();
 
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({
+        gender: "M",
+    });
     const [errors, setErrors] = useState({});
 
     const [skills, setSkills] = useState([]);
@@ -39,7 +44,7 @@ const ProfilForm = ({ isApplyment = false }) => {
     const [displayModal, setDisplayModal] = useState('');
 
     const [isStudent, isCollaborator] = useMemo(() => [
-        user && user.roles.includes(UserRoleEnum.STUDENT),
+        isCreation || (user && user.roles.includes(UserRoleEnum.STUDENT)),
         user && user.roles.includes(UserRoleEnum.COLLABORATOR),
     ], [user]);
 
@@ -76,6 +81,12 @@ const ProfilForm = ({ isApplyment = false }) => {
             }
         }
 
+        const endpoint =  
+            (isCreation && apiClient.student.register.bind(apiClient.student))
+            || (isApplyment && console.log)
+            || apiClient.me.post.bind(apiClient.me)
+        ;
+
         const formData = new FormData();
 
         Object.entries(form).forEach(([key, value]) => {
@@ -88,7 +99,15 @@ const ProfilForm = ({ isApplyment = false }) => {
             formData.append('skills', JSON.stringify(skills));
         }
 
-        apiClient.me.post(formData)
+        if (isCreation) {
+            if (form.password !== form.confirmPassword) {
+                addNotification({ type: 'danger', message: t(tokens.page.createStudent.wrongPassword) })
+                
+                return;
+            }
+        }
+
+        endpoint(formData)
             .then(response => {
                 const errs = Object.entries(response)
 
@@ -99,6 +118,13 @@ const ProfilForm = ({ isApplyment = false }) => {
                     })
                 } else {
                     setErrors({});
+
+                    if (isCreation) {
+                        navigate(path.confirmation)
+                        
+                        return;
+                    }
+
                     apiClient.me.get().then(usr => {
                         setUser(usr, true);
                     });
@@ -107,7 +133,7 @@ const ProfilForm = ({ isApplyment = false }) => {
     }, [form, experiences, languages, skills, t, isStudent, setErrors, addNotification, setUser])
 
     useEffect(() => {
-        if (isStudent) {
+        if (isStudent && !isCreation) {
             setSkills(user.skills);
             setLanguages(user.languages);
             setExperiences(user.experiences);
@@ -125,7 +151,7 @@ const ProfilForm = ({ isApplyment = false }) => {
     }, []);
 
     const study = useMemo(() => {
-        if (isStudent) {
+        if (isStudent && !isCreation) {
             return user.studyLevel && user.studyLevel.replace('/api/study_levels/', '');
         }
     }, [user, isStudent]);
@@ -141,7 +167,13 @@ const ProfilForm = ({ isApplyment = false }) => {
         name: t(tokens.sexes.nonBinary)
     }], [t]);
 
-    if (!user) {
+    const btnLabel = useMemo(() => 
+        (isCreation && tokens.page.createStudent.submit)
+        || (isApplyment && tokens.page.apply.submit)
+        || tokens.actions.update
+    , []);
+
+    if (!user && !isCreation) {
         return <></>;
     }
 
@@ -154,45 +186,53 @@ const ProfilForm = ({ isApplyment = false }) => {
             }
             <p className={styles.subtitle}>{t(tokens.page.apply.youAre)}</p>
             <div className={styles.form}>
-                <Select name='gender' defaultValue={user.gender} onChange={handleChange} label={t(tokens.page.apply.gender)} type='text' required values={sexes} className={styles['c2']} />
-                <Input name='firstName' defaultValue={user.firstName} errored={!!errors?.firstName} onChange={handleChange} required label={t(tokens.page.apply.firstname)} className={styles['c2']} />
-                <Input name='lastName' defaultValue={user.lastName} errored={!!errors?.lastName} onChange={handleChange} required label={t(tokens.page.apply.lastname)} className={styles['c2']} />
+                <Select name='gender' defaultValue={user?.gender} onChange={handleChange} label={t(tokens.page.apply.gender)} type='text' required values={sexes} className={styles['c2']} />
+                <Input name='firstName' defaultValue={user?.firstName} errored={!!errors?.firstName} onChange={handleChange} required label={t(tokens.page.apply.firstname)} className={styles['c2']} />
+                <Input name='lastName' defaultValue={user?.lastName} errored={!!errors?.lastName} onChange={handleChange} required label={t(tokens.page.apply.lastname)} className={styles['c2']} />
 
-                {isCollaborator && <Input name='jobTitle' defaultValue={user.jobTitle} errored={!!errors?.jobTitle} onChange={handleChange} required label={t(tokens.entities.collaborator.jobTitle)} className={styles['c3']} />}
+                {isCollaborator && <Input name='jobTitle' defaultValue={user?.jobTitle} errored={!!errors?.jobTitle} onChange={handleChange} required label={t(tokens.entities.collaborator.jobTitle)} className={styles['c3']} />}
 
                 {isStudent && <div className={styles['c3']}>
-                    <Calendar onChange={(e) => (setForm({ ...form, birthdayAt: e['$d'] }))} value={dayjs(user.birthdayAt)} label={t(tokens.page.apply.birth)} required />
+                    <Calendar onChange={(e) => (setForm({ ...form, birthdayAt: dayjs(e['$d']) }))} value={dayjs(user?.birthdayAt)} label={t(tokens.page.apply.birth)} required />
                 </div>}
 
-                <Input name='phone' defaultValue={user.phone} errored={!!errors?.phone} onChange={handleChange} required label={t(tokens.page.apply.phone)} className={styles['c3']} />
+                <Input name='phone' defaultValue={user?.phone} errored={!!errors?.phone} onChange={handleChange} required label={t(tokens.page.apply.phone)} className={styles['c3']} />
 
-                <Input name='email' defaultValue={user.email} errored={!!errors?.email} onChange={handleChange} required label={t(tokens.page.apply.email)} className={styles['c3']} />
+                <Input name='email' defaultValue={user?.email} errored={!!errors?.email} onChange={handleChange} required label={t(tokens.page.apply.email)} className={styles['c3']} />
                 <Input name='confirmEmail' errored={!!errors?.confirmEmail} onChange={handleChange} required label={t(tokens.page.apply.confirmEmail)} className={styles['c3']} />
 
+                <Input name='postCode' defaultValue={user?.postCode} errored={!!errors?.postCode} onChange={handleChange} label={t(tokens.page.apply.postalCode)} required className={styles['c3']} />
+                <Input name='city' defaultValue={user?.city} errored={!!errors?.city} onChange={handleChange} label={t(tokens.page.apply.city)} required className={styles['c3']} />
+
+                <Input name='address' defaultValue={user?.address} errored={!!errors?.address} onChange={handleChange} label={t(tokens.page.apply.address)} required className={styles['c3']} />
+                <Input name='additionalAddress' defaultValue={user.additionalAddress ?? ''} errored={!!errors?.additionalAddress} onChange={handleChange} label={t(tokens.page.apply.addressPlus)} className={styles['c3']} />
+
                 {isStudent && <>
-                    <Input name='address' defaultValue={user.address} errored={!!errors?.address} onChange={handleChange} label={t(tokens.page.apply.address)} className={styles['c3']} />
-                    <Input name='additionalAddress' defaultValue={user.additionalAddress ?? ''} errored={!!errors?.additionalAddress} onChange={handleChange} label={t(tokens.page.apply.addressPlus)} className={styles['c3']} />
+                    {isCreation ? <>
+                            <Input type='password' name='password' required errored={!!errors?.password} onChange={handleChange} label={t(tokens.page.createStudent.password)} className={styles['c3']} />
+                            <Input type='password' name='confirmPassword' required errored={!!errors?.confirmPassword} onChange={handleChange} label={t(tokens.page.createStudent.confirmPassword)} className={styles['c3']} />
+                            <Select defaultValue={study}placeholder={study ?? t(tokens.page.createStudent.study.placeholder)} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c6']} />
+                        </>
+                    :
+                        <>
+                            <Input name='website' defaultValue={user.website ?? ''} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
+                            <Input name='linkedIn' defaultValue={user.linkedIn ?? ''} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
 
-                    <Input name='postCode' defaultValue={user.postCode} errored={!!errors?.postCode} onChange={handleChange} label={t(tokens.page.apply.postalCode)} className={styles['c3']} />
-                    <Input name='city' defaultValue={user.city} errored={!!errors?.city} onChange={handleChange} label={t(tokens.page.apply.city)} className={styles['c3']} />
-
-                    <Input name='website' defaultValue={user.website ?? ''} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
-
-                    <Input name='linkedIn' defaultValue={user.linkedIn ?? ''} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
-
-                    <Input id='hasDriverLicence' errored={!!errors?.hasDriverLicence} onChange={(value) => handleChange({ target: { name: 'hasDriverLicence', value } })} defaultChecked={user.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
-                    <Input id='isDisabled' errored={!!errors?.isDisabled} onChange={(value) => handleChange({ target: { name: 'isDisabled', value } })} defaultChecked={user.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
+                            <Input id='hasDriverLicence' errored={!!errors?.hasDriverLicence} onChange={(value) => handleChange({ target: { name: 'hasDriverLicence', value } })} defaultChecked={user?.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
+                            <Input id='isDisabled' errored={!!errors?.isDisabled} onChange={(value) => handleChange({ target: { name: 'isDisabled', value } })} defaultChecked={user?.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
+                        </>
+                    }
                 </>}
 
-                {isStudent && <>
+                {isStudent && !isCreation && <>
                     <div className={cn(styles.divider, styles['c6'])}></div>
                     <h3 className={styles['c6']}>{t(tokens.page.apply.mySituation)}</h3>
 
                     <Select defaultValue={study} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c2']} />
-                    <Input name='diploma' defaultValue={user.diploma ?? ''} errored={!!errors?.diploma} label={t(tokens.page.apply.currentDiploma)} onChange={handleChange} className={styles['c2']} />
-                    <Input name='school' defaultValue={user.school ?? ''} errored={!!errors?.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
+                    <Input name='diploma' defaultValue={user?.diploma ?? ''} errored={!!errors?.diploma} label={t(tokens.page.apply.currentDiploma)} onChange={handleChange} className={styles['c2']} />
+                    <Input name='school' defaultValue={user?.school ?? ''} errored={!!errors?.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
 
-                    <Input name='formation' defaultValue={user.formation ?? ''} errored={!!errors?.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
+                    <Input name='formation' defaultValue={user?.formation ?? ''} errored={!!errors?.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
                 </>}
 
                 {isApplyment && <>
@@ -204,7 +244,7 @@ const ProfilForm = ({ isApplyment = false }) => {
                     <Input name='createAccount' errored={!!errors?.createAccount} type='checkbox' label={t(tokens.page.apply.createAccount)} className={styles['c6']} />
                 </>}
 
-                <Button label={isApplyment ? t(tokens.page.apply.submit) : t(tokens.actions.update)} onClick={handleSubmit} className={styles['c6']} />
+                <Button label={t(btnLabel)} onClick={handleSubmit} className={styles['c6']} />
 
                 {isApplyment && <>
                     <p className={cn(styles.legal, styles['c6'])}>{t(tokens.page.apply.legal)}</p>
@@ -213,15 +253,15 @@ const ProfilForm = ({ isApplyment = false }) => {
                 }
             </div>
         </div>
-        <div className={styles.right}>
+        {!isCreation && <div className={styles.right}>
             <p className={styles.subtitle}>{t(tokens.page.apply.myPhoto.label)}</p>
             <p>{t(tokens.page.apply.photoDescription)}</p>
 
             <div className={styles.avatarBlock}>
                 <img
-                    alt={user.firstName}
-                    src={user.avatar
-                        ? getPicturePath(`img/user/${user.avatar}`)
+                    alt={user?.firstName}
+                    src={user?.avatar
+                        ? getPicturePath(`img/user/${user?.avatar}`)
                         : '/images/avatar.png'
                     }
                     className={styles.avatar}
@@ -276,7 +316,7 @@ const ProfilForm = ({ isApplyment = false }) => {
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.cvField.title)}</span> ({t(tokens.page.apply.cvRequirements)})</p>
                     <Input type="file" onChange={(e) => setForm({ ...form, cv: e.target.files[0] })} placeholder={t(tokens.page.apply.cvField.placeholder)} />
-                    <span>{user.cv}</span>
+                    <span>{user?.cv}</span>
                 </div>
             </>}
 
@@ -284,15 +324,15 @@ const ProfilForm = ({ isApplyment = false }) => {
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.coverLetterField.label)}</span> ({t(tokens.page.apply.coverLetterRequirements)})</p>
                     <Input type="file" placeholder={t(tokens.page.apply.coverLetterField.placeholder)} />
-                    <span>{user.cv}</span>
+                    <span>{user?.cv}</span>
                 </div>
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.otherField.label)}</span> ({t(tokens.page.apply.otherRequirements)})</p>
                     <Input type="file" placeholder={t(tokens.page.apply.otherField.placeholder)} />
-                    <span>{user.cv}</span>
+                    <span>{user?.cv}</span>
                 </div>
             </>}
-        </div>
+        </div>}
         <Modal
             title={t(tokens.page.apply.add[displayModal])}
             active={displayModal}

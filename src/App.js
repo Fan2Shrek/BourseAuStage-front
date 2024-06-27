@@ -14,12 +14,14 @@ import Company from "./pages/Companies/Company"
 import Profil from "./pages/admin/Profil"
 import Offers from "./pages/Offers"
 import RegisterCompany from "./pages/Register/Company"
+import RegisterStudent from "./pages/Register/Student"
 import Offer from "./pages/Offers/Offer"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
 import Create from "./pages/admin/Offers/Create"
 import MySpaceLayout from "./components/layout/Layout/MySpaceLayout"
 import AdminOffers from "./pages/admin/Offers"
 import Error from "./pages/Error"
+import Confirmation from "./pages/Confirmation"
 
 function App() {
     return <ThemeContextProvider>
@@ -43,6 +45,8 @@ function App() {
                             <Route path={path.apply} element={<Apply />} />
                             <Route path={path.createOffer} element={<Create />} />
                             <Route path={path.companyRegistration} element={<RegisterCompany />} />
+                            <Route path={path.studentRegistration} element={<RegisterStudent />} />
+                            <Route path={path.confirmation} element={<Confirmation />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
                             <Route path='*' element={<Error code={404} />} />
