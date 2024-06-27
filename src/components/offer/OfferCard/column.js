@@ -22,8 +22,15 @@ const ColumnCard = ({
         {withHeader && <>
             {offer.company.logoIcon && 
                 <div className={styles.logo}>
-                    <img src={getPicturePath(offer.company.logoIcon)} alt='logo' />
-                </div>}
+                    <img
+                        alt='logo'
+                        src={offer.company.logoIcon
+                            ? getPicturePath(offer.company.logoIcon)
+                            : '/images/company.png'
+                        }
+                    />
+                </div>
+            }
             <div className={styles.type}>
                 <Tag
                     label={t(tokens.card.offer[offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY])}

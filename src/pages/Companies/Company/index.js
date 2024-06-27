@@ -110,7 +110,9 @@ const Company = () => {
         <Banner breadCrumb={breadCrumb}>
             <div className={styles.description}>
                 <h1>{company.name}</h1>
-                <Button className={styles.link} withoutBorder inverted label={getDomainName(company.socialLink)} icon={<FaArrowRight />} rightIcon></Button>
+                {company.socialLink && 
+                    <Button className={styles.link} withoutBorder inverted label={getDomainName(company.socialLink)} icon={<FaArrowRight />} rightIcon></Button>
+                }
                 <div className={styles.statsContainer}>
                     {company?.activities?.[0] && <div className={styles.stats}>
                         <IconBadge icon={<CiCircleCheck size={20} />} className={styles.icon} />
@@ -179,7 +181,13 @@ const Company = () => {
             </div>
             <div className={styles.pageContentRight}>
                 <div>
-                    <img src={getPicturePath(company.logo)} alt={company.name} />
+                    <img
+                        alt={company.name} 
+                        src={company.logo
+                            ? getPicturePath(company.logo)
+                            : '/images/company.png'
+                        }
+                    />
                     <h2>{t(tokens.page.companyDetails.city)}</h2>
                     <div className={styles.city}>
                         <p className={styles.name}>{company.name}</p>
