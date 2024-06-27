@@ -8,7 +8,6 @@ import Button from "../../ui/atoms/Button"
 
 const CompanyAdminHeader = ({ name, logoIcon }) => {
     const { t } = useTranslation()
-    console.log(logoIcon);
 
     return <div className={styles.companyAdminHeader}>
         <div className={styles.companyInfos}>

@@ -181,13 +181,12 @@ const Company = () => {
             </div>
             <div className={styles.pageContentRight}>
                 <div>
-                    <img
-                        alt={company.name} 
-                        src={company.logo
-                            ? getPicturePath(company.logo)
-                            : '/images/company.png'
-                        }
-                    />
+                    {company.logo && 
+                        <img
+                            alt={company.name} 
+                            src={getPicturePath(company.logo)}
+                        />
+                    }
                     <h2>{t(tokens.page.companyDetails.city)}</h2>
                     <div className={styles.city}>
                         <p className={styles.name}>{company.name}</p>
