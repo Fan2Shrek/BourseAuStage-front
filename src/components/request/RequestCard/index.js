@@ -1,21 +1,27 @@
 import { useTranslation } from 'react-i18next';
+import { differenceInDays, differenceInYears } from 'date-fns';
 
 import styles from './RequestCard.module.scss';
 import cn from '../../../utils/classnames';
 import tokens from '../../../translations/tokens';
+import getPicturePath from '../../../utils/getPicturePath';
 import OfferTypeEnum from '../../../enum/OfferTypeEnum';
 import Tag from '../../ui/atoms/Tag';
 import Card from '../../ui/atoms/Card';
 import Dot from '../../ui/atoms/Dot';
-import { differenceInDays, differenceInYears } from 'date-fns';
 
 const RequestCard = ({ request, className }) => {
     const { t } = useTranslation();
 
     return <Card className={cn(styles.card, className)}>
         <div className={styles.avatar}>
-            {/* <img src={getPicturePath(request.student.avatar)} alt='avatar' /> */}
-            <img src='https://www.informatiquegifs.com/humour/reseau-social/humour-mouche.jpg' alt='avatar' />
+            <img
+                alt='avatar'
+                src={request.student.avatar
+                    ? getPicturePath(request.student.avatar)
+                    : '/images/avatar.png'
+                }
+            />
         </div>
         <div className={styles.mainInfos}>
             <h3>{request.name}</h3>

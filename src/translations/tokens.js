@@ -536,6 +536,17 @@ const tokens = {
         login: "notifications.login",
         logout: "notifications.logout",
     },
+    errors: {
+        403: {
+            message: "errors.403.message",
+        },
+        404: {
+            message: "errors.404.message",
+        },
+        actions: {
+            back: "errors.actions.back",
+        },
+    },
 }
 
 export default tokens

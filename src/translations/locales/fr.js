@@ -296,6 +296,9 @@ const fr = {
     [tokens.page.createOffer.end.title]: "Date de fin",
     [tokens.page.createOffer.availableAt.title]: "Publié le",
     [tokens.page.createOffer.success]: "L'offre a bien été créé",
+    [tokens.errors[403].message]: "Vous ne devriez pas être là...",
+    [tokens.errors[404].message]: "Il n'y a pas de stages ici !",
+    [tokens.errors.actions.back]: "Retour au site",
 }
 
 export default fr

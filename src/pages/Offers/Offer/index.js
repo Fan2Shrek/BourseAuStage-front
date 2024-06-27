@@ -11,6 +11,7 @@ import apiClient from "../../../api/ApiClient";
 import getPicturePath from "../../../utils/getPicturePath";
 import path from "../../../path";
 import tokens from "../../../translations/tokens";
+import Error from "../../Error";
 import Banner from "../../../components/layout/Banner";
 import Container from '../../../components/ui/atoms/Container';
 import Button from '../../../components/ui/atoms/Button';
@@ -19,11 +20,13 @@ import ProgressBar from '../../../components/ui/atoms/ProgressBar';
 import OfferCard from "../../../components/offer/OfferCard";
 import List from "../../../components/ui/atoms/List";
 import OfferTypeEnum from "../../../enum/OfferTypeEnum";
+import Loader from "../../../components/ui/atoms/Loader";
 
 const Offer = () => {
     const [offer, setOffer] = useState(null);
     const [companyPictures, setCompanyPictures] = useState([]);
     const [similarOffers, setSimilarOffers] = useState([]);
+    const [isFetching, setIsFetching] = useState(true);
     const { id } = useParams();
     const { t } = useTranslation();
 
@@ -47,8 +50,11 @@ const Offer = () => {
     ], [t, offer])
 
     useEffect(() => {
+        setIsFetching(true)
         apiClient.offer.get(id)
             .then(response => {
+                setIsFetching(false)
+
                 if (response.status === 404) {
                     return;
                 }
@@ -87,8 +93,12 @@ const Offer = () => {
             })
     }, [offer]);
 
-    if (!offer) {
-        return <></>
+    if (!isFetching && (!offer || offer.deletedAt)) {
+        return <Error code={404} />
+    }
+
+    if (isFetching) {
+        return <Loader className={styles.loader} />
     }
 
     const availableAt = format(new Date(offer.availableAt), "dd MMMM yyyy", { locale: fr });

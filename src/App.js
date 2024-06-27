@@ -16,10 +16,10 @@ import Offers from "./pages/Offers"
 import RegisterCompany from "./pages/Register/Company"
 import Offer from "./pages/Offers/Offer"
 import OfferTypeEnum from "./enum/OfferTypeEnum"
-import Page403 from "./pages/Error/403"
 import Create from "./pages/admin/Offers/Create"
 import MySpaceLayout from "./components/layout/Layout/MySpaceLayout"
 import AdminOffers from "./pages/admin/Offers"
+import Error from "./pages/Error"
 
 function App() {
     return <ThemeContextProvider>
@@ -27,6 +27,11 @@ function App() {
             <UserContextProvider>
                 <BrowserRouter>
                     <Routes>
+                        <Route path={'/admin'} element={<MySpaceLayout />}>
+                            <Route index element={<Navigate to={path.admin.profil} replace />} />
+                            <Route path={path.admin.profil} element={<Profil />} />
+                            <Route path={path.admin.offers} element={<AdminOffers />} />
+                        </Route>
                         <Route element={<Layout />}>
                             <Route index element={<Home />} />
                             <Route path={path.login} element={<Login />} />
@@ -37,15 +42,10 @@ function App() {
                             <Route path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
                             <Route path={path.apply} element={<Apply />} />
                             <Route path={path.createOffer} element={<Create />} />
-                            <Route path={path.unauthorized} element={<Page403 />} />
                             <Route path={path.companyRegistration} element={<RegisterCompany />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
-                        </Route>
-                        <Route path={'/admin'} element={<MySpaceLayout />}>
-                            <Route index element={<Navigate to={path.admin.profil} replace />} />
-                            <Route path={path.admin.profil} element={<Profil />} />
-                            <Route path={path.admin.offers} element={<AdminOffers />} />
+                            <Route path='*' element={<Error code={404} />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>
