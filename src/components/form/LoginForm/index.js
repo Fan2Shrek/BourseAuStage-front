@@ -42,6 +42,15 @@ const LoginForm = () => {
                             type: 'danger',
                         })
                     } else {
+                        if (response.user.deletedAt !== null) {
+                            addNotification({
+                                message: t(tokens.page.login.notifications.inactive),
+                                type: 'warning',
+                            })
+
+                            return
+                        }
+
                         setUser(response.user)
                         navigate(path.admin.profil)
                     }

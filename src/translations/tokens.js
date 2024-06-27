@@ -18,10 +18,19 @@ const tokens = {
         },
     },
     roles: {
-        collaborator: "roles.collaborator",
-        student: "roles.student",
+        collaborator: {
+            feminine: "roles.collaborator.feminine",
+            masculine: "roles.collaborator.masculine",
+        },
+        student: {
+            feminine: "roles.student.feminine",
+            masculine: "roles.student.masculine",
+        },
+        admin: {
+            feminine: "roles.admin.feminine",
+            masculine: "roles.admin.masculine",
+        },
         sponsor: "roles.sponsor",
-        admin: "roles.admin",
     },
     apiCollectionList: {
         title: "apiCollectionList.title",
@@ -223,6 +232,7 @@ const tokens = {
             },
             notifications: {
                 error: "page.login.notification.error",
+                inactive: "page.login.notification.inactive",
             },
         },
         register: {

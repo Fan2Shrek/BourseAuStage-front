@@ -172,14 +172,14 @@ const ProfilForm = ({ isApplyment = false }) => {
 
                 {isStudent && <>
                     <Input name='address' defaultValue={user.address} errored={!!errors?.address} onChange={handleChange} label={t(tokens.page.apply.address)} className={styles['c3']} />
-                    <Input name='additionalAddress' defaultValue={user.additionalAddress} errored={!!errors?.additionalAddress} onChange={handleChange} label={t(tokens.page.apply.addressPlus)} className={styles['c3']} />
+                    <Input name='additionalAddress' defaultValue={user.additionalAddress ?? ''} errored={!!errors?.additionalAddress} onChange={handleChange} label={t(tokens.page.apply.addressPlus)} className={styles['c3']} />
 
                     <Input name='postCode' defaultValue={user.postCode} errored={!!errors?.postCode} onChange={handleChange} label={t(tokens.page.apply.postalCode)} className={styles['c3']} />
                     <Input name='city' defaultValue={user.city} errored={!!errors?.city} onChange={handleChange} label={t(tokens.page.apply.city)} className={styles['c3']} />
 
-                    <Input name='website' defaultValue={user.website} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
+                    <Input name='website' defaultValue={user.website ?? ''} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
 
-                    <Input name='linkedIn' defaultValue={user.linkedIn} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
+                    <Input name='linkedIn' defaultValue={user.linkedIn ?? ''} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
 
                     <Input id='hasDriverLicence' errored={!!errors?.hasDriverLicence} onChange={(value) => handleChange({ target: { name: 'hasDriverLicence', value } })} defaultChecked={user.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
                     <Input id='isDisabled' errored={!!errors?.isDisabled} onChange={(value) => handleChange({ target: { name: 'isDisabled', value } })} defaultChecked={user.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
@@ -190,10 +190,10 @@ const ProfilForm = ({ isApplyment = false }) => {
                     <h3 className={styles['c6']}>{t(tokens.page.apply.mySituation)}</h3>
 
                     <Select defaultValue={study} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c2']} />
-                    <Input name='diploma' defaultValue={user.diploma} errored={!!errors?.diploma} label={t(tokens.page.apply.currentDiploma)} onChange={handleChange} className={styles['c2']} />
-                    <Input name='school' defaultValue={user.school} errored={!!errors?.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
+                    <Input name='diploma' defaultValue={user.diploma ?? ''} errored={!!errors?.diploma} label={t(tokens.page.apply.currentDiploma)} onChange={handleChange} className={styles['c2']} />
+                    <Input name='school' defaultValue={user.school ?? ''} errored={!!errors?.school} onChange={handleChange} label={t(tokens.page.apply.school)} className={styles['c2']} />
 
-                    <Input name='formation' defaultValue={user.formation} errored={!!errors?.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
+                    <Input name='formation' defaultValue={user.formation ?? ''} errored={!!errors?.formation} onChange={handleChange} label={t(tokens.page.apply.currentFormation)} className={styles['c6']} />
                 </>}
 
                 {isApplyment && <>

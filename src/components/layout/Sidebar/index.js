@@ -10,6 +10,7 @@ import path from '../../../path'
 import tokens from '../../../translations/tokens'
 import getPicturePath from '../../../utils/getPicturePath';
 import UserRoleEnum from '../../../enum/UserRoleEnum'
+import UserGenderEnum from '../../../enum/UserGenderEnum';
 import { UserContext } from '../../../context/UserContext'
 import List from '../../ui/atoms/List'
 import cn from '../../../utils/classnames'
@@ -77,7 +78,7 @@ const Sidebar = () => {
                         .filter(role => role !== UserRoleEnum.USER)[0]
                         .replace('ROLE_', '')
                         .toLowerCase()
-                    ])}
+                    ][user.gender === UserGenderEnum.FEMALE ? 'feminine' : 'masculine'])}
                 </p>
             </div>
         </div>}
