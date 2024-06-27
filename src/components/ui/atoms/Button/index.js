@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 
 import './button.scss'
 import cn from '../../../../utils/classnames'
@@ -19,17 +19,9 @@ const Button = ({
     onClick,
     className
 }) => {
-    const navigate = useNavigate()
+    const Content = useMemo(() => redirectTo ? Link : 'button', [redirectTo])
 
-    const handleClick = useCallback(() => {
-        onClick && onClick()
-
-        if (redirectTo) {
-            navigate(redirectTo)
-        }
-    }, [onClick, redirectTo, navigate])
-
-    return <button
+    return <Content
         className={cn(
             'button',
             {
@@ -44,13 +36,13 @@ const Button = ({
             },
             className
         )}
-        type={type}
-        onClick={handleClick}
+        {...(redirectTo ? { to: redirectTo } : { type })}
+        onClick={onClick}
     >
         {!rightIcon && icon}
         {label && <span>{label}</span>}
         {rightIcon && icon}
-    </button>
+    </Content>
 }
 
 export default Button

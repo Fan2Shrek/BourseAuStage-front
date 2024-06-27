@@ -95,7 +95,6 @@ const ProfilForm = ({ isApplyment = false }) => {
                 if (errs.length > 0) {
                     setErrors(response)
                     Object.values(response).forEach(error => {
-                        console.log(error);
                         addNotification({ type: 'danger', message: error });
                     })
                 } else {
