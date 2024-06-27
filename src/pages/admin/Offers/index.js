@@ -1,12 +1,10 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 
 import { UserContext } from "../../../context/UserContext";
 import { existsFilter, withCompany } from "../../../api/filters";
-import { getCookie } from "../../../utils/cookies";
-import path from "../../../path";
 import tokens from "../../../translations/tokens";
+import Error from "../../Error";
 import UserRoleEnum from "../../../enum/UserRoleEnum";
 import Container from "../../../components/ui/atoms/Container";
 import Tag from "../../../components/ui/atoms/Tag";
@@ -15,16 +13,9 @@ import ApiCollectionTable from "../../../components/ui/molecules/ApiCollectionTa
 const Offers = () => {
     const { t } = useTranslation();
     const { user } = useContext(UserContext);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!getCookie('token') || (user && !user.roles.includes(UserRoleEnum.COLLABORATOR))) {
-            navigate(path.unauthorized);
-        }
-    }, [user, navigate]);
 
     if (!user || !user.roles.includes(UserRoleEnum.COLLABORATOR)) {
-        return <></>;
+        return <Error code={403} />;
     }
 
     return <Container admin>

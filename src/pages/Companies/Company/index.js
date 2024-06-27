@@ -16,6 +16,7 @@ import getPicturePath from "../../../utils/getPicturePath";
 import getDomainName from '../../../utils/getDomainName';
 import path from "../../../path";
 import tokens from "../../../translations/tokens";
+import Error from "../../Error";
 import Container from '../../../components/ui/atoms/Container';
 import Button from '../../../components/ui/atoms/Button';
 import IconBadge from "../../../components/ui/atoms/IconBadge";
@@ -23,6 +24,7 @@ import Banner from "../../../components/layout/Banner";
 import OfferTypeEnum from "../../../enum/OfferTypeEnum";
 import OfferCard from "../../../components/offer/OfferCard";
 import List from "../../../components/ui/atoms/List";
+import Loader from "../../../components/ui/atoms/Loader";
 
 const socialsLinks = {
     'linkedInLink': <CiLinkedin />,
@@ -38,6 +40,7 @@ const Company = () => {
     const [collaborators, setCollaborators] = useState([]);
     const [internshipOffers, setInternshipOffers] = useState([]);
     const [workStudyOffers, setWorkStudyOffers] = useState([]);
+    const [isFetching, setIsFetching] = useState(true);
     const { t } = useTranslation();
 
     const breadCrumb = useMemo(() => [
@@ -56,8 +59,12 @@ const Company = () => {
     ], [t, company])
 
     useEffect(() => {
+        setIsFetching(true)
+
         apiClient.company.get(id)
             .then(response => {
+                setIsFetching(false)
+
                 if (response.status === 404) {
                     return;
                 }
@@ -102,15 +109,19 @@ const Company = () => {
             })
     }, [company]);
 
-    if (!company) {
-        return <></>
+    if (!isFetching && (!company || company.deleted)) {
+        return <Error code={404} />
     }
 
-    return <div className={styles.company}>
+    if (isFetching) {
+        return <Loader className={styles.loader} />
+    }
+
+    return <Container inline className={styles.company}>
         <Banner breadCrumb={breadCrumb}>
             <div className={styles.description}>
                 <h1>{company.name}</h1>
-                {company.socialLink && 
+                {company.socialLink &&
                     <Button className={styles.link} withoutBorder inverted label={getDomainName(company.socialLink)} icon={<FaArrowRight />} rightIcon></Button>
                 }
                 <div className={styles.statsContainer}>
@@ -181,9 +192,9 @@ const Company = () => {
             </div>
             <div className={styles.pageContentRight}>
                 <div>
-                    {company.logo && 
+                    {company.logo &&
                         <img
-                            alt={company.name} 
+                            alt={company.name}
                             src={getPicturePath(company.logo)}
                         />
                     }
@@ -265,7 +276,7 @@ const Company = () => {
                 </div>}
             </Container>
         </Container>}
-    </div>
+    </Container>
 }
 
 export default Company;

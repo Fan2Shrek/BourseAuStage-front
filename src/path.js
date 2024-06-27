@@ -11,7 +11,6 @@ const path = {
     studentRegistration: '/inscription?profil=etudiant',
     companyRegistration: '/inscription/entreprise',
     createOffer: '/offres/creer',
-    unauthorized: '/403',
     uiExample: '/ui-example',
     admin: {
         profil: '/admin/profil',

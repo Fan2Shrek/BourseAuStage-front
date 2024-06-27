@@ -25,6 +25,7 @@ import apiClient from "../../../../api/ApiClient";
 import Modal from "../../../../components/ui/atoms/Modal";
 import Select from "../../../../components/ui/atoms/Select";
 import Calendar from "../../../../components/ui/atoms/Calendar";
+import Error from "../../../Error";
 
 const states = {
     1: {
@@ -73,14 +74,14 @@ const Create = () => {
 
     }, []);
 
-    useEffect(() => {
-        if (!getCookie('token') || (user && !user.roles.includes(UserRoleEnum.COLLABORATOR))) {
-            navigate(path.unauthorized);
-        }
-    }, [user, navigate]);
+    // useEffect(() => {
+    //     if (!getCookie('token') || (user && !user.roles.includes(UserRoleEnum.COLLABORATOR))) {
+    //         navigate(path.unauthorized);
+    //     }
+    // }, [user, navigate]);
 
     if (!user || !user.roles.includes(UserRoleEnum.COLLABORATOR)) {
-        return <></>;
+        return <Error code={403} />;
     }
 
     const handleDelete = (type, value) => {
