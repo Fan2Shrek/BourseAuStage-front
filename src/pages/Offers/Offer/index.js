@@ -196,7 +196,13 @@ const Offer = () => {
             <div className={styles.pageCompany}>
                 <div className={styles.pageCompanyLeft}>
                     <Link to={path.company.replace(':id', offer.company.id)}>
-                        <img src={getPicturePath(offer.company.logo)} alt={offer.company.name} />
+                        <img
+                            alt={offer.company.name}
+                            src={offer.company.logoIcon
+                                ? getPicturePath(offer.company.logo)
+                                : '/images/company.png'
+                            }
+                        />
                     </Link>
                     <p>{offer.company.presentation}</p>
                     <div className={styles.buttonOffer}>

@@ -89,7 +89,10 @@ const Home = () => {
                 collection={highlightedCompanies}
                 renderItem={company => <Link to={path.company.replace(':id', company.id)}>
                     <img
-                        src={getPicturePath(company.logo)}
+                        src={company.logo
+                            ? getPicturePath(company.logo)
+                            : '/images/company.png'
+                        }
                         alt={t(tokens.page.home.highlightedCompanies.image.alt, { company: company.name })}
                     />
                 </Link>}

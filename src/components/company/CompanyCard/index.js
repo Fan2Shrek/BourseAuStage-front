@@ -27,7 +27,13 @@ const CompanyCard = ({ company, className }) => {
 
     return <Card className={cn(styles.card, className)}>
         <div className={styles.logo}>
-            <img src={getPicturePath(company.logoIcon)} alt='logo' />
+            <img
+                alt='logo'
+                src={company.logoIcon
+                    ? getPicturePath(company.logoIcon)
+                    : '/images/company.png'
+                }
+            />
         </div>
         {internshipNumber + workStudiesNumber > 0 && <div className={styles.offersRecap}>
             <Tag

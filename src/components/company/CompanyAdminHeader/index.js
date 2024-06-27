@@ -12,9 +12,11 @@ const CompanyAdminHeader = ({ name, logoIcon }) => {
     return <div className={styles.companyAdminHeader}>
         <div className={styles.companyInfos}>
             <img
-                src={getPicturePath(logoIcon)}
-                alt="logo"
-                className={styles.logoIcon}
+                alt='logo'
+                src={logoIcon
+                    ? getPicturePath(logoIcon)
+                    : '/images/company.png'
+                }
             />
             <p>{name}</p>
         </div>

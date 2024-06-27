@@ -38,9 +38,10 @@ const RowCard = ({
         <div className={cn(styles.infos, {
             [styles.centeredLogo]: withCenteredLogo
         })}>
+            {offer.company.logoIcon && 
             <div className={styles.logo}>
                 <img src={getPicturePath(offer.company.logoIcon)} alt='logo' />
-            </div>
+            </div>}
             <div className={styles.mainInfos}>
                 {withMainTitle ? <h1>{offer.name}</h1> : <h3>{offer.name}</h3>}
                 <div className={cn(styles.dotLine, {
