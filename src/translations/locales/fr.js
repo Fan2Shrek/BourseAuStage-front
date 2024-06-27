@@ -165,7 +165,7 @@ const fr = {
     [tokens.page.offerDetails.images.alt]: "Image de {{company}}",
     [tokens.page.offerDetails.similar.title]: "Offre de stage similaires",
     [tokens.page.offerDetails.similar.cta]: "Voir toutes les offres",
-    [tokens.page.admin.offers.apiCollectionTable.foundLabel]: "offre(s) trourvée(s)",
+    [tokens.page.admin.offers.apiCollectionTable.foundLabel]: "offre(s) trouvée(s)",
     [tokens.page.admin.offers.apiCollectionTable.itemsPerPageLabel]: "Offre(s) par page",
     [tokens.page.admin.offers.status.active]: "Active",
     [tokens.page.admin.offers.status.inactive]: "Clôturé",

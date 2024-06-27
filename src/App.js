@@ -31,6 +31,7 @@ function App() {
                             <Route index element={<Navigate to={path.admin.profil} replace />} />
                             <Route path={path.admin.profil} element={<Profil />} />
                             <Route path={path.admin.offers} element={<AdminOffers />} />
+                            <Route path={path.admin.createOffer} element={<Create />} />
                         </Route>
                         <Route element={<Layout />}>
                             <Route index element={<Home />} />
@@ -41,7 +42,6 @@ function App() {
                             <Route path={path.internship} element={<Offers type={OfferTypeEnum.INTERNSHIP} />} />
                             <Route path={path.workStudy} element={<Offers type={OfferTypeEnum.WORKSTUDY} />} />
                             <Route path={path.apply} element={<Apply />} />
-                            <Route path={path.createOffer} element={<Create />} />
                             <Route path={path.companyRegistration} element={<RegisterCompany />} />
                             {/* A enlever plus tard */}
                             <Route path={path.uiExample} element={<UiExample />} />
