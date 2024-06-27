@@ -14,7 +14,9 @@ const OfferCard = ({
     withDescription = false,
     withActivities = false,
     withShare = false,
+    withVerticalDivider = false,
     withProgress = false,
+    withBackButton = false,
     offer,
     className,
 }) => {
@@ -26,7 +28,9 @@ const OfferCard = ({
             withMainTitle={withMainTitle}
             withCenteredLogo={withCenteredLogo}
             withShare={withShare}
+            withVerticalDivider={withVerticalDivider}
             withProgress={withProgress}
+            withBackButton={withBackButton}
             offer={offer}
             t={t}
             className={className}

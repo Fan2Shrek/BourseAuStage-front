@@ -113,6 +113,14 @@
         }
 
         .documentRow {
+            .fullInputFile {
+                :global {
+                    .input__button {
+                        text-align: left;
+                    }
+                }
+            }
+
             p span {
                 font-weight: bold;
             }
@@ -133,4 +141,14 @@
             margin-bottom: 5%;
         }
     }
+}
+
+.notStudent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    min-height: 40dvh;
 }

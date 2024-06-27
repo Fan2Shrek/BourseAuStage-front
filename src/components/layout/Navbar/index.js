@@ -55,7 +55,6 @@ const Navbar = () => {
         { name: t(tokens.navbar.links.requests), type: 'classic', url: '#' },
         { name: t(tokens.navbar.links.companies), type: 'classic', url: path.companies },
         { name: t(tokens.navbar.links.students), type: 'classic', url: '#' },
-        { name: t(tokens.navbar.links.UI), type: 'classic', url: path.uiExample },
     ], [t])
 
     const handleLogBtn = useCallback(() => {

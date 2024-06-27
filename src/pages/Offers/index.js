@@ -100,7 +100,6 @@ const Offers = ({ type }) => {
                 renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
                     <OfferCard
                         offer={offer}
-                        type={type}
                         row
                         payed={offer.payed}
                         withProgress

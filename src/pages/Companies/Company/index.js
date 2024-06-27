@@ -21,7 +21,6 @@ import Container from '../../../components/ui/atoms/Container';
 import Button from '../../../components/ui/atoms/Button';
 import IconBadge from "../../../components/ui/atoms/IconBadge";
 import Banner from "../../../components/layout/Banner";
-import OfferTypeEnum from "../../../enum/OfferTypeEnum";
 import OfferCard from "../../../components/offer/OfferCard";
 import List from "../../../components/ui/atoms/List";
 import Loader from "../../../components/ui/atoms/Loader";
@@ -251,7 +250,6 @@ const Company = () => {
                         renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
                             <OfferCard
                                 offer={offer}
-                                type={OfferTypeEnum.INTERNSHIP}
                                 withDates
                                 withDescription
                                 withActivities
@@ -266,7 +264,6 @@ const Company = () => {
                         renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
                             <OfferCard
                                 offer={offer}
-                                type={OfferTypeEnum.WORKSTUDY}
                                 withDates
                                 withDescription
                                 withActivities

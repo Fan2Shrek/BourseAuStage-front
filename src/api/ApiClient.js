@@ -1,4 +1,5 @@
 import { apiBaseUrl } from "../tools"
+import { getCookie, setCookie } from "../utils/cookies"
 import Company from "./Resource/company"
 import Offer from "./Resource/offer"
 import Request from "./Resource/request"
@@ -7,8 +8,8 @@ import Skill from "./Resource/skill"
 import Category from "./Resource/category"
 import Student from "./Resource/student"
 import Activity from "./Resource/activity"
-import { getCookie, setCookie } from "../utils/cookies"
 import StudyLevel from "./Resource/studyLevel"
+import SpontaneousRequest from "./Resource/spontaneousRequest"
 
 class ApiClient {
     constructor() {
@@ -16,6 +17,7 @@ class ApiClient {
         this.company = new Company(this);
         this.offer = new Offer(this);
         this.request = new Request(this);
+        this.spontaneousRequest = new SpontaneousRequest(this);
         this.me = new Me(this);
         this.skill = new Skill(this);
         this.category = new Category(this);
@@ -31,13 +33,11 @@ class ApiClient {
             .then(response => response.json())
     }
 
-    async post(url, body, asFormData = false) {
+    async post(url, body, asFormData = false, additionnalHeaders = {}) {
         const headers = {
             accept: 'application/json',
-        }
-
-        if (!asFormData) {
-            headers['Content-Type'] = 'application/json'
+            ...(asFormData ? {} : { 'Content-Type': 'application/json' }),
+            ...additionnalHeaders,
         }
 
         return fetch(`${this.baseUrl}${url}`, {

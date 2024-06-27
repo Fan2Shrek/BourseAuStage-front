@@ -1,5 +1,7 @@
-import { FaArrowLeft, FaPlus } from "react-icons/fa";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router";
+import { FaArrowLeft, FaPlus } from "react-icons/fa";
+import { useParams } from "react-router";
 import { Trans, useTranslation } from "react-i18next";
 import { RxCross1 } from "react-icons/rx";
 import dayjs from "dayjs";
@@ -18,12 +20,12 @@ import apiClient from "../../../api/ApiClient";
 import Calendar from "../../ui/atoms/Calendar";
 import getPicturePath from '../../../utils/getPicturePath'
 import Modal from "../../ui/atoms/Modal";
-import { useNavigate } from "react-router";
 import path from "../../../path";
 
 const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
     const { t } = useTranslation();
     const { user, setUser } = useContext(UserContext);
+    const { id } = useParams();
     const { addNotification } = useContext(NotificationContext)
     const navigate = useNavigate();
 
@@ -81,11 +83,11 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
             }
         }
 
-        const endpoint =  
+        const endpoint =
             (isCreation && apiClient.student.register.bind(apiClient.student))
             || (isApplyment && console.log)
             || apiClient.me.post.bind(apiClient.me)
-        ;
+            ;
 
         const formData = new FormData();
 
@@ -102,7 +104,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
         if (isCreation) {
             if (form.password !== form.confirmPassword) {
                 addNotification({ type: 'danger', message: t(tokens.page.createStudent.wrongPassword) })
-                
+
                 return;
             }
         }
@@ -121,7 +123,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
 
                     if (isCreation) {
                         navigate(path.confirmation)
-                        
+
                         return;
                     }
 
@@ -130,7 +132,23 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                     });
                 }
             });
-    }, [form, experiences, languages, skills, t, isStudent, setErrors, addNotification, setUser])
+
+        if (isApplyment) {
+            const data = {
+                student: `api/students/${user.id}`,
+                offer: `api/offers/${id}`,
+            };
+
+            apiClient.request.post(data)
+                .then(response => {
+                    if (response.id) {
+                        addNotification({ type: 'success', message: t(tokens.page.apply.notifications.success) });
+                    } else {
+                        addNotification({ type: 'danger', message: t(tokens.page.apply.notifications.error) });
+                    }
+                })
+        }
+    }, [form, id, user, experiences, languages, skills, t, isStudent, isApplyment, setErrors, addNotification, setUser])
 
     useEffect(() => {
         if (isStudent && !isCreation) {
@@ -167,11 +185,17 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
         name: t(tokens.sexes.nonBinary)
     }], [t]);
 
-    const btnLabel = useMemo(() => 
+    const btnLabel = useMemo(() =>
         (isCreation && tokens.page.createStudent.submit)
         || (isApplyment && tokens.page.apply.submit)
         || tokens.actions.update
-    , []);
+        , []);
+
+    if (isApplyment && (!user || !isStudent)) {
+        return <div className={styles.notStudent}>
+            <h2>{t(tokens.page.apply.notStudent)}</h2>
+        </div>;
+    }
 
     if (!user && !isCreation) {
         return <></>;
@@ -209,11 +233,11 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
 
                 {isStudent && <>
                     {isCreation ? <>
-                            <Input type='password' name='password' required errored={!!errors?.password} onChange={handleChange} label={t(tokens.page.createStudent.password)} className={styles['c3']} />
-                            <Input type='password' name='confirmPassword' required errored={!!errors?.confirmPassword} onChange={handleChange} label={t(tokens.page.createStudent.confirmPassword)} className={styles['c3']} />
-                            <Select defaultValue={study}placeholder={study ?? t(tokens.page.createStudent.study.placeholder)} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c6']} />
-                        </>
-                    :
+                        <Input type='password' name='password' required errored={!!errors?.password} onChange={handleChange} label={t(tokens.page.createStudent.password)} className={styles['c3']} />
+                        <Input type='password' name='confirmPassword' required errored={!!errors?.confirmPassword} onChange={handleChange} label={t(tokens.page.createStudent.confirmPassword)} className={styles['c3']} />
+                        <Select defaultValue={study} placeholder={study ?? t(tokens.page.createStudent.study.placeholder)} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c6']} />
+                    </>
+                        :
                         <>
                             <Input name='website' defaultValue={user.website ?? ''} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
                             <Input name='linkedIn' defaultValue={user.linkedIn ?? ''} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
@@ -244,10 +268,16 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                     <Input name='createAccount' errored={!!errors?.createAccount} type='checkbox' label={t(tokens.page.apply.createAccount)} className={styles['c6']} />
                 </>}
 
-                <Button label={t(btnLabel)} onClick={handleSubmit} className={styles['c6']} />                    
+                <Button label={t(btnLabel)} onClick={handleSubmit} className={styles['c6']} />
                 {isApplyment && <>
                     <p className={cn(styles.legal, styles['c6'])}>{t(tokens.page.apply.legal)}</p>
-                    <Button label={t(tokens.actions.back)} inverted icon={<FaArrowLeft />} />
+                    <Button
+                        label={t(tokens.actions.back)}
+                        icon={<FaArrowLeft />}
+                        inverted
+                        transparent
+                        redirectTo={path.offer.replace(':id', id)}
+                    />
                 </>
                 }
             </div>
@@ -314,7 +344,12 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                 <p>{t(tokens.page.apply.documentsDescription)}</p>
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.cvField.title)}</span> ({t(tokens.page.apply.cvRequirements)})</p>
-                    <Input type="file" onChange={(e) => setForm({ ...form, cv: e.target.files[0] })} placeholder={t(tokens.page.apply.cvField.placeholder)} />
+                    <Input
+                        type="file"
+                        onChange={(e) => setForm({ ...form, cv: e.target.files[0] })}
+                        placeholder={t(tokens.page.apply.cvField.placeholder)}
+                        className={styles.fullInputFile}
+                    />
                     <span>{user?.cv}</span>
                 </div>
             </>}
@@ -322,12 +357,20 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
             {isApplyment && <>
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.coverLetterField.label)}</span> ({t(tokens.page.apply.coverLetterRequirements)})</p>
-                    <Input type="file" placeholder={t(tokens.page.apply.coverLetterField.placeholder)} />
+                    <Input
+                        type="file"
+                        placeholder={t(tokens.page.apply.coverLetterField.placeholder)}
+                        className={styles.fullInputFile}
+                    />
                     <span>{user?.cv}</span>
                 </div>
                 <div className={styles.documentRow}>
                     <p><span>{t(tokens.page.apply.otherField.label)}</span> ({t(tokens.page.apply.otherRequirements)})</p>
-                    <Input type="file" placeholder={t(tokens.page.apply.otherField.placeholder)} />
+                    <Input
+                        type="file"
+                        placeholder={t(tokens.page.apply.otherField.placeholder)}
+                        className={styles.fullInputFile}
+                    />
                     <span>{user?.cv}</span>
                 </div>
             </>}

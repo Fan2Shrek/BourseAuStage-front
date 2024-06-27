@@ -10,7 +10,7 @@ const path = {
     apply: '/offres/postuler/:id',
     studentRegistration: '/inscription/etudiant',
     companyRegistration: '/inscription/entreprise',
-    uiExample: '/ui-example',
+    uiExample: '/ui-exemples',
     admin: {
         profil: '/admin/profil',
         offers: '/admin/offres',
