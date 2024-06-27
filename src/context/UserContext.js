@@ -27,12 +27,14 @@ export const UserContextProvider = ({ children }) => {
             .then(response => setUserState(response))
     }, [])
 
-    const setUser = useCallback(usr => {
+    const setUser = useCallback((usr, isUpdated = false) => {
         if (usr) {
             addNotification({
-                message: t(tokens.notifications.login, {
-                    name: `${usr.firstName} ${usr.lastName}`,
-                }),
+                message: isUpdated
+                    ? t(tokens.notifications.accountUpdated)
+                    : t(tokens.notifications.login, {
+                        name: `${usr.firstName} ${usr.lastName}`,
+                    }),
                 type: 'success',
             })
         } else if (usr === null) {
