@@ -109,7 +109,9 @@ const Offer = () => {
     }
 
     if (isFetching) {
-        return <Loader className={styles.loader} />
+        return <div className={styles.load}>
+            <Loader className={styles.loader} />
+        </div>
     }
 
     const availableAt = format(new Date(offer.availableAt), "dd MMMM yyyy", { locale: fr });

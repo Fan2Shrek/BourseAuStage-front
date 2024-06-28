@@ -37,7 +37,6 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
     const [skills, setSkills] = useState([]);
     const [currentSelection, setCurrentSelection] = useState({});
 
-    const [activitiesList, setActivitiesList] = useState([]);
     const [studyLevels, setStudyLevels] = useState([]);
     const [skillsList, setSkillsList] = useState([]);
     const [languages, setLanguages] = useState([]);
@@ -46,7 +45,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
     const [displayModal, setDisplayModal] = useState('');
 
     const [isStudent, isCollaborator] = useMemo(() => [
-        isCreation || (user && user.roles.includes(UserRoleEnum.STUDENT)),
+        user && user.roles.includes(UserRoleEnum.STUDENT),
         user && user.roles.includes(UserRoleEnum.COLLABORATOR),
     ], [user]);
 
@@ -83,11 +82,9 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
             }
         }
 
-        const endpoint =
-            (isCreation && apiClient.student.register.bind(apiClient.student))
-            || (isApplyment && console.log)
-            || apiClient.me.post.bind(apiClient.me)
-            ;
+        const endpoint = isCreation
+            ? data => apiClient.student.post(data)
+            : data => apiClient.me.post(data)
 
         const formData = new FormData();
 
@@ -95,7 +92,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
             formData.append(key, value);
         });
 
-        if (isStudent) {
+        if (isStudent || isCreation) {
             formData.append('experiences', JSON.stringify(experiences));
             formData.append('languages', JSON.stringify(languages));
             formData.append('skills', JSON.stringify(skills));
@@ -148,7 +145,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                     }
                 })
         }
-    }, [form, id, user, experiences, languages, skills, t, isStudent, isApplyment, setErrors, addNotification, setUser])
+    }, [form, id, user, experiences, languages, skills, t, isStudent, isApplyment, isCreation, setErrors, navigate, addNotification, setUser])
 
     useEffect(() => {
         if (isStudent && !isCreation) {
@@ -156,7 +153,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
             setLanguages(user.languages);
             setExperiences(user.experiences);
         }
-    }, [user, isStudent]);
+    }, [user, isStudent, isCreation]);
 
     useEffect(() => {
         apiClient.studyLevel.getAll().then(response => {
@@ -172,7 +169,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
         if (isStudent && !isCreation) {
             return user.studyLevel && user.studyLevel.replace('/api/study_levels/', '');
         }
-    }, [user, isStudent]);
+    }, [user, isStudent, isCreation]);
 
     const sexes = useMemo(() => [{
         value: 'M',
@@ -189,7 +186,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
         (isCreation && tokens.page.createStudent.submit)
         || (isApplyment && tokens.page.apply.submit)
         || tokens.actions.update
-        , []);
+        , [isApplyment, isCreation]);
 
     if (isApplyment && (!user || !isStudent)) {
         return <div className={styles.notStudent}>
@@ -206,8 +203,8 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
             {isApplyment && <>
                 <h2>{t(tokens.page.apply.title)}</h2>
                 <div className={styles.divider}></div>
-            </>
-            }
+            </>}
+
             <p className={styles.subtitle}>{t(tokens.page.apply.youAre)}</p>
             <div className={styles.form}>
                 <Select name='gender' defaultValue={user?.gender} onChange={handleChange} label={t(tokens.page.apply.gender)} type='text' required values={sexes} className={styles['c2']} />
@@ -216,7 +213,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
 
                 {isCollaborator && <Input name='jobTitle' defaultValue={user?.jobTitle} errored={!!errors?.jobTitle} onChange={handleChange} required label={t(tokens.entities.collaborator.jobTitle)} className={styles['c3']} />}
 
-                {isStudent && <div className={styles['c3']}>
+                {(isStudent || isCreation) && <div className={styles['c3']}>
                     <Calendar onChange={(e) => (setForm({ ...form, birthdayAt: dayjs(e['$d']) }))} value={dayjs(user?.birthdayAt)} label={t(tokens.page.apply.birth)} required />
                 </div>}
 
@@ -225,27 +222,26 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                 <Input name='email' defaultValue={user?.email} errored={!!errors?.email} onChange={handleChange} required label={t(tokens.page.apply.email)} className={styles['c3']} />
                 <Input name='confirmEmail' errored={!!errors?.confirmEmail} onChange={handleChange} required label={t(tokens.page.apply.confirmEmail)} className={styles['c3']} />
 
-                <Input name='postCode' defaultValue={user?.postCode} errored={!!errors?.postCode} onChange={handleChange} label={t(tokens.page.apply.postalCode)} required className={styles['c3']} />
-                <Input name='city' defaultValue={user?.city} errored={!!errors?.city} onChange={handleChange} label={t(tokens.page.apply.city)} required className={styles['c3']} />
+                {(isStudent || isCreation) && <>
+                    <Input name='postCode' defaultValue={user?.postCode} errored={!!errors?.postCode} onChange={handleChange} label={t(tokens.page.apply.postalCode)} required className={styles['c3']} />
+                    <Input name='city' defaultValue={user?.city} errored={!!errors?.city} onChange={handleChange} label={t(tokens.page.apply.city)} required className={styles['c3']} />
 
-                <Input name='address' defaultValue={user?.address} errored={!!errors?.address} onChange={handleChange} label={t(tokens.page.apply.address)} required className={styles['c3']} />
-                <Input name='additionalAddress' defaultValue={user.additionalAddress ?? ''} errored={!!errors?.additionalAddress} onChange={handleChange} label={t(tokens.page.apply.addressPlus)} className={styles['c3']} />
+                    <Input name='address' defaultValue={user?.address} errored={!!errors?.address} onChange={handleChange} label={t(tokens.page.apply.address)} required className={styles['c3']} />
+                    <Input name='additionalAddress' defaultValue={user?.additionalAddress ?? ''} errored={!!errors?.additionalAddress} onChange={handleChange} label={t(tokens.page.apply.addressPlus)} className={styles['c3']} />
+                </>}
 
-                {isStudent && <>
-                    {isCreation ? <>
-                        <Input type='password' name='password' required errored={!!errors?.password} onChange={handleChange} label={t(tokens.page.createStudent.password)} className={styles['c3']} />
-                        <Input type='password' name='confirmPassword' required errored={!!errors?.confirmPassword} onChange={handleChange} label={t(tokens.page.createStudent.confirmPassword)} className={styles['c3']} />
-                        <Select defaultValue={study} placeholder={study ?? t(tokens.page.createStudent.study.placeholder)} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c6']} />
-                    </>
-                        :
-                        <>
-                            <Input name='website' defaultValue={user.website ?? ''} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
-                            <Input name='linkedIn' defaultValue={user.linkedIn ?? ''} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
+                {isCreation && <>
+                    <Input type='password' name='password' required errored={!!errors?.password} onChange={handleChange} label={t(tokens.page.createStudent.password)} className={styles['c3']} />
+                    <Input type='password' name='confirmPassword' required errored={!!errors?.confirmPassword} onChange={handleChange} label={t(tokens.page.createStudent.confirmPassword)} className={styles['c3']} />
+                    <Select defaultValue={study} placeholder={study ?? t(tokens.page.createStudent.study.placeholder)} onChange={handleChange} name='study' label={t(tokens.page.apply.study)} type='text' required values={studyLevels} className={styles['c6']} />
+                </>}
 
-                            <Input id='hasDriverLicence' errored={!!errors?.hasDriverLicence} onChange={(value) => handleChange({ target: { name: 'hasDriverLicence', value } })} defaultChecked={user?.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
-                            <Input id='isDisabled' errored={!!errors?.isDisabled} onChange={(value) => handleChange({ target: { name: 'isDisabled', value } })} defaultChecked={user?.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
-                        </>
-                    }
+                {(isStudent || isCreation) && <>
+                    <Input name='website' defaultValue={user?.website ?? ''} errored={!!errors?.website} onChange={handleChange} label={t(tokens.page.apply.personalWebsite)} className={styles['c6']} />
+                    <Input name='linkedIn' defaultValue={user?.linkedIn ?? ''} errored={!!errors?.linkedIn} onChange={handleChange} label={t(tokens.page.apply.linkedIn)} className={styles['c6']} />
+
+                    <Input id='hasDriverLicence' errored={!!errors?.hasDriverLicence} onChange={(value) => handleChange({ target: { name: 'hasDriverLicence', value } })} defaultChecked={user?.driverLicence} type='checkbox' label={t(tokens.page.apply.driverLicence)} className={styles['c2']} />
+                    <Input id='isDisabled' errored={!!errors?.isDisabled} onChange={(value) => handleChange({ target: { name: 'isDisabled', value } })} defaultChecked={user?.disabled} type='checkbox' label={t(tokens.page.apply.disability)} className={styles['c2']} />
                 </>}
 
                 {isStudent && !isCreation && <>

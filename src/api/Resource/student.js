@@ -3,7 +3,7 @@ class Student {
         this.apiClient = apiClient;
     }
 
-    async register(body) {
+    async post(body) {
         return this.apiClient.post('/register/student', body, true);
     }
 }
