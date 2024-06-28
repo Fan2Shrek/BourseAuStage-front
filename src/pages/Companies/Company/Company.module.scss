@@ -190,6 +190,13 @@
     }
 }
 
-.loader {
-    margin: 20px auto;
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70dvh;
+
+    .loader {
+        margin: 20px auto;
+    }
 }

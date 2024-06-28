@@ -61,7 +61,9 @@ const Apply = () => {
     }
 
     if (isFetching) {
-        return <Loader className={styles.loader} />
+        return <div className={styles.load}>
+            <Loader className={styles.loader} />
+        </div>
     }
 
     return <>

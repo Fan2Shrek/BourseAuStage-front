@@ -35,13 +35,13 @@ const RegisterFormCompany = () => {
     }
 
     const handleDelete = (value) => {
-         setActivities(activities.filter(activity => activity !== value));
+        setActivities(activities.filter(activity => activity !== value));
     }
 
     const validateForm = () => {
         const requiredFields = [
-            'gender', 'lastName', 'firstName', 'phone', 'email', 'confirmEmail', 
-            'password', 'confirmPassword', 'jobTitle', 'name', 'siretNumber', 
+            'gender', 'lastName', 'firstName', 'phone', 'email', 'confirmEmail',
+            'password', 'confirmPassword', 'jobTitle', 'name', 'siretNumber',
             'phoneCompany', 'category', 'address', 'city', 'postCode'
         ];
 
@@ -87,20 +87,20 @@ const RegisterFormCompany = () => {
     }
 
     const handleSubmit = async () => {
-        
+
         if (!validateForm()) return;
-        
+
         const formData = new FormData();
-        
+
         Object.entries(form).forEach(([key, value]) => {
             formData.append(key, value);
         });
-            
+
         formData.append('activities', JSON.stringify(activities));
-        
+
         const response = await apiClient.company.post(formData);
-        
-        if(response == ''){
+
+        if (response === '') {
             navigate(path.confirmation)
         }
 
@@ -109,14 +109,14 @@ const RegisterFormCompany = () => {
 
     useEffect(() => {
         apiClient.category.getAll().then(response => {
-            setCategory(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+            setCategory(response['hydra:member'].map(({ name, id }) => ({ name, value: id })));
         });
 
     }, []);
 
     useEffect(() => {
         apiClient.activity.getAll().then(response => {
-            setActivitiesList(response['hydra:member'].map(({name, id}) => ({name, value: id})));
+            setActivitiesList(response['hydra:member'].map(({ name, id }) => ({ name, value: id })));
         });
 
     }, []);
@@ -127,7 +127,7 @@ const RegisterFormCompany = () => {
     }, {
         value: 'F',
         name: t(tokens.sexes.woman)
-    },  {
+    }, {
         value: 'NB',
         name: t(tokens.sexes.nonBinary)
     }], [t]);
@@ -154,7 +154,7 @@ const RegisterFormCompany = () => {
             <div className={styles.buttonModal}>
                 <p>{t(tokens.page.register.form.activities)}<span>*</span></p>
                 <div className={styles.activitySelected}>
-                    {activities.map((activity) => <Button  label={activity.name} onClick={() => handleDelete(activity)} key={activity} icon={<RxCross1 />} rightIcon />)}
+                    {activities.map((activity) => <Button label={activity.name} onClick={() => handleDelete(activity)} key={activity} icon={<RxCross1 />} rightIcon />)}
                     {<Button onClick={() => setDisplayModal('activity')} icon={<FaPlus />} inverted rightIcon />}
                 </div>
             </div>
@@ -177,7 +177,7 @@ const RegisterFormCompany = () => {
             setDisplayModal={setDisplayModal}
         >
             <div className={styles.modalContent}>
-                <Select onChange={(e) => setCurrentSelection({value: parseInt(e.target.value, 10)})} placeholder={t(tokens.page.register.form.activitiesPlaceholder)} values={activitiesList.filter(s => !activities.includes(s))} />
+                <Select onChange={(e) => setCurrentSelection({ value: parseInt(e.target.value, 10) })} placeholder={t(tokens.page.register.form.activitiesPlaceholder)} values={activitiesList.filter(s => !activities.includes(s))} />
                 <Button label={t(tokens.actions.add)} onClick={() => {
                     setActivities([...activities, ...activitiesList.filter(el => el.value === currentSelection.value)]);
                     setCurrentSelection('');
