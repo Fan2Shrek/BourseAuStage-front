@@ -244,8 +244,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                     <Input name='createAccount' errored={!!errors?.createAccount} type='checkbox' label={t(tokens.page.apply.createAccount)} className={styles['c6']} />
                 </>}
 
-                <Button label={t(btnLabel)} onClick={handleSubmit} className={styles['c6']} />
-
+                <Button label={t(btnLabel)} onClick={handleSubmit} className={styles['c6']} />                    
                 {isApplyment && <>
                     <p className={cn(styles.legal, styles['c6'])}>{t(tokens.page.apply.legal)}</p>
                     <Button label={t(tokens.actions.back)} inverted icon={<FaArrowLeft />} />
