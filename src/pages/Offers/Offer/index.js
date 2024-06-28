@@ -21,6 +21,7 @@ import OfferCard from "../../../components/offer/OfferCard";
 import List from "../../../components/ui/atoms/List";
 import OfferTypeEnum from "../../../enum/OfferTypeEnum";
 import Loader from "../../../components/ui/atoms/Loader";
+import Map from "../../../components/ui/atoms/Map";
 
 const Offer = () => {
     const [offer, setOffer] = useState(null);
@@ -238,7 +239,7 @@ const Offer = () => {
                         />}
                     />
                     <div className={styles.map}>
-                        MAP
+                        {(offer.company.address && offer.company.city) && <Map address={`${offer.company.address}, ${offer.company.city} ${offer.company.postCode ?? ''} `} markerText={offer.company.name}/>}
                     </div>
                 </div>
             </div>
