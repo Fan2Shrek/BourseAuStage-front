@@ -105,10 +105,17 @@
 
         .themeSwitcher {
             position: fixed;
-            top: 10%;
+            bottom: 10%;
             right: 0;
             font-size: 40px;
             z-index: 10;
+            color: var(--themeSwitcher-icon-color);
+            background-color: var(--themeSwitcher-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 10px;
 
             &:hover {
                 cursor: pointer;

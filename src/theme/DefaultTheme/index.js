@@ -123,6 +123,12 @@ export const DefaultTheme = () => {
          * SIDEBAR
          */
         setProperty('--sidebar-color', 'var(--color-third)');
+
+        /**
+         * THEME SWITCHER
+         */
+        setProperty('--themeSwitcher-color', 'var(--color-third)');
+        setProperty('--themeSwitcher-icon-color', 'var(--color-main)');
     }, [])
 
     return <></>

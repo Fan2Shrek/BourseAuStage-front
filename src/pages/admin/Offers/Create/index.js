@@ -71,14 +71,7 @@ const Create = () => {
         apiClient.skill.getAll().then(response => {
             setSkillsList(response['hydra:member'].map((el) => ({ ...el, value: el.id })));
         });
-
     }, []);
-
-    // useEffect(() => {
-    //     if (!getCookie('token') || (user && !user.roles.includes(UserRoleEnum.COLLABORATOR))) {
-    //         navigate(path.unauthorized);
-    //     }
-    // }, [user, navigate]);
 
     if (!user || !user.roles.includes(UserRoleEnum.COLLABORATOR)) {
         return <Error code={403} />;
@@ -139,7 +132,7 @@ const Create = () => {
         <h2>{t(tokens.page.createOffer.title)}</h2>
         <div className={styles.header}>
             {Object.entries(states).map(([key, value]) =>
-                <div key={key} className={cn(styles.stateStep, state === key ? styles.current : '')}>
+                <div key={key} className={cn(styles.stateStep, state === parseInt(key, 10) ? styles.current : '')}>
                     <IconBadge icon={value.icon} className={styles.icon} />
                     <div className={styles.description}>
                         <span className={styles.title}>{t(tokens.page.createOffer.step)} {key}/{Object.keys(states).length}</span>
