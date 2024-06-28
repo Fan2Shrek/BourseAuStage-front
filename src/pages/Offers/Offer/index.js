@@ -19,7 +19,6 @@ import Tag from '../../../components/ui/atoms/Tag';
 import ProgressBar from '../../../components/ui/atoms/ProgressBar';
 import OfferCard from "../../../components/offer/OfferCard";
 import List from "../../../components/ui/atoms/List";
-import OfferTypeEnum from "../../../enum/OfferTypeEnum";
 import Loader from "../../../components/ui/atoms/Loader";
 
 const Offer = () => {
@@ -27,6 +26,7 @@ const Offer = () => {
     const [companyPictures, setCompanyPictures] = useState([]);
     const [similarOffers, setSimilarOffers] = useState([]);
     const [isFetching, setIsFetching] = useState(true);
+    const [submittedRequestsNumber, setSubmittedRequestsNumber] = useState(0);
     const { id } = useParams();
     const { t } = useTranslation();
 
@@ -51,6 +51,7 @@ const Offer = () => {
 
     useEffect(() => {
         setIsFetching(true)
+
         apiClient.offer.get(id)
             .then(response => {
                 setIsFetching(false)
@@ -60,6 +61,16 @@ const Offer = () => {
                 }
 
                 setOffer(response);
+            })
+
+        apiClient.offer.getRequests(id)
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                const requests = response['hydra:member'] ?? []
+                setSubmittedRequestsNumber(requests.length)
             })
     }, [id]);
 
@@ -115,6 +126,7 @@ const Offer = () => {
                 row
                 withMainTitle
                 withShare
+                withVerticalDivider
                 className={styles.card}
             />
         </Banner>
@@ -134,7 +146,7 @@ const Offer = () => {
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.cta)}
-                            redirectTo={path.apply.replace(':id', offer.company.id)}
+                            redirectTo={path.apply.replace(':id', offer.id)}
                             className={styles.link}
                         />
                     </div>
@@ -173,8 +185,7 @@ const Offer = () => {
                     </div>
                     <div className={styles.rightText}>
                         <p>{t(tokens.page.offerDetails.submitted)}</p>
-                        {/* a faire */}
-                        <p>1</p>
+                        <p>{submittedRequestsNumber}</p>
                     </div>
                     <div className={styles.border}></div>
                     <h3>{t(tokens.page.offerDetails.profileJob)}</h3>
@@ -218,7 +229,7 @@ const Offer = () => {
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
-                            redirectTo={path.company.replace(':id', offer.company.id)}
+                            redirectTo={path.apply.replace(':id', offer.company.id)}
                             inverted
                             withoutBorder
                             transparent
@@ -258,6 +269,7 @@ const Offer = () => {
                         transparent
                         icon={<FaArrowRight />}
                         rightIcon
+                        redirectTo={path[offer.internship ? 'internship' : 'workStudy']}
                         className={styles.cta}
                     />
                 </div>
@@ -267,7 +279,6 @@ const Offer = () => {
                     renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
                         <OfferCard
                             offer={offer}
-                            type={offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY}
                             withHeader
                             withLocaltion
                             withDescription

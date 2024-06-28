@@ -1,81 +1,9 @@
 .header {
-    :global {
-        .card {
-            width: 1200px;
-            height: 150px;
-            border-width: 2px;
-            background-color: var(--color-light);
-        }
+    .card {
+        width: 100%;
     }
+}
 
-    .card__content {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-
-        .verticalDivider {
-            margin-block: auto;
-            height: 20px;
-            width: 2px;
-            background-color: var(--color-third);
-        }
-
-        > .verticalDivider {
-            height: 100px;
-            position: absolute;
-            right: 15%;
-        }
-
-        img {
-            height: 90px;
-            width: 90px;
-            object-fit: cover;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        p span {
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 28.8px;
-            text-align: left;
-            margin-right: 15px;
-            position: relative;
-
-            &::after {
-                position: absolute;
-                top: 0;
-                right: -5px;
-                transform: translate(100%, 100%);
-                content: '';
-                display: inline-block;
-                height: 5px;
-                width: 5px;
-                background-color: #000;
-                border-radius: 50%;
-            }
-        }
-
-        .activities {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-
-        .backBtn {
-            height: 50px;
-            display: flex;
-            align-items: center;
-            align-self: center;
-            border-color: black;
-            color: black;
-            position: absolute;
-            right: 0%;
-        }
-    }
+.loader {
+    margin: 20px auto;
 }

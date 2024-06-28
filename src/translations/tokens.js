@@ -75,6 +75,7 @@ const tokens = {
                 button: {
                     main: "card.offer.cta.button.main",
                     more: "card.offer.cta.button.more",
+                    back: "card.offer.cta.button.back",
                 },
                 progress: {
                     singular: "card.offer.progress.singular",
@@ -370,6 +371,11 @@ const tokens = {
             otherRequirements: "page.apply.otherRequirements",
             motivations: "page.apply.motivations",
             addSkill: "page.apply.addSkill",
+            notStudent: "page.apply.notStudent",
+            notifications: {
+                success: "page.apply.notifications.success",
+                error: "page.apply.notifications.error",
+            },
         },
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
@@ -535,6 +541,7 @@ const tokens = {
             internship: "breadCrumb.offers.internship",
             workStudy: "breadCrumb.offers.workStudy",
         },
+        apply: "breadCrumb.apply",
     },
     sortings: {
         clarifications: {
@@ -545,6 +552,7 @@ const tokens = {
         },
     },
     notifications: {
+        linkCopied: "notifications.linkCopied",
         accountUpdated: "notifications.accountUpdated",
         login: "notifications.login",
         logout: "notifications.logout",

@@ -1,9 +1,11 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { GrShareOption } from "react-icons/gr";
+import { FaArrowLeft } from "react-icons/fa";
 import { differenceInDays } from 'date-fns'
 
 import styles from './OfferCard.module.scss'
 import cn from "../../../utils/classnames"
+import { NotificationContext } from "../../../context/NotificationContext";
 import getPicturePath from '../../../utils/getPicturePath'
 import path from "../../../path";
 import OfferTypeEnum from '../../../enum/OfferTypeEnum'
@@ -20,11 +22,15 @@ const RowCard = ({
     withCenteredLogo = false,
     withMainTitle = false,
     withShare = false,
+    withVerticalDivider = false,
     withProgress = false,
+    withBackButton = false,
     offer,
     t,
     className,
 }) => {
+    const { addNotification } = useContext(NotificationContext)
+
     const remainingDays = useMemo(() => differenceInDays(
         new Date(offer.availableAt),
         new Date()
@@ -32,14 +38,14 @@ const RowCard = ({
 
     const handleShare = useCallback(() => {
         navigator.clipboard.writeText(window.location.href);
-    }, [])
+        addNotification({ type: 'success', message: t(tokens.notifications.linkCopied) })
+    }, [addNotification, t])
 
     return <Card className={cn(styles.card, styles.row, className)}>
         <div className={cn(styles.infos, {
             [styles.centeredLogo]: withCenteredLogo
         })}>
-            {offer.company.logoIcon && 
-            <div className={styles.logo}>
+            {offer.company.logoIcon && <div className={styles.logo}>
                 <img src={getPicturePath(offer.company.logoIcon)} alt='logo' />
             </div>}
             <div className={styles.mainInfos}>
@@ -81,17 +87,30 @@ const RowCard = ({
             </div>
         </div>
         <div className={styles.actions}>
-            {withShare && <>
-                <div className={styles.share}>
-                    <GrShareOption onClick={handleShare} />
-                </div>
-                <div className={styles.divider}></div>
-            </>}
+            {withShare && <div className={styles.share}>
+                <GrShareOption onClick={handleShare} />
+            </div>}
+
+            {withVerticalDivider && <div className={styles.divider} />}
+
             <div className={styles.cta}>
                 <Button
-                    label={t(tokens.card.offer.cta.button[withMainTitle ? 'main' : 'more'])}
-                    redirectTo={path.apply.replace(':id', offer.company.id)}
+                    label={withBackButton
+                        ? t(tokens.card.offer.cta.button.back)
+                        : t(tokens.card.offer.cta.button[withMainTitle ? 'main' : 'more'])
+                    }
+                    redirectTo={withBackButton
+                        ? path.offer.replace(':id', `${offer.id}`)
+                        : withMainTitle ? path.apply.replace(':id', `${offer.id}`) : undefined
+                    }
+                    {...withBackButton && {
+                        icon: <FaArrowLeft />,
+                        inverted: true,
+                        transparent: true,
+                        neutral: true,
+                    }}
                 />
+
                 {withProgress && <div className={styles.progressBlock}>
                     <ProgressBar
                         width="100%"
