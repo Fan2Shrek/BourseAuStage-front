@@ -9,7 +9,6 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Create.module.scss";
-import { getCookie } from "../../../../utils/cookies";
 import tokens from "../../../../translations/tokens";
 import path from "../../../../path";
 import cn from "../../../../utils/classnames";
@@ -60,6 +59,7 @@ const Create = () => {
     const [activities, setActivities] = useState([]);
     const [skills, setSkills] = useState([]);
 
+    const [activitiesList, setActivitiesList] = useState([]);
     const [skillsList, setSkillsList] = useState([]);
 
     const [displayModal, setDisplayModal] = useState(false);
@@ -70,6 +70,12 @@ const Create = () => {
     useEffect(() => {
         apiClient.skill.getAll().then(response => {
             setSkillsList(response['hydra:member'].map((el) => ({ ...el, value: el.id })));
+        });
+    }, []);
+
+    useEffect(() => {
+        apiClient.activity.getAll().then(response => {
+            setActivitiesList(response['hydra:member'].map(({name, id}) => ({name, value: id})));
         });
     }, []);
 
@@ -92,7 +98,7 @@ const Create = () => {
 
     const handleSubmit = async () => {
         form.skills = JSON.stringify(skills.map(skill => skill.id));
-        form.activities = JSON.stringify(activities.map(activity => activity.id));
+        form.activities = JSON.stringify(activities.map(activity => activity.value));
 
         const response = await apiClient.offer.post(form);
 
@@ -105,11 +111,6 @@ const Create = () => {
         setErrors(response);
         setState(1);
     }
-
-    // @todo: avec kevin
-    // useEffect(() => {
-    //     apiClient.activities.get()
-    // }, []);
 
     const handleChange = (e) => {
         setForm({
@@ -281,12 +282,15 @@ const Create = () => {
             setDisplayModal={setDisplayModal}
         >
             <div className={styles.modalContent}>
-                {displayModal === 'activity' && activities.map((el) => <Button key={el.id} label={el.name} onClick={() => setActivities(activities.filter(p => p.id !== el.id))} />)}
+                {displayModal === 'activity' && <Select placeholder={t(tokens.page.createOffer.add.activity)} onChange={(e) => setCurrentSelection({ value: parseInt(e.target.value, 10) })} values={activitiesList.filter(s => !activities.includes(s))} />}
                 {displayModal === 'skill' && <Select placeholder={t(tokens.page.apply.addSkill)} onChange={(e) => setCurrentSelection({ value: parseInt(e.target.value, 10) })} values={skillsList.filter(s => !skills.includes(s))} />}
                 <Button className={styles.modalBtn} label={t(tokens.actions.add)} onClick={() => {
                     switch (displayModal) {
                         case 'skill':
                             setSkills([...skills, ...skillsList.filter(el => el.value === currentSelection.value)]);
+                            break;
+                        case 'activity':
+                            setActivities([...activities, ...activitiesList.filter(el => el.value === currentSelection.value)]);
                             break;
                         default:
                             break;
