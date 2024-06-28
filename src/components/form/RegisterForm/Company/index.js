@@ -101,7 +101,7 @@ const RegisterFormCompany = () => {
         const response = await apiClient.company.post(formData);
         
         if(response == ''){
-            navigate(path.login)
+            navigate(path.confirmation)
         }
 
         setErrors(response);

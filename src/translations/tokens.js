@@ -504,6 +504,19 @@ const tokens = {
                 },
             },
         },
+        createStudent : {
+            submit: "page.createStudent.submit",
+            password: "page.createStudent.password",
+            confirmPassword: "page.createStudent.confirmPassword",
+            wrongPassword: "page.createStudent.wrongPassword",
+            study: {
+                placeholder: "page.createStudent.study.placeholder"
+            }
+        },
+        confirmation: {
+            text: "page.confirmation.text",
+            btn: "page.confirmation.btn",
+        }
     },
     admin: {
         company: {
