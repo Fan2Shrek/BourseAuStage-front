@@ -24,6 +24,7 @@ import Banner from "../../../components/layout/Banner";
 import OfferCard from "../../../components/offer/OfferCard";
 import List from "../../../components/ui/atoms/List";
 import Loader from "../../../components/ui/atoms/Loader";
+import Map from "../../../components/ui/atoms/Map";
 
 const socialsLinks = {
     'linkedInLink': <CiLinkedin />,
@@ -202,9 +203,11 @@ const Company = () => {
                     <h2>{t(tokens.page.companyDetails.city)}</h2>
                     <div className={styles.city}>
                         <p className={styles.name}>{company.name}</p>
+                        {company.address && <p>{company.address}</p>}
+                        {company.additionalAddress && <p>{company.additionalAddress}</p>}
                         <p>{company.city}</p>
                         <div className={styles.map}>
-                            MAP
+                            {(company.address && company.city) && <Map address={`${company.address}, ${company.city} ${company.postCode ?? ''}`} markerText={company.name}/>}
                         </div>
                     </div>
                 </div>
