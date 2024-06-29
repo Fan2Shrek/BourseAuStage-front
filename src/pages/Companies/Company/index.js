@@ -16,6 +16,7 @@ import getPicturePath from "../../../utils/getPicturePath";
 import getDomainName from '../../../utils/getDomainName';
 import path from "../../../path";
 import tokens from "../../../translations/tokens";
+import cn from "../../../utils/classnames";
 import Error from "../../Error";
 import Container from '../../../components/ui/atoms/Container';
 import Button from '../../../components/ui/atoms/Button';
@@ -109,6 +110,12 @@ const Company = () => {
             })
     }, [company]);
 
+    const age = useMemo(() => {
+        return company?.age
+            ? Math.floor((new Date().getTime() - new Date(company.age).getTime()) / (1000 * 3600 * 24 * 365))
+            : 0
+    }, [company])
+
     if (!isFetching && (!company || company.deleted)) {
         return <Error code={404} />
     }
@@ -135,11 +142,19 @@ const Company = () => {
                         </div>
                     </div>}
 
-                    {company.age && <div className={styles.stats}>
+                    {company?.age && <div className={styles.stats}>
                         <IconBadge icon={<AiOutlineFire size={20} />} className={styles.icon} />
                         <div className={styles.content}>
                             <span>{t(tokens.page.companyDetails.age)}</span>
-                            <span className={styles.value}>{company.age}</span>
+                            <span className={styles.value}>
+                                {
+                                    age > 1
+                                        ? t(tokens.entities.company.age.string.plural, { age })
+                                        : age === 1
+                                            ? t(tokens.entities.company.age.string.singular)
+                                            : t(tokens.entities.company.age.string.less)
+                                }
+                            </span>
                         </div>
                     </div>}
 
@@ -155,7 +170,7 @@ const Company = () => {
                         <IconBadge icon={<FaRegMoneyBillAlt size={20} />} className={styles.icon} />
                         <div className={styles.content}>
                             <span>{t(tokens.page.companyDetails.turnover)}</span>
-                            <span className={styles.value}>{company.turnover} €</span>
+                            <span className={styles.value}>{company.turnover} M€</span>
                         </div>
                     </div>}
 
@@ -173,9 +188,7 @@ const Company = () => {
         <Container className={styles.pageContent}>
             <div className={styles.pageContentLeft}>
                 <h2>{t(tokens.page.companyDetails.presentation)}</h2>
-                <p>
-                    {company.presentation}
-                </p>
+                <div dangerouslySetInnerHTML={{ __html: company.presentation }}></div>
                 <h2>{t(tokens.page.companyDetails.socialsLinks)}</h2>
                 <div className={styles.socialsLinks}>
                     {Object.entries(socialsLinks).map(([name, icon], index) => {
@@ -188,7 +201,18 @@ const Company = () => {
                 </div>
                 {companyPictures && <div className={styles.pictures}>
                     {companyPictures.map((picture) => {
-                        return <img key={picture.id} src={getPicturePath(picture.path)} alt={t(tokens.page.companyDetails.images.alt, { company: company.name })} />
+                        return <img
+                            key={picture.id}
+                            src={getPicturePath(picture.path)}
+                            alt={t(tokens.page.companyDetails.images.alt, { company: company.name })}
+                            className={cn({
+                                [styles.first]: picture.position === 1,
+                                [styles.second]: picture.position === 2,
+                                [styles.third]: picture.position === 3,
+                                [styles.fourth]: picture.position === 4,
+                                [styles.fifth]: picture.position === 5,
+                            })}
+                        />
                     })}
                 </div>}
             </div>
@@ -207,7 +231,7 @@ const Company = () => {
                         {company.additionalAddress && <p>{company.additionalAddress}</p>}
                         <p>{company.city}</p>
                         <div className={styles.map}>
-                            {(company.address && company.city) && <Map address={`${company.address}, ${company.city} ${company.postCode ?? ''}`} markerText={company.name}/>}
+                            {(company.address && company.city) && <Map address={`${company.address}, ${company.city} ${company.postCode ?? ''}`} markerText={company.name} />}
                         </div>
                     </div>
                 </div>

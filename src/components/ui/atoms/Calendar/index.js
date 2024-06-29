@@ -6,12 +6,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 import 'dayjs/locale/fr';
 
+import cn from '../../../../utils/classnames';
+
 const Calendar = ({
   label = null,
   id,
   required = false,
   value = null,
   name = '',
+  errored = false,
   onChange = () => {},
   ...props
 }) => {
@@ -34,6 +37,9 @@ const Calendar = ({
           defaultValue={value}
           onChange={onChange}
           name={name}
+          className={cn({
+            'calendar__error': errored
+          })}
           {...props}
         />
       </LocalizationProvider>

@@ -32,7 +32,7 @@ const Sidebar = () => {
     const links = useMemo(() => [
         ...(user?.roles?.includes(UserRoleEnum.COLLABORATOR)
             ? [
-                { icon: <BsBuildings className={styles.icon} />, name: t(tokens.sidebar.links.myCompany), url: '#' },
+                { icon: <BsBuildings className={styles.icon} />, name: t(tokens.sidebar.links.myCompany), url: path.admin.companyProfil },
                 { icon: <IoPeopleOutline className={styles.icon} />, name: t(tokens.sidebar.links.requests), url: '#' },
                 { icon: <IoNewspaperOutline className={styles.icon} />, name: t(tokens.sidebar.links.offers), url: path.admin.offers },
             ]
@@ -65,7 +65,7 @@ const Sidebar = () => {
             <img
                 alt={user.firstName}
                 src={user.avatar
-                    ? getPicturePath(`img/user/${user.avatar}`)
+                    ? getPicturePath(`${user.avatar}`)
                     : '/images/avatar.png'
                 }
                 className={styles.avatar}

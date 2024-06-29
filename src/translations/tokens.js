@@ -4,7 +4,40 @@ const tokens = {
             jobTitle: "entities.collaborator.jobTitle",
         },
         company: {
-            name: "entities.company.name"
+            name: "entities.company.name",
+            legalStatus: "entities.company.legalStatus",
+            siretNumber: "entities.company.siretNumber",
+            socialLink: "entities.company.socialLink",
+            city: "entities.company.city",
+            postCode: "entities.company.postCode",
+            address: "entities.company.address",
+            phone: "entities.company.phone",
+            age: {
+                label: "entities.company.age.label",
+                string: {
+                    singular: "entities.company.age.string.singular",
+                    plural: "entities.company.age.string.plural",
+                    less: "entities.company.age.string.less",
+                },
+            },
+            effective: "entities.company.effective",
+            turnover: "entities.company.turnover",
+            presentation: "entities.company.presentation",
+            openingTime: "entities.company.openingTime",
+            twitterLink: "entities.company.twitterLink",
+            linkedinLink: "entities.company.linkedinLink",
+            facebookLink: "entities.company.facebookLink",
+            instagramLink: "entities.company.instagramLink",
+            logo: "entities.company.logo",
+            logoIcon: "entities.company.logoIcon",
+            category: "entities.company.category",
+            additionalAddress: "entities.company.additionalAddress",
+            activities: "entities.company.activities",
+            firstImage: "entities.company.firstImage",
+            secondImage: "entities.company.secondImage",
+            thirdImage: "entities.company.thirdImage",
+            fourthImage: "entities.company.fourthImage",
+            fifthImage: "entities.company.fifthImage",
         },
         offer: {
             name: "entities.offer.name",
@@ -510,7 +543,7 @@ const tokens = {
                 },
             },
         },
-        createStudent : {
+        createStudent: {
             submit: "page.createStudent.submit",
             password: "page.createStudent.password",
             confirmPassword: "page.createStudent.confirmPassword",
@@ -528,6 +561,14 @@ const tokens = {
         company: {
             actions: {
                 addOffer: "admin.company.actions.addOffer",
+            },
+        },
+    },
+    form: {
+        company: {
+            submit: "form.company.submit",
+            notifications: {
+                success: "form.company.notifications.success",
             },
         },
     },

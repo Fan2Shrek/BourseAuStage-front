@@ -51,7 +51,7 @@ const CompanyCard = ({ company, className }) => {
         </div>}
         <div className={styles.mainInfos}>
             <h3>{company.name}</h3>
-            <p className={styles.presentation}>{company.presentation}</p>
+            <div className={styles.presentation} dangerouslySetInnerHTML={{ __html: company.presentation }}></div>
         </div>
         {company.activities.length > 0 && <div className={styles.activityList}>
             <List
