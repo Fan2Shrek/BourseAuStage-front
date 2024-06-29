@@ -12,6 +12,7 @@ import Apply from "./pages/Offers/Apply"
 import Companies from "./pages/Companies"
 import Company from "./pages/Companies/Company"
 import Profil from "./pages/admin/Profil"
+import CompanyProfil from "./pages/admin/CompanyProfil"
 import Offers from "./pages/Offers"
 import RegisterCompany from "./pages/Register/Company"
 import RegisterStudent from "./pages/Register/Student"
@@ -32,6 +33,7 @@ function App() {
                         <Route path={'/admin'} element={<MySpaceLayout />}>
                             <Route index element={<Navigate to={path.admin.profil} replace />} />
                             <Route path={path.admin.profil} element={<Profil />} />
+                            <Route path={path.admin.companyProfil} element={<CompanyProfil />} />
                             <Route path={path.admin.offers} element={<AdminOffers />} />
                             <Route path={path.admin.createOffer} element={<Create />} />
                         </Route>

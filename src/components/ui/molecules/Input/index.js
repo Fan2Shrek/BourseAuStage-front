@@ -97,7 +97,10 @@ const Input = ({
         </label>}
         <div className='input__wrapper'>
             <input
-                className={cn('input__target', errored ? 'input__error' : '')}
+                className={cn(
+                    'input__target',
+                    { 'input__error': errored }
+                )}
                 type={dynamicType}
                 id={id}
                 name={name}
@@ -117,6 +120,7 @@ const Input = ({
         </div>
         {type === 'file' && <>
             <Button
+                type="button"
                 label={placeholder ?? ''}
                 icon={!withoutIcon && <FiPaperclip />}
                 inverted

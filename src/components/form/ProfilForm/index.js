@@ -286,7 +286,7 @@ const ProfilForm = ({ isApplyment = false, isCreation = false }) => {
                 <img
                     alt={user?.firstName}
                     src={user?.avatar
-                        ? getPicturePath(`img/user/${user?.avatar}`)
+                        ? getPicturePath(`${user?.avatar}`)
                         : '/images/avatar.png'
                     }
                     className={styles.avatar}
