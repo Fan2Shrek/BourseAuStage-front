@@ -16,6 +16,7 @@ import getPicturePath from "../../../utils/getPicturePath";
 import getDomainName from '../../../utils/getDomainName';
 import path from "../../../path";
 import tokens from "../../../translations/tokens";
+import cn from "../../../utils/classnames";
 import Error from "../../Error";
 import Container from '../../../components/ui/atoms/Container';
 import Button from '../../../components/ui/atoms/Button';
@@ -200,7 +201,18 @@ const Company = () => {
                 </div>
                 {companyPictures && <div className={styles.pictures}>
                     {companyPictures.map((picture) => {
-                        return <img key={picture.id} src={getPicturePath(picture.path)} alt={t(tokens.page.companyDetails.images.alt, { company: company.name })} />
+                        return <img
+                            key={picture.id}
+                            src={getPicturePath(picture.path)}
+                            alt={t(tokens.page.companyDetails.images.alt, { company: company.name })}
+                            className={cn({
+                                [styles.first]: picture.position === 1,
+                                [styles.second]: picture.position === 2,
+                                [styles.third]: picture.position === 3,
+                                [styles.fourth]: picture.position === 4,
+                                [styles.fifth]: picture.position === 5,
+                            })}
+                        />
                     })}
                 </div>}
             </div>

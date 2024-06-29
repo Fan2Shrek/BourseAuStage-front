@@ -16,7 +16,7 @@ class Company {
     }
 
     async getPictures(id) {
-        return this.apiClient.get(`/companies/${id}/pictures`);
+        return this.apiClient.get(`/companies/${id}/pictures?order[position]=asc`);
     }
 
     async getHighlight() {

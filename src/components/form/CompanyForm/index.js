@@ -29,6 +29,7 @@ const CompanyForm = () => {
     const [categories, setCategories] = useState([]);
     const [activitiesList, setActivitiesList] = useState([]);
     const [activities, setActivities] = useState([]);
+    const [companyPictures, setCompanyPictures] = useState([]);
 
     const [reload, setReload] = useState(true);
     const [displayModal, setDisplayModal] = useState(false);
@@ -50,6 +51,15 @@ const CompanyForm = () => {
 
                     setCompany(response)
                     setActivities(response.activities.map(({ name, id }) => ({ name, value: id })))
+                })
+
+            apiClient.company.getPictures(user.company.id)
+                .then(response => {
+                    if (response.status === 404) {
+                        return;
+                    }
+
+                    setCompanyPictures(response['hydra:member'] ?? []);
                 })
         }
     }, [user, reload])
@@ -122,6 +132,16 @@ const CompanyForm = () => {
     const activitiesAvailable = useMemo(() => {
         return activitiesList.filter(({ value }) => !activities.some(activity => activity.value === value))
     }, [activities, activitiesList])
+
+    const [firstImage, secondImage, thirdImage, fourthImage, fifthImage] = useMemo(() => {
+        return [
+            companyPictures.find(picture => picture.position === 1),
+            companyPictures.find(picture => picture.position === 2),
+            companyPictures.find(picture => picture.position === 3),
+            companyPictures.find(picture => picture.position === 4),
+            companyPictures.find(picture => picture.position === 5),
+        ]
+    }, [companyPictures])
 
     if (isFetching || !company) {
         return <div className={styles.load}>
@@ -344,9 +364,9 @@ const CompanyForm = () => {
                     ? <img
                         alt={`${t(tokens.entities.company.logo)} ${company.name}`}
                         src={getPicturePath(company.logo)}
-                        className={styles.preview}
+                        className={cn(styles.preview, styles.logo)}
                     />
-                    : <div className={styles.preview} />
+                    : <div className={cn(styles.preview, styles.logo)} />
                 }
                 <Input
                     name='logo'
@@ -364,9 +384,9 @@ const CompanyForm = () => {
                     ? <img
                         alt={`${t(tokens.entities.company.logoIcon)} ${company.name}`}
                         src={getPicturePath(company.logoIcon)}
-                        className={styles.preview}
+                        className={cn(styles.preview, styles.logo)}
                     />
-                    : <div className={styles.preview} />
+                    : <div className={cn(styles.preview, styles.logo)} />
                 }
                 <Input
                     name='logoIcon'
@@ -377,46 +397,96 @@ const CompanyForm = () => {
                     className={styles.r1}
                 />
             </div>
-            <Input
-                name='firstImage'
-                type="file"
-                placeholder={t(tokens.entities.company.firstImage)}
-                errored={errors.firstImage || false}
-                onChange={(e) => setForm({ ...form, firstImage: e.target.files[0] })}
-                className={styles.r3}
-            />
-            <Input
-                name='secondImage'
-                type="file"
-                placeholder={t(tokens.entities.company.secondImage)}
-                errored={errors.secondImage || false}
-                onChange={(e) => setForm({ ...form, secondImage: e.target.files[0] })}
-                className={styles.r3}
-            />
-            <Input
-                name='thirdImage'
-                type="file"
-                placeholder={t(tokens.entities.company.thirdImage)}
-                errored={errors.thirdImage || false}
-                onChange={(e) => setForm({ ...form, thirdImage: e.target.files[0] })}
-                className={styles.r3}
-            />
-            <Input
-                name='fourthImage'
-                type="file"
-                placeholder={t(tokens.entities.company.fourthImage)}
-                errored={errors.fourthImage || false}
-                onChange={(e) => setForm({ ...form, fourthImage: e.target.files[0] })}
-                className={styles.r3}
-            />
-            <Input
-                name='fifthImage'
-                type="file"
-                placeholder={t(tokens.entities.company.fifthImage)}
-                errored={errors.fifthImage || false}
-                onChange={(e) => setForm({ ...form, fifthImage: e.target.files[0] })}
-                className={styles.r3}
-            />
+            <div className={cn(styles.r3, styles.fileBlock)}>
+                {firstImage
+                    ? <img
+                        alt={`${t(tokens.entities.company.firstImage)} ${company.name}`}
+                        src={getPicturePath(firstImage.path)}
+                        className={styles.preview}
+                    />
+                    : <div className={styles.preview} />
+                }
+                <Input
+                    name='firstImage'
+                    type="file"
+                    placeholder={t(tokens.entities.company.firstImage)}
+                    errored={errors.firstImage || false}
+                    onChange={(e) => setForm({ ...form, firstImage: e.target.files[0] })}
+                    className={styles.r1}
+                />
+            </div>
+            <div className={cn(styles.r3, styles.fileBlock)}>
+                {secondImage
+                    ? <img
+                        alt={`${t(tokens.entities.company.secondImage)} ${company.name}`}
+                        src={getPicturePath(secondImage.path)}
+                        className={styles.preview}
+                    />
+                    : <div className={styles.preview} />
+                }
+                <Input
+                    name='secondImage'
+                    type="file"
+                    placeholder={t(tokens.entities.company.secondImage)}
+                    errored={errors.secondImage || false}
+                    onChange={(e) => setForm({ ...form, secondImage: e.target.files[0] })}
+                    className={styles.r1}
+                />
+            </div>
+            <div className={cn(styles.r3, styles.fileBlock)}>
+                {thirdImage
+                    ? <img
+                        alt={`${t(tokens.entities.company.thirdImage)} ${company.name}`}
+                        src={getPicturePath(thirdImage.path)}
+                        className={styles.preview}
+                    />
+                    : <div className={styles.preview} />
+                }
+                <Input
+                    name='thirdImage'
+                    type="file"
+                    placeholder={t(tokens.entities.company.thirdImage)}
+                    errored={errors.thirdImage || false}
+                    onChange={(e) => setForm({ ...form, thirdImage: e.target.files[0] })}
+                    className={styles.r1}
+                />
+            </div>
+            <div className={cn(styles.r3, styles.fileBlock)}>
+                {fourthImage
+                    ? <img
+                        alt={`${t(tokens.entities.company.fourthImage)} ${company.name}`}
+                        src={getPicturePath(fourthImage.path)}
+                        className={styles.preview}
+                    />
+                    : <div className={styles.preview} />
+                }
+                <Input
+                    name='fourthImage'
+                    type="file"
+                    placeholder={t(tokens.entities.company.fourthImage)}
+                    errored={errors.fourthImage || false}
+                    onChange={(e) => setForm({ ...form, fourthImage: e.target.files[0] })}
+                    className={styles.r1}
+                />
+            </div>
+            <div className={cn(styles.r3, styles.fileBlock)}>
+                {fifthImage
+                    ? <img
+                        alt={`${t(tokens.entities.company.fifthImage)} ${company.name}`}
+                        src={getPicturePath(fifthImage.path)}
+                        className={styles.preview}
+                    />
+                    : <div className={styles.preview} />
+                }
+                <Input
+                    name='fifthImage'
+                    type="file"
+                    placeholder={t(tokens.entities.company.fifthImage)}
+                    errored={errors.fifthImage || false}
+                    onChange={(e) => setForm({ ...form, fifthImage: e.target.files[0] })}
+                    className={styles.r1}
+                />
+            </div>
             <Button
                 type='submit'
                 label={t(tokens.form.company.submit)}

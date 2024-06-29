@@ -46,8 +46,12 @@
         gap: 10px;
 
         .preview {
-            height: 50px;
+            height: 100px;
             width: fit-content;
+
+            &.logo {
+                height: 50px
+            }
         }
     }
 
