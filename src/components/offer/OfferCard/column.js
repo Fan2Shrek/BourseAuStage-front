@@ -20,17 +20,15 @@ const ColumnCard = ({
 }) => {
     return <Card className={cn(styles.card, styles.column, className)}>
         {withHeader && <>
-            {offer.company.logoIcon && 
-                <div className={styles.logo}>
-                    <img
-                        alt='logo'
-                        src={offer.company.logoIcon
-                            ? getPicturePath(offer.company.logoIcon)
-                            : '/images/company.png'
-                        }
-                    />
-                </div>
-            }
+            <div className={styles.logo}>
+                <img
+                    alt='logo'
+                    src={offer.company.logoIcon
+                        ? getPicturePath(offer.company.logoIcon)
+                        : '/images/company.png'
+                    }
+                />
+            </div>
             <div className={styles.type}>
                 <Tag
                     label={t(tokens.card.offer[offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY])}
@@ -51,7 +49,7 @@ const ColumnCard = ({
                 end: (new Date(offer.end)).toLocaleDateString(),
                 interpolation: { escapeValue: false }
             })}</p>}
-            {withDescription && <p className={styles.description}>{offer.description}</p>}
+            {withDescription && <div className={styles.description} dangerouslySetInnerHTML={{ __html: offer.description }}></div>}
         </div>
         {withActivities && offer.activities.length > 0 && <div className={styles.activityList}>
             <List
