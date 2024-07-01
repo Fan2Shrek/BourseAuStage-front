@@ -1,59 +1,99 @@
-import { useContext, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { FaRegMoon } from "react-icons/fa";
-import { FaRegSun } from "react-icons/fa";
+import { useCallback, useContext, useMemo, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { FaRegMoon, FaRegSun } from "react-icons/fa"
+import { PiStudent, PiBuildingOffice } from "react-icons/pi"
 
-import styles from './Navbar.module.scss';
-import path from '../../../path';
-import { ThemeContext } from '../../../context/ThemeContext';
-import ThemeEnum from '../../../enum/ThemeEnum';
-import Button from '../../ui/atoms/Button';
-import List from '../../ui/atoms/List';
+import styles from './Navbar.module.scss'
+import path from '../../../path'
+import tokens from '../../../translations/tokens'
+import apiClient from '../../../api/ApiClient'
+import { eraseCookie } from '../../../utils/cookies'
+import { UserContext } from '../../../context/UserContext'
+import { ThemeContext } from '../../../context/ThemeContext'
+import ThemeEnum from '../../../enum/ThemeEnum'
+import Button from '../../ui/atoms/Button'
+import List from '../../ui/atoms/List'
 import cn from '../../../utils/classnames'
-import Container from '../../ui/atoms/Container';
-import tokens from '../../../translations/tokens';
-import Dropdown from '../../ui/atoms/Dropdown';
+import Container from '../../ui/atoms/Container'
+import Dropdown from '../../ui/atoms/Dropdown'
+import Modal from '../../ui/atoms/Modal'
 
 const isCurrentPage = (currentPage, route) => {
     if (route === '/') {
-        return currentPage === route;
+        return currentPage === route
     }
 
     if (Array.isArray(route)) {
         return route.some(r => r.type === 'dropdown'
             ? isCurrentPage(currentPage, r.links)
             : currentPage.startsWith(r.url.split('/:')[0])
-        );
+        )
     }
 
-    return currentPage.startsWith(route.split('/:')[0]);
+    return currentPage.startsWith(route.split('/:')[0])
 }
 
 const Navbar = () => {
-    const { theme, handleTheme } = useContext(ThemeContext);
-    const isLight = theme === ThemeEnum.LIGHT;
-    const currentRoute = useLocation().pathname;
-    const { t } = useTranslation();
+    const [displayModal, setDisplayModal] = useState(false)
+    const { theme, handleTheme } = useContext(ThemeContext)
+    const { user, setUser } = useContext(UserContext)
+    const isLight = theme === ThemeEnum.LIGHT
+    const currentRoute = useLocation().pathname
+    const { t } = useTranslation()
 
     const links = useMemo(() => [
-        { name: t(tokens.navbar['home']), type: 'classic', url: path.home },
+        { name: t(tokens.navbar.links.home), type: 'classic', url: path.home },
         {
-            name: t(tokens.navbar['offers']),
+            name: t(tokens.navbar.links.offers),
             type: 'dropdown',
             links: [
-                { name: t(tokens.navbar['internship']), type: 'classic', url: path.internship },
-                { name: t(tokens.navbar['workStudy']), type: 'classic', url: path.workStudy },
+                { name: t(tokens.navbar.links.internship), type: 'classic', url: path.internship },
+                { name: t(tokens.navbar.links.workStudy), type: 'classic', url: path.workStudy },
             ]
         },
-        { name: t(tokens.navbar['requests']), type: 'classic', url: '#' },
-        { name: t(tokens.navbar['companies']), type: 'classic', url: path.companies },
-        { name: t(tokens.navbar['students']), type: 'classic', url: '#' },
-        { name: t(tokens.navbar['UI']), type: 'classic', url: path.uiExample },
+        { name: t(tokens.navbar.links.requests), type: 'classic', url: '#' },
+        { name: t(tokens.navbar.links.companies), type: 'classic', url: path.companies },
+        { name: t(tokens.navbar.links.students), type: 'classic', url: '#' },
     ], [t])
+
+    const handleLogBtn = useCallback(() => {
+        if (user) {
+            setUser(null)
+            eraseCookie('token')
+            apiClient.token = null
+        }
+    }, [user, setUser])
 
     return <Container inline className={styles.navbarBackground}>
         <Container className={styles.navbar}>
+            <Modal
+                title={t(tokens.navbar.modal.title)}
+                active={displayModal}
+                setDisplayModal={setDisplayModal}
+            >
+                <div className={styles.modal}>
+                    <Button
+                        key={t(tokens.navbar.modal.student)}
+                        label={t(tokens.navbar.modal.student)}
+                        inverted
+                        transparent
+                        onClick={() => setDisplayModal(false)}
+                        icon={<PiStudent size={35} />}
+                        redirectTo={path.studentRegistration}
+                    />
+                    <Button
+                        key={t(tokens.navbar.modal.company)}
+                        label={t(tokens.navbar.modal.company)}
+                        inverted
+                        transparent
+                        onClick={() => setDisplayModal(false)}
+                        icon={<PiBuildingOffice size={35} />}
+                        redirectTo={path.companyRegistration}
+                    />
+                </div>
+            </Modal>
+
             <div className={styles.left}>
                 <Link to={path.home} className={styles.logo}>
                     <img
@@ -103,9 +143,20 @@ const Navbar = () => {
 
 
             <div className={styles.login}>
-                <Link to='/'><Button label={t(tokens.actions.login)} withoutBorder transparent inverted /></Link>
+                <Button
+                    label={t(tokens.actions[user ? 'logout' : 'login'])}
+                    withoutBorder
+                    transparent
+                    inverted
+                    onClick={handleLogBtn}
+                    redirectTo={user ? path.home : path.login}
+                />
                 <div className={styles.divider} />
-                <Link to='/'><Button label={t(tokens.actions.createAccount)} /></Link>
+                <Button
+                    label={t(tokens.actions[user ? 'myAccount' : 'createAccount'])}
+                    {...(!user && { onClick: () => setDisplayModal(true) })}
+                    {...(user && { redirectTo: path.admin.profil })}
+                />
             </div>
 
             {/* TEMPORAIRE (en attente d'un vrai switch) */}
@@ -116,4 +167,4 @@ const Navbar = () => {
     </Container>
 }
 
-export default Navbar;
+export default Navbar

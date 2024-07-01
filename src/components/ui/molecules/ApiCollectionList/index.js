@@ -9,15 +9,12 @@ import tokens from '../../../../translations/tokens'
 import List from '../../atoms/List'
 import Pagination from '../../atoms/Pagination'
 import Facets from '../Facets'
-import Sortings from '../Sortings'
+import DataParameters from '../DataParameters'
 import FacetOptionEnum from '../../../../enum/FacetOptionEnum'
 import Loader from '../../atoms/Loader'
 
-const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = '', facets = {}, options = []) => {
-    const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
-    const query = `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}${defaultFiltersQuery}${sort}`
-
-    const facetsQuery = (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
+const buildFacetsQuery = (facets, options, t) => {
+    return (Object.entries(facets) ?? []).reduce((acc, [facet, values]) => {
         if (
             !values
             || values.length === 0
@@ -31,42 +28,44 @@ const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = ''
             return acc
         }
 
-        if (options[facet] && options[facet].includes(FacetOptionEnum.BETWEEN)) {
-            const [min, max] = values.reduce((acc, value) => {
-                const [min, max] = value.split('-')
+        if (options[facet] && (
+            options[facet].includes(FacetOptionEnum.DURATION)
+            || options[facet].includes(FacetOptionEnum.BETWEEN)
+        )) {
+            let baseQuery = ''
 
-                if (acc[0] === null) {
-                    acc[0] = parseInt(min, 10)
-                }
-
-                if (min < acc[0]) {
-                    acc[0] = parseInt(min, 10)
-                }
-
-                if (max) {
-                    if (acc[1] === null) {
-                        acc[1] = parseInt(max, 10)
-                    }
-
-                    if (max > acc[1]) {
-                        acc[1] = parseInt(max, 10)
-                    }
-                }
-
-                return acc
-            }, [null, null])
-
-            if (!max) {
-                return `${acc}&${encodeURI(facet)}[gt]=${min}`
+            if (options[facet].includes(FacetOptionEnum.DURATION)) {
+                baseQuery = `&${FacetOptionEnum.DURATION}[${encodeURI(facet)}][bt]`
+            } else if (options[facet].includes(FacetOptionEnum.BETWEEN)) {
+                baseQuery = `&${FacetOptionEnum.BETWEEN}[${encodeURI(facet)}]`
             }
 
-            return `${acc}&${encodeURI(facet)}[gt]=${min}&${encodeURI(facet)}[lt]=${max}`
-        } else {
-            return `${acc}${values.reduce((acc, value) => `${acc}&${encodeURI(facet)}[]=${encodeURI(value)}`, '')}`
-        }
-    }, '')
+            return values.reduce((acc, value) => {
+                if (Array.isArray(value)) {
+                    return `${acc}${baseQuery}[]=${encodeURI(value[0])},${encodeURI(value[1])}`
+                }
 
-    return `${query}${facetsQuery}`
+                if (value.startsWith('<')) {
+                    return `${acc}${baseQuery}[lt]=${value.slice(1)}`
+                }
+
+                if (value.startsWith('>')) {
+                    return `${acc}${baseQuery}[gt]=${value.slice(1)}`
+                }
+
+                return ''
+            }, '')
+        }
+
+        return `${acc}${values.reduce((acc, value) => `${acc}&${encodeURI(facet)}[]=${encodeURI(value)}`, '')}`
+    }, '')
+}
+
+const buildQuery = (url, currentPage, itemsPerPage, t, defaultFilters, sort = '', facets = {}, options = []) => {
+    const defaultFiltersQuery = defaultFilters ? defaultFilters.join('') : ''
+    const facetsQuery = buildFacetsQuery(facets, options, t)
+
+    return `${url}?page=${currentPage}&itemsPerPage=${itemsPerPage}${defaultFiltersQuery}${sort}${facetsQuery}`
 }
 
 const getTotalPageFromHydraView = hydraView => {
@@ -183,11 +182,11 @@ const ApiCollectionList = ({
 
                 {loader && <Loader />}
 
-                {sortings && <Sortings
+                {sortings && <DataParameters
                     label={t(tokens.apiCollectionList.sorting.label)}
-                    sortings={sortings}
-                    setSelectedSort={setSelectedSort}
-                    defaultSort={defaultSort}
+                    parameters={sortings}
+                    setSelectedParameter={setSelectedSort}
+                    defaultParameter={defaultSort}
                 />}
             </div>
 

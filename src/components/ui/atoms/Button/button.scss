@@ -9,6 +9,10 @@
     color: var(--button-text-color);
     font-size: var(--text-size);
     padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
     &:hover {
         background-color: var(--button-color);
@@ -50,9 +54,6 @@
     }
 
     &.withIcon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         gap: 10px;
         padding: 12px 20px;
     }

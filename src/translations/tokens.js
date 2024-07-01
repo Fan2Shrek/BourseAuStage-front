@@ -1,19 +1,89 @@
 const tokens = {
     entities: {
+        collaborator: {
+            jobTitle: "entities.collaborator.jobTitle",
+        },
         company: {
-            name: "entities.company.name"
+            name: "entities.company.name",
+            legalStatus: "entities.company.legalStatus",
+            siretNumber: "entities.company.siretNumber",
+            socialLink: "entities.company.socialLink",
+            city: "entities.company.city",
+            postCode: "entities.company.postCode",
+            address: "entities.company.address",
+            phone: "entities.company.phone",
+            age: {
+                label: "entities.company.age.label",
+                string: {
+                    singular: "entities.company.age.string.singular",
+                    plural: "entities.company.age.string.plural",
+                    less: "entities.company.age.string.less",
+                },
+            },
+            effective: "entities.company.effective",
+            turnover: "entities.company.turnover",
+            presentation: "entities.company.presentation",
+            openingTime: "entities.company.openingTime",
+            twitterLink: "entities.company.twitterLink",
+            linkedinLink: "entities.company.linkedinLink",
+            facebookLink: "entities.company.facebookLink",
+            instagramLink: "entities.company.instagramLink",
+            logo: "entities.company.logo",
+            logoIcon: "entities.company.logoIcon",
+            category: "entities.company.category",
+            additionalAddress: "entities.company.additionalAddress",
+            activities: "entities.company.activities",
+            firstImage: "entities.company.firstImage",
+            secondImage: "entities.company.secondImage",
+            thirdImage: "entities.company.thirdImage",
+            fourthImage: "entities.company.fourthImage",
+            fifthImage: "entities.company.fifthImage",
         },
         offer: {
             name: "entities.offer.name",
-            createdAt: "entities.offer.createdAt",
+            createdAt: {
+                first: "entities.offer.createdAt.first",
+                second: "entities.offer.createdAt.second",
+            },
             availableAt: "entities.offer.availableAt",
-        }
+            deletedAt: "entities.offer.deletedAt",
+            isInternship: "entities.offer.isInternship",
+        },
+    },
+    roles: {
+        collaborator: {
+            feminine: "roles.collaborator.feminine",
+            masculine: "roles.collaborator.masculine",
+        },
+        student: {
+            feminine: "roles.student.feminine",
+            masculine: "roles.student.masculine",
+        },
+        admin: {
+            feminine: "roles.admin.feminine",
+            masculine: "roles.admin.masculine",
+        },
+        sponsor: "roles.sponsor",
     },
     apiCollectionList: {
-        title: "apiCollection.title",
+        title: "apiCollectionList.title",
         sorting: {
-            label: "apiCollection.sorting.label",
+            label: "apiCollectionList.sorting.label",
         },
+    },
+    apiCollectionTable: {
+        title: "apiCollectionTable.title",
+        filter: {
+            label: "apiCollectionTable.filter.label",
+        },
+        itemsPerPage: {
+            label: "apiCollectionTable.itemsPerPage.label",
+        },
+    },
+    sexes: {
+        man: "sexes.man",
+        woman: "sexes.woman",
+        nonBinary: "sexes.nonBinary"
     },
     card: {
         company: {
@@ -38,6 +108,7 @@ const tokens = {
                 button: {
                     main: "card.offer.cta.button.main",
                     more: "card.offer.cta.button.more",
+                    back: "card.offer.cta.button.back",
                 },
                 progress: {
                     singular: "card.offer.progress.singular",
@@ -86,6 +157,9 @@ const tokens = {
             betweenAndMore: "facets.options.betweenAndMore",
         }
     },
+    filters: {
+        all: "filters.all",
+    },
     input: {
         file: {
             infos: "input.file.infos",
@@ -93,20 +167,29 @@ const tokens = {
     },
     actions: {
         login: "actions.login",
+        myAccount: "actions.myAccount",
         createAccount: "actions.createAccount",
         logout: "actions.logout",
         back: "actions.back",
         add: "actions.add",
+        update: "actions.update",
     },
     navbar: {
-        home: "navbar.home",
-        offers: "navbar.offers",
-        requests: "navbar.requests",
-        companies: "navbar.companies",
-        students: "navbar.students",
-        internship: "navbar.internship",
-        workStudy: "navbar.workStudy",
-        UI: "navbar.UI"
+        modal: {
+            title: "navbar.modal.title",
+            student: "navbar.modal.student",
+            company: "navbar.modal.company",
+        },
+        links: {
+            home: "navbar.links.home",
+            offers: "navbar.links.offers",
+            requests: "navbar.links.requests",
+            companies: "navbar.links.companies",
+            students: "navbar.links.students",
+            internship: "navbar.links.internship",
+            workStudy: "navbar.links.workStudy",
+            UI: "navbar.links.UI",
+        },
     },
     footer: {
         description: "footer.description",
@@ -128,6 +211,15 @@ const tokens = {
             submit: "footer.register.submit",
         },
         copyright: "footer.copyright",
+    },
+    sidebar: {
+        title: "sidebar.admin.title",
+        links: {
+            myCompany: "sidebar.links.myCompany",
+            requests: "sidebar.links.requests",
+            offers: "sidebar.links.offers",
+            parameters: "sidebar.links.parameters",
+        }
     },
     page: {
         home: {
@@ -158,6 +250,65 @@ const tokens = {
                 title: "page.home.lastRequests.title",
                 cta: "page.home.lastRequests.cta",
                 studentLine: "page.home.lastRequests.studentLine",
+            },
+        },
+        login: {
+            hero: {
+                title: {
+                    first: "page.login.hero.title.first",
+                    underlined: "page.login.hero.title.underlined",
+                },
+            },
+            form: {
+                email: "page.login.form.email",
+                password: "page.login.form.password",
+                submit: "page.login.form.submit",
+            },
+            notifications: {
+                error: "page.login.notification.error",
+                inactive: "page.login.notification.inactive",
+            },
+        },
+        register: {
+            titleCompany: "page.register.titleCompany",
+            title: {
+                collaborator: "page.register.form.collaborator",
+                company: "page.register.form.company"
+            },
+            form: {
+                gender: "page.register.form.gender",
+                genderPlaceholder: "page.register.form.genderPlaceholder",
+                lastname: "page.register.form.lastname",
+                firstname: "page.register.form.firstname",
+                jobTitle: "page.register.form.jobTitle",
+                email: "page.register.form.email",
+                confirmEmail: "page.register.form.confirmEmail",
+                password: "page.register.form.password",
+                confirmPassword: "page.register.form.confirmPassword",
+                phone: "page.register.form.phone",
+                name: "page.register.form.name",
+                siretNumber: "page.register.form.siretNumber",
+                activities: "page.register.form.activities",
+                activitiesPlaceholder: "page.register.form.activitiesPlaceholder",
+                category: "page.register.form.category",
+                categoryPlaceholder: "page.register.form.categoryPlaceholder",
+                address: "page.register.form.address",
+                additionalAddress: "page.register.form.additionalAddress",
+                city: "page.register.form.city",
+                postCode: "page.register.form.postcode",
+                phoneCompany: "page.register.form.phoneCompany",
+                submit: "page.register.form.submit",
+                requiredFields: "page.register.form.requiredField",
+                emailError: "page.register.form.emailError",
+                passwordError: "page.register.form.passwordError",
+            },
+            modal: {
+                title: "page.register.modal.title",
+            },
+        },
+        profil: {
+            notifications: {
+                success: "page.profil.notifications.success",
             },
         },
         companyDetails: {
@@ -228,6 +379,11 @@ const tokens = {
             documentsDescription: "page.apply.documentsDescription",
             experiences: "page.apply.experiences",
             experiencesDescription: "page.apply.experiencesDescription",
+            add: {
+                skill: "page.apply.add.skill",
+                language: "page.apply.add.language",
+                experience: "page.apply.add.experience",
+            },
             cvField: {
                 label: "page.apply.cvField.title",
                 placeholder: "page.apply.cvField.label",
@@ -242,8 +398,17 @@ const tokens = {
                 label: "page.apply.otherField.label",
                 placeholder: "page.apply.otherField.placeholder",
             },
+            errors: {
+                emailsNotMatch: "page.apply.errors.emailsNotMatch",
+            },
             otherRequirements: "page.apply.otherRequirements",
             motivations: "page.apply.motivations",
+            addSkill: "page.apply.addSkill",
+            notStudent: "page.apply.notStudent",
+            notifications: {
+                success: "page.apply.notifications.success",
+                error: "page.apply.notifications.error",
+            },
         },
         offerDetails: {
             presentationInternShip: "page.offerDetails.presentationInternShip",
@@ -290,9 +455,126 @@ const tokens = {
                 },
             },
         },
+        createOffer: {
+            title: "page.createOffer.title",
+            states: {
+                1: {
+                    name: "page.createOffer.states.1.name",
+                },
+                2: {
+                    name: "page.createOffer.states.2.name",
+                },
+                3: {
+                    name: "page.createOffer.states.3.name",
+                },
+            },
+            step: "page.createOffer.step",
+            name: {
+                title: "page.createOffer.name.title",
+                description: "page.createOffer.name.description",
+                placeholder: "page.createOffer.name.placeholder",
+                formInfo: "page.createOffer.name.formInfo",
+            },
+            type: {
+                title: "page.createOffer.type.title",
+                internship: "page.createOffer.type.internship",
+                workStudy: "page.createOffer.type.workStudy",
+            },
+            remuneration: {
+                title: "page.createOffer.remuneration.title",
+                placeholder: "page.createOffer.remuneration.placeholder",
+                formInfo: "page.createOffer.remuneration.formInfo",
+            },
+            searchSkills: {
+                title: "page.createOffer.searchSkills.title",
+                description: "page.createOffer.searchSkills.description",
+                formInfo: "page.createOffer.searchSkills.formInfo",
+            },
+            skills: {
+                title: "page.createOffer.skills.title",
+                description: "page.createOffer.skills.description",
+            },
+            add: {
+                activity: "page.createOffer.add.activity",
+                skill: "page.createOffer.add.skill",
+            },
+            nextStep: "page.createOffer.nextStep",
+            previousStep: "page.createOffer.previousStep",
+            submit: "page.createOffer.submit",
+            description: {
+                title: "page.createOffer.description.title",
+                description: "page.createOffer.description.description",
+                placeholder: "page.createOffer.description.placeholder",
+            },
+            missions: {
+                title: "page.createOffer.missions.title",
+                description: "page.createOffer.missions.description",
+                placeholder: "page.createOffer.missions.placeholder",
+            },
+            profils: {
+                title: "page.createOffer.profils.title",
+                description: "page.createOffer.profils.description",
+                placeholder: "page.createOffer.profils.placeholder",
+            },
+            start: {
+                title: "page.createOffer.start.title",
+            },
+            end: {
+                title: "page.createOffer.end.title",
+            },
+            availableAt: {
+                title: "page.createOffer.availableAt.title",
+            },
+            success: "page.createOffer.success",
+        },
+        admin: {
+            offers: {
+                apiCollectionTable: {
+                    foundLabel: "page.admin.offers.apiCollectionTable.foundLabel",
+                    itemsPerPageLabel: "page.admin.offers.apiCollectionTable.itemsPerPageLabel",
+                },
+                status: {
+                    active: "page.admin.offers.status.active",
+                    inactive: "page.admin.offers.status.inactive",
+                },
+                type: {
+                    internship: "page.admin.offers.type.internship",
+                    workStudy: "page.admin.offers.type.workStudy",
+                },
+            },
+        },
+        createStudent: {
+            submit: "page.createStudent.submit",
+            password: "page.createStudent.password",
+            confirmPassword: "page.createStudent.confirmPassword",
+            wrongPassword: "page.createStudent.wrongPassword",
+            study: {
+                placeholder: "page.createStudent.study.placeholder"
+            }
+        },
+        confirmation: {
+            text: "page.confirmation.text",
+            btn: "page.confirmation.btn",
+        }
+    },
+    admin: {
+        company: {
+            actions: {
+                addOffer: "admin.company.actions.addOffer",
+            },
+        },
+    },
+    form: {
+        company: {
+            submit: "form.company.submit",
+            notifications: {
+                success: "form.company.notifications.success",
+            },
+        },
     },
     breadCrumb: {
         home: "breadCrumb.home",
+        login: "breadCrumb.login",
         uiExample: "breadCrumb.uiExample",
         companies: "breadCrumb.companies",
         offers: {
@@ -300,6 +582,7 @@ const tokens = {
             internship: "breadCrumb.offers.internship",
             workStudy: "breadCrumb.offers.workStudy",
         },
+        apply: "breadCrumb.apply",
     },
     sortings: {
         clarifications: {
@@ -307,6 +590,23 @@ const tokens = {
             alphabeticalSortZA: "sortings.clarifications.alphabeticalSortZA",
             dateASC: "sortings.clarifications.dateASC",
             dateDESC: "sortings.clarifications.dateDESC",
+        },
+    },
+    notifications: {
+        linkCopied: "notifications.linkCopied",
+        accountUpdated: "notifications.accountUpdated",
+        login: "notifications.login",
+        logout: "notifications.logout",
+    },
+    errors: {
+        403: {
+            message: "errors.403.message",
+        },
+        404: {
+            message: "errors.404.message",
+        },
+        actions: {
+            back: "errors.actions.back",
         },
     },
 }

@@ -9,3 +9,13 @@ export const futureDate = ({ property }) => {
 }
 
 export const offerType = ({ type }) => `&isInternship=${type === OfferTypeEnum.INTERNSHIP}`
+
+export const withCompany = (property, identifier) => {
+    return identifier ? `&${property}=${identifier.toString()}` : ''
+}
+
+export const existsFilter = ({ name, property, propertyTranslation, value }) => ({
+    name,
+    label: propertyTranslation,
+    query: value !== null ? `&exists[${property}]=${value}` : ''
+})

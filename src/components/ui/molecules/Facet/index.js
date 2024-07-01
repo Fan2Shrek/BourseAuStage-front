@@ -11,8 +11,9 @@ const Facet = ({
     defaultValues = [],
     defaultDisabledValues = [],
     allValue = false,
-    andMore = false,
     isRange = false,
+    isDuration = false,
+    isBetween = false,
     collectionTarget,
     property,
     values,
@@ -65,12 +66,14 @@ const Facet = ({
             }
         }
 
-        setLastClickedValue({ value, isActive })
-    }, [setLastClickedValue, values, disabledValues, onUnselect, property, t])
+        if (isDuration || isBetween) {
+            setLastClickedValue({ value: values[value], isActive })
 
-    const isLastValue = useCallback((value, index) => {
-        return index === (values.length - 1 + [allValue].filter(additionnalFacet => additionnalFacet).length)
-    }, [values, allValue])
+            return
+        }
+
+        setLastClickedValue({ value, isActive })
+    }, [setLastClickedValue, values, disabledValues, onUnselect, property, isBetween, isDuration, t])
 
     return <div ref={facet} className="facet">
         <div className="facet__header" onClick={handleClick}>
@@ -107,12 +110,12 @@ const Facet = ({
             : <List
                 collection={[
                     ...(allValue ? [t('facets.options.all')] : []),
-                    ...values,
+                    ...((isDuration || isBetween) ? Object.keys(values) : values),
                 ]}
                 uniqueAttr={value => value}
                 renderItem={(value, index) => <Input
                     id={`facet_${property}_${value}`}
-                    label={isLastValue(value, index) && andMore ? `${value} ${t('facets.options.betweenAndMore')}` : value}
+                    label={value}
                     type='checkbox'
                     defaultChecked={defaultValues.includes(value)}
                     disabled={disabledValues?.includes(value)}

@@ -27,7 +27,13 @@ const CompanyCard = ({ company, className }) => {
 
     return <Card className={cn(styles.card, className)}>
         <div className={styles.logo}>
-            <img src={getPicturePath(company.logoIcon)} alt='logo' />
+            <img
+                alt='logo'
+                src={company.logoIcon
+                    ? getPicturePath(company.logoIcon)
+                    : '/images/company.png'
+                }
+            />
         </div>
         {internshipNumber + workStudiesNumber > 0 && <div className={styles.offersRecap}>
             <Tag
@@ -45,7 +51,7 @@ const CompanyCard = ({ company, className }) => {
         </div>}
         <div className={styles.mainInfos}>
             <h3>{company.name}</h3>
-            <p className={styles.presentation}>{company.presentation}</p>
+            <div className={styles.presentation} dangerouslySetInnerHTML={{ __html: company.presentation }}></div>
         </div>
         {company.activities.length > 0 && <div className={styles.activityList}>
             <List

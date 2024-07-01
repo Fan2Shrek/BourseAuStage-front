@@ -1,0 +1,33 @@
+.apiCollectionTable {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .apiCollectionTable__resultNumber {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .dataParameters .select__target {
+            font-weight: 600;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+
+        .apiCollectionTable__itemsPerPageSelector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+}

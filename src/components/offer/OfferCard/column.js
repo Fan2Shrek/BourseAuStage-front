@@ -20,9 +20,17 @@ const ColumnCard = ({
 }) => {
     return <Card className={cn(styles.card, styles.column, className)}>
         {withHeader && <>
-            <div className={styles.logo}>
-                <img src={getPicturePath(offer.company.logoIcon)} alt='logo' />
-            </div>
+            {offer.company.logoIcon && 
+                <div className={styles.logo}>
+                    <img
+                        alt='logo'
+                        src={offer.company.logoIcon
+                            ? getPicturePath(offer.company.logoIcon)
+                            : '/images/company.png'
+                        }
+                    />
+                </div>
+            }
             <div className={styles.type}>
                 <Tag
                     label={t(tokens.card.offer[offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY])}

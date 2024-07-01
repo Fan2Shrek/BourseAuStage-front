@@ -3,12 +3,11 @@ class Request {
         this.apiClient = apiClient;
     }
 
-    async getAll() {
-        return this.apiClient.get(`/request`);
-    }
-
-    async getLast() {
-        return this.apiClient.get(`/requests?page=1&itemsPerPage=8&exists[deletedAt]=false&order[id]=desc`);
+    async post(body) {
+        return this.apiClient.post(`/requests`, body, false, {
+            accept: 'application/ld+json',
+            'Content-Type': 'application/ld+json',
+        });
     }
 }
 

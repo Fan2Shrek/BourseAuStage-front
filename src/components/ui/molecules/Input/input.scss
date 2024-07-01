@@ -3,7 +3,7 @@
         color: var(--input-required-color);
     }
 
-    &.classic {
+    &.classic, &.password {
         .input__label {
             color: var(--input-label-color);
         }
@@ -25,6 +25,29 @@
                 outline: none;
             }
         }
+
+        .input__error {
+            border-color: var(--color-danger);
+        }
+    }
+
+    &.password {
+        .input__wrapper {
+            position: relative;
+
+            .input__eye {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 25px;
+                height: 25px;
+                color: var(--input-password-eye-color);
+                z-index: 1;
+                cursor: pointer;
+            }
+        }
+
     }
 
     &.checkbox {
@@ -199,6 +222,7 @@
             border-radius: 4px;
 
             svg {
+                font-size: 24px;
                 color: var(--color-main);
             }
         }

@@ -15,16 +15,25 @@ import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import UnderlinedContent from '../../components/ui/atoms/UnderlinedText';
 import OfferCard from '../../components/offer/OfferCard';
-import OfferTypeEnum from '../../enum/OfferTypeEnum';
 import RequestCard from '../../components/request/RequestCard';
 
 const Home = () => {
+    const [stats, setStats] = useState([])
     const [highlightedCompanies, setHighlightedCompanies] = useState([])
     const [lastOffers, setLastOffers] = useState([])
     const [lastRequests, setLastRequests] = useState([])
     const { t } = useTranslation()
 
     useEffect(() => {
+        apiClient.offer.getStats()
+            .then(response => {
+                if (response.status === 404) {
+                    return;
+                }
+
+                setStats(response)
+            })
+
         apiClient.company.getHighlight()
             .then(response => {
                 if (response.status === 404) {
@@ -43,7 +52,7 @@ const Home = () => {
                 setLastOffers(response['hydra:member']);
             })
 
-        apiClient.request.getLast()
+        apiClient.spontaneousRequest.getLast()
             .then(response => {
                 if (response.status === 404) {
                     return;
@@ -64,8 +73,8 @@ const Home = () => {
                 <p className={styles.offers}><Trans
                     i18nKey={tokens.page.home.hero.offers}
                     values={{
-                        internshipsNumber: "1234",
-                        workStudiesNumber: '987',
+                        internshipsNumber: stats.internship ?? 0,
+                        workStudiesNumber: stats.workStudy ?? 0,
                     }}
                     components={{ secondary: <span className={styles.secondary} />, bold: <span className={styles.bold} /> }}
                 /></p>
@@ -76,7 +85,7 @@ const Home = () => {
                 className={styles.heroPattern}
             />
             <img
-                src="/images/home/man.svg"
+                src="/images/home/man.png"
                 alt="pioupiou"
                 className={styles.pioupiou}
             />
@@ -89,7 +98,10 @@ const Home = () => {
                 collection={highlightedCompanies}
                 renderItem={company => <Link to={path.company.replace(':id', company.id)}>
                     <img
-                        src={getPicturePath(company.logo)}
+                        src={company.logo
+                            ? getPicturePath(company.logo)
+                            : '/images/company.png'
+                        }
                         alt={t(tokens.page.home.highlightedCompanies.image.alt, { company: company.name })}
                     />
                 </Link>}
@@ -100,11 +112,15 @@ const Home = () => {
             <div className={styles.main}>
                 <h3 className={styles.title}>{t(tokens.page.home.incentive.title)}</h3>
                 <p>{t(tokens.page.home.incentive.text)}</p>
-                <Button label={t(tokens.page.home.incentive.cta)} inverted className={styles.cta} />
+                <Button
+                    label={t(tokens.page.home.incentive.cta)}
+                    inverted
+                    redirectTo={path.companyRegistration}
+                    className={styles.cta} />
             </div>
             <div className={styles.image}>
                 <img
-                    src="/images/home/dashboard.svg"
+                    src="/images/home/dashboard.png"
                     alt="Dashboard"
                 />
             </div>
@@ -134,7 +150,6 @@ const Home = () => {
                 renderItem={offer => <Link to={path.offer.replace(':id', `${offer.id}`)}>
                     <OfferCard
                         offer={offer}
-                        type={offer.internship ? OfferTypeEnum.INTERNSHIP : OfferTypeEnum.WORKSTUDY}
                         withHeader
                         withLocaltion
                         withDescription

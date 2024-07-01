@@ -1,0 +1,100 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 2%;
+
+    .r1 {
+        width: 100%;
+    }
+
+    .r2 {
+        width: 49%;
+    }
+
+    .r3 {
+        width: 32%;
+    }
+
+    .r6 {
+        width: 15%;
+    }
+
+    .activities {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .required {
+            color: var(input-required-color);
+        }
+
+        .selected {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            .errored {
+                border: 1px solid var(--color-danger);
+            }
+        }
+    }
+
+    .fileBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        .preview {
+            height: 100px;
+            width: fit-content;
+
+            &.logo {
+                height: 50px
+            }
+        }
+    }
+
+    .submit {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    :global {
+        .input.file {
+            .input__button {
+                justify-content: flex-start;
+                width: 100%;
+
+                span {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px;
+
+    :global {
+        .button {
+            margin-top: 50px;
+        }
+    }
+}
+
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50dvh;
+
+    .loader {
+        margin: 20px auto;
+    }
+}

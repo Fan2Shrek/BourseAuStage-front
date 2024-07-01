@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaArrowRight, FaGithub } from "react-icons/fa";
 
@@ -6,6 +6,7 @@ import styles from './UiExample.module.scss';
 import cn from '../../utils/classnames';
 import tokens from '../../translations/tokens';
 import path from '../../path';
+import { NotificationContext } from '../../context/NotificationContext';
 import Button from '../../components/ui/atoms/Button';
 import List from '../../components/ui/atoms/List';
 import Tag from '../../components/ui/atoms/Tag';
@@ -25,6 +26,7 @@ import Dot from '../../components/ui/atoms/Dot';
 const UiExample = () => {
     const [displayModal, setDisplayModal] = useState(false)
     const { t } = useTranslation()
+    const { addNotification } = useContext(NotificationContext);
 
     const breadCrumb = useMemo(() => [
         {
@@ -132,13 +134,13 @@ const UiExample = () => {
     ], [])
 
     const exampleInputs = useMemo(() => [
-        { identifier: 1, id: 'required', label: 'Required', type: 'input', placeholder: 'required', required: true },
-        { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'input', placeholder: 'not required', required: false },
+        { identifier: 1, id: 'required', label: 'Required', type: 'text', placeholder: 'required', required: true },
+        { identifier: 2, id: 'notRequired', label: 'Not Required', type: 'text', placeholder: 'not required', required: false },
     ], [])
 
     const exampleInputsSimple = useMemo(() => [
-        { identifier: 1, type: 'input' },
-        { identifier: 2, type: 'input', placeholder: 'placeholder' },
+        { identifier: 1, type: 'text' },
+        { identifier: 2, type: 'text', placeholder: 'placeholder' },
     ], [])
 
     const exampleCheckbox = useMemo(() => [
@@ -187,8 +189,8 @@ const UiExample = () => {
     const exampleDots = useMemo(() => [
         { id: 1 },
         { id: 2, size: 8 },
-        { id: 2, size: 16 },
-        { id: 2, size: 32 },
+        { id: 3, size: 16 },
+        { id: 4, size: 32 },
     ], [])
 
     const exampleUnderlinedTexts = useMemo(() => [
@@ -434,6 +436,18 @@ const UiExample = () => {
                 </Modal>
 
                 <Button label={'Modal'} onClick={() => setDisplayModal(true)} />
+            </Container>
+
+            <Container inline className={styles.section}>
+                <h2>Notifications :</h2>
+
+                <Button
+                    label={'Notification'}
+                    onClick={() => addNotification({
+                        type: ['info', 'success', 'warning', 'danger'][(Math.round(Math.random() * 3))],
+                        message: ['Bonjour', 'Hola', 'Guten Morgen', 'Hello', 'Buongiorno'][(Math.round(Math.random() * 4))],
+                    })}
+                />
             </Container>
         </Container>
     </Container>

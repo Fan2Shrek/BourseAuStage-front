@@ -1,0 +1,18 @@
+.companyAdminHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+
+    .companyInfos {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 20px;
+        font-weight: 600;
+
+        .logoIcon {
+            width: 70px;
+        }
+    }
+}

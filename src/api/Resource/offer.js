@@ -14,6 +14,18 @@ class Offer {
     async getAll(query) {
         return this.apiClient.get(`/offers?${query}`);
     }
+
+    async getRequests(id) {
+        return this.apiClient.get(`/offers/${id}/requests`);
+    }
+
+    async getStats() {
+        return this.apiClient.get(`/stats`);
+    }
+
+    async post(body) {
+        return this.apiClient.post('/offers', body);
+    }
 }
 
 export default Offer;

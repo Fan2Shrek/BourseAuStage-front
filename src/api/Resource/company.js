@@ -16,7 +16,7 @@ class Company {
     }
 
     async getPictures(id) {
-        return this.apiClient.get(`/companies/${id}/pictures`);
+        return this.apiClient.get(`/companies/${id}/pictures?order[position]=asc`);
     }
 
     async getHighlight() {
@@ -25,6 +25,14 @@ class Company {
 
     async getOffers(id) {
         return this.apiClient.get(`/companies/${id}/offers`);
+    }
+
+    async post(body) {
+        return this.apiClient.post(`/register/company`, body, true);
+    }
+
+    async update(id, body) {
+        return this.apiClient.post(`/companies/${id}`, body, true);
     }
 }
 

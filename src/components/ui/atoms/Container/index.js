@@ -2,6 +2,7 @@ import './container.scss'
 import cn from '../../../../utils/classnames'
 
 const Container = ({
+    admin = false,
     inline = false,
     cornerTop = false,
     cornerBottom = false,
@@ -11,6 +12,7 @@ const Container = ({
     return <div className={cn(
         'container',
         {
+            admin,
             inline,
             cornerTop,
             cornerBottom,

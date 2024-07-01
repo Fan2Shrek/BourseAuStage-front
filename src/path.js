@@ -1,6 +1,6 @@
 const path = {
     home: '/',
-    uiExample: '/ui-example',
+    login: '/connexion',
     companies: '/entreprises',
     company: '/entreprises/:id',
     internship: '/offres/stage',
@@ -8,5 +8,16 @@ const path = {
     offer: '/offres/:id',
     requestDetail: '/demandes/:id',
     apply: '/offres/postuler/:id',
+    studentRegistration: '/inscription/etudiant',
+    companyRegistration: '/inscription/entreprise',
+    uiExample: '/ui-exemples',
+    admin: {
+        profil: '/admin/profil',
+        companyProfil: '/admin/mon-entreprise',
+        offers: '/admin/offres',
+        createOffer: '/admin/offres/creer',
+    },
+    confirmation: '/confirmation'
 }
+
 export default path;
