@@ -228,7 +228,7 @@ const Offer = () => {
                             }
                         />
                     </Link>
-                    <p>{offer.company.presentation}</p>
+                    <div dangerouslySetInnerHTML={{ __html: offer.company.presentation }}></div>
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
@@ -252,7 +252,7 @@ const Offer = () => {
                         />}
                     />
                     <div className={styles.map}>
-                        {(offer.company.address && offer.company.city) && <Map address={`${offer.company.address}, ${offer.company.city} ${offer.company.postCode ?? ''} `} markerText={offer.company.name}/>}
+                        {(offer.company.address && offer.company.city) && <Map address={`${offer.company.address}, ${offer.company.city} ${offer.company.postCode ?? ''} `} markerText={offer.company.name} />}
                     </div>
                 </div>
             </div>
