@@ -332,7 +332,7 @@ const fr = {
     [tokens.page.createOffer.profils.placeholder]: "Sassiser votre texte ici",
     [tokens.page.createOffer.start.title]: "Date de début",
     [tokens.page.createOffer.end.title]: "Date de fin",
-    [tokens.page.createOffer.availableAt.title]: "Publié le",
+    [tokens.page.createOffer.availableAt.title]: "Postulé avant le",
     [tokens.page.createOffer.success]: "L'offre a bien été créé",
     [tokens.page.createStudent.submit]: "Je créer mon compte",
     [tokens.page.createStudent.password]: "Mot de passe",
