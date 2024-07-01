@@ -13,7 +13,7 @@ const path = {
     uiExample: '/ui-exemples',
     admin: {
         profil: '/admin/profil',
-        companyProfil: '/admin/profil/entreprise',
+        companyProfil: '/admin/mon-entreprise',
         offers: '/admin/offres',
         createOffer: '/admin/offres/creer',
     },

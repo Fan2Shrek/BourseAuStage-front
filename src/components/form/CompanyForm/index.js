@@ -490,7 +490,7 @@ const CompanyForm = () => {
             <Button
                 type='submit'
                 label={t(tokens.form.company.submit)}
-                className={styles.r1}
+                className={cn(styles.submit, styles.r1)}
             />
         </form>
     </>
