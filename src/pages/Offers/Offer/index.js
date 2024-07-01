@@ -232,7 +232,7 @@ const Offer = () => {
                     <div className={styles.buttonOffer}>
                         <Button
                             label={t(tokens.page.offerDetails.more, { company: offer.company.name })}
-                            redirectTo={path.apply.replace(':id', offer.company.id)}
+                            redirectTo={path.company.replace(':id', offer.company.id)}
                             inverted
                             withoutBorder
                             transparent
