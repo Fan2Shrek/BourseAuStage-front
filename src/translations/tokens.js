@@ -437,7 +437,12 @@ const tokens = {
                 alt: "page.companyDetails.images.alt"
             },
             similar: {
-                title: "page.offerDetails.similar.title",
+                internship: {
+                    title: "page.offerDetails.similar.internship.title",
+                },
+                workStudy: {
+                    title: "page.offerDetails.similar.workStudy.title",
+                },
                 cta: "page.offerDetails.similar.cta",
             },
         },

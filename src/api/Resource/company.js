@@ -24,7 +24,7 @@ class Company {
     }
 
     async getOffers(id) {
-        return this.apiClient.get(`/companies/${id}/offers`);
+        return this.apiClient.get(`/companies/${id}/offers?exists[deletedAt]=false`);
     }
 
     async post(body) {

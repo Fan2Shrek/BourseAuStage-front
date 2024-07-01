@@ -95,7 +95,7 @@ const Offer = () => {
             return
         }
 
-        apiClient.offer.getAll(`isInternship=${offer.internship}` + offer.activities.reduce((acc, cur) => `${acc}&activities.name[]=${cur.name}`, ''))
+        apiClient.offer.getAll(`exists[deletedAt]=false&isInternship=${offer.internship}` + offer.activities.reduce((acc, cur) => `${acc}&activities.name[]=${cur.name}`, ''))
             .then(response => {
                 if (response.status === 404) {
                     return;
@@ -261,7 +261,7 @@ const Offer = () => {
             <Container>
                 <div className={styles.header}>
                     <h2><Trans
-                        i18nKey={tokens.page.offerDetails.similar.title}
+                        i18nKey={tokens.page.offerDetails.similar[offer.internship ? 'internship' : 'workStudy'].title}
                         components={{ secondary: <span className={styles.secondary} /> }}
                     /></h2>
                     <Button
