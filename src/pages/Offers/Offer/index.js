@@ -222,7 +222,7 @@ const Offer = () => {
                     <Link to={path.company.replace(':id', offer.company.id)}>
                         <img
                             alt={offer.company.name}
-                            src={offer.company.logoIcon
+                            src={offer.company.logo
                                 ? getPicturePath(offer.company.logo)
                                 : '/images/company.png'
                             }
